@@ -1,5 +1,6 @@
 namespace :db do
-  desc "TODO"
+  desc "Import companies into the database from a parsed text file"
+  # The text file must be formatted with exactly one company per exactly ten lines with exactly one attribute per line in the order of: name, street_address, city_state_zip, phone, website, headquarters, products_services, person_in_charge
   task :seed_test_fixture, [:path] => :environment do |t, args|
     lines = File.new(args[:path]).readlines.map { |line| line.chomp }
 
