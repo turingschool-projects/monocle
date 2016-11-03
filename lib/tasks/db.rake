@@ -3,8 +3,8 @@ namespace :db do
   task :seed_test_fixture, [:path] => :environment do |t, args|
     lines = File.new(args[:path]).readlines.map { |line| line.chomp }
 
-    category = File.basename(args[:path], ".txt")
-    Category.create!(name: category)
+    category_name = File.basename(args[:path], ".txt")
+    category = Category.create!(name: category_name)
 
     companies = []
 
@@ -13,16 +13,25 @@ namespace :db do
     end
 
     companies.each do |company|
-      Company.create!(
-        name: company[0]
-        street_address: company[1]
-        city_state_zip: company[2]
-        phone: company[3]
-        website: company[4]
-        headquarters: company[5]
-        products_services: company[6]
-        person_in_charge: company[7]
-      )
+      name              = company[0]
+      street_address    = company[1]
+      city_state_zip    = company[2]
+      phone             = company[3]
+      website           = company[4]
+      headquarters      = company[5].sub("Company headquarters: ", "")
+      products_services = company[6].sub("Products/Services: ", "")
+      person_in_charge  = company[7].sub("Person in charge: ", "")
+
+      category.companies << Company.new({
+        name:              name,
+        street_address:    street_address,
+        city_state_zip:    city_state_zip,
+        phone:             phone,
+        website:           website,
+        headquarters:      headquarters,
+        products_services: products_services,
+        person_in_charge:  person_in_charge
+      })
     end
   end
 end
