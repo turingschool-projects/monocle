@@ -12,6 +12,8 @@ RSpec.describe "db:seed_test_fixture" do
 
     subject.invoke(fixture_path)
 
+    expect(Category.count).to eq(1)
+    expect(Category.last.name).to eq(File.basename(fixture_file, ".txt"))
     expect(Company.count).to eq(10)
   end
 end
