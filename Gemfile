@@ -35,6 +35,8 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
   gem 'pry-rails'
+  gem "factory_girl_rails", "~> 4.0"
+  gem 'faker'
 end
 
 group :test do
@@ -43,7 +45,6 @@ group :test do
   gem 'launchy'
   gem 'shoulda-matchers'
   gem 'simplecov', require: false
-  gem 'factory_girl_rails'
 end
 
 group :development do
@@ -52,7 +53,6 @@ group :development do
   gem 'listen', '~> 3.0.5'
   gem 'better_errors'
   gem 'binding_of_caller'
-  gem 'faker'
 end
 
 group :production do
