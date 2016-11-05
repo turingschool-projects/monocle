@@ -10,13 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161103205226) do
+ActiveRecord::Schema.define(version: 20161105221802) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "citext"
 
   create_table "categories", force: :cascade do |t|
+    t.citext   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "cities", force: :cascade do |t|
     t.citext   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -34,8 +40,29 @@ ActiveRecord::Schema.define(version: 20161103205226) do
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
     t.citext   "phone"
+    t.integer  "city_id"
+    t.integer  "state_id"
+    t.integer  "zip_code_id"
     t.index ["category_id"], name: "index_companies_on_category_id", using: :btree
+    t.index ["city_id"], name: "index_companies_on_city_id", using: :btree
+    t.index ["state_id"], name: "index_companies_on_state_id", using: :btree
+    t.index ["zip_code_id"], name: "index_companies_on_zip_code_id", using: :btree
+  end
+
+  create_table "states", force: :cascade do |t|
+    t.citext   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "zip_codes", force: :cascade do |t|
+    t.string   "zip_code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_foreign_key "companies", "categories"
+  add_foreign_key "companies", "cities"
+  add_foreign_key "companies", "states"
+  add_foreign_key "companies", "zip_codes"
 end

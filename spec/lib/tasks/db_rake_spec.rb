@@ -25,6 +25,10 @@ RSpec.describe "db:seed_test_fixture" do
     expect(Company.first.headquarters).to eq("Fort Collins")
     expect(Company.first.products_services).to eq("Uses stem cells derived from the bone marrow of equine and canine to treat equine athlete joint injuries.")
     expect(Company.first.person_in_charge).to eq("Cristin Keohan, laboratory director")
+    expect(Company.first.city.name).to eq("Fort Collins")
+    expect(Company.first.state.name).to eq("CO")
+    expect(Company.first.zip_code.zip_code).to eq("80524")
+
 
     expect(Company.last.category).to eq(Category.last)
     expect(Company.last.name).to eq("ZEOPONIX INC.")
@@ -35,5 +39,8 @@ RSpec.describe "db:seed_test_fixture" do
     expect(Company.last.headquarters).to eq("Boulder")
     expect(Company.last.products_services).to eq("Zeoponic soil amendment/fertilizer, NASA spin off, high efficiency ion exchange nutrient delivery; horticulture, sports/golf, forestry, agriculture, landscaping, greenroofs, aquaponics, reclamation.")
     expect(Company.last.person_in_charge).to eq("Richard Andrews, CEO")
+    expect(Company.last.city.name).to eq("Boulder")
+    expect(Company.last.state.name).to eq("CO")
+    expect(Company.last.zip_code.zip_code).to eq("80308")
   end
 end

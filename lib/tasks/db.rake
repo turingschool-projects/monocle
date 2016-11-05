@@ -27,6 +27,9 @@ namespace :db do
       headquarters      = company[5].sub("Company headquarters: ", "")
       products_services = company[6].sub("Products/Services: ", "")
       person_in_charge  = company[7].sub("Person in charge: ", "")
+      city              = company[2].split[0...-2].join(" ").gsub(",", "")
+      state             = company[2].split[-2]
+      zip_code          = company[2].split.last
 
       category.companies << Company.new({
         name:              name,
@@ -36,7 +39,10 @@ namespace :db do
         website:           website,
         headquarters:      headquarters,
         products_services: products_services,
-        person_in_charge:  person_in_charge
+        person_in_charge:  person_in_charge,
+        city:              City.find_or_create_by(name: city),
+        state:             State.find_or_create_by(name: state),
+        zip_code:          ZipCode.find_or_create_by(zip_code: zip_code)
       })
     end
 
