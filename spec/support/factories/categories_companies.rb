@@ -14,6 +14,13 @@ FactoryGirl.define do
     products_services { Faker::Hipster.paragraph }
     person_in_charge  { Faker::Name.name + ", " +
                         Faker::Name.title }
+    city              { City.find_or_create_by(
+                        name: city_state_zip.split[0...-2]
+                        .join(" ").gsub(",", "")) }
+    state             { State.find_or_create_by(
+                        name: city_state_zip.split[-2]) }
+    zip_code          { ZipCode.find_or_create_by(
+                        zip_code: city_state_zip.split.last) }
   end
 
   factory :category do
@@ -29,4 +36,16 @@ FactoryGirl.define do
       end
     end
   end
+
+  # factory :city do
+  #   name nil
+  # end
+  #
+  # factory :state do
+  #   name nil
+  # end
+  #
+  # factory :zip_code do
+  #   zip_code nil
+  # end
 end
