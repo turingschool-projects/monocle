@@ -36,16 +36,4 @@ FactoryGirl.define do
       end
     end
   end
-
-  # factory :city do
-  #   name nil
-  # end
-  #
-  # factory :state do
-  #   name nil
-  # end
-  #
-  # factory :zip_code do
-  #   zip_code nil
-  # end
 end
