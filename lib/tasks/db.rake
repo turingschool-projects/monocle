@@ -6,45 +6,8 @@ namespace :db do
     prior_company_count = Company.count
 
     puts "Reading from file: #{args[:path]}"
-    lines = File.new(args[:path]).readlines.map { |line| line.chomp }
-
-    category_name = File.basename(args[:path], ".txt")
-    category = Category.find_or_create_by!(name: category_name)
-
-    companies = []
-
-    lines.each_slice(10) do |ten_lines|
-      companies << ten_lines
-    end
-
     puts "Importing companies into database..."
-    companies.each do |company|
-      name              = company[0]
-      street_address    = company[1]
-      city_state_zip    = company[2]
-      phone             = company[3]
-      website           = company[4]
-      headquarters      = company[5].sub("Company headquarters: ", "")
-      products_services = company[6].sub("Products/Services: ", "")
-      person_in_charge  = company[7].sub("Person in charge: ", "")
-      city              = company[2].split[0...-2].join(" ").gsub(",", "")
-      state             = company[2].split[-2]
-      zip_code          = company[2].split.last
-
-      category.companies << Company.new({
-        name:              name,
-        street_address:    street_address,
-        city_state_zip:    city_state_zip,
-        phone:             phone,
-        website:           website,
-        headquarters:      headquarters,
-        products_services: products_services,
-        person_in_charge:  person_in_charge,
-        city:              City.find_or_create_by(name: city),
-        state:             State.find_or_create_by(name: state),
-        zip_code:          ZipCode.find_or_create_by(zip_code: zip_code)
-      })
-    end
+    SeedFixtureData.run(args[:path])
 
     final_category_count = Category.count
     final_company_count = Company.count
