@@ -1,6 +1,6 @@
 class CitiesController < ApplicationController
   def index
-    @cities = City.includes(:companies).order(:name)
+    @cities = City.includes(:companies).where("length(name) > 3").order(:name)
   end
 
   def show
