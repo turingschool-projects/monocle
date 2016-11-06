@@ -7,16 +7,13 @@ RSpec.feature "User navigates to the all cities path" do
 
     SeedFixtureData.run(path)
 
-    # as a user,
-    # when I go to the home page,
     visit root_path
-    # and I click Brwose by city,
-    click_on "Browse by City"
-    # then I see a list of all cities,
+    click_on "Browse Directory"
+    click_on "By City"
+
     City.all.each do |city|
-      expect(page).to_not have_content(city.name)
-      expect(page).to_not have_link(city_name, href: city_path(city))
+      expect(page).to have_link(city.name, href: city_path(city))
+      expect(page).to have_content(city.companies.count)
     end
-    # and links to each
   end
 end
