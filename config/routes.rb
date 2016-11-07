@@ -3,4 +3,6 @@ Rails.application.routes.draw do
 
   resources :companies, only: [:index, :show]
   resources :cities,    only: [:index, :show]
+
+  get '/auth/slack/callback', to: 'sessions#create'
 end
