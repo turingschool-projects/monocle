@@ -21,4 +21,8 @@ RSpec.describe SlackService, type: :service do
       expect(SlackService.authenticate(params)).to_be an_instance_of(User)
     end
   end
+
+  it "can exchange a code for slack user info" do
+    
+  end
 end

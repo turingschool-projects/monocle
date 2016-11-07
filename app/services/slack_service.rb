@@ -2,7 +2,7 @@ module SlackService
   def self.authenticate(params)
     return false if params["error"] || params["code"].nil?
     user_info = fetch_info_via_code(params["code"])
-require "pry"; binding.pry
+    # return false if
   end
 
   private
