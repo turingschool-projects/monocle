@@ -2,7 +2,7 @@ module SlackService
   def self.authenticate(params)
     return false if params["error"] || params["code"].nil?
     user_info = fetch_info_via_code(params["code"])
-    # return false if
+    User.create_from_slack
   end
 
   private

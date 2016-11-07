@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
   def create
-    if SlackService.authenticate(params)
+    if user = SlackService.authenticate(params)
 
     else
 
