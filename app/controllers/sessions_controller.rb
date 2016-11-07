@@ -5,7 +5,5 @@ class SessionsController < ApplicationController
     else
 
     end
-    params[:code]
-    params[:error]
   end
 end

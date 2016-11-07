@@ -14,7 +14,7 @@ RSpec.describe SlackService, type: :service do
   end
 
   context "Slack validation succeded" do
-    it "returns a user object" do
+    xit "returns a user object" do
       params = {"code"=>"2329094327.101187647029.9d607fd56c", "state"=>"", "controller"=>"sessions", "action"=>"create"}
 
       expect(SlackService.authenticate(params)).to_not eq(false)
