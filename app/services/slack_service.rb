@@ -2,21 +2,22 @@ module SlackService
   def self.authenticate(params)
     return false if params["error"] || params["code"].nil?
     user_info = fetch_info_via_code(params["code"])
-    User.create_from_slack
+    User.create_from_slack(user_info)
   end
 
   private
-    def self.fetch_info_via_code(code)
-      conn = Faraday.new(:url => "https://slack.com") do |faraday|
-        faraday.request  :url_encoded             # form-encode POST params
-        faraday.response :logger                  # log requests to STDOUT
-        faraday.adapter  Faraday.default_adapter  # make requests with Net::HTTP
+    def self.conn
+      Faraday.new(:url => "https://slack.com") do |faraday|
+        faraday.request  :url_encoded
+        faraday.adapter  Faraday.default_adapter
+        faraday.basic_auth(ENV['slack_client_id'], ENV['slack_client_secret'])
       end
+    end
+
+    def self.fetch_info_via_code(code)
       response = conn.get do |req|
         req.url "/api/oauth.access"
-        req.params["client_id"]     = ENV['slack_client_id']
-        req.params["client_secret"] = ENV['slack_client_secret']
-        req.params["code"]          = code
+        req.params["code"] = code
       end
       JSON.parse(response.body)
     end
