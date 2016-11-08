@@ -1,0 +1,21 @@
+<ul class="nav navbar-nav navbar-right">
+  <% if current_user %>
+    <p class="navbar-text">Signed in as <strong><%= current_user.username %></strong></p>
+    <li>
+      <%= button_to "Sign Out", logout_path, class: "btn btn-default navbar-btn" %>
+    </li>
+  <% else %>
+    <li>
+      <%= link_to(
+      image_tag(
+      "https://platform.slack-edge.com/img/sign_in_with_slack.png",
+      alt: "Sign in with Slack",
+      height: "40",
+      width: "172",
+      srcset: "https://platform.slack-edge.com/img/sign_in_with_slack.png 1x, https://platform.slack-edge.com/img/sign_in_with_slack@2x.png 2x"
+      ),
+      "https://slack.com/oauth/authorize?scope=identity.basic,identity.team,identity.avatar&client_id=#{ENV['slack_client_id']}"
+      ) %>
+    </li>
+  <% end %>
+</ul>
