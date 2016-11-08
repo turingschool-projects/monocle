@@ -5,5 +5,5 @@ Rails.application.routes.draw do
   resources :cities,    only: [:index, :show]
 
   get '/auth/slack/callback', to: 'sessions#create'
-  get '/logout',              to: 'session#destroy'
+  post '/logout',              to: 'sessions#destroy'
 end
