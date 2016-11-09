@@ -14,4 +14,8 @@ class User < ApplicationRecord
     end
     user.save ? user : false
   end
+
+  def star(company)
+    companies << company unless companies.exists?(id: company)
+  end
 end
