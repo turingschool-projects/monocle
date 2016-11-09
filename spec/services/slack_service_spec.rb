@@ -39,7 +39,7 @@ RSpec.describe SlackService, type: :service do
   context "Slack validation succeded" do
     it "returns a user object" do
       VCR.use_cassette("DO_NOT_DELETE_exchange_slack_code_for_token") do
-        params = {"code"=>"2329094327.101480729555.5b65e716cc",
+        params = {"code"=>"2329094327.102692926898.bec22894d5",
                   "state"=>""}
 
         result = SlackService.authenticate(params)
