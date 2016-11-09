@@ -1,7 +1,9 @@
 module SlackService
   def self.authenticate(params)
+puts "***1*** #{params}"
     return false if params["error"] || params["code"].nil?
     user_info = fetch_info_via_code(params["code"])
+puts "***2*** #{user_info}"
     User.create_from_slack(user_info)
   end
 
@@ -19,6 +21,7 @@ module SlackService
         req.url "/api/oauth.access"
         req.params["code"] = code
       end
+puts "***3*** #{JSON.parse(response.body)}"
       JSON.parse(response.body)
     end
 end
