@@ -21,6 +21,14 @@ RSpec.describe SessionsController, type: :controller do
     end
   end
 
+  describe "GET new" do
+    it "" do
+      get :new
+
+      expect(response).to have_http_status(302)
+    end
+  end
+
   describe "POST destroy" do
     context "user is not authenticated" do
       it "recieves a 404 response" do
