@@ -1,3 +1,7 @@
+<% flash.each do |type, msg| %>
+  <%= content_tag :div, msg, class: "alert alert-#{type}" %>
+<% end %>
+
 <h1>Welcome to Monocle</h1>
 
 <%= link_to(
