@@ -5,6 +5,8 @@ RSpec.describe User, type: :model do
   it { should validate_presence_of(:slack_uid) }
   it { should validate_presence_of(:slack_access_token) }
   it { should validate_uniqueness_of(:slack_uid) }
+  it { should have_many(:starred_companies) }
+  it { should have_many(:companies) }
 
   context "When given valid slack user info" do
     it "creates a new user" do
