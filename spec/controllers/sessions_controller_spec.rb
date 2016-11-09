@@ -4,7 +4,7 @@ RSpec.describe SessionsController, type: :controller do
   describe "POST create" do
     it "creates a user" do
       VCR.use_cassette("DO_NOT_DELETE_exchange_slack_code_for_token") do
-        params = {"code"=>"2329094327.101480729555.5b65e716cc",
+        params = {"code"=>"2329094327.102692926898.bec22894d5",
                   "state"=>""}
 
         expect{post :create, params: params}.to change{User.count}.from(0).to(1)
@@ -18,6 +18,14 @@ RSpec.describe SessionsController, type: :controller do
                 "state"=>""}
 
       expect{post :create, params: params}.to_not change{User.count}.from(0)
+    end
+  end
+
+  describe "GET new" do
+    it "" do
+      get :new
+
+      expect(response).to have_http_status(302)
     end
   end
 
