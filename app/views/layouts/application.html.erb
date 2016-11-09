@@ -21,9 +21,7 @@
 
     <%= render partial: "layouts/navbar" %>
 
-    <% flash.each do |type, msg| %>
-      <%= content_tag :div, msg, class: "alert alert-#{type}" %>
-    <% end %>
+    <%= render partial: "shared/flash" %>
 
     <%= yield %>
 
