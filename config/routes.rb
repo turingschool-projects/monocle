@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   get  '/auth/slack/callback', to: 'sessions#create'
   post '/logout',              to: 'sessions#destroy'
 
-  resources :companies, only: [:index, :show]
-  resources :cities, only: [:index, :show]
+  resources :companies,         only: [:index, :show]
+  resources :cities,            only: [:index, :show]
   resources :starred_companies, only: [:create]
 end
