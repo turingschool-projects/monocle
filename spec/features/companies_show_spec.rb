@@ -2,6 +2,8 @@ require 'rails_helper'
 
 RSpec.feature "User navigates to individual companies page", type: :feature do
   it "they see the details for that company" do
+    user = create(:user)
+    stub_login(user)
     company = create(:company)
 
     visit companies_path

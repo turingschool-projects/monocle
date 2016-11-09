@@ -15,4 +15,13 @@ RSpec.feature "After stubbing login" do
     expect(page).to have_content("Signed in as #{user.username}")
     expect(page).to have_button("Sign Out")
   end
+
+  scenario "logging out shows flash message" do
+    user = create(:user)
+    stub_login(user)
+    visit root_path
+    click_button"Sign Out"
+
+    expect(page).to have_content("Signed out successfully.")
+  end
 end

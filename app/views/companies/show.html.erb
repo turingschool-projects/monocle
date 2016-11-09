@@ -25,3 +25,13 @@
     <td><%= @company.person_in_charge %></td>
   </tr>
 </table>
+
+<% if current_user.companies.exists?(@company.id) %>
+  <h4><i class="text-info">
+    <span class="glyphicon glyphicon-star" aria-hidden="true"></span> This company has been saved in your starred list.
+  </i></h4>
+<% else %>
+  <%= button_tag class: "btn btn-default btn-lg", id: "star", data: {id: @company.id} do %>
+    <%= content_tag("span", "", class: ["glyphicon", "glyphicon-star"], aria_hidden: true) %> Star
+  <% end %>
+<% end %>

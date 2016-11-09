@@ -258,7 +258,7 @@ Products/Services: Provides consulting services and solutions in engineering, ri
 
 
 
-ARES CORP.
+ARES CORP.
 1330 Inverness Drive, Suite 230
 Colorado Springs, CO 80910
 719-484-8640
@@ -838,7 +838,7 @@ Products/Services: Manufacturer of aerospace parts. Medical, research companies.
 Person in charge: Bill Morgan, president
 
 
-NATIONAL TECHNICAL SYSTEMS INC.
+NATIONAL TECHNICAL SYSTEMS INC.
 1736 Vista View Drive
 Longmont, CO 80504
 303-776-7249
