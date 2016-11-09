@@ -25,3 +25,7 @@
     <td><%= @company.person_in_charge %></td>
   </tr>
 </table>
+
+<%= button_tag class: "btn btn-default btn-lg", id: "star", data: {id: @company.id} do %>
+  <%= content_tag("span", "", class: ["glyphicon", "glyphicon-star"], aria_hidden: true) %> Star
+<% end %>
