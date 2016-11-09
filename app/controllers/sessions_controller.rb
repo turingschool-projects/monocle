@@ -4,16 +4,7 @@ class SessionsController < ApplicationController
   end
 
   def new
-    redirect_uri = if ENV["RAILS_ENV"].in?(["test", "development"])
-      "http%3A%2F%2F0.0.0.0%3A3000%2Fauth%2Fslack%2Fcallback"
-    else
-      "https%3A%2F%2Fturingmonocle.herokuapp.com%2Fauth%2Fslack%2Fcallback"
-    end
-    slack_url = "https://slack.com/oauth/authorize?" +
-      "scope=identity.basic,identity.team,identity.avatar&" +
-      "client_id=#{ENV['slack_client_id']}&" +
-      "redirect_uri=#{redirect_uri}"
-    redirect_to slack_url
+    redirect_to SlackService.sign_in_uri
   end
 
   def create
