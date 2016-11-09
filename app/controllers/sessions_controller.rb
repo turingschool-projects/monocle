@@ -3,6 +3,10 @@ class SessionsController < ApplicationController
     render layout: false
   end
 
+  def new
+    redirect_to "https://slack.com/oauth/authorize?scope=identity.basic,identity.team,identity.avatar&client_id=#{ENV['slack_client_id']}"
+  end
+
   def create
     if user = SlackService.authenticate(params)
       session[:user_id] = user.id
