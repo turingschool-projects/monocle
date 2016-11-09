@@ -20,4 +20,14 @@ RSpec.describe SessionsController, type: :controller do
       expect{post :create, params: params}.to_not change{User.count}.from(0)
     end
   end
+
+  describe "POST destroy" do
+    context "user is not authenticated" do
+      it "recieves a 404 response" do
+        post :destroy
+
+        expect(response).to have_http_status(404)
+      end
+    end
+  end
 end
