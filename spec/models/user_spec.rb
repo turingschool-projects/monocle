@@ -5,6 +5,8 @@ RSpec.describe User, type: :model do
   it { should validate_presence_of(:slack_uid) }
   it { should validate_presence_of(:slack_access_token) }
   it { should validate_uniqueness_of(:slack_uid) }
+  it { should have_many(:starred_companies) }
+  it { should have_many(:companies) }
 
   context "When given valid slack user info" do
     it "creates a new user" do
@@ -49,5 +51,20 @@ RSpec.describe User, type: :model do
       expect(result).to eq(false)
       expect(User.count).to eq(0)
     end
+  end
+
+  it "can star a company" do
+    user = create(:user)
+    company = create(:company)
+
+    expect{user.star(company)}.to change{user.companies.count}.from(0).to(1)
+  end
+
+  it "cannot star an already starred company" do
+    user = create(:user)
+    company = create(:company)
+
+    user.star(company)
+    expect{user.star(company)}.to_not change{user.companies.count}.from(1)
   end
 end
