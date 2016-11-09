@@ -4,7 +4,10 @@ class SessionsController < ApplicationController
   end
 
   def new
-    redirect_to "https://slack.com/oauth/authorize?scope=identity.basic,identity.team,identity.avatar&client_id=#{ENV['slack_client_id']}"
+    slack_url = "https://slack.com/oauth/authorize?" +
+      "scope=identity.basic,identity.team,identity.avatar&" +
+      "client_id=#{ENV['slack_client_id']}"
+    redirect_to slack_url
   end
 
   def create
