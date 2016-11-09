@@ -1,22 +1,30 @@
 require 'rails_helper'
 
-RSpec.feature "User can save a company to their list" do
-  scenario "the company is added to their saved list" do
-    # As a logged in user
-    company = create(:company)
-    user    = create(:user)
-    stub_login(user)
-    # when I navigate to a company show page
-    visit company_path(company)
+RSpec.feature "User has option to star a company unless already starred" do
+  context "they have not starred the company" do
+    scenario "they see a button to star it" do
+      user = create(:user)
+      stub_login(user)
+      company = create(:company)
 
-    expect(user.companies.count).to eq(0)
-    expect(page).to_not have_content("You have starred this listing.")
-    # and I click interested
+      visit company_path(company)
 
-    expect(page).to have_button("Star")
-    # then I stay on the same page
-    # expect(page).to have_content("You have starred this listing.")
-    # expect(user.companies.count).to eq(1)
-    # and my interested count increases by 1
+      expect(page).to_not have_content("You have starred this listing.")
+      expect(page).to have_button("Star")
+    end
+  end
+
+  context "they have starred the company" do
+    scenario "they see a message and no button" do
+      user = create(:user)
+      stub_login(user)
+      company = create(:company)
+      user.companies << company
+
+      visit company_path(company)
+
+      expect(page).to have_content("This company has been saved in your starred list.")
+      expect(page).to_not have_button("Star")
+    end
   end
 end

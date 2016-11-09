@@ -16,6 +16,6 @@ class User < ApplicationRecord
   end
 
   def star(company)
-    companies << company unless companies.exists?(id: company)
+    companies << company unless companies.exists?(id: company.id)
   end
 end
