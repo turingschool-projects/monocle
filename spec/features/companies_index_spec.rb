@@ -2,10 +2,12 @@ require 'rails_helper'
 
 RSpec.feature "User navigates to company directory", type: :feature do
   it "they see all companies" do
+    user = create(:user)
+    stub_login(user)
     category = create(:category_with_companies, companies_count: 3)
     companies = category.companies
 
-    visit root_path
+    visit companies_path
     click_on "Company Directory"
 
     expect(page).to have_content("Company Name", count: Company.count)
