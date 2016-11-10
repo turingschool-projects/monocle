@@ -10,7 +10,7 @@ RSpec.feature "User navigates to the starred companies path" do
     anns_favorite = create(:company)
 
     visit root_path
-    click_on
+    click_on "My Starred Companies"
 
     expect(current_path).to eq(starred_companies_path)
     expect(page).to have_content("Company Name:", count: 2)
