@@ -2,19 +2,21 @@
 
 <%= render partial: "shared/flash" %>
 
-<h1>Welcome to Monocle</h1>
+<div class="jumbotron text-center">
+  <h1>Welcome to Monocle</h1>
 
-<%= link_to(
+  <p class="text-muted">Sign in using your TuringSchool Slack account.<br />
+    Questions: contact@turing.io</p>
+
+  <%= link_to(
   image_tag(
-    "https://platform.slack-edge.com/img/sign_in_with_slack.png",
-    alt: "Sign in with Slack",
-    height: "40",
-    width: "172",
-    srcset: "https://platform.slack-edge.com/img/sign_in_with_slack.png 1x,
-      https://platform.slack-edge.com/img/sign_in_with_slack@2x.png 2x"
+  "https://platform.slack-edge.com/img/sign_in_with_slack.png",
+  alt: "Sign in with Slack",
+  height: "40",
+  width: "172",
+  srcset: "https://platform.slack-edge.com/img/sign_in_with_slack.png 1x,
+  https://platform.slack-edge.com/img/sign_in_with_slack@2x.png 2x"
   ),
   sign_in_with_slack_path
-) %>
-
-<p class=".text-muted">Sign in using your TuringSchool Slack account.<br />
-Questions: contact@turing.io</p>
+  ) %>
+</div>
