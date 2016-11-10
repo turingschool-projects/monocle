@@ -9,7 +9,7 @@ RSpec.feature "User navigates to the all cities path" do
     SeedFixtureData.run(path)
 
     visit companies_path
-    click_on "Browse Directory"
+    click_on "Company Directory"
     click_on "By City"
 
     City.all.each do |city|
