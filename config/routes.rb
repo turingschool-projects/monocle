@@ -6,5 +6,5 @@ Rails.application.routes.draw do
 
   resources :companies,         only: [:index, :show]
   resources :cities,            only: [:index, :show]
-  resources :starred_companies, only: [:index, :create]
+  resources :starred_companies, only: [:index, :create, :destroy]
 end
