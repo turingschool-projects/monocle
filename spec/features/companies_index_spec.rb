@@ -10,7 +10,7 @@ RSpec.feature "User navigates to company directory", type: :feature do
     visit companies_path
     click_on "Company Directory"
 
-    expect(page).to have_content("Company Name", count: Company.count)
+    expect(page).to have_content("Company Name:", count: Company.count)
 
     expect(page).to have_content(companies.first.name)
     expect(page).to have_content(companies.first.street_address)
