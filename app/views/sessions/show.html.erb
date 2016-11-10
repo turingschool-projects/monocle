@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
 <%= render partial: "shared/flash" %>
 
 <h1>Welcome to Monocle</h1>
@@ -8,7 +10,11 @@
     alt: "Sign in with Slack",
     height: "40",
     width: "172",
-    srcset: "https://platform.slack-edge.com/img/sign_in_with_slack.png 1x, https://platform.slack-edge.com/img/sign_in_with_slack@2x.png 2x"
+    srcset: "https://platform.slack-edge.com/img/sign_in_with_slack.png 1x,
+      https://platform.slack-edge.com/img/sign_in_with_slack@2x.png 2x"
   ),
   sign_in_with_slack_path
 ) %>
+
+<p class=".text-muted">Sign in using your TuringSchool Slack account.<br />
+Questions: contact@turing.io</p>

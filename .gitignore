@@ -24,6 +24,3 @@ coverage
 
 # Ignore vcr cassettes
 /spec/fixtures/vcr_cassettes
-
-# Skylight
-/config/skylight.yml
