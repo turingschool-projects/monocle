@@ -1,11 +1,3 @@
-# README
+# [Monocle](https://turingmonocle.herokuapp.com)
 
-Monocle is an internal application for the Turing School community. It is a tool to make a directory of tech companies more useful for job seekers. It can be accessed with a TuringSchool Slack account at [TuringMonocle.HerokuApp.com](https://turingmonocle.herokuapp.com)
-
-This application was created with the intention of being used with a Postgres database.
-Setup:
-```
-rake db:create  
-rake db:migrate
-```
-Further setup options may come later after the dataset has been fully implemented.
+[Monocle](https://turingmonocle.herokuapp.com) is job seeking tool for the Turing School community. It's purpose is to provide access to a large directory of technical companies that can be navigated in a simple and intuitive way. Once signed in, users will have the option to star listings they are interested in to review at a later time. It can be accessed with a TuringSchool Slack account at [TuringMonocle.HerokuApp.com](https://turingmonocle.herokuapp.com).
