@@ -1,0 +1,37 @@
+<h1><%= @company.name %></h1>
+<table class="table-condensed table-hover">
+  <tr>
+    <th>Address:</th>
+    <td><%= @company.street_address %><br /><%= @company.city_state_zip %></td>
+  </tr>
+  <tr>
+    <th>Phone:</th>
+    <td><%= @company.phone %></td>
+  </tr>
+  <tr>
+    <th>Website:</th>
+    <td><%= @company.website %></td>
+  </tr>
+  <tr>
+    <th>Headquarters:</th>
+    <td><%= @company.headquarters %></td>
+  </tr>
+  <tr>
+    <th>Products/Services:</th>
+    <td><%= @company.products_services %></td>
+  </tr>
+  <tr>
+    <th>Person in Charge:</th>
+    <td><%= @company.person_in_charge %></td>
+  </tr>
+</table>
+
+<% if current_user.companies.exists?(@company.id) %>
+  <h4><i class="text-info">
+    <span class="glyphicon glyphicon-star" aria-hidden="true"></span> This company has been saved in your starred list.
+  </i></h4>
+<% else %>
+  <%= button_tag class: "btn btn-default btn-lg", id: "star", data: {id: @company.id} do %>
+    <%= content_tag("span", "", class: ["glyphicon", "glyphicon-star"], aria_hidden: true) %> Star
+  <% end %>
+<% end %>

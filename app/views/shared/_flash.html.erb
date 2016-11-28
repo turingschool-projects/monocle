@@ -1,0 +1,9 @@
+<!-- <% flash.each do |key, value| %>
+  <div class="alert alert-<%= key %>"><%= value %></div>
+<% end %> -->
+<!-- <% flash.each do |type, msg| %>
+  <%= content_tag :div, msg, class: "alert alert-#{type}" %>
+<% end %> -->
+<% flash.each do |name, msg| -%>
+  <%= content_tag :div, msg, class: "alert alert-#{name} text-center" %>
+<% end -%>

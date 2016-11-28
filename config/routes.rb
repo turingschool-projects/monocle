@@ -1,3 +1,10 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  root                         to: 'sessions#show'
+  get  '/auth/slack/callback', to: 'sessions#create'
+  post '/logout',              to: 'sessions#destroy'
+  get  '/sign_in_with_slack',  to: 'sessions#new'
+
+  resources :companies,         only: [:index, :show]
+  resources :cities,            only: [:index, :show]
+  resources :starred_companies, only: [:index, :create, :destroy]
 end
