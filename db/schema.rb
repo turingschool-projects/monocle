@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161108235922) do
+ActiveRecord::Schema.define(version: 20161130221224) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,17 @@ ActiveRecord::Schema.define(version: 20161108235922) do
     t.index ["zip_code_id"], name: "index_companies_on_zip_code_id", using: :btree
   end
 
+  create_table "notes", force: :cascade do |t|
+    t.string   "title"
+    t.string   "body"
+    t.integer  "user_id"
+    t.integer  "company_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["company_id"], name: "index_notes_on_company_id", using: :btree
+    t.index ["user_id"], name: "index_notes_on_user_id", using: :btree
+  end
+
   create_table "starred_companies", id: false, force: :cascade do |t|
     t.integer  "user_id",    null: false
     t.integer  "company_id", null: false
@@ -80,4 +91,6 @@ ActiveRecord::Schema.define(version: 20161108235922) do
   add_foreign_key "companies", "cities"
   add_foreign_key "companies", "states"
   add_foreign_key "companies", "zip_codes"
+  add_foreign_key "notes", "companies"
+  add_foreign_key "notes", "users"
 end

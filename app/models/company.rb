@@ -5,4 +5,5 @@ class Company < ApplicationRecord
   belongs_to :zip_code
   has_many :starred_companies
   has_many :users, through: :starred_companies
+  has_many :notes
 end
