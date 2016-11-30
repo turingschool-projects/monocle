@@ -79,6 +79,7 @@ ActiveRecord::Schema.define(version: 20161130221224) do
     t.text     "slack_access_token"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
+    t.integer  "role"
   end
 
   create_table "zip_codes", force: :cascade do |t|
