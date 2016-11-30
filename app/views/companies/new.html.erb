@@ -1,0 +1,28 @@
+<%= form_for(@company) do |f| %>
+  <%= f.label :name   %>
+  <%= f.text_field :name %>
+  
+  <%= f.label :street_address %>
+  <%= f.text_field :street_address %>
+  
+  <%= f.label :city_state_zip %>
+  <%= f.text_field :city_state_zip %>
+  
+  <%= f.label :phone %>
+  <%= f.text_field :phone %>
+  
+  <%= f.label :website %>
+  <%= f.text_field :website %>
+  
+  <%= f.label :headquarters %>
+  <%= f.text_field :headquarters %>
+  
+  <%= f.label :products_services %>
+  <%= f.text_field :products_services %>
+  
+  <%= f.label :person_in_charge %>
+  <%= f.text_field :person_in_charge %>
+  
+  <%= f.submit %>
+  
+<% end %>
