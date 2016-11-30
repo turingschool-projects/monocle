@@ -7,4 +7,8 @@ Rails.application.routes.draw do
   resources :companies,         only: [:index, :show]
   resources :cities,            only: [:index, :show]
   resources :starred_companies, only: [:index, :create, :destroy]
+
+  namespace :moderator do
+    get 'companies/approval', to: 'companies#approval'
+  end
 end
