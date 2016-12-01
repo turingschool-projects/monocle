@@ -7,7 +7,7 @@ RSpec.describe 'moderator approves of company' do
     visit moderator_companies_approval_path
     click_on 'Disapprove'
 
-    expect(page).to_not have_content('Test Company')
+    expect(page).to have_content('Test Company Status Successfully Disapproved')
     expect(Company.last.status).to eq('disapproved')
   end
 end

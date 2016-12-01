@@ -12,6 +12,7 @@ class Moderator::CompaniesController < ApplicationController
   def update
     company = Company.find(params[:id])
     params[:approve] ? company.approved : company.disapproved
+    flash[:notice] = "#{company.name} Status Successfully #{company.status.capitalize}"
     redirect_to moderator_companies_approval_path
   end
 end
