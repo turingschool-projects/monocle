@@ -11,6 +11,11 @@ Rails.application.routes.draw do
   resources :cities,            only: [:index, :show]
   resources :starred_companies, only: [:index, :create, :destroy]
 
+  namespace :moderator do
+    resources :companies,       only: [:edit, :update]
+    get 'companies/approval',   to: 'companies#index'
+  end
+
   namespace :admin do
     resources :companies,       only: [:edit, :update]
   end

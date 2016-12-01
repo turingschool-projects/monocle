@@ -1,0 +1,25 @@
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Information</th>
+    <th>Approve/ Disapprove</th>
+  </tr>
+  <% @pending_companies.each do |company| %>
+    <tr>
+      <td><%= company.name %></td>
+      <td>
+        <strong>Street Address: </strong><%= company.street_address %>, <%= company.city_state_zip %><br>
+        <strong>Phone: </strong><%= company.phone %><br>
+        <strong>Website: </strong><%= company.website %><br>
+        <strong>Headquarters: </strong><%= company.headquarters %><br>
+        <strong>Products Services: </strong><%= company.products_services %><br>
+        <strong>Person In Charge: </strong><%= company.person_in_charge %>
+      </td>
+      <td>
+        <%= button_to "Approve", {controller: "moderator/companies", action: "update", approve: true, id: company.id}, method: :put %>
+        <%= button_to "Disapprove", {controller: "moderator/companies", action: "update", id: company.id}, method: :put %>
+        <%= button_to "Edit", edit_moderator_company_path(company) %>
+      </td>
+    </tr>
+  <% end %>
+</table>
