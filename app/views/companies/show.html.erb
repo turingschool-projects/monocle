@@ -36,6 +36,13 @@
   <% end %>
 <% end %>
 
+<% if current_user.admin? %>
+  <h4>Administrator Tools</h4>
+  <ul>
+    <li><%= link_to 'Edit Information', edit_admin_company_path(@company) %></li>
+  </ul>
+<% end %>
+
 <h3>Notes</h3>
 <div id='notes' class='panel-group'>
 <% @company.notes.each do |note| %>
