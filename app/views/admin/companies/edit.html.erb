@@ -11,8 +11,8 @@
   <%= f.label :city %>
   <%= f.collection_select :city_id, City.all, :id,:name %>
 
-  <%= f.label :category %>
-  <%= f.collection_select :category_id, Category.all, :id,:name %>
+  <%= f.label :industry %>
+  <%= f.collection_select :industry_id, industry.all, :id,:name %>
 
   <%= f.label :state %>
   <%= f.collection_select :state_id, State.all, :id,:name %>

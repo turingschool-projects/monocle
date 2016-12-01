@@ -2,8 +2,8 @@ module SeedFixtureData
   def self.run(path)
     lines = load_file(path)
     companies = group_into_companies(lines)
-    category = create_category(path)
-    load_companies(category, companies)
+    industry = create_industry(path)
+    load_companies(industry, companies)
   end
 
   private
@@ -13,9 +13,9 @@ module SeedFixtureData
       raw_lines.map { |line| line.chomp }
     end
 
-    def self.create_category(path)
-      category_name = File.basename(path, ".txt")
-      Category.find_or_create_by!(name: category_name)
+    def self.create_industry(path)
+      industry_name = File.basename(path, ".txt")
+      industry.find_or_create_by!(name: industry_name)
     end
 
     def self.group_into_companies(lines)
@@ -26,7 +26,7 @@ module SeedFixtureData
       companies
     end
 
-    def self.load_companies(category, companies)
+    def self.load_companies(industry, companies)
       companies.each do |company|
         name              = company[0]
         street_address    = company[1]
@@ -40,7 +40,7 @@ module SeedFixtureData
         state             = company[2].split[-2]
         zip_code          = company[2].split.last
 
-        category.companies << Company.new({
+        industry.companies << Company.new({
           name:              name,
           street_address:    street_address,
           city_state_zip:    city_state_zip,

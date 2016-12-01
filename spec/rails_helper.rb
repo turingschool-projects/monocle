@@ -56,7 +56,7 @@ def create_unapproved_company(name)
   state = State.create(name: "Colorado")
   city = City.create(name: "Denver")
   zip_code = ZipCode.create(zip_code: "80202")
-  category = Category.create(name: "Applesauce")
+  industry = industry.create(name: "Applesauce")
   Company.create({
       name: name,
       street_address: '123 Test St',
@@ -69,6 +69,6 @@ def create_unapproved_company(name)
       city_id: city.id,
       state_id: state.id,
       zip_code_id: zip_code.id,
-      category_id: category.id
+      industry_id: industry.id
     })
 end

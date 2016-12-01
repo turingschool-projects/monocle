@@ -10,27 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161201223549) do
+ActiveRecord::Schema.define(version: 20161201232646) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "citext"
-
-  create_table "addresses", force: :cascade do |t|
-    t.string  "street_address"
-    t.string  "street_address_2"
-    t.string  "phone"
-    t.string  "primary_contact"
-    t.integer "status"
-    t.integer "zip_code_id"
-    t.integer "state_id"
-    t.integer "city_id"
-    t.integer "company_id"
-    t.index ["city_id"], name: "index_addresses_on_city_id", using: :btree
-    t.index ["company_id"], name: "index_addresses_on_company_id", using: :btree
-    t.index ["state_id"], name: "index_addresses_on_state_id", using: :btree
-    t.index ["zip_code_id"], name: "index_addresses_on_zip_code_id", using: :btree
-  end
 
   create_table "cities", force: :cascade do |t|
     t.citext   "name"
@@ -60,6 +44,22 @@ ActiveRecord::Schema.define(version: 20161201223549) do
     t.citext   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "locations", force: :cascade do |t|
+    t.string  "street_address"
+    t.string  "street_address_2"
+    t.string  "phone"
+    t.string  "primary_contact"
+    t.integer "status"
+    t.integer "zip_code_id"
+    t.integer "state_id"
+    t.integer "city_id"
+    t.integer "company_id"
+    t.index ["city_id"], name: "index_locations_on_city_id", using: :btree
+    t.index ["company_id"], name: "index_locations_on_company_id", using: :btree
+    t.index ["state_id"], name: "index_locations_on_state_id", using: :btree
+    t.index ["zip_code_id"], name: "index_locations_on_zip_code_id", using: :btree
   end
 
   create_table "notes", force: :cascade do |t|
@@ -101,13 +101,13 @@ ActiveRecord::Schema.define(version: 20161201223549) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "addresses", "cities"
-  add_foreign_key "addresses", "companies"
-  add_foreign_key "addresses", "states"
-  add_foreign_key "addresses", "zip_codes"
   add_foreign_key "companies", "industries", column: "category_id"
   add_foreign_key "company_industries", "companies"
   add_foreign_key "company_industries", "industries"
+  add_foreign_key "locations", "cities"
+  add_foreign_key "locations", "companies"
+  add_foreign_key "locations", "states"
+  add_foreign_key "locations", "zip_codes"
   add_foreign_key "notes", "companies"
   add_foreign_key "notes", "users"
 end

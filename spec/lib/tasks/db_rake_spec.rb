@@ -12,11 +12,11 @@ RSpec.describe "db:seed_test_fixture" do
 
     subject.invoke(path)
 
-    expect(Category.count).to eq(1)
-    expect(Category.last.name).to eq(File.basename(fixture_file, ".txt"))
+    expect(industry.count).to eq(1)
+    expect(industry.last.name).to eq(File.basename(fixture_file, ".txt"))
     expect(Company.count).to eq(22)
 
-    expect(Company.first.category).to eq(Category.last)
+    expect(Company.first.industry).to eq(industry.last)
     expect(Company.first.name).to eq("ADVANCED REGENERATIVE THERAPIES")
     expect(Company.first.street_address).to eq("320 E. Vine Drive, Suite 122")
     expect(Company.first.city_state_zip).to eq("Fort Collins, CO 80524")
@@ -30,7 +30,7 @@ RSpec.describe "db:seed_test_fixture" do
     expect(Company.first.zip_code.zip_code).to eq("80524")
 
 
-    expect(Company.last.category).to eq(Category.last)
+    expect(Company.last.industry).to eq(industry.last)
     expect(Company.last.name).to eq("ZEOPONIX INC.")
     expect(Company.last.street_address).to eq("P.O. Box 19105")
     expect(Company.last.city_state_zip).to eq("Boulder, CO 80308")

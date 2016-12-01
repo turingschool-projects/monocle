@@ -18,6 +18,10 @@ class Address < ApplicationRecord
     self.save
   end
 
+  def city_state_zip
+    "#{city}, #{state} #{zip_code}"
+  end
+
   private
     def set_status
       self.status ||= 0
