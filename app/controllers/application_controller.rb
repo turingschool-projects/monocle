@@ -15,6 +15,12 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def verify_admin
+    unless current_user.admin?
+      render file: "/public/404", status: 404, layout: false
+    end
+  end
+
   private
     def authorize!
       unless authorized?

@@ -15,4 +15,8 @@ Rails.application.routes.draw do
     resources :companies,       only: [:edit, :update]
     get 'companies/approval',   to: 'companies#index'
   end
+
+  namespace :admin do
+    resources :companies,       only: [:edit, :update]
+  end
 end
