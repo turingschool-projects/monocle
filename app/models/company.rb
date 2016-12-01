@@ -9,7 +9,7 @@ class Company < ApplicationRecord
 
   before_validation :set_status
 
-  enum status: [:pending, :approved, :denied]
+  enum status: [:pending, :approved, :disapproved]
 
   def approved
     self.status = 1

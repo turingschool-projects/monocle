@@ -12,6 +12,6 @@ class Moderator::CompaniesController < ApplicationController
   def update
     company = Company.find(params[:id])
     params[:approve] ? company.approved : company.disapproved
-    redirect_to company_path(company)
+    redirect_to moderator_companies_approval_path
   end
 end

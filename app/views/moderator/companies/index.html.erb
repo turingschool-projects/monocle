@@ -17,7 +17,7 @@
       </td>
       <td>
         <%= button_to "Approve", {controller: "moderator/companies", action: "update", approve: true, id: company.id}, method: :put %>
-        <%= button_to "Disapprove", {controller: "moderator/companies", action: "update", approve: false, id: company.id}, method: :put %>
+        <%= button_to "Disapprove", {controller: "moderator/companies", action: "update", id: company.id}, method: :put %>
         <%= button_to "Edit", edit_moderator_company_path(company) %>
       </td>
     </tr>
