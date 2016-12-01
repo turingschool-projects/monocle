@@ -52,27 +52,6 @@ def user_logs_in
           .and_return(user)
 end
 
-def admin_logs_in
-  admin = User.create({username: 'tester', slack_uid: 'tester', slack_access_token: 1, role: 2})
-  allow_any_instance_of(ApplicationController)
-          .to receive(:current_user)
-          .and_return(admin)
-end
-
-def moderator_logs_in
-  moderator = User.create({username: 'tester', slack_uid: 'tester', slack_access_token: 1, role: 1})
-  allow_any_instance_of(ApplicationController)
-          .to receive(:current_user)
-          .and_return(moderator)
-end
-
-def user_logs_in
-  user = User.create({username: 'tester', slack_uid: 'tester', slack_access_token: 1})
-  allow_any_instance_of(ApplicationController)
-          .to receive(:current_user)
-          .and_return(user)
-end
-
 def create_unapproved_company(name)
-  
+
 end
