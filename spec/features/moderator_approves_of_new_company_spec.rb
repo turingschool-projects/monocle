@@ -8,5 +8,6 @@ RSpec.describe 'moderator approves of company' do
     click_on 'Approve'
 
     expect(page).to have_content('Test Company')
+    expect(Company.last.status).to eq('approved')
   end
 end

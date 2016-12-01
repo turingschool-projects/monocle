@@ -1,5 +1,5 @@
 class Moderator::CompaniesController < ApplicationController
-  before_action :verify_user_role
+  before_action :verify_moderator_or_admin
 
   def index
     @pending_companies = Company.pending
