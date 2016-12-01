@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   resources :starred_companies, only: [:index, :create, :destroy]
 
   namespace :moderator do
-    get 'companies/approval', to: 'companies#approval'
+    resources :companies,       only: [:edit, :update]
+    get 'companies/approval',   to: 'companies#index'
   end
 end
