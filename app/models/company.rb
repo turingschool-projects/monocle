@@ -1,5 +1,5 @@
 class Company < ApplicationRecord
-  belongs_to :category
+  has_many :company_industries
   has_many :starred_companies
   has_many :users, through: :starred_companies
   has_many :notes
