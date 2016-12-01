@@ -10,6 +10,6 @@ RSpec.feature 'admin edits company information' do
     click_on 'Update Company'
 
     expect(page).to have_content('Test Edit')
-    expect(page).to_not have_conten(company.name)
+    expect(page).to_not have_content(company.name)
   end
 end
