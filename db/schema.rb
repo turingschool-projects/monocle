@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 20161201221417) do
     t.string  "street_address"
     t.string  "street_address_2"
     t.string  "phone"
-    t.string  "point_person"
+    t.string  "primary_contact"
     t.integer "status"
     t.integer "zip_code_id"
     t.integer "state_id"
