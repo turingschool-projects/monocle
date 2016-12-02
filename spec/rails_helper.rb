@@ -56,19 +56,20 @@ def create_unapproved_company(name)
   state = State.create(name: "Colorado")
   city = City.create(name: "Denver")
   zip_code = ZipCode.create(zip_code: "80202")
-  category = Category.create(name: "Applesauce")
-  Company.create({
+  industry = Industry.create(name: "Applesauce")
+  company = Company.create({
       name: name,
-      street_address: '123 Test St',
-      city_state_zip: "Denver, CO, 80203",
-      phone: "123-456-789",
       website: "www.monocle.com",
       headquarters: "Denver, CO",
-      products_services: "Jobs",
-      person_in_charge: "Dan Broadbent",
-      city_id: city.id,
-      state_id: state.id,
-      zip_code_id: zip_code.id,
-      category_id: category.id
+      products_services: "Jobs"
     })
+  company.industries << industry
+  company.locations << Location.create({
+    street_address: '123 Test St',
+    phone: "123-456-789",
+    primary_contact: "Dan Broadbent",
+    city_id: city.id,
+    state_id: state.id,
+    zip_code_id: zip_code.id
+  })
 end

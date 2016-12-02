@@ -6,7 +6,7 @@ describe "user can add a company" do
     state = State.create(name: "Colorado")
     city = City.create(name: "Denver")
     zip_code = ZipCode.create(zip_code: "80202")
-    category = Category.create(name: "Applesauce")
+    industry = Industry.create(name: "Applesauce")
 
     user = create(:user)
     stub_login(user)
@@ -23,7 +23,7 @@ describe "user can add a company" do
     find('#company_state_id').find(:xpath, 'option[1]').select_option
     find('#company_city_id').find(:xpath, 'option[1]').select_option
     find('#company_zip_code_id').find(:xpath, 'option[1]').select_option
-    find('#company_category_id').find(:xpath, 'option[1]').select_option
+    find('#company_industry_id').find(:xpath, 'option[1]').select_option
 
     click_button "Create Company"
     company = Company.last

@@ -35,7 +35,7 @@ class CompaniesController < ApplicationController
                                     :person_in_charge,
                                     :city_id,
                                     :state_id,
-                                    :category_id,
+                                    :industry_id,
                                     :zip_code_id)
   end
 end

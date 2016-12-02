@@ -1,12 +1,25 @@
 <h1><%= @company.name %></h1>
 <table class="table-condensed table-hover">
+  <% @company.locations.each do |location | %>
+    <tr>
+      <th>Address:</th>
+      <td><%= location.street_address %><br>
+        <%= location.street_address_2 %> <br>
+        <%= location.city_state_zip %>
+      </td>
+    </tr>
+    <tr>
+      <th>Phone:</th>
+      <td><%= location.phone %></td>
+    </tr>
+    <tr>
+      <th>Person in Charge:</th>
+      <td><%= location.primary_contact %></td>
+    </tr>
+  <% end %>
   <tr>
-    <th>Address:</th>
-    <td><%= @company.street_address %><br /><%= @company.city_state_zip %></td>
-  </tr>
-  <tr>
-    <th>Phone:</th>
-    <td><%= @company.phone %></td>
+    <th>Products/Services:</th>
+    <td><%= @company.products_services %></td>
   </tr>
   <tr>
     <th>Website:</th>
@@ -15,14 +28,6 @@
   <tr>
     <th>Headquarters:</th>
     <td><%= @company.headquarters %></td>
-  </tr>
-  <tr>
-    <th>Products/Services:</th>
-    <td><%= @company.products_services %></td>
-  </tr>
-  <tr>
-    <th>Person in Charge:</th>
-    <td><%= @company.person_in_charge %></td>
   </tr>
 </table>
 
