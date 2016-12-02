@@ -1,8 +1,8 @@
-class Address < ApplicationRecord
+class Location < ApplicationRecord
   belongs_to :company
-  has_one :zip_code
-  has_one :city
-  has_one :state
+  belongs_to :zip_code
+  belongs_to :city
+  belongs_to :state
 
   before_validation :set_status
 

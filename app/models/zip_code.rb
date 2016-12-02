@@ -1,3 +1,4 @@
 class ZipCode < ApplicationRecord
-  has_many :addresses
+  has_many :locations
+  has_many :companies, through: :locations
 end
