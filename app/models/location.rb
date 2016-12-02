@@ -19,7 +19,7 @@ class Location < ApplicationRecord
   end
 
   def city_state_zip
-    "#{city}, #{state} #{zip_code}"
+    "#{city.name}, #{state.name} #{zip_code.zip_code}"
   end
 
   private

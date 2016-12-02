@@ -49,7 +49,7 @@ module SeedFixtureData
       street_address    = company[1]
       city_state_zip    = company[2]
       phone             = company[3]
-      primary_contact   = company[7].sub("Primary Contact: ", "")
+      primary_contact   = company[7].sub("Person in charge: ", "")
       city              = company[2].split[0...-2].join(" ").gsub(",", "")
       state             = company[2].split[-2]
       zip_code          = company[2].split.last
