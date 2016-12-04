@@ -8,6 +8,13 @@ FactoryGirl.define do
     products_services { Faker::Hipster.paragraph }
   end
 
+  factory :note do
+    title             { Faker::Lorem.word }
+    body              { Faker::Lorem.sentence }
+    user_id           { Faker::Number.number(10) }
+    company_id        { Faker::Number.number(10) }
+  end
+
   factory :industry do
     name { Faker::Commerce.department(2, true) }
 
