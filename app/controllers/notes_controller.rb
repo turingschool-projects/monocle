@@ -24,6 +24,14 @@ class NotesController < ApplicationController
     redirect_to company_path(company)
   end
 
+  def destroy
+    company = Company.find(params[:company_id])
+    note = company.notes.find(params[:note_id])
+    note.destroy
+    flash[:success] = "Comment has been removed"
+    redirect_to company_path(company)
+  end
+
   private
     def note_params
       params.require(:note).permit(:title, :body)
