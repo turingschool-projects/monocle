@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get  '/sign_in_with_slack',  to: 'sessions#new'
 
   resources :companies,         only: [:index, :show, :new, :create] do
-    resources :notes,           only: [:new, :create]
+    resources :notes,           only: [:create, :edit, :update]
   end
 
   resources :cities,            only: [:index, :show]
