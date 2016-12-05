@@ -1,22 +1,6 @@
 <h1><%= @company.name %></h1>
+<h3>Company Information</h3>
 <table class="table-condensed table-hover">
-  <% @company.locations.each do |location | %>
-    <tr>
-      <th>Address:</th>
-      <td><%= location.street_address %><br>
-        <%= location.street_address_2 %> <br>
-        <%= location.city_state_zip %>
-      </td>
-    </tr>
-    <tr>
-      <th>Phone:</th>
-      <td><%= location.phone %></td>
-    </tr>
-    <tr>
-      <th>Person in Charge:</th>
-      <td><%= location.primary_contact %></td>
-    </tr>
-  <% end %>
   <tr>
     <th>Products/Services:</th>
     <td><%= @company.products_services %></td>
@@ -29,6 +13,32 @@
     <th>Headquarters:</th>
     <td><%= @company.headquarters %></td>
   </tr>
+</table>
+<h3><%= pluralize(@company.locations.count, 'Location') %></h3>
+<table class="table-condensed table-hover">
+  <tr>
+    <th>Address:</th>
+  </tr>
+  <tr>
+    <th>Phone:</th>
+  </tr>
+  <tr>
+    <th>Primary Contact:</th>
+  </tr>
+  <% @company.locations.each do |location | %>
+    <tr>
+      <td><%= location.street_address %><br>
+        <%= location.street_address_2 %> <br>
+        <%= location.city_state_zip %>
+      </td>
+    </tr>
+    <tr>
+      <td><%= location.phone %></td>
+    </tr>
+    <tr>
+      <td><%= location.primary_contact %></td>
+    </tr>
+  <% end %>
 </table>
 
 <% if current_user.companies.exists?(@company.id) %>
