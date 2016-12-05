@@ -13,7 +13,7 @@ class Location < ApplicationRecord
     self.save
   end
 
-  def disapproved
+  def rejected
     self.status = 2
     self.save
   end

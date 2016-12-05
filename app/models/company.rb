@@ -10,6 +10,10 @@ class Company < ApplicationRecord
     Company.joins(:locations).where('locations.status = ?', '1')
   end
 
+  def self.pending_locations
+    Company.joins(:locations).where('locations.status = ?', '0')
+  end
+
   def approved?
     self.locations.any? { |location| location.approved? }
   end
