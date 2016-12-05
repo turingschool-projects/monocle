@@ -1,0 +1,24 @@
+<%= form_for [@company, @location] do |f| %>
+  <%= f.label :street_address %>
+  <%= f.text_field :street_address %>
+
+  <%= f.label :street_address_2 %>
+  <%= f.text_field :street_address_2 %>
+
+  <%= f.label :phone %>
+  <%= f.text_field :phone %>
+
+  <%= f.label :primary_contact %>
+  <%= f.text_field :primary_contact %>
+
+  <%= f.label :city %>
+  <%= f.text_field(:city, :name) %>
+
+  <%= f.label :state %>
+  <%= f.collection_select :state, State.all, :id, :name %>
+
+  <%= f.label :zip_code %>
+  <%= f.text_field( :zip_code, :zip_code )%>
+
+  <%= f.submit "Submit New Location For #{@company.name}"%>
+<% end %>

@@ -17,9 +17,13 @@ class LocationsController < ApplicationController
   end
 
   def edit
+    @company = Company.find(params[:company_id])
+    @location = Location.find(params[:id])
+    require 'pry'; binding.pry
   end
 
   def update
+
   end
 
   def destroy
