@@ -4,8 +4,7 @@ RSpec.feature "User navigates to company directory", type: :feature do
   it "they see all companies" do
     user = create(:user)
     stub_login(user)
-    3.times { create(:location) }
-    # industry = create(:industry_with_companies, companies_count: 3)
+    3.times { |n| create_approved_company("TestCo#{n}") }
     companies = Company.all
 
     visit companies_path

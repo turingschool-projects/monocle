@@ -4,7 +4,7 @@ RSpec.feature "User navigates to individual companies page", type: :feature do
   it "they see the details for that company" do
     user = create(:user)
     stub_login(user)
-    create(:location)
+    create_approved_company
     company = Company.first
 
     visit companies_path
