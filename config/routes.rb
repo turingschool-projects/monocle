@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
-  root                         to: 'sessions#show'
-  get  '/auth/slack/callback', to: 'sessions#create'
-  post '/logout',              to: 'sessions#destroy'
-  get  '/sign_in_with_slack',  to: 'sessions#new'
+  root                            to: 'sessions#show'
+  get  '/auth/slack/callback',    to: 'sessions#create'
+  post '/logout',                 to: 'sessions#destroy'
+  get  '/sign_in_with_slack',     to: 'sessions#new'
+  get  'companies/notes/delete',    to: 'notes#destroy'
 
   resources :companies,         only: [:index, :show, :new, :create] do
-    resources :notes,           only: [:new, :create]
+    resources :notes,           only: [:create, :edit, :update]
   end
 
   resources :cities,            only: [:index, :show]
