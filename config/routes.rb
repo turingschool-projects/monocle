@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   resources :companies,         only: [:index, :show, :new, :create] do
     resources :notes,           only: [:create, :edit, :update]
+    resources :locations,       only: [:new, :create, :edit, :update, :destroy]
   end
 
   resources :cities,            only: [:index, :show]
