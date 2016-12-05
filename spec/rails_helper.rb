@@ -96,3 +96,18 @@ def add_approved_location_to_company(company)
     status: 1
   )
 end
+
+def create_note_with_company_and_user
+  user = User.create({username: 'tester', slack_uid: 'tester', slack_access_token: 1})
+  company = Company.create({
+      name: "Monocle",
+      website: "www.monocle.com",
+      headquarters: "Denver, CO",
+      products_services: "Jobs"
+    })
+  note = Note.create({
+      title: "Solid Company", 
+      body: "They are solid.", 
+      user_id: user.id, 
+      company_id:  company.id })
+end
