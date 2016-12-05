@@ -79,4 +79,20 @@ def create_approved_company(name = 'TestCo')
   comp_loc = Company.last.locations.last
   comp_loc.status = 1
   comp_loc.save
+  Company.last
+end
+
+def add_approved_location_to_company(company)
+  state = State.create(name: Faker::Address.state)
+  city = City.create(name: Faker::Address.city)
+  zip_code = ZipCode.create(zip_code: Faker::Address.zip)
+  company.locations << Location.create(
+    street_address: '123 Another Test St',
+    phone: "987-654-3210",
+    primary_contact: "Nate Anderson",
+    city_id: city.id,
+    state_id: state.id,
+    zip_code_id: zip_code.id,
+    status: 1
+  )
 end

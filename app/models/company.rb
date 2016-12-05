@@ -17,4 +17,20 @@ class Company < ApplicationRecord
   def approved?
     self.locations.any? { |location| location.approved? }
   end
+
+  def approved_locations
+    self.locations.where('status = ?', '1')
+  end
+
+  def add_location(params)
+    self.locations.new(
+      street_address: params[:street_address],
+      street_address_2: params[:street_address_2],
+      phone:            params[:phone],
+      primary_contact:  params[:primary_contact],
+      city:             City.find_or_create_by(name: params[:city]),
+      state:            State.find(params[:state]),
+      zip_code:         ZipCode.find_or_create_by(zip_code: params[:zip_code])
+    )
+  end
 end
