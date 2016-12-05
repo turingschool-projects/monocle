@@ -19,7 +19,6 @@ class LocationsController < ApplicationController
   def edit
     @company = Company.find(params[:company_id])
     @location = Location.find(params[:id])
-    require 'pry'; binding.pry
   end
 
   def update
