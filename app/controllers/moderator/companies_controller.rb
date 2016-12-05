@@ -2,7 +2,7 @@ class Moderator::CompaniesController < ApplicationController
   before_action :verify_moderator_or_admin
 
   def index
-    @pending_companies = Company.pending
+    @pending_companies = Company.pending_locations
   end
 
   def edit
@@ -10,9 +10,9 @@ class Moderator::CompaniesController < ApplicationController
   end
 
   def update
-    company = Company.find(params[:id])
-    params[:approve] ? company.approved : company.disapproved
-    flash[:notice] = "#{company.name} Status Successfully #{company.status.capitalize}"
+    location = Location.find(params[:id])
+    params[:approve] ? location.approved : location.rejected
+    flash[:notice] = "#{location.company.name} Location Status Successfully #{location.status.capitalize}"
     redirect_to moderator_companies_approval_path
   end
 end

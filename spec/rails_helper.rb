@@ -52,10 +52,10 @@ def user_logs_in
           .and_return(user)
 end
 
-def create_unapproved_company(name)
-  state = State.create(name: "Colorado")
-  city = City.create(name: "Denver")
-  zip_code = ZipCode.create(zip_code: "80202")
+def create_unapproved_company(name = 'TestCo')
+  state = State.create(name: Faker::Address.state)
+  city = City.create(name: Faker::Address.city)
+  zip_code = ZipCode.create(zip_code: Faker::Address.zip)
   industry = Industry.create(name: "Applesauce")
   company = Company.create({
       name: name,
@@ -72,4 +72,11 @@ def create_unapproved_company(name)
     state_id: state.id,
     zip_code_id: zip_code.id
   })
+end
+
+def create_approved_company(name = 'TestCo')
+  create_unapproved_company(name)
+  comp_loc = Company.last.locations.last
+  comp_loc.status = 1
+  comp_loc.save
 end
