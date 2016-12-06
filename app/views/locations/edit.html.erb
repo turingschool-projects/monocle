@@ -1,5 +1,5 @@
-<% @locations.each do |location| %>
-  <%= form_for [@company, location] do |f| %>
+
+  <%= form_for [@company, @location] do |f| %>
   <div class="form-group">
     <%= f.text_field :street_address %>
     <div class="col-md-4">
@@ -28,33 +28,27 @@
     </div>
   </div>
 
-<!-- This needs to pull the NAME from the Cities Table but right now returns the object -->
     <div class="form-group">
-    <%= fields_for :city do |city_field| %>
-      <%= city_field.text_field :name %>
-    <% end %>
-    <div class="col-md-4">
-      <%= f.label :city  %>
+      <%= f.text_field :city %>
+      <div class="col-md-4">
+        <%= f.label :city %>
+      </div>
     </div>
-  </div>
 
     <div class="form-group">
-      <%= f.collection_select :state, State.all, :id, :name %>
+      <%= select_tag :state, options_for_select(us_states) %>
       <div class="col-md-4">
         <%= f.label :state %>
       </div>
     </div>
-    
-  <!-- This needs to pull the ZIP from the Zip_codes Table but right now returns the object -->
+
     <div class="form-group">
-      <%= fields_for :zip_code do |zip_field| %>
-        <%= zip_field.text_field :zip_code %>
-      <% end %>
+      <%= f.text_field :zip_code %>
       <div class="col-md-4">
         <%= f.label :zip_code %>
       </div>
     </div>
 
     <%= f.submit "Submit New Location For #{@company.name}"%>
-  <% end %>
+
 <% end %>

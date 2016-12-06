@@ -22,14 +22,16 @@ class LocationsController < ApplicationController
 
   def edit
     @company = Company.find(params[:company_id])
-    @locations = @company.locations
+    @location = Location.find(params[:id])
   end
 
   def update
     @company = Company.find(params[:company_id])
     @location = Location.find(params[:id])
+    @location.assign_attributes(location_params)
+    @location.state = params[:state]
 
-    if @location.update(additional_location_params(params))
+    if @location.save
       redirect_to company_path(@company)
     else
       flash.now[:error] = @location.errors.full_messages.join(', ')
