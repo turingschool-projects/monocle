@@ -27,10 +27,13 @@
     </div>
   </div>
 
+<!-- This needs to pull the NAME from the Cities Table but right now returns the object -->
   <div class="form-group">
-    <%= f.text_field :city %>
+    <%= fields_for :city do |city_field| %>
+      <%= city_field.text_field :name %>
+    <% end %>
     <div class="col-md-4">
-      <%= f.label :city %>
+      <%= f.label :city  %>
     </div>
   </div>
 
@@ -40,9 +43,11 @@
       <%= f.label :state %>
     </div>
   </div>
-
+<!-- This needs to pull the ZIP from the Zip_codes Table but right now returns the object -->
   <div class="form-group">
-    <%= f.text_field :zip_code %>
+    <%= fields_for :zip_code do |zip_field| %>
+      <%= zip_field.text_field :zip_code %>
+    <% end %>
     <div class="col-md-4">
       <%= f.label :zip_code %>
     </div>

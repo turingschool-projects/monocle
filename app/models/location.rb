@@ -3,6 +3,9 @@ class Location < ApplicationRecord
   belongs_to :zip_code
   belongs_to :city
   belongs_to :state
+  accepts_nested_attributes_for :city
+  accepts_nested_attributes_for :zip_code
+  accepts_nested_attributes_for :state
 
   before_validation :set_status
 

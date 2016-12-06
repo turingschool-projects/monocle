@@ -22,7 +22,17 @@ class LocationsController < ApplicationController
   end
 
   def update
+    @company = Company.find(params[:company_id])
+    @location = Location.find(params[:id])
 
+    if @location.update(location_params.merge({city: City.find_or_create_by(name: params[:city][:name]),
+    zip_code: ZipCode.find_or_create_by(zip_code: params[:zip_code][:zip_code])}))
+      redirect_to company_path(@company)
+    else
+      flash.now[:error] = @location.errors.full_messages.join(', ')
+      render :edit
+
+    end
   end
 
   def destroy
@@ -34,8 +44,6 @@ class LocationsController < ApplicationController
                                         :street_address_2,
                                         :phone,
                                         :primary_contact,
-                                        :city,
-                                        :state,
-                                        :zip_code)
+                                        :state_id)
     end
 end
