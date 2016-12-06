@@ -1,11 +1,6 @@
 class Location < ApplicationRecord
   belongs_to :company
-  belongs_to :zip_code
-  belongs_to :city
-  belongs_to :state
-  accepts_nested_attributes_for :city
-  accepts_nested_attributes_for :zip_code
-  accepts_nested_attributes_for :state
+
 
   before_validation :set_status
 
@@ -22,7 +17,7 @@ class Location < ApplicationRecord
   end
 
   def city_state_zip
-    "#{city.name}, #{state.name} #{zip_code.zip_code}"
+    "#{city}, #{state} #{zip_code}"
   end
 
   private

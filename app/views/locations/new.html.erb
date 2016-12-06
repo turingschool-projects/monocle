@@ -35,7 +35,7 @@
   </div>
 
   <div class="form-group">
-    <%= f.collection_select :state, State.all, :id, :name %>
+    <%= select_tag :state, options_for_select(us_states) %>
     <div class="col-md-4">
       <%= f.label :state %>
     </div>
