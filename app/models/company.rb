@@ -6,6 +6,8 @@ class Company < ApplicationRecord
   has_many :notes
   has_many :locations
 
+  mount_uploader :logo, LogoUploader
+
   def self.approved_locations
     Company.joins(:locations).where('locations.status = ?', '1')
   end
