@@ -3,7 +3,6 @@ require 'rails_helper'
 RSpec.describe 'user adds address to company' do
   it 'submits additional address from company show page' do
     user_logs_in
-    State.create(name: 'Colorado')
     company = create_approved_company
     visit company_path(company)
     click_on 'Submit Additional Location'
@@ -11,7 +10,7 @@ RSpec.describe 'user adds address to company' do
     fill_in 'location_phone', with: '987-654-3210'
     fill_in 'location_primary_contact', with: 'Nate Anderson'
     fill_in 'location_city', with: 'Denver'
-    select 'Colorado', from: 'location_state'
+    select 'Colorado', from: 'state'
     fill_in 'location_zip_code', with: '80111'
     click_on "Submit New Location For #{company.name}"
 

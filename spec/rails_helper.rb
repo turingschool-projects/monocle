@@ -53,9 +53,6 @@ def user_logs_in
 end
 
 def create_unapproved_company(name = 'TestCo')
-  state = State.create(name: Faker::Address.state)
-  city = City.create(name: Faker::Address.city)
-  zip_code = ZipCode.create(zip_code: Faker::Address.zip)
   industry = Industry.create(name: "Applesauce")
   company = Company.create({
       name: name,
@@ -68,9 +65,9 @@ def create_unapproved_company(name = 'TestCo')
     street_address: '123 Test St',
     phone: "123-456-789",
     primary_contact: "Dan Broadbent",
-    city_id: city.id,
-    state_id: state.id,
-    zip_code_id: zip_code.id
+    city: "Denver",
+    state: "Colorado",
+    zip_code: "80202"
   })
 end
 
