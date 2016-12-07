@@ -3,14 +3,13 @@ Rails.application.routes.draw do
   get  '/auth/slack/callback',    to: 'sessions#create'
   post '/logout',                 to: 'sessions#destroy'
   get  '/sign_in_with_slack',     to: 'sessions#new'
-  get  'companies/notes/delete',    to: 'notes#destroy'
+  get  'companies/notes/delete',  to: 'notes#destroy'
 
   resources :companies,         only: [:index, :show, :new, :create] do
     resources :notes,           only: [:create, :edit, :update]
     resources :locations,       only: [:new, :create, :edit, :update, :destroy]
   end
 
-  resources :cities,            only: [:index, :show]
   resources :starred_companies, only: [:index, :create, :destroy]
 
   namespace :moderator do

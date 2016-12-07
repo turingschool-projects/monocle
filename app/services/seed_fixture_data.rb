@@ -57,9 +57,9 @@ module SeedFixtureData
         street_address:  street_address,
         phone:           phone,
         primary_contact: primary_contact,
-        city:            City.find_or_create_by(name: city),
-        state:           State.find_or_create_by(name: state),
-        zip_code:        ZipCode.find_or_create_by(zip_code: zip_code)
+        city:            city,
+        state:           state,
+        zip_code:        zip_code
       }
     end
 end

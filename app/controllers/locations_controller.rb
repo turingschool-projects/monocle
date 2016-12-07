@@ -7,7 +7,7 @@ class LocationsController < ApplicationController
     @location = Location.new
   end
 
-    def create
+  def create
     @company = Company.find(params[:company_id])
     @location = @company.add_location(location_params)
     @location.state = params[:state]

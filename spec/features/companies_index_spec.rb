@@ -7,8 +7,7 @@ RSpec.feature "User navigates to company directory", type: :feature do
     3.times { |n| create_approved_company("TestCo#{n}") }
     companies = Company.all
 
-    visit companies_path
-    click_on "Company Directory"
+    visit '/'''
 
     expect(page).to have_content("Company Name:", count: Company.count)
 

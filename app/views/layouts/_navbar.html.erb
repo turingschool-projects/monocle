@@ -16,14 +16,6 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Company Directory<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><%= link_to "All Companies", companies_path %></li>
-            <li><%= link_to "By City", cities_path %></li>
-          </ul>
-        </li>
-
         <li><%= link_to "My Starred Companies", starred_companies_path %></li>
         <li><%= link_to "Add Company", new_company_path %></li>
       </ul>
@@ -35,7 +27,6 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin Tools<span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li><%= link_to "Approve Recent Company Submissions", companies_path %></li>
-                <li><%= link_to "Update Existing Company Information", cities_path %></li>
               </ul>
             </li>
           <% elsif current_user.moderator? %>
