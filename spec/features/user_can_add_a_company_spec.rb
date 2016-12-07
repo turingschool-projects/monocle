@@ -3,9 +3,6 @@ require 'rails_helper'
 describe "user can add a company" do
   it "and then see pending approval" do
 
-    state = State.create(name: "Colorado")
-    city = City.create(name: "Denver")
-    zip_code = ZipCode.create(zip_code: "80202")
     industry = Industry.create(name: "Applesauce")
 
     user = create(:user)
