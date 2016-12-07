@@ -57,9 +57,4 @@ class LocationsController < ApplicationController
     def us_states
       state_options
     end
-
-    # def additional_location_params(params)
-    #   location_params.merge({city: City.find_or_create_by(name: params[:city][:name]),
-    #   zip_code: ZipCode.find_or_create_by(zip_code: params[:zip_code][:zip_code])})
-    # end
 end
