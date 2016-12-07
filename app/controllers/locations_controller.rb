@@ -1,4 +1,7 @@
 class LocationsController < ApplicationController
+  helper_method :us_states
+  include StateHelper
+
   def new
     @company = Company.find(params[:company_id])
     @location = Location.new
@@ -7,6 +10,7 @@ class LocationsController < ApplicationController
   def create
     @company = Company.find(params[:company_id])
     @location = @company.add_location(location_params)
+    @location.state = params[:state]
     if @location.save
       flash[:notice] = 'Location pending approval by moderator'
       redirect_to company_path(@company)
@@ -17,9 +21,23 @@ class LocationsController < ApplicationController
   end
 
   def edit
+    @company = Company.find(params[:company_id])
+    @location = Location.find(params[:id])
   end
 
   def update
+    @company = Company.find(params[:company_id])
+    @location = Location.find(params[:id])
+    @location.assign_attributes(location_params)
+    @location.state = params[:state]
+
+    if @location.save
+      redirect_to company_path(@company)
+    else
+      flash.now[:error] = @location.errors.full_messages.join(', ')
+      render :edit
+
+    end
   end
 
   def destroy
@@ -31,8 +49,12 @@ class LocationsController < ApplicationController
                                         :street_address_2,
                                         :phone,
                                         :primary_contact,
-                                        :city,
                                         :state,
+                                        :city,
                                         :zip_code)
+    end
+
+    def us_states
+      state_options
     end
 end

@@ -29,25 +29,13 @@ FactoryGirl.define do
     end
   end
 
-  factory :city do
-    name  {Faker::Address.city}
-  end
-
-  factory :state do
-    name  {Faker::Address.state}
-  end
-
-  factory :zip_code do
-    zip_code  {Faker::Address.zip}
-  end
-
   factory :location do
     street_address  {Faker::Address.street_name}
     phone           {Faker::PhoneNumber.phone_number}
     primary_contact {Faker::Name.name}
-    city            {FactoryGirl.create(:city)}
-    state           {FactoryGirl.create(:state)}
-    zip_code        {FactoryGirl.create(:zip_code)}
+    city            {Faker::Address.city}
+    state           {Faker::Address.state}
+    zip_code        {Faker::Address.zip_code}
     company         {FactoryGirl.create(:company)}
   end
 end

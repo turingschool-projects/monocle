@@ -14,33 +14,46 @@
     <td><%= @company.headquarters %></td>
   </tr>
 </table>
+
+<% if current_user.admin? %>
+  <h4>Administrator Tools</h4>
+  <ul>
+    <li><%= link_to 'Edit Information', edit_admin_company_path(@company) %></li>
+  </ul>
+<% end %>
+
 <h3><%= pluralize(@company.locations.count, 'Location') %></h3>
+
 <%= link_to 'Submit Additional Location', new_company_location_path(@company) %>
-<table class="table-condensed table-hover">
-  <tr>
-    <th>Address:</th>
-  </tr>
-  <tr>
-    <th>Phone:</th>
-  </tr>
-  <tr>
-    <th>Primary Contact:</th>
-  </tr>
-  <% @company.approved_locations.each do |location | %>
-    <tr>
-      <td><%= location.street_address %><br>
-        <%= location.street_address_2 %> <br>
-        <%= location.city_state_zip %>
-      </td>
-    </tr>
-    <tr>
-      <td><%= location.phone %></td>
-    </tr>
-    <tr>
-      <td><%= location.primary_contact %></td>
-    </tr>
-  <% end %>
-</table>
+
+    <% @company.approved_locations.each do |location | %>
+    <table class="table-condensed table-hover">
+      <tr>
+        <td>Address:</td>
+        <td><%= location.street_address %> <br />
+          <%= location.street_address_2 %></td>
+      </tr>
+      <tr>
+        <td>City, State Zip:</td>
+        <td><%= location.city_state_zip %></td>
+      </tr>
+      <tr>
+        <td>Phone:</td>
+        <td><%= location.phone %></td>
+      </tr>
+      <tr>
+        <td>Primary Contact:</td>
+        <td><%= location.primary_contact %></td>
+      </tr>
+      <tr>
+        <td><% if current_user.admin? %>
+          <%= link_to 'Edit Location', edit_company_location_path(company_id: @company.id, id: location.id) %>
+          <% end %>
+        </td>
+      </tr>
+    </table>
+
+    <% end %>
 
 <% if current_user.companies.exists?(@company.id) %>
   <h4><i class="text-info">
@@ -52,12 +65,6 @@
   <% end %>
 <% end %>
 
-<% if current_user.admin? %>
-  <h4>Administrator Tools</h4>
-  <ul>
-    <li><%= link_to 'Edit Information', edit_admin_company_path(@company) %></li>
-  </ul>
-<% end %>
 
 <h3>Notes</h3>
 <div id='notes' class='panel-group'>

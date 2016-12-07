@@ -1,4 +1,4 @@
-<%= form_for [@company, @location] do |f| %>
+  <%= form_for [@company, @location] do |f| %>
   <div class="form-group">
     <%= f.text_field :street_address %>
     <div class="col-md-4">
@@ -27,26 +27,27 @@
     </div>
   </div>
 
-  <div class="form-group">
-    <%= f.text_field :city %>
-    <div class="col-md-4">
-      <%= f.label :city %>
+    <div class="form-group">
+      <%= f.text_field :city %>
+      <div class="col-md-4">
+        <%= f.label :city %>
+      </div>
     </div>
-  </div>
 
-  <div class="form-group">
-    <%= select_tag :state, options_for_select(us_states) %>
-    <div class="col-md-4">
-      <%= f.label :state %>
+    <div class="form-group">
+      <%= select_tag :state, options_for_select(us_states) %>
+      <div class="col-md-4">
+        <%= f.label :state %>
+      </div>
     </div>
-  </div>
 
-  <div class="form-group">
-    <%= f.text_field :zip_code %>
-    <div class="col-md-4">
-      <%= f.label :zip_code %>
+    <div class="form-group">
+      <%= f.text_field :zip_code %>
+      <div class="col-md-4">
+        <%= f.label :zip_code %>
+      </div>
     </div>
-  </div>
 
     <%= f.submit "Submit New Location For #{@company.name}"%>
+
 <% end %>
