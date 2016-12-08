@@ -29,8 +29,14 @@ ActiveRecord::Schema.define(version: 20161208010246) do
     t.citext   "products_services"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
+<<<<<<< HEAD
     t.integer  "status"
     t.citext   "size"
+=======
+    t.integer  "industry_id"
+    t.string   "logo"
+    t.index ["industry_id"], name: "index_companies_on_industry_id", using: :btree
+>>>>>>> development
   end
 
   create_table "company_industries", force: :cascade do |t|
