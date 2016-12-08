@@ -1,6 +1,4 @@
 class LocationsController < ApplicationController
-  helper_method :us_states
-  include StateHelper
 
   def new
     @company = Company.find(params[:company_id])
@@ -10,7 +8,6 @@ class LocationsController < ApplicationController
   def create
     @company = Company.find(params[:company_id])
     @location = @company.add_location(location_params)
-    @location.state = params[:state]
     if @location.save
       flash[:notice] = 'Location pending approval by moderator'
       redirect_to company_path(@company)
@@ -54,7 +51,4 @@ class LocationsController < ApplicationController
                                         :zip_code)
     end
 
-    def us_states
-      state_options
-    end
 end

@@ -58,7 +58,8 @@ def create_unapproved_company(name = 'TestCo')
       name: name,
       website: "www.monocle.com",
       headquarters: "Denver, CO",
-      products_services: "Jobs"
+      products_services: "Jobs",
+      status: 0
     })
   company.industries << industry
   company.locations << Location.create({
@@ -67,15 +68,16 @@ def create_unapproved_company(name = 'TestCo')
     primary_contact: "Dan Broadbent",
     city: "Denver",
     state: "Colorado",
-    zip_code: "80202"
+    zip_code: "80202",
+    status: 1
   })
+  Company.last
 end
 
 def create_approved_company(name = 'TestCo')
   create_unapproved_company(name)
-  comp_loc = Company.last.locations.last
-  comp_loc.status = 1
-  comp_loc.save
+  company = Company.last
+  company.update(status: 1)
   Company.last
 end
 
@@ -100,8 +102,8 @@ def create_note_with_company_and_user
       products_services: "Jobs"
     })
   note = Note.create({
-      title: "Solid Company", 
-      body: "They are solid.", 
-      user_id: user.id, 
+      title: "Solid Company",
+      body: "They are solid.",
+      user_id: user.id,
       company_id:  company.id })
 end
