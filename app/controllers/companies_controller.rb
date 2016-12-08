@@ -12,11 +12,13 @@ class CompaniesController < ApplicationController
 
   def new
     @company = Company.new
+    @location = Location.new
   end
 
   def create
     @company = Company.new(company_params)
     if @company.save
+      @location = Location.create(location_params)
       flash[:notice] = "Company is pending approval."
       redirect_to company_path(@company)
     else
@@ -44,5 +46,15 @@ class CompaniesController < ApplicationController
 
   def company_size
     company_size_options
+  end
+
+  def location_params
+    params.require('location').permit(:street_address,
+                                      :street_address_2,
+                                      :phone,
+                                      :primary_contact,
+                                      :state,
+                                      :city,
+                                      :zip_code)
   end
 end

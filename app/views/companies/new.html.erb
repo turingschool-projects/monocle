@@ -40,6 +40,60 @@
     </div>
   </div>
 
+  <!-- Fields for LOCATION -->
+
+  <%= fields_for(@location) do |u| %>
+    <div class="form-group">
+      <%= u.text_field :street_address %>
+      <div class="col-md-4">
+        <%= u.label :street_address %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= u.text_field :street_address_2 %>
+      <div class="col-md-4">
+        <%= u.label :street_address_2 %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= u.text_field :phone %>
+      <div class="col-md-4">
+        <%= u.label :phone %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= u.text_field :primary_contact %>
+      <div class="col-md-4">
+        <%= u.label :primary_contact %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= u.text_field :city %>
+      <div class="col-md-4">
+        <%= u.label :city %>
+      </div>
+    </div>
+
+    <!-- <div class="form-group">
+      <%#select_tag :state, options_for_select(@location.us_states) %>
+      <div class="col-md-4">
+        <%# u.label :state %>
+      </div>
+    </div> -->
+
+    <div class="form-group">
+      <%= u.text_field :zip_code %>
+      <div class="col-md-4">
+        <%= u.label :zip_code %>
+      </div>
+    </div>
+
+  <% end %>
+
 
   <%= f.submit %>
 
