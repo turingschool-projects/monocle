@@ -59,6 +59,6 @@ class Company < ApplicationRecord
 
   private
     def set_status
-      self.status ||= 1
+      self.status ||= 0
     end
 end
