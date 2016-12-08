@@ -20,7 +20,6 @@ class CompaniesController < ApplicationController
     if @company.save
       @location = @company.locations.create(location_params)
       @location.update(state: params[:state])
-      require 'pry'; binding.pry
       flash[:notice] = "Company is pending approval."
       redirect_to company_path(@company)
     else
