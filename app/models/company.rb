@@ -5,7 +5,6 @@ class Company < ApplicationRecord
   has_many :users, through: :starred_companies
   has_many :notes
   has_many :locations
-
   mount_uploader :logo, LogoUploader
 
   before_validation :set_status

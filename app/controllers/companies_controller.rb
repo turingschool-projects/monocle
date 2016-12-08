@@ -1,4 +1,7 @@
 class CompaniesController < ApplicationController
+  helper_method :company_size
+  include CompanySize
+
   def index
     @companies = Company.approved_companies
   end
@@ -9,11 +12,14 @@ class CompaniesController < ApplicationController
 
   def new
     @company = Company.new
+    @location = Location.new
   end
 
   def create
     @company = Company.new(company_params)
     if @company.save
+      @location = @company.locations.create(location_params)
+      @location.update(state: params[:state])
       flash[:notice] = "Company is pending approval."
       redirect_to company_path(@company)
     else
@@ -26,16 +32,22 @@ class CompaniesController < ApplicationController
 
   def company_params
     params.require(:company).permit(:name,
-                                    :street_address,
-                                    :city_state_zip,
-                                    :phone,
                                     :website,
                                     :headquarters,
-                                    :products_services,
-                                    :person_in_charge,
-                                    :city_id,
-                                    :state_id,
-                                    :industry_id,
-                                    :zip_code_id)
+                                    :products_services)
   end
+
+  def company_size
+    company_size_options
+  end
+
+  def location_params
+    params.require(:location).permit(:street_address,
+                                      :street_address_2,
+                                      :phone,
+                                      :primary_contact,
+                                      :city,
+                                      :zip_code).merge(state: params[:state])
+  end
+
 end
