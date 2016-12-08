@@ -1,6 +1,6 @@
 class CompaniesController < ApplicationController
   def index
-    @companies = Company.approved_locations
+    @companies = Company.approved_companies
   end
 
   def show
