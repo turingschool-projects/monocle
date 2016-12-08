@@ -41,6 +41,13 @@
     </div>
   </div>
 
+  <div class="form-group">
+    <%= f.file_field :logo, accept: 'image/jpg,image/jpeg,image/png' %>
+    <div class="col-md-4">
+      <%= f.label :logo %>
+    </div>
+  </div>
+
   <h3>Company Primary Location</h3>
 
   <%= fields_for(@location) do |u| %>
