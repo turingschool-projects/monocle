@@ -6,6 +6,20 @@ class Company < ApplicationRecord
   has_many :notes
   has_many :locations
 
+  before_validation :set_status
+
+  enum status: [:pending, :approved, :rejected]
+
+  def approved
+    self.status = 1
+    self.save
+  end
+
+  def rejected
+    self.status = 2
+    self.save
+  end
+
   def self.approved_locations
     Company.joins(:locations).where('locations.status = ?', '1')
   end
@@ -14,8 +28,16 @@ class Company < ApplicationRecord
     Company.joins(:locations).where('locations.status = ?', '0')
   end
 
+  def self.approved_companies
+    Company.where('status = ?', '1')
+  end
+
+  def self.pending_companies
+    Company.where('status = ?', '0')
+  end
+
   def approved?
-    self.locations.any? { |location| location.approved? }
+    self.status == "approved"
   end
 
   def approved_locations
@@ -33,4 +55,9 @@ class Company < ApplicationRecord
       zip_code:         params[:zip_code]
     )
   end
+
+  private
+    def set_status
+      self.status ||= 1
+    end
 end
