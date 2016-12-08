@@ -1,4 +1,7 @@
 class CompaniesController < ApplicationController
+  helper_method :company_size
+  include CompanySize
+
   def index
     @companies = Company.approved_companies
   end
@@ -37,5 +40,9 @@ class CompaniesController < ApplicationController
                                     :state_id,
                                     :industry_id,
                                     :zip_code_id)
+  end
+
+  def company_size
+    company_size_options
   end
 end

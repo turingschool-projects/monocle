@@ -33,6 +33,14 @@
     </div>
   </div>
 
+  <div class="form-group">
+    <%= select_tag :size, options_for_select(company_size) %>
+    <div class="col-md-4">
+      <%= f.label :size %>
+    </div>
+  </div>
+
+
   <%= f.submit %>
 
 <% end %>
