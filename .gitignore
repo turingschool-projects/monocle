@@ -26,3 +26,5 @@ coverage
 /spec/fixtures/vcr_cassettes
 
 .vscode
+
+/public/uploads/
