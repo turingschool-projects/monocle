@@ -17,7 +17,7 @@ class LogoUploader < CarrierWave::Uploader::Base
    #Provide a default URL as a default if there hasn't been a file uploaded:
   def default_url
      # For Rails 3.1+ asset pipeline compatibility:
-    image_path('monocle_icon.png')
+    ActionController::Base.helpers.image_path('monocle_icon.png')
     # ActionController::Base.helpers.asset_path('images/monocle_icon.png')
   end
 
