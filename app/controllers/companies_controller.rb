@@ -18,7 +18,9 @@ class CompaniesController < ApplicationController
   def create
     @company = Company.new(company_params)
     if @company.save
-      @location = Location.create(location_params)
+      @location = @company.locations.create(location_params)
+      @location.update(state: params[:state])
+      require 'pry'; binding.pry
       flash[:notice] = "Company is pending approval."
       redirect_to company_path(@company)
     else
@@ -31,17 +33,9 @@ class CompaniesController < ApplicationController
 
   def company_params
     params.require(:company).permit(:name,
-                                    :street_address,
-                                    :city_state_zip,
-                                    :phone,
                                     :website,
                                     :headquarters,
-                                    :products_services,
-                                    :person_in_charge,
-                                    :city_id,
-                                    :state_id,
-                                    :industry_id,
-                                    :zip_code_id)
+                                    :products_services)
   end
 
   def company_size
@@ -49,12 +43,12 @@ class CompaniesController < ApplicationController
   end
 
   def location_params
-    params.require('location').permit(:street_address,
+    params.require(:location).permit(:street_address,
                                       :street_address_2,
                                       :phone,
                                       :primary_contact,
-                                      :state,
                                       :city,
-                                      :zip_code)
+                                      :zip_code).merge(state: params[:state])
   end
+
 end

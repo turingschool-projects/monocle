@@ -13,17 +13,16 @@ describe "user can add a company" do
     fill_in "company_name", with: "Monocle"
     fill_in "company_website", with: "www.monocle.com"
 
-
-
     fill_in "company_headquarters", with: "Denver, CO"
     fill_in "company_products_services", with: "Jobs"
     # upload a logo
-    # Choose a size from dropdown
     select "100-150", from: "size"
+    fill_in "location_phone", with: "123-456-7890"
+    fill_in "location_primary_contact", with: "Will Smith"
     fill_in "location_street_address", with: "1234 Blake St."
-    fill_in "location_street_address_2", with: ""
+    fill_in "location_street_address_2", with: "Suite 400"
     fill_in "location_city", with: "Denver"
-    # select 'Colorado', from: 'state'
+    select 'Colorado', from: 'state'
     fill_in 'location_zip_code', with: '80111'
     click_button "Create Company"
 
