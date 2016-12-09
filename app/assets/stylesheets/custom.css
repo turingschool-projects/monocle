@@ -5,6 +5,7 @@
   overflow: hidden;
   border-radius: 5px;
   border: 1px solid #000000;
+  padding: 5px;
  }
 
  .logo img {
@@ -21,12 +22,13 @@
 }
 
 .big-logo {
-display: inline-block;
-height: 300px;
-width: 300px;
-overflow: hidden;
-border-radius: 5px;
-border: 1px solid #000000;
+  display: inline-block;
+  height: 300px;
+  width: 300px;
+  overflow: hidden;
+  border-radius: 5px;
+  border: 1px solid #000000;
+  padding:5px;
 }
 
 .big-logo img {
