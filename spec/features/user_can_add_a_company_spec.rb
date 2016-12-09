@@ -15,7 +15,7 @@ describe "user can add a company" do
 
     fill_in "company_headquarters", with: "Denver, CO"
     fill_in "company_products_services", with: "Jobs"
-    # upload a logo
+    attach_file('company[logo]', File.absolute_path('./spec/fixtures/example_logo.jpg'))
     select "100-150", from: "size"
     fill_in "location_phone", with: "123-456-7890"
     fill_in "location_primary_contact", with: "Will Smith"
