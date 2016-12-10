@@ -93,6 +93,18 @@ def add_approved_location_to_company(company)
   )
 end
 
+def add_unapproved_location_to_company(company)
+  company.locations << Location.create(
+    street_address: '123 Another Test St',
+    phone: "987-654-3210",
+    primary_contact: "Nate Anderson",
+    city: "Boulder",
+    state: "Colorado",
+    zip_code: "80303",
+    status: 0
+  )
+end
+
 def create_note_with_company_and_user
   user = User.create({username: 'tester', slack_uid: 'tester', slack_access_token: 1})
   company = Company.create({

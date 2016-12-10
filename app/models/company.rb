@@ -21,14 +21,6 @@ class Company < ApplicationRecord
     self.save
   end
 
-  def self.approved_locations
-    Company.joins(:locations).where('locations.status = ?', '1')
-  end
-
-  def self.pending_locations
-    Company.joins(:locations).where('locations.status = ?', '0')
-  end
-
   def self.approved_companies
     Company.where('status = ?', '1')
   end
