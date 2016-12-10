@@ -9,7 +9,7 @@ class User < ApplicationRecord
 
   def self.create_from_slack(user_info)
     user = find_or_initialize_by(slack_uid: user_info["uid"]) do |u|
-      u.username           = user_info["info"]["name"]
+      u.username = user_info.info["name"]
     end
     user.slack_access_token = user_info.credentials["token"]
     user.save ? user : false
@@ -17,7 +17,9 @@ class User < ApplicationRecord
 
   def self.create_from_census(user_info)
     user = find_or_initialize_by(census_uid: user_info["uid"]) do |u|
-      u.username            = user_info.info["first_name"] + " " + user_info.info["last_name"]
+      if user_info.info["first_name"] && user_info.info["last_name"]
+        u.username = user_info.info["first_name"] + " " + user_info.info["last_name"]
+      end
     end
     user.census_access_token = user_info.credentials["token"]
     user.save ? user : false
@@ -34,7 +36,6 @@ class User < ApplicationRecord
 
     def user_must_have_fields_for_provider
       unless (username && (slack_uid || census_uid) && (slack_access_token || census_access_token))
-        byebug
         errors.add(:username, "is missing data")
       end
     end
