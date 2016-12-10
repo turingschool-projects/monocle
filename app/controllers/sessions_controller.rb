@@ -12,16 +12,14 @@ class SessionsController < ApplicationController
   end
 
   def create
-    @user = User.where(slack_uid: auth_hash[:uid]).first_or_create
-    #self.current_user = @user
-    session[:user_id] = @user.id
-    redirect_to root_path, flash: { success: "Signed in successfully." }
-    #if user = SlackService.authenticate(params)
-    #  session[:user_id] = user.id
-    #  redirect_to root_path, flash: { success: "Signed in successfully." }
-    #else
-    #  redirect_to root_path, flash: { warning: "Sign in unsuccessful. Please try again." }
-    #end
+    @user = User.create_from_slack(auth_hash)
+    
+    if @user
+      session[:user_id] = @user.id
+      redirect_to root_path, flash: { success: "Signed in successfully." }
+    else
+      redirect_to root_path, flash: { warning: "Sign in unsuccessful. Please try again." }
+    end
   end
 
   def destroy
