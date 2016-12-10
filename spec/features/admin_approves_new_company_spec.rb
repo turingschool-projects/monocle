@@ -8,7 +8,7 @@ RSpec.describe 'admin approves of company' do
     click_on 'Approve'
     company.reload
 
-    expect(page).to have_content('Test Company Status Successfully Approved')
+    expect(page).to have_content('Company information updated')
     expect(company.approved?).to eq(true)
   end
 end
