@@ -7,9 +7,9 @@ GIT
 
 GIT
   remote: https://github.com/bcgoss/omniauth-census
-  revision: 4c67c8f9da630e490e9ad95006b243a65a06d98c
+  revision: a076dcb0bc3e56e322a23661eebe89e1e730e46f
   specs:
-    omniauth-census (0.1.0)
+    omniauth-census (0.1.1)
       omniauth-oauth2
 
 GEM

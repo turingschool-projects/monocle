@@ -8,11 +8,12 @@ class SessionsController < ApplicationController
   end
 
   def new
-    redirect_to '/auth/slack'
+    redirect_to '/auth/census'
   end
 
   def create
-    @user = User.create_from_slack(auth_hash)
+    # @user = User.create_from_slack(auth_hash)
+    @user = User.create_from_census(auth_hash)
     
     if @user
       session[:user_id] = @user.id
