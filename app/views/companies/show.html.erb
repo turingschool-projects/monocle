@@ -16,6 +16,15 @@
     <th>Headquarters:</th>
     <td><%= @company.headquarters %></td>
   </tr>
+  <tr>
+    <th>Company Size:</th>
+    <td><%= @company.size %> employees</td>
+  </tr>
+  <tr>
+    <th>Industry:</th>
+    <td><%= @company.industries(@company).name %></td>
+  </tr>
+
 </table>
 
 <% if current_user.admin? %>
