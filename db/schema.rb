@@ -10,17 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161208010246) do
+ActiveRecord::Schema.define(version: 20161210194827) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "citext"
-
-  create_table "cities", force: :cascade do |t|
-    t.citext   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
 
   create_table "companies", force: :cascade do |t|
     t.citext   "name"
@@ -29,9 +23,9 @@ ActiveRecord::Schema.define(version: 20161208010246) do
     t.citext   "products_services"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
+    t.string   "logo"
     t.integer  "status"
     t.citext   "size"
-    t.string   "logo"
   end
 
   create_table "company_industries", force: :cascade do |t|
@@ -78,25 +72,15 @@ ActiveRecord::Schema.define(version: 20161208010246) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "states", force: :cascade do |t|
-    t.citext   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "users", force: :cascade do |t|
     t.string   "username"
     t.string   "slack_uid"
     t.text     "slack_access_token"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
     t.integer  "role"
-  end
-
-  create_table "zip_codes", force: :cascade do |t|
-    t.string   "zip_code"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "census_uid"
+    t.string   "census_access_token"
   end
 
   add_foreign_key "company_industries", "companies"

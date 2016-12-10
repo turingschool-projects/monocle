@@ -1,8 +1,5 @@
 class User < ApplicationRecord
-  validates_presence_of :username,
-                        :slack_uid,
-                        :slack_access_token
-  validates_uniqueness_of :slack_uid
+  validate :user_must_have_fields_for_provider
   has_many :starred_companies
   has_many :companies, through: :starred_companies
 
@@ -13,8 +10,16 @@ class User < ApplicationRecord
   def self.create_from_slack(user_info)
     user = find_or_initialize_by(slack_uid: user_info["uid"]) do |u|
       u.username           = user_info["info"]["name"]
-      u.slack_access_token = user_info.credentials["token"]
     end
+    user.slack_access_token = user_info.credentials["token"]
+    user.save ? user : false
+  end
+
+  def self.create_from_census(user_info)
+    user = find_or_initialize_by(census_uid: user_info["uid"]) do |u|
+      u.username            = user_info.info["first_name"] + " " + user_info.info["last_name"]
+    end
+    user.census_access_token = user_info.credentials["token"]
     user.save ? user : false
   end
 
@@ -25,5 +30,12 @@ class User < ApplicationRecord
   private
     def set_role
       self.role ||= 0
+    end
+
+    def user_must_have_fields_for_provider
+      unless (username && (slack_uid || census_uid) && (slack_access_token || census_access_token))
+        byebug
+        errors.add(:username, "is missing data")
+      end
     end
 end
