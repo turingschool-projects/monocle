@@ -34,7 +34,7 @@ gem 'faraday'
 gem 'carrierwave', '>= 1.0.0.rc', '< 2.0'
 gem 'fog-aws'
 gem 'omniauth'
-gem 'omniauth-slack'
+gem 'omniauth-slack', github: 'kmrshntr/omniauth-slack'
 gem 'omniauth-census', git: "https://github.com/bcgoss/omniauth-census"
 
 group :development, :test do
@@ -64,11 +64,7 @@ group :development do
   gem 'skylight'
 end
 
-group :production do
-  gem 'rails_12factor'
-end
-
-group :staging do
+group :production, :staging do
   gem 'rails_12factor'
 end
 
