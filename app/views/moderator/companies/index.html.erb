@@ -1,9 +1,5 @@
+<h2>Pending Companies</h2>
 <table>
-  <tr>
-    <th>Name</th>
-    <th>Location(s)</th>
-    <th>Approve/ Disapprove</th>
-  </tr>
   <% @pending_companies.each do |company| %>
       <tr>
         <td>
@@ -15,6 +11,24 @@
           <%= button_to "Approve", {controller: "moderator/companies", action: "update", approve: true, id: company.id}, method: :put %>
           <%= button_to "Reject", {controller: "moderator/companies", action: "update", id: company.id}, method: :put %>
           <%= button_to "Edit", edit_moderator_company_path(company) %>
+        </td>
+      </tr>
+  <% end %>
+</table>
+
+<h2>Pending Locations</h2>
+<table>
+  <% @pending_locations.each do |location| %>
+      <tr>
+        <td>
+          <strong>Street Address: </strong><%= location.street_address %>, <%= location.city_state_zip %><br>
+          <strong>Phone: </strong><%= location.phone %><br>
+          <strong>Primary Contact: </strong><%= location.primary_contact %>
+        </td>
+        <td>
+          <%= button_to "Approve", {controller: "moderator/locations", action: "update", location: {status: "approved"}, id: location.id}, method: :put %>
+          <%= button_to "Reject", {controller: "moderator/locations", action: "update", id: location.id}, method: :put %>
+          <%= button_to "Edit", edit_moderator_location_path(location) %>
         </td>
       </tr>
   <% end %>
