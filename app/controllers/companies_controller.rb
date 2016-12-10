@@ -13,11 +13,17 @@ class CompaniesController < ApplicationController
   def new
     @company = Company.new
     @location = Location.new
+    @industries = Industry.all
   end
 
   def create
     @company = Company.new(company_params)
     if @company.save
+      params[:industry_ids].each do |industry_id|
+        industry = Industry.find(industry_id)
+        @company.industries << industry
+      end
+
       @location = @company.locations.create(location_params)
       @location.update(state: params[:state])
       flash[:notice] = "Company is pending approval."
