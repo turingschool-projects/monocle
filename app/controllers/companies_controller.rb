@@ -16,12 +16,12 @@ class CompaniesController < ApplicationController
   end
 
   def create
-    @company = Company.new(company_params)
-    if @company.save
-      @location = @company.locations.create(location_params)
-      @location.update(state: params[:state])
+    company = Company.new(company_params)
+    if company.save
+      location = company.locations.create(location_params)
+      location.update(status: 'approved')
       flash[:notice] = "Company is pending approval."
-      redirect_to company_path(@company)
+      redirect_to company_path(company)
     else
       flash.now[:danger] = @company.errors.full_messages
       render :new

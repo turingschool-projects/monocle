@@ -37,17 +37,17 @@ class Company < ApplicationRecord
     self.locations.where('status = ?', '1')
   end
 
-  def add_location(params)
-    self.locations.new(
-      street_address:   params[:street_address],
-      street_address_2: params[:street_address_2],
-      phone:            params[:phone],
-      primary_contact:  params[:primary_contact],
-      city:             params[:city],
-      state:            params[:state],
-      zip_code:         params[:zip_code]
-    )
-  end
+  # def add_location(params)
+  #   self.locations.new(
+  #     street_address:   params[:street_address],
+  #     street_address_2: params[:street_address_2],
+  #     phone:            params[:phone],
+  #     primary_contact:  params[:primary_contact],
+  #     city:             params[:city],
+  #     state:            params[:state],
+  #     zip_code:         params[:zip_code]
+  #   )
+  # end
 
   private
     def set_status
