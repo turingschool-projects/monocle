@@ -13,7 +13,6 @@ class SessionsController < ApplicationController
 
   def create
     @user = User.where(slack_uid: auth_hash[:uid]).first_or_create
-    byebug
     #self.current_user = @user
     session[:user_id] = @user.id
     redirect_to root_path, flash: { success: "Signed in successfully." }
