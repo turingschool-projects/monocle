@@ -1,6 +1,11 @@
 class Admin::LocationsController < ApplicationController
   before_action :verify_admin
 
+  def edit
+    @company  = Company.find(params[:company_id])
+    @location = Location.find(params[:id])
+  end
+
   def update
     location = Location.find(params[:id])
     company = location.company
