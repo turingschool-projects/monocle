@@ -34,7 +34,8 @@ class CompaniesController < ApplicationController
     params.require(:company).permit(:name,
                                     :website,
                                     :headquarters,
-                                    :products_services)
+                                    :products_services,
+                                    :logo)
   end
 
   def company_size
