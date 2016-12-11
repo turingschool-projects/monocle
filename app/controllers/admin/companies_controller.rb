@@ -1,5 +1,7 @@
 class Admin::CompaniesController < ApplicationController
   before_action :verify_admin
+  helper_method :company_size
+  include CompanySize
 
   def index
     @pending_companies = Company.pending_companies
@@ -28,7 +30,11 @@ class Admin::CompaniesController < ApplicationController
                                       :headquarters,
                                       :products_services,
                                       :status,
-                                      :size,
-                                      :logo)
+                                      :logo).merge(size: params[:size])
     end
+
+    def company_size
+      company_size_options
+    end
+
 end

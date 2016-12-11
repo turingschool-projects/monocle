@@ -12,10 +12,9 @@ describe "user can add a company" do
     click_on "Add Company"
     fill_in "company_name", with: "Monocle"
     fill_in "company_website", with: "www.monocle.com"
-
+    check "industry_ids_"
     fill_in "company_headquarters", with: "Denver, CO"
     fill_in "company_products_services", with: "Jobs"
-    # upload a logo
     select "100-150", from: "size"
     fill_in "location_phone", with: "123-456-7890"
     fill_in "location_primary_contact", with: "Will Smith"

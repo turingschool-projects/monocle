@@ -13,15 +13,22 @@ class CompaniesController < ApplicationController
   def new
     @company = Company.new
     @location = Location.new
+    @industries = Industry.all
   end
 
   def create
-    company = Company.new(company_params)
-    if company.save
-      location = company.locations.create(location_params)
-      location.update(status: 'approved')
+    @company = Company.new(company_params)
+    if @company.save
+      params[:industry_ids].each do |industry_id|
+        industry = Industry.find(industry_id)
+        @company.industries << industry
+      end
+
+      @location = @company.locations.create(location_params)
+      @location.update(state: params[:state])
+      @location.update(status: 'approved')
       flash[:notice] = "Company is pending approval."
-      redirect_to company_path(company)
+      redirect_to company_path(@company)
     else
       flash.now[:danger] = @company.errors.full_messages
       render :new
@@ -35,7 +42,7 @@ class CompaniesController < ApplicationController
                                     :website,
                                     :headquarters,
                                     :products_services,
-                                    :logo)
+                                    :logo).merge(size: params[:size])
   end
 
   def company_size
