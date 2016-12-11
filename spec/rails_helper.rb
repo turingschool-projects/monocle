@@ -52,6 +52,18 @@ def user_logs_in
           .and_return(user)
 end
 
+def user_logs_in_with_starred_company
+  user = User.create({username: 'tester', slack_uid: 'tester', slack_access_token: 1})
+  allow_any_instance_of(ApplicationController)
+          .to receive(:current_user)
+          .and_return(user)
+  create_unapproved_company
+  company = Company.last
+  company.update(status: 1)
+  user.companies << company
+  company
+end
+
 def create_unapproved_company(name = 'TestCo')
   industry = Industry.create(name: "Applesauce")
   company = Company.create({
