@@ -6,13 +6,13 @@ class LocationsController < ApplicationController
   end
 
   def create
-    @company = Company.find(params[:company_id])
-    @location = @company.add_location(location_params)
-    if @location.save
+    company = Company.find(params[:company_id])
+    location = company.locations.new(location_params)
+    if location.save
       flash[:notice] = 'Location pending approval by moderator'
-      redirect_to company_path(@company)
+      redirect_to company_path(company)
     else
-      flash.now[:error] = @location.errors.full_messages.join(', ')
+      flash.now[:error] = location.errors.full_messages.join(', ')
       render :new
     end
   end

@@ -1,6 +1,11 @@
 class Admin::CompaniesController < ApplicationController
   before_action :verify_admin
-  
+
+  def index
+    @pending_companies = Company.pending_companies
+    @pending_locations = Location.pending_locations
+  end
+
   def edit
     @company = Company.find(params[:id])
   end
@@ -19,16 +24,11 @@ class Admin::CompaniesController < ApplicationController
   private
     def company_params
       params.require(:company).permit(:name,
-                                      :street_address,
-                                      :city_state_zip,
-                                      :phone,
                                       :website,
                                       :headquarters,
                                       :products_services,
-                                      :person_in_charge,
-                                      :city_id,
-                                      :state_id,
-                                      :industry_id,
-                                      :zip_code_id)
+                                      :status,
+                                      :size,
+                                      :logo)
     end
 end

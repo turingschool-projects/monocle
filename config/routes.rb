@@ -14,10 +14,13 @@ Rails.application.routes.draw do
 
   namespace :moderator do
     resources :companies,       only: [:edit, :update]
+    resources :locations,       only: [:edit, :update]
     get 'companies/approval',   to: 'companies#index'
   end
 
   namespace :admin do
     resources :companies,       only: [:edit, :update]
+    resources :locations,       only: [:edit, :update, :destroy]
+    get 'companies/approval',   to: 'companies#index'
   end
 end

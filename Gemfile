@@ -61,11 +61,7 @@ group :development do
   gem 'skylight'
 end
 
-group :production do
-  gem 'rails_12factor'
-end
-
-group :staging do
+group :production, :staging do
   gem 'rails_12factor'
 end
 
