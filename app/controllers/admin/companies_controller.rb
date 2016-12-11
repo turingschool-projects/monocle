@@ -3,6 +3,11 @@ class Admin::CompaniesController < ApplicationController
   helper_method :company_size
   include CompanySize
 
+  def index
+    @pending_companies = Company.pending_companies
+    @pending_locations = Location.pending_locations
+  end
+
   def edit
     @company = Company.find(params[:id])
   end
@@ -23,7 +28,9 @@ class Admin::CompaniesController < ApplicationController
       params.require(:company).permit(:name,
                                       :website,
                                       :headquarters,
-                                      :products_services).merge(size: params[:size])
+                                      :products_services,
+                                      :status,
+                                      :logo).merge(size: params[:size])
     end
 
     def company_size

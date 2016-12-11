@@ -26,6 +26,7 @@ class CompaniesController < ApplicationController
 
       @location = @company.locations.create(location_params)
       @location.update(state: params[:state])
+      @location.update(status: 'approved')
       flash[:notice] = "Company is pending approval."
       redirect_to company_path(@company)
     else
