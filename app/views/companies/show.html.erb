@@ -16,13 +16,26 @@
     <th>Headquarters:</th>
     <td><%= @company.headquarters %></td>
   </tr>
+  <tr>
+    <th>Company Size:</th>
+    <td><%= @company.size %> employees</td>
+  </tr>
+  <tr>
+    <th>Industries:</th>
+    <td><% @company.industries.map do |industry| %>
+      <ul>
+        <li>
+            <%= industry.name %>
+        </li>
+      </ul>
+      <% end %>
+    </td>
+  </tr>
+
 </table>
 
 <% if current_user.admin? %>
-  <h4>Administrator Tools</h4>
-  <ul>
-    <li><%= link_to 'Edit Information', edit_admin_company_path(@company) %></li>
-  </ul>
+  <%= link_to 'Edit Company Information', edit_admin_company_path(@company), class: "btn btn-default" %>
 <% end %>
 
 <h3><%= pluralize(@company.locations.count, 'Location') %></h3>
@@ -30,7 +43,7 @@
 <%= link_to 'Submit Additional Location', new_company_location_path(@company) %>
 
     <% @company.approved_locations.each do |location | %>
-    <table class="table-condensed table-hover">
+    <table class="table-condensed table-hover" id='locations'>
       <tr>
         <td>Address:</td>
         <td><%= location.street_address %> <br />
@@ -50,7 +63,8 @@
       </tr>
       <tr>
         <td><% if current_user.admin? %>
-          <%= link_to 'Edit Location', edit_company_location_path(company_id: @company.id, id: location.id) %>
+          <%= link_to 'Edit Location', edit_admin_location_path(company_id: @company.id, id: location.id) %>
+          <%= link_to 'Delete Location', admin_location_path(company_id: @company.id, id: location.id), method: :delete %>
           <% end %>
         </td>
       </tr>

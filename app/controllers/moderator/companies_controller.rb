@@ -2,8 +2,8 @@ class Moderator::CompaniesController < ApplicationController
   before_action :verify_moderator_or_admin
 
   def index
-    # @pending_locations = Company.pending_locations
     @pending_companies = Company.pending_companies
+    @pending_locations = Location.pending_locations
   end
 
   def edit

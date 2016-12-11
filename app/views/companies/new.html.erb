@@ -7,12 +7,7 @@
     </div>
   </div>
 
-  <div class="form-group">
-    <%= f.collection_select :industries, Industry.all, :id,:name %>
-    <div class="col-md-4">
-      <%= f.label :industry %>
-    </div>
-  </div>
+
   <div class="form-group">
     <%= f.text_field :website %>
     <div class="col-md-4">
@@ -45,6 +40,16 @@
     <%= f.file_field :logo, accept: 'image/jpg,image/jpeg,image/png' %>
     <div class="col-md-4">
       <%= f.label :logo %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :industries %>
+    <% @industries.each do |industry| %>
+    <div class="checkbox">
+      <%= check_box_tag 'industry_ids[]', industry.id -%>
+      <%= h industry.name -%>
+      <% end %>
     </div>
   </div>
 
