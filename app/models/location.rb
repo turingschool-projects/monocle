@@ -5,6 +5,14 @@ class Location < ApplicationRecord
 
   enum status: [:pending, :approved, :rejected]
 
+  def self.approved_locations
+    Location.where('status = ?', '1')
+  end
+  
+  def self.pending_locations
+    Location.where('status = ?', '0')
+  end
+
   def approved
     self.status = 1
     self.save

@@ -21,14 +21,6 @@ class Company < ApplicationRecord
     self.save
   end
 
-  def self.approved_locations
-    Company.joins(:locations).where('locations.status = ?', '1')
-  end
-
-  def self.pending_locations
-    Company.joins(:locations).where('locations.status = ?', '0')
-  end
-
   def self.approved_companies
     Company.where('status = ?', '1')
   end
@@ -45,17 +37,17 @@ class Company < ApplicationRecord
     self.locations.where('status = ?', '1')
   end
 
-  def add_location(params)
-    self.locations.new(
-      street_address:   params[:street_address],
-      street_address_2: params[:street_address_2],
-      phone:            params[:phone],
-      primary_contact:  params[:primary_contact],
-      city:             params[:city],
-      state:            params[:state],
-      zip_code:         params[:zip_code]
-    )
-  end
+  # def add_location(params)
+  #   self.locations.new(
+  #     street_address:   params[:street_address],
+  #     street_address_2: params[:street_address_2],
+  #     phone:            params[:phone],
+  #     primary_contact:  params[:primary_contact],
+  #     city:             params[:city],
+  #     state:            params[:state],
+  #     zip_code:         params[:zip_code]
+  #   )
+  # end
 
   private
     def set_status
