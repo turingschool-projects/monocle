@@ -6,6 +6,7 @@
   border-radius: 5px;
   border: 1px solid #000000;
   padding: 5px;
+  background: #FFFFFF;
  }
 
  .logo img {
@@ -19,6 +20,7 @@
   border: 1px solid #000000;
   padding: 5px;
   height: 270px;
+  background: #ededed;
 }
 
 .card-holder {
@@ -26,10 +28,18 @@
   padding: 15px;
 }
 
+.company-name, h4 a {
+  color: #cc0033;
+}
+
+.company-name {
+  text-align: center;
+}
+
 .big-logo {
   display: inline-block;
-  height: 300px;
-  width: 300px;
+  height: 200px;
+  width: 200px;
   overflow: hidden;
   border-radius: 5px;
   border: 1px solid #000000;
@@ -38,6 +48,6 @@
 
 .big-logo img {
  align-content: left;
- width: 290px;
- height: 290px;
+ width: 190px;
+ height: 190px;
 }
