@@ -29,15 +29,15 @@ module SeedFixtureData
     def self.load_companies(industry, companies)
       companies.each do |company|
         name              = company[0]
-        website           = company[4]
-        headquarters      = company[5].sub("Company headquarters: ", "")
-        products_services = company[6].sub("Products/Services: ", "")
+        website           = company[5]
+        headquarters      = company[6].sub("Company headquarters: ", "")
+        products_services = company[7].sub("Products/Services: ", "")
 
-        this_company = Company.create({
-          name:              name,
+        this_company = Company.where(name: name).first_or_create({
           website:           website,
           headquarters:      headquarters,
           products_services: products_services,
+          status:            "approved" 
         })
 
         industry.companies << this_company
@@ -47,19 +47,21 @@ module SeedFixtureData
 
     def self.create_location(company)
       street_address    = company[1]
-      city_state_zip    = company[2]
-      phone             = company[3]
-      primary_contact   = company[7].sub("Person in charge: ", "")
-      city              = company[2].split[0...-2].join(" ").gsub(",", "")
-      state             = company[2].split[-2]
-      zip_code          = company[2].split.last
+      street_address_2  = company[2]
+      phone             = company[4]
+      primary_contact   = company[8].sub("Person in charge: ", "")
+      city              = company[3].split[0...-2].join(" ").gsub(",", "")
+      state             = company[3].split[-2]
+      zip_code          = company[3].split.last
       {
         street_address:  street_address,
+        street_address_2:street_address_2,
         phone:           phone,
         primary_contact: primary_contact,
         city:            city,
         state:           state,
-        zip_code:        zip_code
+        zip_code:        zip_code,
+        status:          "approved"
       }
     end
 end

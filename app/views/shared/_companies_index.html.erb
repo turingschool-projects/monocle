@@ -1,23 +1,21 @@
 <% companies.each do |company| %>
-  <div class='card card-inverse col-md-4'>
-    <div class='logo'>
-      <%= image_tag company.logo.url, class: 'card-img-top' %>
-    </div>
-    <div class='card-block'>
-      <h4 class='card-title'>
-        Company Name: <%= link_to company.name, company_path(company) %><br />
-      </h4>
-      <% company.locations.each do |location| %>
-        <p class='card-text'>
-          <%= location.street_address %><br />
-          <%= location.street_address_2 %><br />
-          <%= location.city_state_zip %><br />
-          <%= location.phone %><br />
+  <div class='card-holder col-md-4'>
+    <div class='card'>
+      <div class='logo'>
+        <%= image_tag company.logo.url %>
+      </div>
+      <div>
+        <h4>
+          <%= link_to company.name, company_path(company) %><br />
+        </h4>
+        <p>
+          <%= company.locations.first.street_address %><br />
+          <%= company.locations.first.street_address_2 %><br />
+          <%= company.locations.first.city_state_zip %><br />
+          <%= company.locations.first.phone %><br />
+          <%= link_to company.website %>
         </p>
-      <% end %>
-      <p class='card-text'>
-        <%= company.website %>
-      </p>
+      </div>
     </div>
   </div>
 <% end %>
