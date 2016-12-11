@@ -13,6 +13,13 @@ class Admin::LocationsController < ApplicationController
     end
   end
 
+  def destroy
+    company = Company.find(params[:company_id])
+    location = Location.find(params[:id])
+    location.destroy
+    redirect_to company_path(company)
+  end
+
   private
 
   def location_params
