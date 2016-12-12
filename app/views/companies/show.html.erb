@@ -1,38 +1,45 @@
-<h1><%= @company.name %></h1>
-<div class='big-logo'>
-  <%= image_tag @company.logo.url %>
-</div>
-<h3>Company Information</h3>
-<table class="table-condensed table-hover">
-  <tr>
-    <th>Products/Services:</th>
-    <td><%= @company.products_services %></td>
-  </tr>
-  <tr>
-    <th>Website:</th>
-    <td><%= @company.website %></td>
-  </tr>
-  <tr>
-    <th>Headquarters:</th>
-    <td><%= @company.headquarters %></td>
-  </tr>
-  <tr>
-    <th>Company Size:</th>
-    <td><%= @company.size %> employees</td>
-  </tr>
-  <tr>
-    <th>Industries:</th>
-    <td><% @company.industries.map do |industry| %>
-      <ul>
-        <li>
-            <%= industry.name %>
-        </li>
-      </ul>
-      <% end %>
-    </td>
-  </tr>
+<h1 class="company-name"><%= @company.name %></h1>
+<div class="container">
+  <div class="col-md-3">
+    <br>
+    <div class='big-logo'>
+      <%= image_tag @company.logo.url %>
+    </div>
+  </div>
+  <div class="col-md-9">
+    <h3>Company Information</h3>
+    <table class="table-condensed table-hover">
+      <tr>
+        <th>Products/Services:</th>
+        <td><%= @company.products_services %></td>
+      </tr>
+      <tr>
+        <th>Website:</th>
+        <td><%= link_to @company.website %></td>
+      </tr>
+      <tr>
+        <th>Headquarters:</th>
+        <td><%= @company.headquarters %></td>
+      </tr>
+      <tr>
+        <th>Company Size:</th>
+        <td><%= @company.size %> employees</td>
+      </tr>
+      <tr>
+        <th>Industries:</th>
+        <td><% @company.industries.map do |industry| %>
+          <ul>
+            <li>
+                <%= industry.name %>
+            </li>
+          </ul>
+          <% end %>
+        </td>
+      </tr>
 
-</table>
+    </table>
+  </div>
+</div>
 
 <% if current_user.admin? %>
   <%= link_to 'Edit Company Information', edit_admin_company_path(@company), class: "btn btn-default" %>
