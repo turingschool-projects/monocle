@@ -5,7 +5,7 @@ RSpec.feature 'admin edits company information' do
     company = create_approved_company('TestCo')
     admin_logs_in
     visit company_path(company)
-    click_on 'Edit Information'
+    click_on 'Edit Company Information'
     fill_in 'company_name', with: 'Test Edit'
     click_on 'Update Company'
 
