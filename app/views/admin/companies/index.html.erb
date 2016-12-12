@@ -26,7 +26,6 @@
         </td>
         <td>
           <%= button_to "Approve", {controller: "admin/locations", action: "update", location: {status: "approved"}, id: location.id}, method: :put %>
-          <%= button_to "Reject", {controller: "admin/locations", action: "update", id: location.id}, method: :put %>
           <%= button_to "Edit", edit_admin_location_path(location) %>
         </td>
       </tr>

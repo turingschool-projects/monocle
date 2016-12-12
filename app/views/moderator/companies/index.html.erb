@@ -27,7 +27,6 @@
         </td>
         <td>
           <%= button_to "Approve", {controller: "moderator/locations", action: "update", location: {status: "approved"}, id: location.id}, method: :put %>
-          <%= button_to "Reject", {controller: "moderator/locations", action: "update", id: location.id}, method: :put %>
           <%= button_to "Edit", edit_moderator_location_path(location) %>
         </td>
       </tr>
