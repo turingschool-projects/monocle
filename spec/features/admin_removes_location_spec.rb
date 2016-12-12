@@ -10,7 +10,7 @@ RSpec.feature 'admin deletes company location' do
     within "#locations" do
       click_on "Delete Location"
     end
-    # and I click OK on the alert box
+
     expect(page).to_not have_content("123 Test St City")
   end
 end
