@@ -14,7 +14,7 @@ module SeedFixtureData
     end
 
     def self.create_industry(path)
-      industry_name = File.basename(path, ".txt")
+      industry_name = File.basename(path, ".txt").humanize
       Industry.find_or_create_by!(name: industry_name)
     end
 
@@ -37,7 +37,7 @@ module SeedFixtureData
           website:           website,
           headquarters:      headquarters,
           products_services: products_services,
-          status:            "approved" 
+          status:            "approved"
         })
 
         industry.companies << this_company
