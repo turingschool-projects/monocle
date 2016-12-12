@@ -12,15 +12,6 @@ RSpec.describe SessionsController, type: :controller do
     end
   end
 
-  describe "POST create" do
-    it "fails to create a user" do
-      params = {"error"=>"access_denied",
-                "state"=>""}
-
-      expect{post :create, params: params}.to_not change{User.count}.from(0)
-    end
-  end
-
   describe "GET new" do
     it "" do
       get :new
