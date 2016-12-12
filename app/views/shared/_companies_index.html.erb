@@ -13,7 +13,7 @@
           <%= company.locations.first.street_address_2 %><br />
           <%= company.locations.first.city_state_zip %><br />
           <%= company.locations.first.phone %><br />
-          <%= link_to company.website %>
+          <%= link_to company.website, "http://#{company.website}" %>
         </p>
       </div>
     </div>
