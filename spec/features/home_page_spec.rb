@@ -7,7 +7,7 @@ RSpec.feature "User visits home page" do
 
       expect(page).to have_http_status(200)
       expect(page).to have_content("Welcome to Monocle")
-      expect(page).to have_link("Sign in with Slack")
+      expect(page).to have_link("Sign in with Census")
       expect(page).to_not have_css(".navbar")
     end
   end

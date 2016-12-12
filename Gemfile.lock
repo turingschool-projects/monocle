@@ -1,3 +1,17 @@
+GIT
+  remote: git://github.com/kmrshntr/omniauth-slack.git
+  revision: 8b2371150cf3d892750695cd88118f8b16db9d01
+  specs:
+    omniauth-slack (2.3.0)
+      omniauth-oauth2 (~> 1.3.1)
+
+GIT
+  remote: https://github.com/bcgoss/omniauth-census
+  revision: a076dcb0bc3e56e322a23661eebe89e1e730e46f
+  specs:
+    omniauth-census (0.1.1)
+      omniauth-oauth2
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -107,6 +121,7 @@ GEM
     globalid (0.3.7)
       activesupport (>= 4.1.0)
     hashdiff (0.3.0)
+    hashie (3.4.6)
     i18n (0.7.0)
     ipaddress (0.8.3)
     jbuilder (2.6.0)
@@ -117,6 +132,7 @@ GEM
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
     json (2.0.2)
+    jwt (1.5.6)
     launchy (2.4.3)
       addressable (~> 2.3)
     listen (3.0.8)
@@ -133,10 +149,23 @@ GEM
     mini_portile2 (2.1.0)
     minitest (5.9.1)
     multi_json (1.12.1)
+    multi_xml (0.6.0)
     multipart-post (2.0.0)
     nio4r (1.2.1)
     nokogiri (1.6.8.1)
       mini_portile2 (~> 2.1.0)
+    oauth2 (1.2.0)
+      faraday (>= 0.8, < 0.10)
+      jwt (~> 1.0)
+      multi_json (~> 1.3)
+      multi_xml (~> 0.5)
+      rack (>= 1.2, < 3)
+    omniauth (1.3.1)
+      hashie (>= 1.2, < 4)
+      rack (>= 1.0, < 3)
+    omniauth-oauth2 (1.3.1)
+      oauth2 (~> 1.0)
+      omniauth (~> 1.2)
     pg (0.19.0)
     pry (0.10.4)
       coderay (~> 1.1.0)
@@ -267,6 +296,9 @@ DEPENDENCIES
   jquery-rails
   launchy
   listen (~> 3.0.5)
+  omniauth
+  omniauth-census!
+  omniauth-slack!
   pg (~> 0.18)
   pry-rails
   puma (~> 3.0)
