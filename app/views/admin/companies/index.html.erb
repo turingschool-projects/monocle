@@ -1,11 +1,11 @@
 <h2>Pending Companies</h2>
-<table>
+<table class='table'>
   <% @pending_companies.each do |company| %>
       <tr>
         <td>
-          <strong>Street Address: </strong><%= company.locations.first.street_address %>, <%= company.locations.first.city_state_zip %><br>
-          <strong>Phone: </strong><%= company.locations.first.phone %><br>
-          <strong>Primary Contact: </strong><%= company.locations.first.primary_contact %>
+          <% company.location_info.each do |line| %>
+            <%= line %><br>
+          <% end %>
         </td>
         <td>
           <%= button_to "Approve", {controller: "admin/companies", action: "update", company: {status: "approved"}, id: company.id}, method: :put %>
@@ -16,13 +16,13 @@
   <% end %>
 </table>
 <h2>Pending Locations</h2>
-<table>
+<table class='table'>
   <% @pending_locations.each do |location| %>
       <tr>
         <td>
-          <strong>Street Address: </strong><%= location.street_address %>, <%= location.city_state_zip %><br>
-          <strong>Phone: </strong><%= location.phone %><br>
-          <strong>Primary Contact: </strong><%= location.primary_contact %>
+          <% location.full_location.each do |line| %>
+            <%= line %><br>
+          <% end %>
         </td>
         <td>
           <%= button_to "Approve", {controller: "admin/locations", action: "update", location: {status: "approved"}, id: location.id}, method: :put %>

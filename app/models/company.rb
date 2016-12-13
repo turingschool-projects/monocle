@@ -51,10 +51,9 @@ class Company < ApplicationRecord
 
   def location_info(location = locations.first)
     if location
-      [ location.street_address,
-        location.street_address_2,
-        location.city_state_zip,
-        location.phone ].reject(&:blank?)
+      location.full_location
+    else
+      []
     end
   end
 
