@@ -131,3 +131,10 @@ def create_note_with_company_and_user
       user_id: user.id,
       company_id:  company.id })
 end
+
+def create_company_with_size(size)
+  create_unapproved_company("Company #{size}")
+  company = Company.last
+  company.update(status: 1, size: size)
+  Company.last
+end
