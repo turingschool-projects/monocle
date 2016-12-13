@@ -3,7 +3,7 @@ class CompaniesController < ApplicationController
   include CompanySize
 
   def index
-    @companies = Company.approved_companies
+    @companies = Company.approved_companies.includes(:locations)
   end
 
   def show
