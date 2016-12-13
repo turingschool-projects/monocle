@@ -9,10 +9,9 @@
           <%= link_to company.name, company_path(company) %><br />
         </h4>
         <p>
-          <%= company.locations.first.street_address %><br />
-          <%= company.locations.first.street_address_2 %><br />
-          <%= company.locations.first.city_state_zip %><br />
-          <%= company.locations.first.phone %><br />
+          <% company.location_info.each do |line| %>
+            <%= line %><br>
+          <% end %>
           <%= link_to company.website, "http://#{company.website}" %>
         </p>
       </div>

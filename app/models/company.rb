@@ -49,6 +49,14 @@ class Company < ApplicationRecord
   #   )
   # end
 
+  def location_info(location = locations.first)
+    if location
+      location.full_location
+    else
+      []
+    end
+  end
+
   private
     def set_status
       self.status ||= 0
