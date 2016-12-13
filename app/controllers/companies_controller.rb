@@ -4,6 +4,8 @@ class CompaniesController < ApplicationController
 
   def index
     @companies = Company.approved_companies.includes(:locations)
+    # @companies = Company.where(nil)
+    @companies = @companies.company_size(params[:size]) if params[:size].present?
   end
 
   def show
