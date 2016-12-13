@@ -6,6 +6,7 @@ class Company < ApplicationRecord
   has_many :notes
   has_many :locations
   mount_uploader :logo, LogoUploader
+  scope :company_size, -> (size) { where size: size }
 
   before_validation :set_status
 
