@@ -15,7 +15,7 @@ describe "user can add a company" do
     check "industry_ids_"
     fill_in "company_headquarters", with: "Denver, CO"
     fill_in "company_products_services", with: "Jobs"
-    select "100-150", from: "size"
+    select "2-10", from: "size"
     fill_in "location_phone", with: "123-456-7890"
     fill_in "location_primary_contact", with: "Will Smith"
     fill_in "location_street_address", with: "1234 Blake St."
