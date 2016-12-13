@@ -27,6 +27,13 @@ class Location < ApplicationRecord
     "#{city}, #{state} #{zip_code}"
   end
 
+  def full_location
+    [ street_address,
+      street_address_2,
+      city_state_zip,
+      phone ].reject(&:blank?)
+  end
+
   def state_options
     [
       ['Alabama', 'AL'],
