@@ -2,8 +2,9 @@
 <script>
   function initMap() {
     var uluru = <%= @user_coordinates.html_safe %>;
+    var bounds = new google.maps.LatLngBounds();
     var map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 4,
+      zoom: 15,
       center: uluru
     });
     <% @companies.each do |company| %>
@@ -12,7 +13,10 @@
         position: coordinates,
         map: map
       });
+      bounds.extend(marker.getPosition());
     <% end %>
+
+    map.setCenter(bounds.getCenter());
   }
 </script>
 <script async defer
