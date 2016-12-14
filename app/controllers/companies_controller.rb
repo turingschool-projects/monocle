@@ -4,6 +4,8 @@ class CompaniesController < ApplicationController
 
   def index
     @companies = Company.approved_companies.includes(:locations)
+    raw_user_coordinates = request.location.coordinates
+    @user_coordinates = UserLocation.coordinates(raw_user_coordinates)
   end
 
   def show
