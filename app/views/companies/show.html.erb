@@ -44,10 +44,15 @@
 <% if current_user.admin? %>
   <%= link_to 'Edit Company Information', edit_admin_company_path(@company), class: "btn btn-default" %>
 <% end %>
+<%= link_to 'Submit Additional Location', new_company_location_path(@company), class: "btn btn-default" %>
+
+<br />
+<br />
+<%= link_to_toggle_user_starred_companies(current_user, @company) %>
+
 
 <h3><%= pluralize(@company.locations.count, 'Location') %></h3>
 
-<%= link_to 'Submit Additional Location', new_company_location_path(@company) %>
 
     <% @company.approved_locations.each do |location | %>
     <table class="table-condensed table-hover" id='locations'>
@@ -79,7 +84,6 @@
 
     <% end %>
 
-<%= link_to_toggle_user_starred_companies(current_user, @company) %>
 <!-- <% if current_user.companies.exists?(@company.id) %>
   <h4><i class="text-info">
     <span class="glyphicon glyphicon-star" aria-hidden="true"></span> This company has been saved in your starred list.
