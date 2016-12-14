@@ -11,9 +11,14 @@
                 <li>
                   <div class="form-group">
                     <%= form_tag("/companies", method: "get") do %>
-                    <%= select_tag :size, options_for_select(company_size, params[:size]) %>
+                    <%= label_tag :size %>
+                    <% @company_sizes.each do |size| %>
+                    <li>
+                    <%= check_box_tag 'company_size[]', size[0] %>
+                    <%= h size[0] %>
+                  </li>
+                    <% end %>
                     <div class="col-md-4">
-                      <%= label_tag :size %>
                       <%= submit_tag ("Submit") %>
                       <% end %>
                     </div>
@@ -22,6 +27,7 @@
                 <li>
                   <div class="form-group">
                   <%= form_tag("/companies", method: "get") do %>
+                  <%= label_tag :industry %>
                     <% @industries.each do |industry| %>
                         <li>
                           <%= check_box_tag 'industry_ids[]', industry.name -%>
@@ -29,7 +35,6 @@
                         </li>
                     <% end %>
                     <div class="col-md-4">
-                      <%= label_tag :size %>
                       <%= submit_tag ("Submit Industries") %>
                       <% end %>
                     </div>
