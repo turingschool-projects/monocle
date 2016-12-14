@@ -131,3 +131,32 @@ def create_note_with_company_and_user
       user_id: user.id,
       company_id:  company.id })
 end
+
+def create_company_with_size(size)
+  create_unapproved_company("Company #{size}")
+  company = Company.last
+  company.update(status: 1, size: size)
+  Company.last
+end
+
+def create_company_with_industry(industry, name = 'TestCo')
+  industry = Industry.create(name: industry)
+  company = Company.create({
+      name: name,
+      website: "www.monocle.com",
+      headquarters: "Denver, CO",
+      products_services: "Jobs",
+      status: 1
+    })
+  company.industries << industry
+  company.locations << Location.create({
+    street_address: '123 Test St',
+    phone: "123-456-789",
+    primary_contact: "Dan Broadbent",
+    city: "Denver",
+    state: "Colorado",
+    zip_code: "80202",
+    status: 1
+  })
+  Company.last
+end
