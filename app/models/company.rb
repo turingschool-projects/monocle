@@ -37,6 +37,10 @@ class Company < ApplicationRecord
     self.locations.where('status = ?', '1')
   end
 
+  def get_coordinates
+    locations.first.coordinates
+  end
+
   # def add_location(params)
   #   self.locations.new(
   #     street_address:   params[:street_address],

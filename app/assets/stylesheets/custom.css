@@ -55,3 +55,8 @@ body {
  width: 190px;
  height: 190px;
 }
+
+#map {
+height: 400px;
+width: 100%;
+}
