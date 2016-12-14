@@ -11,7 +11,7 @@
                 <li>
                   <div class="form-group">
                     <%= form_tag("/companies", method: "get") do %>
-                    <%= select_tag :size, options_for_select(company_size) %>
+                    <%= select_tag :size, options_for_select(company_size, params[:size]) %>
                     <div class="col-md-4">
                       <%= label_tag :size %>
                       <%= submit_tag ("Submit") %>
