@@ -9,6 +9,10 @@
   background: #FFFFFF;
  }
 
+body {
+  padding-top: 70px;
+}
+
  .logo img {
    align-content: left;
    width: 90px;
