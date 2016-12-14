@@ -2,17 +2,16 @@
   <div class='card-holder col-md-4'>
     <div class='card'>
       <div class='logo'>
-        <%= image_tag company.logo.url %>
+        <%= link_to (image_tag company.logo.url), company_path(company) %>
       </div>
       <div>
         <h4 class="company_name">
           <%= link_to company.name, company_path(company) %><br />
         </h4>
         <p>
-          <%= company.locations.first.street_address %><br />
-          <%= company.locations.first.street_address_2 %><br />
-          <%= company.locations.first.city_state_zip %><br />
-          <%= company.locations.first.phone %><br />
+          <% company.location_info.each do |line| %>
+            <%= line %><br>
+          <% end %>
           <%= link_to company.website, "http://#{company.website}" %>
         </p>
       </div>

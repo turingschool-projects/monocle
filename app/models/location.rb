@@ -38,6 +38,13 @@ class Location < ApplicationRecord
     {lat: latitude, lng: longitude}.to_json
   end
 
+  def full_location
+    [ street_address,
+      street_address_2,
+      city_state_zip,
+      phone ].reject(&:blank?)
+  end
+
   def state_options
     [
       ['Alabama', 'AL'],
