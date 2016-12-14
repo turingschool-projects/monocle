@@ -1,12 +1,12 @@
 <div id="map"></div>
 <script>
   function initMap() {
-    var uluru = {lat: -25.363, lng: 131.044};
+    var uluru = <%= @user_coordinates.html_safe %>;
     var map = new google.maps.Map(document.getElementById('map'), {
       zoom: 4,
       center: uluru
     });
-    <% @companies.each do |company| %> 
+    <% @companies.each do |company| %>
       var coordinates = <%= company.get_coordinates.html_safe %>;
       var marker = new google.maps.Marker({
         position: coordinates,
@@ -19,5 +19,3 @@
   src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['google_maps_key'] %>&callback=initMap">
 </script>
 <%= render partial: "shared/companies_index", locals: {companies: @companies} %>
-
-
