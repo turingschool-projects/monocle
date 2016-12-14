@@ -7,6 +7,7 @@ class Company < ApplicationRecord
   has_many :locations
   mount_uploader :logo, LogoUploader
   scope :company_size, -> (size) { where size: size }
+  scope :industry_name, -> (industries) { joins(:industries).where('industries.name IN (?)', industries) }
 
   before_validation :set_status
 

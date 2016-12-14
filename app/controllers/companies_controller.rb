@@ -6,6 +6,8 @@ class CompaniesController < ApplicationController
     @companies = Company.approved_companies.includes(:locations)
     # @companies = Company.where(nil)
     @companies = @companies.company_size(params[:size]) if params[:size].present?
+    @companies = @companies.industry_name(params[:industry_ids]) if params[:industry_ids].present?
+    @industries = Industry.all
   end
 
   def show

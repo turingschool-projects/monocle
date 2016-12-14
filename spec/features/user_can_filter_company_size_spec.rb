@@ -14,8 +14,5 @@ feature "user can filter company by size" do
     click_on "Submit"
     expect(page).to have_content('Company 2-10')
     expect(page).not_to have_content('Company 11-50')
-    
-    
-    
   end
 end

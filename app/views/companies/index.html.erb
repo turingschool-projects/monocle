@@ -19,6 +19,22 @@
                     </div>
                   </div>
                 </li>
+                <li>
+                  <div class="form-group">
+                  <%= form_tag("/companies", method: "get") do %>
+                    <% @industries.each do |industry| %>
+                        <li>
+                          <%= check_box_tag 'industry_ids[]', industry.name -%>
+                          <%= h industry.name -%>
+                        </li>
+                    <% end %>
+                    <div class="col-md-4">
+                      <%= label_tag :size %>
+                      <%= submit_tag ("Submit Industries") %>
+                      <% end %>
+                    </div>
+                  </div>
+                </li>
             </ul>
         </div>
         <!-- /#sidebar-wrapper -->
