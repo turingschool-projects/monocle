@@ -7,6 +7,6 @@
     <%= location.city_state_zip %><br />
     <%= location.phone %><br />
   <% end %>
-  <%= link_to "Remove from starred companies", starred_company_path(company), method: :delete %><br /><br />
+  <%= link_to "Remove from starred companies", starred_company_path(company), method: :delete, class: "btn btn-danger" %><br /><br />
 <% end %>
 <% end %>

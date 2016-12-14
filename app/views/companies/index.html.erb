@@ -1,5 +1,3 @@
-
-
 <div id="wrapper">
 
         <!-- Sidebar -->
@@ -49,6 +47,29 @@
               <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Filters</a>
                 <div class="row">
                     <div class="col-lg-12">
+                      <div id="map"></div>
+                       <script>
+                        function initMap() {
+                          var uluru = <%= @user_coordinates.html_safe %>;
+                          var bounds = new google.maps.LatLngBounds();
+                          var map = new google.maps.Map(document.getElementById('map'), {
+                            zoom: 15,
+                            center: uluru
+                          });
+                          <% @companies.each do |company| %>
+                            var coordinates = <%= company.get_coordinates.html_safe %>;
+                            var marker = new google.maps.Marker({
+                              position: coordinates,
+                              map: map
+                            });
+                            bounds.extend(marker.getPosition());
+                          <% end %>
+                          map.setCenter(bounds.getCenter());
+                        }
+                      </script>
+                      <script async defer
+                        src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['google_maps_key'] %>&callback=initMap">
+                      </script>
                         <%= render partial: "shared/companies_index", locals: {companies: @companies} %>
                     </div>
                 </div>
@@ -72,6 +93,3 @@
        $("#wrapper").toggleClass("toggled");
    });
    </script>
-
-
-

@@ -9,6 +9,10 @@
   background: #FFFFFF;
  }
 
+body {
+  padding-top: 70px;
+}
+
  .logo img {
    align-content: left;
    width: 90px;
@@ -50,4 +54,9 @@
  align-content: left;
  width: 190px;
  height: 190px;
+}
+
+#map {
+height: 400px;
+width: 100%;
 }
