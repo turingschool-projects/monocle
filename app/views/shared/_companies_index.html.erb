@@ -12,7 +12,7 @@
           <% company.location_info.each do |line| %>
             <%= line %><br>
           <% end %>
-          <%= link_to company.website, "http://#{company.website}" %>
+          <%= link_to company.website, "http://#{company.website}", :target => "_blank"  %>
         </p>
       </div>
     </div>
