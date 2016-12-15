@@ -117,7 +117,7 @@ Company.create(id: 7,
                 products_services: "Financial Products for the cannabis industry",
                 status: "approved",
                 size: "2-10",
-                logo: File.new('db/seed_logos/Tokken_logo.png'))
+                logo: File.new('db/seed_logos/Tokken_Logo.png'))
 Location.create(street_address: "383 Corona Street",
                 street_address_2: "",
                 phone: "720-237-9836",
