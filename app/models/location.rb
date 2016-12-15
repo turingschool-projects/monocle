@@ -3,6 +3,9 @@ class Location < ApplicationRecord
 
   before_validation :set_status
 
+  geocoded_by :full_address
+  after_validation :geocode
+
   enum status: [:pending, :approved, :rejected]
 
   def self.approved_locations
@@ -23,8 +26,16 @@ class Location < ApplicationRecord
     self.save
   end
 
+  def full_address
+    "#{street_address}, #{city_state_zip}"
+  end
+
   def city_state_zip
     "#{city}, #{state} #{zip_code}"
+  end
+
+  def coordinates
+    {lat: latitude, lng: longitude}.to_json
   end
 
   def full_location
