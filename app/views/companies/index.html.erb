@@ -65,6 +65,7 @@
                             bounds.extend(marker.getPosition());
                           <% end %>
                           map.setCenter(bounds.getCenter());
+                          map.fitBounds(bounds);
                         }
                       </script>
                       <script async defer
