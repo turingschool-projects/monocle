@@ -234,6 +234,7 @@ Industry.create(id: 7, name: "Financial Software")
 Industry.create(id: 8, name: "Internet of Things")
 Industry.create(id: 9,name: 'Contact Management')
 
+
 CompanyIndustry.create(id: 1, company_id: 1, industry_id: 1)
 CompanyIndustry.create(id: 2, company_id: 2, industry_id: 2)
 CompanyIndustry.create(id: 3, company_id: 3, industry_id: 3)
