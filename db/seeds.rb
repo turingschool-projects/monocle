@@ -135,7 +135,7 @@ Company.create(id: 8,
                 products_services: "Web apps for field operations",
                 status: "approved",
                 size: "51-200",
-                logo: File.new('db/seed_logos/GoSPotCheck_logo.png'))
+                logo: File.new('db/seed_logos/GoSpotCheck_logo.png'))
 Location.create(street_address: "1520 Market St",
                 street_address_2: "",
                 phone: "844-359-2502",
