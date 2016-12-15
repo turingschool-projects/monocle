@@ -234,4 +234,3 @@ Industry.create(id: 7, name: "Financial Software")
 Industry.create(id: 8, name: "Internet of Things")
 Industry.create(id: 9,name: 'Contact Management')
 
-User.create(username: "Susi Irwin", role: "admin", census_uid: "6", census_access_token: "94c86789c8d2095da0c213e38e32dc3f4228421e3058f34393ba04643967ebd9")
