@@ -73,5 +73,6 @@ body {
 
 #map {
   height: 400px;
-  width: 100%;
+  margin: 10px auto;
+  border-radius: 2px;
 }
