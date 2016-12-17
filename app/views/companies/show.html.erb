@@ -50,8 +50,6 @@
 
     <br />
     <br />
-    <%= link_to_toggle_user_starred_companies(current_user, @company) %>
-
 
     <h3><%= pluralize(@company.locations.count, 'Location') %></h3>
 
@@ -86,16 +84,21 @@
 
       <% end %>
 
-      <!-- <% if current_user.companies.exists?(@company.id) %>
-      <h4><i class="text-info">
-      <span class="glyphicon glyphicon-star" aria-hidden="true"></span> This company has been saved in your starred list.
-    </i></h4>
+    <% if current_user.companies.exists?(@company.id) %>
+      <div class='starred-message'>
+        <h4><i class="text-info">
+        <span class="glyphicon glyphicon-star" aria-hidden="true"></span> This company has been saved in your starred list.
+        </i></h4>
+      </div>
+      <%= button_tag class: "btn btn-default btn-lg unstar star-toggle", data: {no_turbolink: true, id: @company.id} do %>
+      <%= content_tag("span", "", class: ["glyphicon", "glyphicon-star"], aria_hidden: true) %> Unstar
+      <% end %>
     <% else %>
-    <%= button_tag class: "btn btn-default btn-lg", id: "star", data: {no_turbolink: true, id: @company.id, controller: starred_companies_path} do %>
-    <%= content_tag("span", "", class: ["glyphicon", "glyphicon-star"], aria_hidden: true) %> Star
-    <% end %>
-    <% end %> -->
-
+      <div class='starred-message'></div>
+      <%= button_tag class: "btn btn-default btn-lg star star-toggle", data: {no_turbolink: true, id: @company.id} do %>
+      <%= content_tag("span", "", class: ["glyphicon", "glyphicon-star"], aria_hidden: true) %> Star
+      <% end %>
+    <% end %> 
 
     <h3>Notes</h3>
     <div id='notes' class='panel-group'>
