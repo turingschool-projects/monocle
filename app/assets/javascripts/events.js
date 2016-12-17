@@ -1,4 +1,6 @@
 $(document).ready(function(){
+  displayNotes();
+
   $("#star").on("click", function(){
     var companyId = $(this).data('id');
     return $.ajax({
@@ -16,10 +18,10 @@ $(document).ready(function(){
     var newNoteBody = $("#create-note-body");
     var user_id = $('#create-note-button').data('userId')
     var company_id = $('#create-note-button').data('companyId')
-    var note = { note: { title: newNoteTitle.val(),
+    var note = { title: newNoteTitle.val(),
                          body: newNoteBody.val(),
                          user_id: user_id,
-                         company_id: company_id} }
+                         company_id: company_id} 
     return $.ajax({
       url: "/companies/" + company_id + "/notes",
       method: "POST",
@@ -29,14 +31,27 @@ $(document).ready(function(){
   });
 });
 
+function displayNotes(){
+  var company_id = $('#create-note-button').data('companyId')
+  $.ajax({
+    url: "/api/v1/notes",
+    method: "GET",
+    data: {id: company_id},
+    type: "json"
+  })
+  .then(function(rawNotes){
+    rawNotes.forEach(renderNote)
+  })
+}
+
 function renderNote(note){
   $('#notes').prepend(
     `<div class='note-block panel panel-default'>
       <div class='panel-body small'>
         <div class='pull-left'>
-          <h6>Author: ${note.note.user_id}</h6>
-          <h6>Title: ${note.note.title}</h6>
-          <h6>Note: ${note.note.body}</h6>
+          <h6>Author: ${note.user_id}</h6>
+          <h6>Title: ${note.title}</h6>
+          <h6>Note: ${note.body}</h6>
         </div>
       </div>
     </div> `
