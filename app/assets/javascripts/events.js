@@ -1,6 +1,9 @@
 $(document).ready(function(){
   $(".star").on("click", prepareStar);
   $(".unstar").on("click", prepareUnstar);
+  $(".size-check-box").on("click", function(){
+    $.get('/companies')
+  })
 });
 
 function renderStar() {

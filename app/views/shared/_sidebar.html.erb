@@ -5,11 +5,13 @@
       </li>
       <li>
         <div class="form-group">
-          <%= form_tag("/companies", method: "get") do %>
+          <%= form_tag("/companies.js", method: "get", remote: true) do %>
           <%= label_tag :size %>
           <% @company_sizes.each do |size| %>
           <li>
-          <%= check_box_tag 'company_size[]', size[0] %>
+            <span class='size-check-box'>
+               <%= check_box_tag 'company_size[]', size[0] %>
+            </span>
           <%= h size[0] %>
         </li>
           <% end %>
@@ -21,7 +23,7 @@
       </li>
       <li>
         <div class="form-group">
-        <%= form_tag("/companies", method: "get") do %>
+        <%= form_tag("/companies", method: "get", remote: true) do %>
         <%= label_tag :industry %>
           <% @industries.each do |industry| %>
               <li>
