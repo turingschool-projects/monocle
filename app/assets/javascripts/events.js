@@ -21,11 +21,11 @@ $(document).ready(function(){
     var note = { title: newNoteTitle.val(),
                          body: newNoteBody.val(),
                          user_id: user_id,
-                         company_id: company_id} 
+                         company_id: company_id}
     return $.ajax({
       url: "/companies/" + company_id + "/notes",
       method: "POST",
-      data: note
+      data: {note: note}
     })
     .done(renderNote(note))
   });
