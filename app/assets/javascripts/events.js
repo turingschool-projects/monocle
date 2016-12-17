@@ -25,8 +25,19 @@ $(document).ready(function(){
       method: "POST",
       data: note
     })
-    .done(function(){
-      console.log('WOOHOO')
-    })
+    .done(renderNote(note))
   });
 });
+
+function renderNote(note){
+  $('#notes').prepend(
+    `<div class='note-block panel panel-default'>
+      <div class='panel-body small'>
+        <div class='pull-left'>
+          <h6>Author: ${note.note.user_id}</h6>
+          <h6>Title: ${note.note.title}</h6>
+          <h6>Note: ${note.note.body}</h6>
+        </div>
+      </div>
+    </div> `
+)}

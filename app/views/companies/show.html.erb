@@ -99,30 +99,7 @@
 
     <h3>Notes</h3>
     <div id='notes' class='panel-group'>
-      <% @company.notes.each do |note| %>
-      <div class='note-block panel panel-default'>
-        <div class='panel-body small'>
-          <% if current_user.id == note.user_id || current_user.admin? %>
-          <div class='btn-group pull-right'>
-            <a href="/companies/<%= @company.id %>/notes/<%= note.id %>/edit" class="edit-button btn btn-default btn-sm"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
-            <a href="/companies/notes/delete?company_id=<%= @company.id %>&note_id=<%= note.id %>" class="delete-button btn btn-default btn-sm"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
-          </div>
-          <% end %>
-          <div class='pull-left'>
-            <h6>Author:
-              <%= note.user.username %>
-            </h6>
-            <h6>
-              <%= note.title %>
-            </h6>
-            <p>
-              <%= note.body %>
-            </p>
-          </div>
-        </div>
-      </div>
     </div>
-    <% end %>
 
     <div class='panel panel-default'>
       <div class='panel-body'>
