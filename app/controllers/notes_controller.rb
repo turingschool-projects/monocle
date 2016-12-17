@@ -8,7 +8,7 @@ class NotesController < ApplicationController
       flash[:success] = 'Your note has been added!'
     else
     end
-    redirect_to request.referrer
+    # redirect_to request.referrer
   end
 
   def edit

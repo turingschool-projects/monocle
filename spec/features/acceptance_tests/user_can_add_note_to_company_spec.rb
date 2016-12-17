@@ -18,11 +18,3 @@ describe 'A user adds a note to a company' do
     end
   end
 end
-
-#As a user
-#When I visit a company detail page
-#and I click "add note"
-#and I give the note a title and body
-#and I click save
-#Then I see the company show page
-#And I see my note at the top of the notes
