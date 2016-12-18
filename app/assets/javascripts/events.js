@@ -1,9 +1,10 @@
-$(document).ready(function(){
+$(document).on('turbolinks:load', function(){
   $(".star").on("click", prepareStar);
   $(".unstar").on("click", prepareUnstar);
   $(".size-check-box").on("click", function(){
     $.get('/companies')
-  })
+  });
+  $(".btn-remove").on("click", removeCompany);
 });
 
 function renderStar() {
@@ -50,5 +51,16 @@ function prepareUnstar() {
   })
   .then(function(){
     $(".star").on("click", prepareStar);
+  })
+}
+
+function removeCompany() {
+  var company = this.closest('.card-holder')
+  var id = $(company).data('id')
+
+  $.ajax({
+    url: '/starred_companies/' + id,
+    type: 'DELETE',
+    success: function(){ company.remove() }
   })
 }
