@@ -25,9 +25,11 @@
 #sidebar-wrapper {
     z-index: 1000;
     position: fixed;
+    top: 50px;
+    bottom: 0px;
     left: 250px;
     width: 0;
-    height: 100%;
+    height: auto;
     margin-left: -250px;
     overflow-y: auto;
     background: #d2d2d2;

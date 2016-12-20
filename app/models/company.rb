@@ -1,4 +1,5 @@
 class Company < ApplicationRecord
+  include Filterable
   has_many :company_industries
   has_many :industries, through: :company_industries
   has_many :starred_companies
@@ -7,7 +8,7 @@ class Company < ApplicationRecord
   has_many :locations
   mount_uploader :logo, LogoUploader
   scope :company_size, -> (size) { where('companies.size IN (?)', size) }
-  scope :industry_name, -> (industries) { joins(:industries).where('industries.name IN (?)', industries) }
+  scope :industry_ids, -> (industries) { joins(:industries).where('industries.name IN (?)', industries) }
 
   before_validation :set_status
 
@@ -40,7 +41,11 @@ class Company < ApplicationRecord
   end
 
   def get_coordinates
-    locations.first.coordinates
+    if locations.first
+      locations.first.coordinates
+    else
+      ''
+    end
   end
 
   # def add_location(params)
