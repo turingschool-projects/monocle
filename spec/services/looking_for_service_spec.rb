@@ -9,4 +9,13 @@ RSpec.describe "LookingFor service" do
       expect(jobs.first).to be_a(Job)
     end
   end
+
+  it "can get an individual job" do
+    VCR.use_cassette "lookingFor_individual" do
+      id = '12480'
+      job = LookingForService.job(id)
+
+      expect(job).to be_a(Job)
+    end
+  end
 end

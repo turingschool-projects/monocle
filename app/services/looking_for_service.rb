@@ -6,4 +6,10 @@ class LookingForService
       Job.new(raw_job)
     end
   end
+
+  def self.job(id)
+    result = Faraday.get('http://lookingforme.herokuapp.com/api/v1/jobs/' + id)
+    raw_job = JSON.parse(result.body)['job']
+    Job.new(raw_job)
+  end
 end
