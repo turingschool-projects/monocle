@@ -1,5 +1,12 @@
 class Job
-
+  attr_reader :uid,
+              :title,
+              :description,
+              :url,
+              :location,
+              :posted_date,
+              :remote,
+              :company_name
 
   def initialize(raw_job)
     @uid = raw_job['id']
