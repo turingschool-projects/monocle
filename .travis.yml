@@ -1,11 +1,12 @@
 language: ruby
 rvm:
- - 2.3.0
+ -2.3.0
 
+services:
+  - postgresql
 
-# uncomment and edit the following line if your project needs to run something other than `rake`:
 before_script:
-    - psql -c 'create database travis_ci_test;' -U postgres
+  - psql -c 'create database travis_ci_test;' -U postgres
 
 script: bundle exec rspec
 
@@ -15,9 +16,7 @@ branches:
   - master
   - staging
   - development
-  - db_travis
 
-#keys
 env:
   global:
     - secure: "liCkPwirARwn382jsgajn7EUZCI0SwmehwCZpw5n2WL+2SarEXe6rV6Gvy0caTwfzBjiUL7BxS0TeqUuAGjp1mre768Yp2oxwxHYGyN+q9h/rUN85ZRSBLlTXEtXqBll2T228ZKVCkNBIy9D41C38oF5OqBhDF4KERe4vbC6x68USZhtLlTrmOnON+i/R3drGojPqWFgTnSZTkdBs942Wla8YiuC2qZi/LCvociDKGPCM5GERvT58zHbjDG8YXwEXY4QvHnlGzisLkQDddvUljnqFiRCEGKnahyafmVRrZC5WJakfewgWalirpv4TJxFcCBlQnCXDmeSEafrkZq5OhO6T7xy/f9Ug9p0D0MtBjS50MDSR3CGPbgtlpSbt+Ek6x3T+X04XOxQv3c7zxbopG3d411m/xRp7ogu/0g6BpwNV3YFF0OaPBTHIxLJiAU98QcAcZLoWddUaLX1QA1Zyzr39ZJ8MHXaq0MVWQEh/UftiJXZAdTPJ9wXDZug5r9qfROWPVME6smQZN6EG6kBEOb9rmucip3Yh/4XbWgCblcMPuJC+1n3lT2c9X2qEN+a65qlqecfRr7AkDA1LaDvtOhiTPTZtDj4FQpBJj3RsTXyHaLvEX9Lqm4F+O9yzsNJL1u/EdbIovdUrHqJcf8uRJUaUlY20MtBtPr6cBdljoA="
