@@ -1,10 +1,15 @@
 $(document).on('turbolinks:load', function(){
+  var companies = 
+
   $(".star").on("click", prepareStar);
   $(".unstar").on("click", prepareUnstar);
   $(".size-check-box").on("click", function(){
     $.get('/companies')
   });
   $(".btn-remove").on("click", removeCompany);
+  $(":checkbox").change(filterCompanies);
+  $.get('/api/v1/companies')
+  .then(addCards)
 });
 
 function renderStar() {
@@ -63,4 +68,43 @@ function removeCompany() {
     type: 'DELETE',
     success: function(){ company.remove() }
   })
+}
+
+function addCards(companies) {
+  companies.forEach(function (company){
+    var location = ''
+    company['location'].forEach(function(line) {
+      location = location + line + '<br>'
+    });
+
+    $('#companies-body').append(
+      `<div class='card-holder col-xs-12 col-sm-6 col-md-4 col-lg-3 col-xl-2'>
+          <div class='card'>
+            <div class='logo'>
+              <a href='/companies/${company["id"]}'>
+                <img src=${company['logo']}>
+              </a>
+            </div>
+            <div>
+              <h4 class='company_name'>
+                <a href='/companies/${company["id"]}'>${company.name}</a><br />
+              </h4>
+              <p>
+                ${location}
+                <a href='http://${company["website"]}' target='_blank'>
+                  ${company['website']}
+                </a>
+              </p>
+            </div>
+          </div>
+        </div>`
+    )
+  });
+}
+
+function filterCompanies() {
+  $.get('/api/v1/companies', {
+      company_size: $(this).val()
+    }
+  ).then(addCards);
 }
