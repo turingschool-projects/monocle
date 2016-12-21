@@ -15,6 +15,7 @@ branches:
   - master
   - staging
   - development
+  - db_travis
 
 #keys
 env:
