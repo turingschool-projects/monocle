@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe "user can add a company" do
-  it "and then see pending approval" do
+  xit "and then see pending approval" do
     VCR.use_cassette('second_denver_location') do
       industry = Industry.create(name: "Applesauce")
 

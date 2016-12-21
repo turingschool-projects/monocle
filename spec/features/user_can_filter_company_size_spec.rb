@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 feature "user can filter company by size" do
-  it "can see a companies with that size" do
+  xit "can see a companies with that size" do
     VCR.use_cassette('filter_company_size') do
       create_company_with_size("2-10")
       create_company_with_size("11-50")
@@ -18,7 +18,7 @@ feature "user can filter company by size" do
     end
   end
 
-  it "can see multiple companies with different sizes" do
+  xit "can see multiple companies with different sizes" do
     VCR.use_cassette('filter_mult_company_sizes') do
       create_company_with_size("2-10")
       create_company_with_size("11-50")
