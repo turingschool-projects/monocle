@@ -124,6 +124,7 @@ tokken = Company.create(
                 status: "approved",
                 size: "2-10",
                 logo: File.new('db/seed_logos/Tokken_Logo.png'))
+
 tokken.locations.create(street_address: "383 Corona Street",
                 street_address_2: "",
                 phone: "720-237-9836",
@@ -142,6 +143,7 @@ gospotcheck = Company.create(
                 status: "approved",
                 size: "51-200",
                 logo: File.new('db/seed_logos/GoSpotCheck_logo.png'))
+
 gospotcheck.locations.create(street_address: "1520 Market St",
                 street_address_2: "",
                 phone: "844-359-2502",
