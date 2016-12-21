@@ -45,10 +45,12 @@ function displayNotes(){
 }
 
 function renderNote(note){
+  debugger
+  var username = $('#create-note-button').data('username')
   var userId = $('#create-note-button').data('userId')
   var company_id = $('#create-note-button').data('companyId')
   if (userId == note.user_id) {
-  $('#notes').prepend(
+  $('#notes').append(
       `<div class='note-block panel panel-default'>
       <div class='panel-body small'>
       <div class='btn-group pull-right'>
@@ -56,13 +58,13 @@ function renderNote(note){
        <a href="/companies/notes/delete?company_id=${company_id}&note_id=${note.id}" class="delete-button btn btn-default btn-sm"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
        </div>
         <div class='pull-left'>
-          <h6>Author: ${note.user_id}</h6>
+          <h6>Author: ${username}</h6>
           <h6>Title: ${note.title}</h6>
           <h6>Note: ${note.body}</h6>
         </div>
       </div>
     </div> `)} else {
-      $('#notes').prepend(
+      $('#notes').append(
         `<div class='note-block panel panel-default'>
           <div class='panel-body small'>
             <div class='pull-left'>
