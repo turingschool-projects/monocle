@@ -16,6 +16,7 @@ branches:
   - master
   - staging
   - development
+  - db_travis
 
 env:
   global:
