@@ -92,11 +92,30 @@ function editEvent(note){
     ).then(
       $(`#note-${note.id} .edit-button`).off()
     ).then(
-      $(`#note-${note.id} .edit-button`).on('click', submitChanges)
+      $(`#note-${note.id} .edit-button`).on('click', submitChanges(note))
     )
   })
 };
 
-function submitChanges(){
-  console.log("yup!")
+function submitChanges(note){
+  var id = note.id
+  var user_id = $('#create-note-button').data('userId')
+  var title = $(`#note-${note.id}`).find('.note-title').text();
+  var body = $(`#note-${note.id}`).find('.note-body').text();
+  var company_id = $('#create-note-button').data('companyId')
+  var note = { title: title,
+                       body: body,
+                       user_id: user_id,
+                       company_id: company_id}
+  $.ajax({
+    url: `/companies/${company_id}/notes/${id}`,
+    type: "PUT",
+    data: {note: note}
+  }).then(
+    $(`#note-${note.id}`).removeClass('edit-box')
+  ).then(
+    $(`#note-${note.id} .edit-button`).off()
+  ).then(
+    $(`#note-${note.id} .edit-button`).on('click', editEvent)
+  )
 }
