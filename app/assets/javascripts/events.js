@@ -13,6 +13,7 @@ $(document).ready(function(){
     })
   });
 
+
   $("#create-note-button").on('click', function(){
     var newNoteTitle = $("#create-note-title");
     var newNoteBody = $("#create-note-body");
@@ -40,39 +41,62 @@ function displayNotes(){
     type: "json"
   })
   .then(function(rawNotes){
-    rawNotes.forEach(renderNote)
+    rawNotes.forEach(renderNote);
   })
 }
 
 function renderNote(note){
-  debugger
   var username = $('#create-note-button').data('username')
   var userId = $('#create-note-button').data('userId')
   var company_id = $('#create-note-button').data('companyId')
   if (userId == note.user_id) {
   $('#notes').append(
-      `<div class='note-block panel panel-default'>
+      `<div class='note-block panel panel-default' id="note-${note.id}">
       <div class='panel-body small'>
       <div class='btn-group pull-right'>
-      <a href="/companies/${company_id}/notes/${note.id}/edit" class="edit-button btn btn-default btn-sm"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
-       <a href="/companies/notes/delete?company_id=${company_id}&note_id=${note.id}" class="delete-button btn btn-default btn-sm"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+      <a class="edit-button btn btn-default btn-sm"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
+       <a class="delete-button btn btn-default btn-sm"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
        </div>
         <div class='pull-left'>
-          <h6>Author: ${username}</h6>
-          <h6>Title: ${note.title}</h6>
-          <h6>Note: ${note.body}</h6>
+        <h6>Author: ${username}</h6>
+        <h6>Title:<span class="note-title" background-color:'white'>${note.title}</span></h6>
+        <h6>Note: <span class="note-body">${note.body}</span></h6>
         </div>
       </div>
-    </div> `)} else {
+    </div> `);
+
+    editEvent(note);
+
+
+  } else {
       $('#notes').append(
         `<div class='note-block panel panel-default'>
           <div class='panel-body small'>
             <div class='pull-left'>
-              <h6>Author: ${note.user_id}</h6>
+              <h6>Author: ${username}</h6>
               <h6>Title: ${note.title}</h6>
               <h6>Note: ${note.body}</h6>
             </div>
           </div>
         </div> `
     )}
+}
+
+function editEvent(note){
+  $(`#note-${note.id} .edit-button`).on('click', function(){
+    $(`#note-${note.id}`).addClass('edit-box')
+    $(`#note-${note.id}`).find('.note-title').attr('contenteditable', true)
+    $(`#note-${note.id}`).find('.note-body').attr('contenteditable', true)
+    $.when(
+      $(`#note-${note.id} .edit-button`).text('Submit changes')
+    ).then(
+      $(`#note-${note.id} .edit-button`).off()
+    ).then(
+      $(`#note-${note.id} .edit-button`).on('click', submitChanges)
+    )
+  })
+};
+
+function submitChanges(){
+  console.log("yup!")
 }
