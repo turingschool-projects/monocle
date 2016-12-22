@@ -27,8 +27,6 @@ class NotesController < ApplicationController
     company = Company.find(params[:company_id])
     note = company.notes.find(params[:note_id])
     note.destroy
-    flash[:success] = "Comment has been removed"
-    redirect_to company_path(company)
   end
 
   private

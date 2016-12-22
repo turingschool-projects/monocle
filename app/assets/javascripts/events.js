@@ -66,6 +66,7 @@ function renderNote(note){
     </div> `);
 
     editEvent(note);
+    deleteEvent(note);
 
 
   } else {
@@ -119,4 +120,16 @@ function submitChanges(note){
   ).then(
     $(`#note-${note.id} .edit-button`).on('click', editEvent)
   )
+}
+
+function deleteEvent(note){
+  var company_id = $('#create-note-button').data('companyId')
+  var id = note.id
+
+  $(`#note-${note.id} .delete-button`).on('click', function(){
+    $.ajax ({
+      url: `/companies/${company_id}/notes/${id}`,
+      type: "DELETE"
+    })
+  })
 }

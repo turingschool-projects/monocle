@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   get  '/api/v1/notes',           to: 'api/v1/notes#index'
 
   resources :companies,         only: [:index, :show, :new, :create] do
-    resources :notes,           only: [:create, :edit, :update]
+    resources :notes,           only: [:create, :edit, :update, :destroy]
     resources :locations,       only: [:new, :create, :edit, :update, :destroy]
   end
 
