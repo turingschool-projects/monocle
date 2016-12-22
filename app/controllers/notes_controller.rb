@@ -19,8 +19,8 @@ class NotesController < ApplicationController
   def update
     company = Company.find(params[:company_id])
     note = company.notes.find(params[:id])
-    note.update(params[:note])
-    flash[:success] = "Note has been edited."
+    note.update(note_params)
+    render json: note
   end
 
   def destroy

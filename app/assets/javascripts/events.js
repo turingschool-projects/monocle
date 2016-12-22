@@ -84,6 +84,7 @@ function renderNote(note){
 
 function editEvent(note){
   $(`#note-${note.id} .edit-button`).on('click', function(){
+
     $(`#note-${note.id}`).addClass('edit-box')
     $(`#note-${note.id}`).find('.note-title').attr('contenteditable', true)
     $(`#note-${note.id}`).find('.note-body').attr('contenteditable', true)
@@ -92,7 +93,7 @@ function editEvent(note){
     ).then(
       $(`#note-${note.id} .edit-button`).off()
     ).then(
-      $(`#note-${note.id} .edit-button`).on('click', submitChanges(note))
+      $(`#note-${note.id} .edit-button`).on('click', function () {submitChanges(note)})
     )
   })
 };
