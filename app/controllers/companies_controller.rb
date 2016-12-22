@@ -3,15 +3,10 @@ class CompaniesController < ApplicationController
   include CompanySize
 
   def index
-    @companies = Company.approved_companies.filter(params.slice(:company_size, :industry_ids)).includes(:locations)
     @industries = Industry.all
     @company_sizes = company_size_options
     raw_user_coordinates = request.location.coordinates
     @user_coordinates = UserLocation.coordinates(raw_user_coordinates)
-    respond_to do |format|
-      format.html
-      format.js { render file: 'shared/companies_index.js.erb' }
-    end
   end
 
   def show
