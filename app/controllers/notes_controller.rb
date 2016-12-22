@@ -24,8 +24,9 @@ class NotesController < ApplicationController
   end
 
   def destroy
+    # require 'pry'; binding.pry
     company = Company.find(params[:company_id])
-    note = company.notes.find(params[:note_id])
+    note = company.notes.find(params[:id])
     note.destroy
   end
 
