@@ -102,9 +102,32 @@ function addCards(companies) {
   });
 }
 
+function removeCards() {
+  $('#companies-body').empty();
+}
+
 function filterCompanies() {
-  $.get('/api/v1/companies', {
-      company_size: $(this).val()
-    }
-  ).then(addCards);
+  var filters = getFilters();
+  $.when()
+  .then(removeCards).then(
+    $.get('/api/v1/companies', filters)
+    .then(addCards)
+  );
+}
+
+function getFilters() {
+  var filters = {
+    company_size: [],
+    industry_ids: []
+  }
+
+  $('#size-options :checked').each(function(index, checkbox) {
+    filters['company_size'].push($(checkbox).val());
+  });
+
+  $('#industry-options :checked').each(function(checkbox) {
+    filters['industry'] += $(checkbox).val(); 
+  });
+
+  return filters;
 }
