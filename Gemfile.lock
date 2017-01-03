@@ -54,6 +54,10 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.4.0)
     arel (7.1.4)
+    babel-source (5.8.35)
+    babel-transpiler (0.7.0)
+      babel-source (>= 4.0, < 6)
+      execjs (~> 2.0)
     backports (3.6.8)
     better_errors (2.1.1)
       coderay (>= 1.0.0)
@@ -312,6 +316,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  babel-transpiler
   better_errors
   binding_of_caller
   byebug
