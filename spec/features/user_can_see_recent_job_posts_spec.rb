@@ -7,7 +7,7 @@ RSpec.describe "A user can see recent job posts" do
       visit '/jobs'
       expect(page).to have_css('.job')
       within('.job:first-of-type') do
-        expect(page).to have_content('Title: Software Engineer (Full Stack) at Eyenuk, Inc. (Los Angeles, CA)')  
+        expect(page).to have_content('Software Engineer (Full Stack) at Eyenuk, Inc. (Los Angeles, CA)')  
         expect(page).to have_content('Location: Los Angeles, CA')  
         expect(page).to have_content('Posted Date: 2017-01-04')  
         expect(page).to have_content('Remote: false')  
