@@ -23,6 +23,6 @@ class Job
   def technologies
     @raw_technologies.map do |tech|
       tech['name']
-    end
+    end.join(', ')
   end
 end
