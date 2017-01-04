@@ -1,4 +1,4 @@
-$(document).on('turbolinks:load', function(){
+$(document).ready( function(){
   $(".star").on("click", prepareStar);
   $(".unstar").on("click", prepareUnstar);
   $(".size-check-box").on("click", function(){
@@ -51,7 +51,7 @@ function prepareUnstar() {
     method: "DELETE"
   })
   .done(function(){
-   $(".unstar").off(); 
+   $(".unstar").off();
   })
   .then(function(){
     renderStar();
@@ -182,4 +182,4 @@ function removeMapMarkers() {
 function centerMap() {
   map.setCenter(bounds.getCenter());
   map.fitBounds(bounds);
-} 
+}

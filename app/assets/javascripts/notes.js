@@ -15,7 +15,7 @@ $(document).ready(function(){
       method: "POST",
       data: {note: note}
     })
-    .done(renderNote(note))
+    .done(renderNote(note))/// dont call function
     .done(clearFields)
   });
 });
