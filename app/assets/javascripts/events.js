@@ -95,7 +95,7 @@ function editEvent(note){
     $.when(
       $(`#note-${note.id} .edit-button`).text('Submit changes')
     ).then(
-      // $(`#note-${note.id} .edit-button`).off()
+      $(`#note-${note.id} .edit-button`).off()
     ).then(
       $(`#note-${note.id} .edit-button`).on('click', function () {submitChanges(note)})
     )
@@ -126,23 +126,21 @@ function submitChanges(note){
 }
 
 function bindNoteEvents(note){
-
-  //binding delete event below
   $(`#note-${note.id} .delete-button`).on('click', function(){deleteNote(note)})
-
-  // binding edit note event below
+  $(`#note-${note.id} .edit-button`).on('click', function(){editEvent(note)})
 }
 
-
-
 function deleteNote(note) {
-  debugger
   var company_id = $('#create-note-button').data('companyId')
   var id = note.id
     $.ajax ({
       url: `/companies/${company_id}/notes/${id}`,
       type: "DELETE"
-    })
+    }).then(removeNoteHTML(note))
+}
 
-    // also remove from dom
+function removeNoteHTML(note) {
+  debugger
+  $(`#note-${note.id}`).remove()
+
 }
