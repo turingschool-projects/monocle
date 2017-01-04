@@ -51,7 +51,7 @@
     <br />
     <br />
 
-    <h3><%= pluralize(@company.locations.count, 'Location') %></h3>
+    <h3><%= pluralize(@company.approved_locations.count, 'Location') %></h3>
 
 
     <% @company.approved_locations.each do |location | %>
@@ -81,7 +81,6 @@
           </td>
         </tr>
       </table>
-
       <% end %>
 
     <% if current_user.companies.exists?(@company.id) %>
@@ -102,44 +101,15 @@
 
     <h3>Notes</h3>
     <div id='notes' class='panel-group'>
-      <% @company.notes.each do |note| %>
-      <div class='note-block panel panel-default'>
-        <div class='panel-body small'>
-          <% if current_user.id == note.user_id || current_user.admin? %>
-          <div class='btn-group pull-right'>
-            <a href="/companies/<%= @company.id %>/notes/<%= note.id %>/edit" class="edit-button btn btn-default btn-sm"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
-            <a href="/companies/notes/delete?company_id=<%= @company.id %>&note_id=<%= note.id %>" class="delete-button btn btn-default btn-sm"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
-          </div>
-          <% end %>
-          <div class='pull-left'>
-            <h6>Author:
-              <%= note.user.username %>
-            </h6>
-            <h6>
-              <%= note.title %>
-            </h6>
-            <p>
-              <%= note.body %>
-            </p>
-          </div>
-        </div>
-      </div>
     </div>
-    <% end %>
 
     <div class='panel panel-default'>
       <div class='panel-body'>
-        <%= form_for [@company, @company.notes.build] do |f| %>
-        <div class='form-group text-left'>
-          <%= f.text_field 'title', placeholder: 'Title' %>
-        </div>
-        <div class='form-group text-left'>
-          <%= f.text_area 'body', placeholder: 'Note' %>
-        </div>
-        <div class='btn-group'>
-          <%= f.submit 'Add Note' %>
-        </div>
-        <% end %>
+
+        <input type="text" name="note[title]" id="create-note-title" placeholder="Title"></br></br>
+        <textarea name="note[body]" id="create-note-body" placeholder="Body ..."></textarea></br>
+        <button type="button" name="create-note" id="create-note-button" data-username='<%= current_user.username %>' data-user-id='<%= current_user.id %>' data-company-id='<%= @company.id %>'>Create</button>
+
       </div>
     </div>
   </div>
