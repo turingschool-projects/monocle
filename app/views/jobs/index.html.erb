@@ -1,7 +1,7 @@
 <div class='container'>
   <% @jobs.each do |job| %>
     <div class='job'>
-      Title: <%= job.title %>
+      <%= link_to job.title, job_path(job.uid) %>
       Location: <%= job.location %>
       Posted Date: <%= job.posted_date %>
       Remote: <%= job.remote %>
