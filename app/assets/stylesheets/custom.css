@@ -72,6 +72,14 @@ body {
   max-height: 190px;
 }
 
+.btn-remove {
+  width: 100%;
+  border-radius: 0 0 2px 2px!important;
+  border-bottom: 1px solid #000000!important;
+  border-right: 1px solid #000000!important;
+  border-left: 1px solid #000000!important;
+}
+
 #map {
   height: 400px;
   margin: 10px auto;

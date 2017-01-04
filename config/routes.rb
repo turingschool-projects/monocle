@@ -14,6 +14,8 @@ Rails.application.routes.draw do
 
   resources :starred_companies, only: [:index, :create, :destroy]
 
+  resources :jobs, only: [:index, :show]
+
   namespace :moderator do
     resources :companies,       only: [:edit, :update]
     resources :locations,       only: [:edit, :update]
@@ -24,5 +26,11 @@ Rails.application.routes.draw do
     resources :companies,       only: [:edit, :update]
     resources :locations,       only: [:edit, :update, :destroy]
     get 'companies/approval',   to: 'companies#index'
+  end
+
+  namespace :api do
+    namespace :v1 do
+      resources :companies,     only: [:index]
+    end
   end
 end

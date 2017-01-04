@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.feature "User navigates to company directory", type: :feature do
-  it "they see all companies" do
+  xit "they see all companies" do
     VCR.use_cassette('user_company_creation') do
       user = create(:user)
       stub_login(user)
