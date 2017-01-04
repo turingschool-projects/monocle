@@ -13,6 +13,6 @@ RSpec.describe "Job" do
     expect(job.posted_date).to eq('2016-12-20')
     expect(job.remote).to eq(false)
     expect(job.company_name).to eq('uSwitch')
-    expect(job.technologies).to eq(['Ruby', 'JavaScript', 'Go', 'Clojure'])
+    expect(job.technologies).to eq('Ruby, JavaScript, Go, Clojure')
   end
 end
