@@ -13,7 +13,7 @@ Rails.application.routes.draw do
 
   resources :starred_companies, only: [:index, :create, :destroy]
 
-  resources :jobs, only: [:index]
+  resources :jobs, only: [:index, :show]
 
   namespace :moderator do
     resources :companies,       only: [:edit, :update]
