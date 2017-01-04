@@ -29,8 +29,14 @@ $(document).ready(function(){
       data: {note: note}
     })
     .done(renderNote(note))
+    .done(clearFields)
   });
 });
+
+function clearFields() {
+  $("#create-note-title").val("")
+  $("#create-note-body").val("")
+}
 
 function displayNotes(){
   var company_id = $('#create-note-button').data('companyId')
@@ -54,32 +60,25 @@ function renderNote(note){
       `<div class='note-block panel panel-default' id="note-${note.id}">
       <div class='panel-body small'>
       <div class='btn-group pull-right'>
-      <a class="edit-button btn btn-default btn-sm"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
+      <a class="edit-button btn btn-default btn-sm">Edit</span></a>
        <a class="delete-button btn btn-default btn-sm"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
        </div>
         <div class='pull-left'>
-        <h6>Author: ${username}</h6>
-        <h6>Title:<span class="note-title" background-color:'white'>${note.title}</span></h6>
-        <h6>Note: <span class="note-body">${note.body}</span></h6>
+        <h6>Author:  ${username}</h6>
+        <h6>Title:  <span class="note-title" background-color:'white'>${note.title}</span></h6>
+        <h6>Note:  <span class="note-body">${note.body}</span></h6>
         </div>
       </div>
     </div> `);
-
-    // editEvent(note);
-    // deleteEvent(note);
-
-    //Bind event for the html that was just generated
     bindNoteEvents(note)
-
-
   } else {
       $('#notes').append(
         `<div class='note-block panel panel-default'>
           <div class='panel-body small'>
             <div class='pull-left'>
-              <h6>Author: ${username}</h6>
-              <h6>Title: ${note.title}</h6>
-              <h6>Note: ${note.body}</h6>
+              <h6>Author:  ${username}</h6>
+              <h6>Title:  ${note.title}</h6>
+              <h6>Note:  ${note.body}</h6>
             </div>
           </div>
         </div> `
@@ -108,26 +107,28 @@ function submitChanges(note){
   var title = $(`#note-${note.id}`).find('.note-title').text();
   var body = $(`#note-${note.id}`).find('.note-body').text();
   var company_id = $('#create-note-button').data('companyId')
-  var note = { title: title,
+  var noteUpdate = { title: title,
                        body: body,
                        user_id: user_id,
                        company_id: company_id}
   $.ajax({
     url: `/companies/${company_id}/notes/${id}`,
     type: "PUT",
-    data: {note: note}
+    data: {note: noteUpdate}
   }).then(
-    $(`#note-${note.id}`).removeClass('edit-box')
+    $(`#note-${id}`).removeClass('edit-box')
   ).then(
-    $(`#note-${note.id} .edit-button`).off()
+    $(`#note-${id} .edit-button`).off()
   ).then(
-    $(`#note-${note.id} .edit-button`).on('click', editEvent)
+    $(`#note-${id} .edit-button`).text('Edit')
+  ).then(
+    $(`#note-${id} .edit-button`).on('click', editEvent(note))
   )
 }
 
 function bindNoteEvents(note){
   $(`#note-${note.id} .delete-button`).on('click', function(){deleteNote(note)})
-  $(`#note-${note.id} .edit-button`).on('click', function(){editEvent(note)})
+  $(`#note-${note.id} .edit-button`).on('click', editEvent(note))
 }
 
 function deleteNote(note) {
@@ -140,7 +141,6 @@ function deleteNote(note) {
 }
 
 function removeNoteHTML(note) {
-  debugger
   $(`#note-${note.id}`).remove()
 
 }

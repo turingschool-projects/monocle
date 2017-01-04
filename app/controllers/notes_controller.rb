@@ -1,14 +1,8 @@
 class NotesController < ApplicationController
   def create
     company = Company.find(params[:company_id])
-    note = company.notes.new(note_params)
+    note = company.notes.create(note_params)
     note.user_id = current_user.id
-
-    if note.save
-      flash[:success] = 'Your note has been added!'
-    else
-    end
-    # redirect_to request.referrer
   end
 
   def edit
@@ -24,7 +18,6 @@ class NotesController < ApplicationController
   end
 
   def destroy
-    # require 'pry'; binding.pry
     company = Company.find(params[:company_id])
     note = company.notes.find(params[:id])
     note.destroy
