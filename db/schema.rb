@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161213204411) do
+ActiveRecord::Schema.define(version: 20170104221656) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,6 +74,22 @@ ActiveRecord::Schema.define(version: 20161213204411) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "starred_jobs", force: :cascade do |t|
+    t.string   "title"
+    t.string   "description"
+    t.string   "location"
+    t.string   "url"
+    t.string   "posted_date"
+    t.string   "remote"
+    t.string   "company_name"
+    t.string   "technologies"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.integer  "user_id"
+    t.citext   "uid"
+    t.index ["user_id"], name: "index_starred_jobs_on_user_id", using: :btree
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "username"
     t.string   "slack_uid"
@@ -90,4 +106,5 @@ ActiveRecord::Schema.define(version: 20161213204411) do
   add_foreign_key "locations", "companies"
   add_foreign_key "notes", "companies"
   add_foreign_key "notes", "users"
+  add_foreign_key "starred_jobs", "users"
 end

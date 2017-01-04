@@ -5,5 +5,6 @@ class JobsController < ApplicationController
   
   def show
     @job = LookingForService.job(params[:id])
+    @job_data = @job.to_json
   end
 end

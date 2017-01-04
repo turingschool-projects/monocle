@@ -1,6 +1,8 @@
 $(document).on('turbolinks:load', function(){
   $(".star").on("click", prepareStar);
   $(".unstar").on("click", prepareUnstar);
+  $(".star-job").on("click", prepareJobStar);
+  $(".unstar-job").on("click", prepareJobUnstar);
   $(".size-check-box").on("click", function(){
     $.get('/companies')
   });
@@ -61,6 +63,52 @@ function prepareUnstar() {
   })
 }
 
+function prepareJobStar() {
+  var jobId = $(this).data('id');
+  $.ajax({
+    url: "/starred_jobs",
+    method: "POST",
+    data: JSON.parse($('.job-data').text())
+  })
+  .done(function(){
+    $('.star-job').off();
+  })
+  .then(function(){
+    renderJobUnstar();
+  })
+  .then(function(){
+    $(".unstar-job").on("click", prepareJobUnstar);
+  })
+}
+
+function prepareJobUnstar() {
+  var jobId = $(this).data('id');
+  $.ajax({
+    url: "/starred_jobs/" + jobId,
+    method: "DELETE"
+  })
+  .done(function(){
+   $(".unstar-job").off(); 
+  })
+  .then(function(){
+    renderJobStar();
+  })
+  .then(function(){
+    $(".star-job").on("click", prepareJobStar);
+  })
+}
+
+function renderJobStar() {
+  $('.starred-message').html('');
+  $('.star-toggle').html('<span class="glyphicon glyphicon-star"></span> Star');
+  $('.star-toggle').removeClass('unstar-job').addClass('star-job');
+}
+
+function renderJobUnstar() {
+  $('.starred-message').html('<h4><i class="text-info"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> This job has been saved in your starred list.</i></h4>')
+  $('.star-toggle').html('<span class="glyphicon glyphicon-star"></span> Unstar');
+  $('.star-toggle').removeClass('star-job').addClass('unstar-job');
+}
 function removeCompany() {
   var company = this.closest('.card-holder')
   var id = $(company).data('id')
