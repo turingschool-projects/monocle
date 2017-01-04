@@ -23,7 +23,9 @@ describe "user can add a company" do
       fill_in "location_city", with: "Denver"
       select 'Colorado', from: 'state'
       fill_in 'location_zip_code', with: '80111'
+save_and_open_page
       click_button "Create Company"
+
 
       company = Company.last
       expect(current_path).to eq(company_path(company))
