@@ -1,23 +1,6 @@
 $(document).ready( function(){
   displayNotes();
-
-  $("#create-note-button").on('click', function(){
-    var newNoteTitle = $("#create-note-title");
-    var newNoteBody = $("#create-note-body");
-    var user_id = $('#create-note-button').data('userId')
-    var company_id = $('#create-note-button').data('companyId')
-    var note = { title: newNoteTitle.val(),
-                         body: newNoteBody.val(),
-                         user_id: user_id,
-                         company_id: company_id}
-    return $.ajax({
-      url: "/companies/" + company_id + "/notes",
-      method: "POST",
-      data: {note: note}
-    })
-    .done(renderNote(note))
-    .done(clearFields)
-  });
+  $("#create-note-button").on('click', prepareNoteCreate);
   $(".star").on("click", prepareStar);
   $(".unstar").on("click", prepareUnstar);
   $(".size-check-box").on("click", function(){
@@ -208,6 +191,24 @@ function centerMap() {
 function clearFields() {
   $("#create-note-title").val("")
   $("#create-note-body").val("")
+}
+
+function prepareNoteCreate(){
+    var newNoteTitle = $("#create-note-title");
+    var newNoteBody = $("#create-note-body");
+    var user_id = $('#create-note-button').data('userId')
+    var company_id = $('#create-note-button').data('companyId')
+    var note = { title: newNoteTitle.val(),
+                         body: newNoteBody.val(),
+                         user_id: user_id,
+                         company_id: company_id}
+    return $.ajax({
+      url: "/companies/" + company_id + "/notes",
+      method: "POST",
+      data: {note: note}
+    })
+    .done(renderNote(note))
+    .done(clearFields)
 }
 
 function displayNotes(){
