@@ -238,8 +238,8 @@ function renderNote(note){
        </div>
         <div class='pull-left'>
         <h6>Author:  ${username}</h6>
-        <h6>Title:  <span class="note-title" background-color:'white'>${note.title}</span></h6>
-        <h6>Note:  <span class="note-body">${note.body}</span></h6>
+        <h6>Title:  <span class="note-title" style="background-color:#fff">${note.title}</span></h6>
+        <h6>Note:  <span class="note-body" style="background-color:#fff">${note.body}</span></h6>
         </div>
       </div>
     </div> `);
