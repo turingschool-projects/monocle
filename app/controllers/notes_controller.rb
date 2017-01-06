@@ -2,9 +2,8 @@ class NotesController < ApplicationController
   def create
     company = Company.find(params[:company_id])
     note = company.notes.create(note_params)
-    note.user_id = current_user.id
     note.author = current_user.username
-    require 'pry'; binding.pry
+    note.user_id = current_user.id
     render json: note
   end
 
@@ -28,6 +27,6 @@ class NotesController < ApplicationController
 
   private
     def note_params
-      params.require(:note).permit(:title, :body, :user_id, :company_id)
+      params.require(:note).permit(:title, :body, :user_id, :author, :company_id)
     end
 end

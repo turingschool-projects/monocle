@@ -227,7 +227,6 @@ function displayNotes(){
 }
 
 function renderNote(note){
-  var username = $('#create-note-button').data('username')
   var author = note.author
   var userId = $('#create-note-button').data('userId')
   var company_id = $('#create-note-button').data('companyId')
