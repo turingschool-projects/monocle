@@ -198,16 +198,18 @@ function prepareNoteCreate(){
     var newNoteBody = $("#create-note-body");
     var user_id = $('#create-note-button').data('userId')
     var company_id = $('#create-note-button').data('companyId')
+    var author = $('#create-note-button').data('username')
     var note = { title: newNoteTitle.val(),
                          body: newNoteBody.val(),
                          user_id: user_id,
+                         author: author,
                          company_id: company_id}
     return $.ajax({
       url: "/companies/" + company_id + "/notes",
       method: "POST",
       data: {note: note}
     })
-    .done(renderNote(note))
+    .done(renderNote)
     .done(clearFields)
 }
 
@@ -226,6 +228,7 @@ function displayNotes(){
 
 function renderNote(note){
   var username = $('#create-note-button').data('username')
+  var author = note.author
   var userId = $('#create-note-button').data('userId')
   var company_id = $('#create-note-button').data('companyId')
   if (userId == note.user_id) {
@@ -237,7 +240,7 @@ function renderNote(note){
        <a class="delete-button btn btn-default btn-sm"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
        </div>
         <div class='pull-left'>
-        <h6>Author:  ${username}</h6>
+        <h6>Author:  ${author}</h6>
         <h6>Title:  <span class="note-title" style="background-color:#fff">${note.title}</span></h6>
         <h6>Note:  <span class="note-body" style="background-color:#fff">${note.body}</span></h6>
         </div>
@@ -249,7 +252,7 @@ function renderNote(note){
         `<div class='note-block panel panel-default'>
           <div class='panel-body small'>
             <div class='pull-left'>
-              <h6>Author:  ${username}</h6>
+              <h6>Author:  ${author}</h6>
               <h6>Title:  ${note.title}</h6>
               <h6>Note:  ${note.body}</h6>
             </div>

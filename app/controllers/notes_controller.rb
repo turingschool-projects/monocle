@@ -3,6 +3,9 @@ class NotesController < ApplicationController
     company = Company.find(params[:company_id])
     note = company.notes.create(note_params)
     note.user_id = current_user.id
+    note.author = current_user.username
+    require 'pry'; binding.pry
+    render json: note
   end
 
   def edit
