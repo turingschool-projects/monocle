@@ -6,3 +6,24 @@ Remote: <%= @job.remote %>
 Posted Date: <%= @job.posted_date %>
 Location: <%= @job.location %>
 Technologies: <%= @job.technologies %>
+
+
+<% if current_user.starred_jobs.exists?(uid: @job.uid) %>
+  <div class='starred-message'>
+    <h4><i class="text-info">
+    <span class="glyphicon glyphicon-star" aria-hidden="true"></span> This job has been saved in your starred list.
+    </i></h4>
+  </div>
+  <%= button_tag class: "btn btn-default btn-lg unstar-job star-toggle", data: {no_turbolink: true, id: @job.uid} do %>
+  <%= content_tag("span", "", class: ["glyphicon", "glyphicon-star"], aria_hidden: true) %> Unstar
+  <% end %>
+<% else %>
+  <div class='starred-message'></div>
+  <%= button_tag class: "btn btn-default btn-lg star-job star-toggle", data: {no_turbolink: true, id: @job.uid} do %>
+    <%= content_tag("span", "", class: ["glyphicon", "glyphicon-star"], aria_hidden: true) %> Star
+  <% end %>
+<% end %>
+
+<div class='job-data' hidden>
+  <%= @job_data %>
+</div>

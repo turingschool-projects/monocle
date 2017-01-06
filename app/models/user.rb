@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   validate :user_must_have_fields_for_provider
   has_many :starred_companies
+  has_many :starred_jobs
   has_many :companies, through: :starred_companies
 
   before_validation :set_role

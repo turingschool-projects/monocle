@@ -10,17 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161213204411) do
+ActiveRecord::Schema.define(version: 20170104221656) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "citext"
-
-  create_table "cities", force: :cascade do |t|
-    t.citext   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
 
   create_table "companies", force: :cascade do |t|
     t.citext   "name"
@@ -29,9 +23,9 @@ ActiveRecord::Schema.define(version: 20161213204411) do
     t.citext   "products_services"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
+    t.string   "logo"
     t.integer  "status"
     t.citext   "size"
-    t.string   "logo"
   end
 
   create_table "company_industries", force: :cascade do |t|
@@ -80,10 +74,20 @@ ActiveRecord::Schema.define(version: 20161213204411) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "states", force: :cascade do |t|
-    t.citext   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table "starred_jobs", force: :cascade do |t|
+    t.string   "title"
+    t.string   "description"
+    t.string   "location"
+    t.string   "url"
+    t.string   "posted_date"
+    t.string   "remote"
+    t.string   "company_name"
+    t.string   "technologies"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.integer  "user_id"
+    t.citext   "uid"
+    t.index ["user_id"], name: "index_starred_jobs_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -97,15 +101,10 @@ ActiveRecord::Schema.define(version: 20161213204411) do
     t.string   "census_access_token"
   end
 
-  create_table "zip_codes", force: :cascade do |t|
-    t.string   "zip_code"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   add_foreign_key "company_industries", "companies"
   add_foreign_key "company_industries", "industries"
   add_foreign_key "locations", "companies"
   add_foreign_key "notes", "companies"
   add_foreign_key "notes", "users"
+  add_foreign_key "starred_jobs", "users"
 end
