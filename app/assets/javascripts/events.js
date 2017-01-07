@@ -3,10 +3,13 @@ $(document).ready( function(){
   $("#create-note-button").on('click', prepareNoteCreate);
   $(".star").on("click", prepareStar);
   $(".unstar").on("click", prepareUnstar);
+  $(".star-job").on("click", prepareJobStar);
+  $(".unstar-job").on("click", prepareJobUnstar);
   $(".size-check-box").on("click", function(){
     $.get('/companies')
   });
   $(".btn-remove").on("click", removeCompany);
+  $(".btn-remove-job").on("click", removeJob);
   $(":checkbox").change(filterCompanies);
   $.when()
   .then(initMap)
@@ -74,6 +77,16 @@ function removeCompany() {
   })
 }
 
+function removeJob() {
+  var job = this.closest('.job')
+  var id = $(job).data('id')
+
+  $.ajax({
+    url: '/starred_jobs/' + id,
+    type: 'DELETE',
+    success: function(){ job.remove() }
+  })
+}
 function prepareJobStar() {
   var jobId = $(this).data('id');
   $.ajax({
