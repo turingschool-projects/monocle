@@ -5,6 +5,6 @@ class Api::V1::NotesController < ApplicationController
     render json: @notes
   end
 
-  
+
 
 end
