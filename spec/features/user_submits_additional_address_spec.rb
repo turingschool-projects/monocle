@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'user adds address to company' do
   it 'submits additional address from company show page' do
-    VCR.use_cassette('denver_location') do
+    VCR.use_cassette('add_address') do
       user_logs_in
       company = create_approved_company
       visit company_path(company)

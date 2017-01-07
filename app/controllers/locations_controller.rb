@@ -25,7 +25,7 @@ class LocationsController < ApplicationController
   def update
     @company = Company.find(params[:company_id])
     @location = Location.find(params[:id])
-    @location.assign_attributes(location_params, state: params[:state])
+    @location.assign_attributes(location_params)
 
     if @location.save
       redirect_to company_path(@company)
@@ -47,6 +47,7 @@ class LocationsController < ApplicationController
                                         :state,
                                         :city,
                                         :zip_code)
+                                .merge({state: params[:state]})
     end
 
 end
