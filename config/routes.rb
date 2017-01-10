@@ -14,6 +14,8 @@ Rails.application.routes.draw do
 
   resources :starred_companies, only: [:index, :create, :destroy]
 
+  resources :starred_jobs, only: [:index, :create, :destroy]
+
   resources :jobs, only: [:index, :show]
 
   namespace :moderator do

@@ -1,6 +1,7 @@
 <div class='well container'>
+  <% unless @jobs.empty? %>
   <% @jobs.each do |job| %>
-    <div class='job'>
+    <div class='job' data-id=<%= job.uid %>>
       <table class='table'>
         <tr>
           <td><%= link_to job.title, job_path(job.uid) %></td>
@@ -12,10 +13,10 @@
           <td>Posted Date: <%= job.posted_date %></td>
         </tr><tr>
           <td>Location: <%= job.location %></td>
-        </tr><tr>
-          <td>Technologies: <%= job.technologies %></td>
         </tr>
       </table>
+      <button class='btn btn-danger btn-remove-job'>Remove from starred jobs</button>
     </div>
   <% end %>
+<% end %>
 </div>
