@@ -12,12 +12,11 @@ class SessionsController < ApplicationController
   end
 
   def create
-    # @user = User.create_from_slack(auth_hash)
     @user = User.create_from_census(auth_hash)
-    
+
     if @user
       session[:user_id] = @user.id
-      redirect_to root_path, flash: { success: "Signed in successfully." }
+      redirect_to root_path
     else
       redirect_to root_path, flash: { warning: "Sign in unsuccessful. Please try again." }
     end
@@ -27,7 +26,7 @@ class SessionsController < ApplicationController
     reset_session
     redirect_to root_path, flash: { success: "Signed out successfully." }
   end
-  
+
   private
     def auth_hash
       request.env['omniauth.auth']
