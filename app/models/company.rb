@@ -68,11 +68,9 @@ class Company < ApplicationRecord
     end
   end
 
-  def attach_info(industries, state, location_params)
+  def attach_industries_and_location(industries, state, location_params)
     assign_industries(industries)
-    location = locations.create(location_params)
-    location.update(state: state)
-    location.update(status: 'approved')
+    attach_location(location_params, state)
   end
 
   def assign_industries(industry_ids)
@@ -80,6 +78,12 @@ class Company < ApplicationRecord
       industry = Industry.find(industry_id)
       self.industries << industry
     end
+  end
+
+  def attach_location(location_params, state)
+    location = locations.create(location_params)
+    location.update(state: state)
+    location.update(status: 'approved')
   end
 
   private

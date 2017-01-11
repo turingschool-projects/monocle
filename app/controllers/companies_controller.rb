@@ -20,7 +20,7 @@ class CompaniesController < ApplicationController
   def create
     @company = Company.new(company_params)
     if @company.save
-      @company.attach_info(params[:industry_ids], params[:state], location_params)
+      @company.attach_industries_and_location(params[:industry_ids], params[:state], location_params)
       flash[:notice] = "Company is pending approval."
       redirect_to company_path(@company)
     else
