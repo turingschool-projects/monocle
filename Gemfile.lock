@@ -54,6 +54,10 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.4.0)
     arel (7.1.4)
+    babel-source (5.8.35)
+    babel-transpiler (0.7.0)
+      babel-source (>= 4.0, < 6)
+      execjs (~> 2.0)
     backports (3.6.8)
     better_errors (2.1.1)
       coderay (>= 1.0.0)
@@ -83,6 +87,7 @@ GEM
       execjs
     coffee-script-source (1.10.0)
     concurrent-ruby (1.0.2)
+    connection_pool (2.2.0)
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
     debug_inspector (0.0.2)
@@ -228,6 +233,13 @@ GEM
     rb-fsevent (0.9.8)
     rb-inotify (0.9.7)
       ffi (>= 0.5.0)
+    react-rails (1.8.2)
+      babel-transpiler (>= 0.7.0)
+      coffee-script-source (~> 1.8)
+      connection_pool
+      execjs
+      railties (>= 3.2)
+      tilt
     rspec-core (3.5.4)
       rspec-support (~> 3.5.0)
     rspec-expectations (3.5.0)
@@ -334,6 +346,7 @@ DEPENDENCIES
   rails (~> 5.0.0, >= 5.0.0.1)
   rails_12factor
   rake
+  react-rails
   rspec-rails
   sass-rails (~> 5.0)
   shoulda-matchers
