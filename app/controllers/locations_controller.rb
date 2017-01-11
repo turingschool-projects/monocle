@@ -26,14 +26,12 @@ class LocationsController < ApplicationController
     @company = Company.find(params[:company_id])
     @location = Location.find(params[:id])
     @location.assign_attributes(location_params)
-    @location.state = params[:state]
 
     if @location.save
       redirect_to company_path(@company)
     else
       flash.now[:error] = @location.errors.full_messages.join(', ')
       render :edit
-
     end
   end
 
@@ -49,6 +47,7 @@ class LocationsController < ApplicationController
                                         :state,
                                         :city,
                                         :zip_code)
+                                .merge({state: params[:state]})
     end
 
 end

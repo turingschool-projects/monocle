@@ -5,8 +5,6 @@ class CompaniesController < ApplicationController
   def index
     @industries = Industry.all
     @company_sizes = company_size_options
-    raw_user_coordinates = request.location.coordinates
-    @user_coordinates = UserLocation.coordinates(raw_user_coordinates)
   end
 
   def show
@@ -22,14 +20,7 @@ class CompaniesController < ApplicationController
   def create
     @company = Company.new(company_params)
     if @company.save
-      params[:industry_ids].each do |industry_id|
-        industry = Industry.find(industry_id)
-        @company.industries << industry
-      end
-
-      @location = @company.locations.create(location_params)
-      @location.update(state: params[:state])
-      @location.update(status: 'approved')
+      @company.attach_industries_and_location(params[:industry_ids], params[:state], location_params)
       flash[:notice] = "Company is pending approval."
       redirect_to company_path(@company)
     else

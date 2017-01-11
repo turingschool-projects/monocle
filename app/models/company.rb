@@ -68,6 +68,24 @@ class Company < ApplicationRecord
     end
   end
 
+  def attach_industries_and_location(industries, state, location_params)
+    assign_industries(industries)
+    attach_location(location_params, state)
+  end
+
+  def assign_industries(industry_ids)
+    industry_ids.each do |industry_id|
+      industry = Industry.find(industry_id)
+      self.industries << industry
+    end
+  end
+
+  def attach_location(location_params, state)
+    location = locations.create(location_params)
+    location.update(state: state)
+    location.update(status: 'approved')
+  end
+
   private
     def set_status
       self.status ||= 0
