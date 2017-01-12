@@ -1,6 +1,7 @@
 class StarredCompaniesController < ApplicationController
   def index
     @starred_companies = current_user.companies.order(name: :asc)
+    render component: 'StarredCompanies', props: {companies: @starred_companies }
   end
 
   def create

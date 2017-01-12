@@ -38,6 +38,7 @@ gem 'omniauth-slack', github: 'kmrshntr/omniauth-slack'
 gem 'omniauth-census', git: "https://github.com/bcgoss/omniauth-census"
 gem 'geocoder'
 gem 'travis'
+gem 'react-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
