@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "A user can see recent job posts" do
   it "shows posts from lookingfor" do
-    VCR.use_cassette "Recent Jobs" do
+    VCR.use_cassette "new Recent Jobs" do
       user_logs_in
       visit '/jobs'
       expect(page).to have_css('.job')
