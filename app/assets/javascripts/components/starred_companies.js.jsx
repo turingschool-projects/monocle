@@ -22,9 +22,15 @@ class StarredCompanies extends React.Component{
 
   removeStarredCompany(id){
     var starredCompanies = this.state.companies.filter(company => company.id !== id);
-    this.setState({companies: starredCompanies})
+    this.setState({companies: starredCompanies}, () => this.removeFromDatabase(id));
   }
 
+  removeFromDatabase(id){
+    $.ajax({
+      url: '/starred_companies/' + id,
+      type: 'DELETE'
+    })
+  }
 };
 
 const CompanyList = ({companies, remove}) => {
