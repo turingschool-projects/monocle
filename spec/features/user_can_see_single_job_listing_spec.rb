@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "User can see single job listing" do
   it "can see the job listing on a separate page" do
-    VCR.use_cassette "Single Job" do
+    VCR.use_cassette "new Single Job" do
       user_logs_in
       
       visit '/jobs'
