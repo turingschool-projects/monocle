@@ -11,12 +11,13 @@ $(document).ready( function(){
   $(".btn-remove").on("click", removeCompany);
   $(".btn-remove-job").on("click", removeJob);
   $(":checkbox").change(filterCompanies);
+
   $.when()
   .then(initMap)
   .then(
     $.get('/api/v1/companies')
     .then(addCards)
-    .then(centerMap)
+    .then(centerMap )
   )
 });
 
@@ -113,7 +114,7 @@ function prepareJobUnstar() {
     method: "DELETE"
   })
   .done(function(){
-   $(".unstar-job").off(); 
+   $(".unstar-job").off();
   })
   .then(function(){
     renderJobStar();
@@ -237,9 +238,11 @@ function placeMapMarker(company, index) {
 }
 
 function initMap() {
-  markers = [],
+  markers = [];
   bounds = new google.maps.LatLngBounds();
   map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 8,
+    center: {lat: -39.8282, lng: 98.5795}
   });
 }
 
@@ -387,5 +390,4 @@ function deleteNote(note) {
 
 function removeNoteHTML(note) {
   $(`#note-${note.id}`).remove()
-
 }
