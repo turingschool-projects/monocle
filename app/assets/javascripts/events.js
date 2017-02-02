@@ -10,7 +10,9 @@ $(document).ready( function(){
   });
   $(".btn-remove").on("click", removeCompany);
   $(".btn-remove-job").on("click", removeJob);
-  $(":checkbox").change(filterCompanies);
+  $("div#industry-options :checkbox").change(filterCompanies);
+  $("div#size-options :checkbox").change(toggleSizeSelect);
+  $("#size-options").on('change', 'select#sizes', filterCompanies);
 
   $.when()
   .then(initMap)
@@ -89,6 +91,7 @@ function removeJob() {
     success: function(){ job.remove() }
   })
 }
+
 function prepareJobStar() {
   var jobId = $(this).data('id');
   $.ajax({
@@ -145,6 +148,7 @@ function removeCompany() {
     success: function(){ company.remove() }
   })
 }
+
 function addCards(companies) {
   companies.forEach(function (company, index){
     placeMapMarker(company, index);
@@ -182,6 +186,10 @@ function removeCards() {
   $('#companies-body').empty();
 }
 
+function toggleSizeSelect() {
+  $('#sizes').toggle()
+}
+
 function filterCompanies() {
   var filters = getFilters();
   $.when()
@@ -192,6 +200,7 @@ function filterCompanies() {
     .then(addCards)
     .then(centerMap)
   );
+
 }
 
 function getFilters() {
@@ -199,16 +208,28 @@ function getFilters() {
     company_size: [],
     industry_ids: []
   }
+  var convertedSizes = convertCompanySize($('#sizes').val())
 
-  $('#size-options :checked').each(function(index, checkbox) {
-    filters['company_size'].push($(checkbox).val());
-  });
+    for (var i = 0; i < convertedSizes.length; i++) {
+      filters['company_size'].push(convertedSizes[i]);
+    }
 
   $('#industry-options :checked').each(function(index, checkbox) {
     filters['industry_ids'].push($(checkbox).val());
   });
 
   return filters;
+}
+
+function convertCompanySize(dropdownValue) {
+  var conversion = {
+    "10"  : ["2-10"],
+    "50"  : ["2-10","11-50"],
+    "100" : ["11-50", "51-200"],
+    "200" : ["11-50", "51-200"],
+    "500" : ["11-50", "51-200", "201-500"]
+  }
+  return conversion[dropdownValue];
 }
 
 function placeMapMarker(company, index) {
