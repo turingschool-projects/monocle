@@ -123,10 +123,9 @@
     function initMap() {
 
       var myLatLng = {lat: <%= @company.locations.first.latitude %> , lng: <%= @company.locations.first.longitude %>};
-      // var myLatLng = {lat: 39.7392, lng: -104.9903};
 
       var map = new google.maps.Map(document.getElementById('company-map'), {
-        zoom: 4,
+        zoom: 12,
         center: myLatLng
       });
 
