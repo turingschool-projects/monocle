@@ -17,7 +17,7 @@ $(document).ready( function(){
   .then(
     $.get('/api/v1/companies')
     .then(addCards)
-    .then(centerMap )
+    .then(centerMap)
   )
 });
 
