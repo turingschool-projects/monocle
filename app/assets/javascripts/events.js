@@ -11,6 +11,7 @@ $(document).ready( function(){
   $(".btn-remove").on("click", removeCompany);
   $(".btn-remove-job").on("click", removeJob);
   $("div#industry-options :checkbox").change(filterCompanies);
+  $("div#size-options :checkbox").change(showCompanySelect);
   $.when()
   .then(initMap)
   .then(
@@ -179,6 +180,10 @@ function addCards(companies) {
 
 function removeCards() {
   $('#companies-body').empty();
+}
+
+function showCompanySelect() {
+$()
 }
 
 function filterCompanies() {
