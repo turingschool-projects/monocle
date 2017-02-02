@@ -197,6 +197,7 @@ function filterCompanies() {
     .then(addCards)
     .then(centerMap)
   );
+
 }
 
 function getFilters() {
