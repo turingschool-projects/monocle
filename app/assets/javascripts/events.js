@@ -184,7 +184,7 @@ function removeCards() {
 }
 
 function toggleSizeSelect() {
-$('#sizes').toggle()
+  $('#sizes').toggle()
 }
 
 function filterCompanies() {
@@ -218,9 +218,8 @@ function getFilters() {
 }
 
 function convertCompanySize(dropdownValue) {
-  var thing = $.get('/api/v1/companies'
-  debugger;
   var ranges = []
+
   if (dropdownValue == "Less than 50") {
     ranges.push("11-50");
   } else if (dropdownValue == "Less than 100") {
