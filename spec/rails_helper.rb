@@ -75,7 +75,7 @@ def create_unapproved_company(name = 'TestCo')
     })
   company.industries << industry
   company.locations << Location.create({
-    street_address: '123 Test St',
+    street_address: '1331 17th St',
     phone: "123-456-789",
     primary_contact: "Dan Broadbent",
     city: "Denver",
