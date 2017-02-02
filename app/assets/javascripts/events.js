@@ -11,7 +11,8 @@ $(document).ready( function(){
   $(".btn-remove").on("click", removeCompany);
   $(".btn-remove-job").on("click", removeJob);
   $("div#industry-options :checkbox").change(filterCompanies);
-  $("div#size-options :checkbox").change(showCompanySelect);
+  $("div#size-options :checkbox").change(toggleSizeSelect);
+  $("select#sizes").change(filterCompanies);
   $.when()
   .then(initMap)
   .then(
@@ -182,8 +183,8 @@ function removeCards() {
   $('#companies-body').empty();
 }
 
-function showCompanySelect() {
-$()
+function toggleSizeSelect() {
+$('#sizes').toggle()
 }
 
 function filterCompanies() {
@@ -210,6 +211,7 @@ function getFilters() {
 
   $('#industry-options :checked').each(function(index, checkbox) {
     filters['industry_ids'].push($(checkbox).val());
+    debugger;
   });
 
   return filters;
