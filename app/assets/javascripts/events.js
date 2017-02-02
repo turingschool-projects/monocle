@@ -189,6 +189,7 @@ $('#sizes').toggle()
 
 function filterCompanies() {
   var filters = getFilters();
+  $.get('/api/v1/companies', filters).then(function(e) {console.log(this)})
   debugger;
   $.when()
   .then(removeCards)
@@ -198,6 +199,7 @@ function filterCompanies() {
     .then(addCards)
     .then(centerMap)
   );
+  debugger;
 }
 
 function getFilters() {
@@ -220,15 +222,15 @@ function getFilters() {
 
 function convertCompanySize(dropdownValue) {
   var ranges = []
-  if (dropdownValue == "Less than 50") {
+  if (dropdownValue == "50") {
     ranges.push("11-50");
-  } else if (dropdownValue == "Less than 100") {
+  } else if (dropdownValue == "100") {
     ranges.push("11-50");
     ranges.push("51-100");
-  } else if (dropdownValue == "Less than 200") {
+  } else if (dropdownValue == "200") {
     ranges.push("11-50");
     ranges.push("51-200");
-  } else if (dropdownValue == "Less than 500") {
+  } else if (dropdownValue == "500") {
     ranges.push("11-50");
     ranges.push("51-200");
     ranges.push("201-500");
