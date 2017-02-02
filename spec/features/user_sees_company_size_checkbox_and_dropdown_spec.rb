@@ -7,19 +7,12 @@ RSpec.describe 'As a logged in user' do
   end
 
   context 'when I visit /companies' do
-    it "I see a checkbox for 'at least x employees'" do
-      visit '/companies'
+    VCR.use_cassette('companies_filtering') do
+      it "I see a checkbox for 'at most x employees'" do
+        visit '/companies'
 
-      expect(page).to have_content("At least X employees")
-    end
-  end
-
-  context "when I select 'At least X employees'" do
-    xit "I see a dropdown" do
-      visit '/companies'
-      find(:css, '#company_size').set(true)
-
-      expect(page).to have_css('#sizes')
+        expect(page).to have_content("At most X employees")
+      end
     end
   end
 
