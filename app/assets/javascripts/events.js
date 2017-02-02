@@ -218,23 +218,14 @@ function getFilters() {
 }
 
 function convertCompanySize(dropdownValue) {
-  var ranges = []
-
-  if (dropdownValue == "50") {
-    ranges.push("11-50");
-  } else if (dropdownValue == "100") {
-    ranges.push("11-50");
-    ranges.push("51-100");
-  } else if (dropdownValue == "200") {
-    ranges.push("11-50");
-    ranges.push("51-200");
-  } else if (dropdownValue == "500") {
-    ranges.push("11-50");
-    ranges.push("51-200");
-    ranges.push("201-500");
+  var conversion = {
+    "10"  : ["2-10"],
+    "50"  : ["2-10","11-50"],
+    "100" : ["11-50", "51-200"],
+    "200" : ["11-50", "51-200"],
+    "500" : ["11-50", "51-200", "201-500"]
   }
-
-  return ranges;
+  return conversion[dropdownValue];
 }
 
 function placeMapMarker(company, index) {
