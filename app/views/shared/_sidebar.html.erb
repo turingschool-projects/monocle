@@ -11,6 +11,9 @@
         <%= check_box_tag :company_size %>
         <%= h "At least X employees" %>
       </li>
+      <li>
+        <%= select_tag :sizes, options_for_select(Company.order(:size).pluck(:size).uniq), class: "dropdown", style: "visibility:hidden" %>
+      </li>
     </div>
     <div class="form-group" id='industry-options'>
       <li>
