@@ -13,6 +13,7 @@ $(document).ready( function(){
   $("div#industry-options :checkbox").change(filterCompanies);
   $("div#size-options :checkbox").change(toggleSizeSelect);
   $("#size-options").on('change', 'select#sizes', filterCompanies);
+
   $.when()
   .then(initMap)
   .then(
@@ -90,6 +91,7 @@ function removeJob() {
     success: function(){ job.remove() }
   })
 }
+
 function prepareJobStar() {
   var jobId = $(this).data('id');
   $.ajax({
@@ -146,6 +148,7 @@ function removeCompany() {
     success: function(){ company.remove() }
   })
 }
+
 function addCards(companies) {
   companies.forEach(function (company, index){
     placeMapMarker(company, index);
@@ -256,9 +259,11 @@ function placeMapMarker(company, index) {
 }
 
 function initMap() {
-  markers = [],
+  markers = [];
   bounds = new google.maps.LatLngBounds();
   map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 8,
+    center: {lat: -39.8282, lng: 98.5795}
   });
 }
 
@@ -406,5 +411,4 @@ function deleteNote(note) {
 
 function removeNoteHTML(note) {
   $(`#note-${note.id}`).remove()
-
 }
