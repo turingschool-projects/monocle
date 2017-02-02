@@ -12,7 +12,7 @@ $(document).ready( function(){
   $(".btn-remove-job").on("click", removeJob);
   $("div#industry-options :checkbox").change(filterCompanies);
   $("div#size-options :checkbox").change(toggleSizeSelect);
-  $("select#sizes").change(filterCompanies);
+  $("#size-options").on('change', 'select#sizes', filterCompanies);
   $.when()
   .then(initMap)
   .then(
@@ -189,6 +189,7 @@ $('#sizes').toggle()
 
 function filterCompanies() {
   var filters = getFilters();
+  debugger;
   $.when()
   .then(removeCards)
   .then(removeMapMarkers)
@@ -204,17 +205,36 @@ function getFilters() {
     company_size: [],
     industry_ids: []
   }
+  var convertedSizes = convertCompanySize($('#sizes').val())
 
-  // $('#size-options :checked').each(function(index, checkbox) {
-  //   filters['company_size'].push($(checkbox).val());
-  // });
+    for (var i = 0; i < convertedSizes.length; i++) {
+      filters['company_size'].push(convertedSizes[i]);
+    }
 
   $('#industry-options :checked').each(function(index, checkbox) {
     filters['industry_ids'].push($(checkbox).val());
-    debugger;
   });
 
   return filters;
+}
+
+function convertCompanySize(dropdownValue) {
+  var ranges = []
+  if (dropdownValue == "Less than 50") {
+    ranges.push("11-50");
+  } else if (dropdownValue == "Less than 100") {
+    ranges.push("11-50");
+    ranges.push("51-100");
+  } else if (dropdownValue == "Less than 200") {
+    ranges.push("11-50");
+    ranges.push("51-200");
+  } else if (dropdownValue == "Less than 500") {
+    ranges.push("11-50");
+    ranges.push("51-200");
+    ranges.push("201-500");
+  }
+
+  return ranges;
 }
 
 function placeMapMarker(company, index) {
