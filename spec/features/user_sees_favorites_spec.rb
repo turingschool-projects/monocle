@@ -4,10 +4,18 @@ RSpec.describe 'As an authenticated user' do
   context 'when I click favorites' do
     it "shows a list of starred companies" do
       user_logs_in
-      visit companies_path
-      click_on :favorites
+      user = User.first
+      companies = create_list(:company, 2)
 
-      
+      user.companies << companies
+
+      visit companies_path
+      click_on 'My Starred Companies'
+
+      within first('[data-id]') do
+        expect(page).to have_content(companies[1].name)
+      end
+
     end
   end
 end
