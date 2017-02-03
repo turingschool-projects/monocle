@@ -12,6 +12,7 @@ RSpec.describe 'As an authenticated user' do
       visit companies_path
       click_on 'Favorites'
 
+      expect(current_path).to eq(favorites_path)
       within first('[data-id]') do
         expect(page).to have_content(companies[1].name)
       end

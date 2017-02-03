@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   end
 
   resources :starred_companies, only: [:index, :create, :destroy]
+  resources :favorites, only: [:index]
 
   resources :starred_jobs, only: [:index, :create, :destroy]
 
