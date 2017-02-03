@@ -4,14 +4,20 @@ class Location < ApplicationRecord
   before_validation :set_status
 
   geocoded_by :full_address
-  after_validation :geocode
+  after_validation :geocode_with_backup
 
   enum status: [:pending, :approved, :rejected]
+
+  def geocode_with_backup
+    if geocode.nil?
+      self.latitude, self.longitude = Geocoder.coordinates("#{city}, #{state}")
+    end
+  end
 
   def self.approved_locations
     Location.where('status = ?', '1')
   end
-  
+
   def self.pending_locations
     Location.where('status = ?', '0')
   end
