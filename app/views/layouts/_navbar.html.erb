@@ -23,13 +23,11 @@
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Signed in as <strong><%= current_user.username %></strong><span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><%= link_to "My Starred Jobs", starred_jobs_path %></li>
-            </ul>
+        <% if !current_user.admin? %>
+          <li>
+            <a>Signed in as <strong><%= current_user.username %></strong></a>
           </li>
-          <% if current_user.admin? %>
+          <% elsif current_user.admin? %>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin Tools<span class="caret"></span></a>
               <ul class="dropdown-menu">
