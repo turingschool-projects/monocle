@@ -389,7 +389,7 @@ Products/Services: Provides aerospace engineering and information systems servic
 
 
 BIOSERVE SPACE TECHNOLOGIES
-429 UCB, 
+429 UCB
 ECAE 1B02
 Boulder, CO 80309-0429
 303-735-5308
@@ -449,7 +449,7 @@ Products/Services: Accredited product reliability testing lab. Performing tests 
 Person in charge: Joe Fratiello, laboratory manager
 
 COLORADO PLATING LLC
-9616 Metro Airport Ave., 
+9616 Metro Airport Ave.,
 Hangar 44
 Broomfield, CO 80021
 303-469-1749
@@ -707,6 +707,7 @@ www.jettechllc.net
 Company headquarters: Littleton
 Products/Services: Instrumentation and maintenance of aircraft systems.
 
+
 KEVRON INC.
 3199 Billington Drive
 
@@ -716,7 +717,6 @@ www.kevron.com
 Company headquarters: Broomfield
 Products/Services: Designs, manufactures and sells laser marking systems for marking and asset tracking. Contract laser marking services.
 Person in charge: Ron Quinlan, co-owner, Kevin Warman, co-owner, co-owners
-
 
 KRATOS TECHNOLOGY AND TRAINING SOLUTIONS
 985 Space Center Drive
@@ -809,7 +809,7 @@ Products/Services: Provides mechanical design-engineering services to the aerosp
 Person in charge: Roger Miller, president
 
 MORGAN TECHNOLOGIES INC.
-8101 I-25 Frontage Road, 
+8101 I-25 Frontage Road,
 Unit 4
 Erie, CO 80516
 303-651-1990
@@ -879,7 +879,7 @@ Products/Services: Designs and manufactures aircraft accessories for the general
 
 
 PETERSON MACHINING INC.
-6661 Arapahoe Road, 
+6661 Arapahoe Road,
 Unit 6
 Boulder, CO 80303
 303-449-5755
@@ -889,7 +889,7 @@ Products/Services: Precision machine shop.
 Person in charge: Ronda Turner Peterson, CEO, owner
 
 PHASE IV ENGINEERING INC.
-2820 Wilderness Place, 
+2820 Wilderness Place,
 Unit C
 Boulder, CO 80301
 303-443-6611
@@ -949,7 +949,7 @@ Products/Services: Product design, prototype parts, cast urethane parts, metal c
 Person in charge: Ron Angstead
 
 REDSTONE AEROSPACE CORP.
-105 S. Sunset St., 
+105 S. Sunset St.,
 Unit T
 Longmont, CO 80501
 303-684-8125
@@ -989,7 +989,7 @@ Products/Services: Vertical take-off and landing (VTOL) unmanned aerial systems.
 Person in charge: Mogensen Steen, CEO
 
 SEAKR ENGINEERING INC.
-500 Discovery Pkwy 
+500 Discovery Pkwy
 #200
 Superior, CO 80027
 303-662-1449
@@ -1009,7 +1009,7 @@ Products/Services: Supplies space technologies & advanced spacecraft for civil, 
 
 
 SOLID POWER INC.
-500 S. Arthur Ave., 
+500 S. Arthur Ave.,
 Unit 300
 Louisville, CO 80027
 720-300-8167
@@ -1089,7 +1089,7 @@ Products/Services: Product-lifescycle management services for the aerospace, med
 
 
 TECHNOLOGY APPLICATIONS INC.
-5710 Flatiron Parkway, 
+5710 Flatiron Parkway,
 Unit A
 Boulder, CO 80301
 303-867-8145

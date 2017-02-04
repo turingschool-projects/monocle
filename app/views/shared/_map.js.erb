@@ -6,6 +6,7 @@ function initMap() {
     zoom: 15,
     center: uluru
   });
+
   <% @companies.each_with_index do |company, index| %>
     var coordinates = <%= company.get_coordinates.html_safe %>;
     var infowindow<%= index %> = new google.maps.InfoWindow({
