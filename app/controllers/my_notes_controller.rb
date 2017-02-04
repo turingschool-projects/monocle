@@ -4,6 +4,7 @@ class MyNotesController < ApplicationController
   end
 
   def create
+    binding.pry
     private_note = Note.new(private_note_params)
     if private_note.save
       render json: private_note

@@ -1,1 +1,12 @@
-<%= render partial: "note_form" %>
+<h3>Private Notes</h3>
+<div id='notes' class='panel-group'>
+</div>
+
+<div class='panel panel-default'>
+  <div class='panel-body'>
+    <input type="text" name="note[title]" id="create-note-title" placeholder="Title"></br></br>
+    <textarea name="note[body]" id="create-note-body" placeholder="Body ..."></textarea></br>
+    <textarea name="note[company]" id="create-note-company" placeholder="Company ..."></textarea></br>
+    <button type="submit" name="create-private-note" id="create-private-note-button" data-username='<%= current_user.username %>' data-user-id='<%= current_user.id %>'>Create</button>
+  </div>
+</div>
