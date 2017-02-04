@@ -7,7 +7,7 @@ RSpec.feature 'admin edits company location' do
       admin_logs_in
       visit company_path(company)
 
-      expect(page).to have_content("123 Test St City")
+      expect(page).to have_content("1331 17th St")
       within "#locations" do
         click_on "Edit Location"
       end
@@ -15,7 +15,7 @@ RSpec.feature 'admin edits company location' do
       click_on 'Update Location'
 
       expect(page).to have_content("New Address")
-      expect(page).to_not have_content("123 Test St City")
+      expect(page).to_not have_content("1331 17th St")
     end
   end
 end
