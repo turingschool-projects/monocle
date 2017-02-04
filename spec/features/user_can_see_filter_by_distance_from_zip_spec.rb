@@ -13,6 +13,16 @@ RSpec.describe 'As a logged in user' do
 
         expect(page).to have_content("Companies Within")
       end
+
+      it "Shows a text input box for zipcode when clicking companies within checkbox" do
+        visit '/companies'
+
+        check('input[name=companies_within]')
+
+        within("#within-distance nth-child(3)") do
+          expect(page).to have_content("Zip")
+        end
+      end
     end
   end
 
