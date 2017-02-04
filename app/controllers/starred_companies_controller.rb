@@ -1,7 +1,7 @@
 class StarredCompaniesController < ApplicationController
 
   def create
-    company = Company.find(params[:company_id])
+    company = Company.find(params[:company_id]).order(created_at: :desc)
     current_user.star(company)
   end
 
