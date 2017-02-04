@@ -21,17 +21,21 @@
     <h3>My Jobs</h3>
     <div class='well container'>
       <% @starred_jobs.each do |job| %>
-      <div class='job' data-id=<%= job.uid %>>
+      <div class='job' data-id=<%= job.uid %> >
         <table class='table'>
           <tr>
             <td><%= link_to job.title, job_path(job.uid) %></td>
-          </tr><tr>
+          </tr>
+          <tr>
             <td>Company: <%= job.company_name %></td>
-          </tr><tr>
+          </tr
+          ><tr>
             <td>Remote: <%= job.remote %></td>
-          </tr><tr>
+          </tr>
+          <tr>
             <td>Posted Date: <%= job.posted_date %></td>
-          </tr><tr>
+          </tr>
+          <tr>
             <td>Location: <%= job.location %></td>
           </tr>
         </table>

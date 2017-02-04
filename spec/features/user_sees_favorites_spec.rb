@@ -5,8 +5,10 @@ RSpec.describe 'As an authenticated user' do
     it "shows a list of starred companies" do
       user_logs_in
       user = User.first
-      companies = create_list(:company, 2)
+      companies = create_list(:company, 1)
+      new_company = create(:company)
 
+      companies << new_company
       user.companies << companies
 
       visit companies_path
