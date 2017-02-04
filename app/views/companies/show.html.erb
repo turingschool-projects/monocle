@@ -122,24 +122,24 @@
   <div id='lat-lng' data-coordinates="<%= @company.coordinates %>"</div>
 
   <script type="text/javascript">
+  function initMap() {
+    var coordinates = $('#lat-lng').data('coordinates');
 
-    var coordinates = $('#lat-lng').data('coordinates')
-    var latitude = coordinates[0]
-    var longitude = coordinates[1]
-    debugger; 
-    function initMap() {
-      $('#lat-lng')
-      var myLatLng = {lat: latitude , lng: longitude};
-      var map = new google.maps.Map(document.getElementById('company-map'), {
-        zoom: 12,
-        center: myLatLng
+    var map = new google.maps.Map(document.getElementById('company-map'), {
+        center: new google.maps.LatLng(coordinates[0][0], coordinates[0][1]),
+        zoom: 12
       });
 
-      var marker = new google.maps.Marker({
-        position: myLatLng,
-        map: map,
-        title: 'Hello World!'
+    var bounds = new google.maps.LatLngBounds();
+    coordinates.forEach(function(coordinate){
+      var latLng = new google.maps.LatLng(coordinate[0], coordinate[1]),
+          marker = new google.maps.Marker({
+        position: latLng,
+        map: map
       });
-    }
+      bounds.extend(latLng);
+    });
+    map.fitBounds(bounds); 
+  }
   </script>
 </div>
