@@ -86,6 +86,12 @@ class Company < ApplicationRecord
     location.update(status: 'approved')
   end
 
+  def coordinates
+    approved_locations.map do |location|
+      [location.latitude, location.longitude]
+    end
+  end
+
   private
     def set_status
       self.status ||= 0

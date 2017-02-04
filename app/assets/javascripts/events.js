@@ -406,5 +406,4 @@ function deleteNote(note) {
 
 function removeNoteHTML(note) {
   $(`#note-${note.id}`).remove()
-
 }

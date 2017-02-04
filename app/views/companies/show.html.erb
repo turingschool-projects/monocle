@@ -116,14 +116,20 @@
       </div>
     </div>
   </div>
-
   </div>
+
+
+  <div id='lat-lng' data-coordinates="<%= @company.coordinates %>"</div>
 
   <script type="text/javascript">
 
+    var coordinates = $('#lat-lng').data('coordinates')
+    var latitude = coordinates[0]
+    var longitude = coordinates[1]
+    debugger; 
     function initMap() {
-
-      var myLatLng = {lat: <%= @company.locations.first.latitude %> , lng: <%= @company.locations.first.longitude %>};
+      $('#lat-lng')
+      var myLatLng = {lat: latitude , lng: longitude};
       var map = new google.maps.Map(document.getElementById('company-map'), {
         zoom: 12,
         center: myLatLng

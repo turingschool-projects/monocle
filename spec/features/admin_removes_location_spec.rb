@@ -7,7 +7,6 @@ RSpec.feature 'admin deletes company location' do
 
       admin_logs_in
       visit company_path(company)
-
       expect(page).to have_content("1331 17th St")
 
       within "#locations" do
