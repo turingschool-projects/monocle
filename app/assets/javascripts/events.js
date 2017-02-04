@@ -12,6 +12,7 @@ $(document).ready( function(){
   $(".btn-remove-job").on("click", removeJob);
   $("div#industry-options :checkbox").change(filterCompanies);
   $("div#size-options :checkbox").change(toggleSizeSelect);
+  $('div#within-distance :checkbox').change(toggleCompaniesWithinDistance);
   $("#size-options").on('change', 'select#sizes', filterCompanies);
 
   $.when()
@@ -190,6 +191,10 @@ function toggleSizeSelect() {
   $('#sizes').toggle()
 }
 
+function toggleCompaniesWithinDistance() {
+  $('#zip').toggle()
+}
+
 function filterCompanies() {
   var filters = getFilters();
   $.when()
@@ -208,7 +213,6 @@ function getFilters() {
     company_size: [],
     industry_ids: []
   }
-  debugger;
   var convertedSizes = convertCompanySize($('#sizes').val())
 
     for (var i = 0; i < convertedSizes.length; i++) {
