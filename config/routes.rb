@@ -31,6 +31,8 @@ Rails.application.routes.draw do
     get 'companies/approval',   to: 'companies#index'
   end
 
+  resources :my_notes, only: [:index, :new, :create]
+
   namespace :api do
     namespace :v1 do
       resources :companies,     only: [:index]
