@@ -19,13 +19,15 @@
 
     <div class="form-group" id='within-distance'>
       <li>
-        <%= label_tag :within_distance, "Companies Within" %>
+        <%= label_tag :within_distance, "Distance by Zip" %>
       </li>
       <li>
         <%= check_box_tag :companies_within %>
-        <%= h "Companies Within" %>
+        <%= h "Companies Within 10 miles" %>
       </li>
-      
+      <li>
+        <%= text_field_tag :zip, nil, style: "display:none" %>
+      </li>
     </div>
 
     <div class="form-group" id='industry-options'>
