@@ -2,6 +2,7 @@ module CompanySize
 
   def company_size_options
     [
+      'All',
       '10',
       '50',
       '200',
