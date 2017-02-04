@@ -208,12 +208,12 @@ function getFilters() {
     company_size: [],
     industry_ids: []
   }
+  debugger;
   var convertedSizes = convertCompanySize($('#sizes').val())
 
     for (var i = 0; i < convertedSizes.length; i++) {
       filters['company_size'].push(convertedSizes[i]);
     }
-
   $('#industry-options :checked').each(function(index, checkbox) {
     filters['industry_ids'].push($(checkbox).val());
   });
@@ -227,7 +227,8 @@ function convertCompanySize(dropdownValue) {
     "50"  : ["2-10","11-50"],
     "100" : ["11-50", "51-200"],
     "200" : ["11-50", "51-200"],
-    "500" : ["11-50", "51-200", "201-500"]
+    "500" : ["11-50", "51-200", "201-500"],
+    "All" : []
   }
   return conversion[dropdownValue];
 }
