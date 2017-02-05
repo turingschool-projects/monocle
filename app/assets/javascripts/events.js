@@ -194,6 +194,10 @@ function toggleSizeSelect() {
 
 function toggleCompaniesWithinDistance() {
   $('#zip').toggle()
+  if(!$(this).is(':checked')) {
+    $('#zip_input').val('')
+    filterCompanies();
+  }
 }
 
 function filterCompanies() {
