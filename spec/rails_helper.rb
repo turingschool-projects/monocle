@@ -167,7 +167,7 @@ end
 def create_boulder_company(name = 'boulder co')
   company = Company.create({
       name: name,
-      website: "www.monocle.com",
+      website: "www.boulder.com",
       headquarters: "Boulder, CO",
       products_services: "keyboards",
       status: 1
