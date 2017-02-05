@@ -15,8 +15,6 @@ RSpec.describe 'As an authenticated user' do
       fill_in "note[body]", with: paragraph
       click_on "Create Note"
 
-      save_and_open_page
-
       expect(current_path).to eq(notes_path)
       expect(page).to have_content(paragraph)
     end
