@@ -14,6 +14,7 @@ $(document).ready( function(){
   $("div#size-options :checkbox").change(toggleSizeSelect);
   $('div#within-distance :checkbox').change(toggleCompaniesWithinDistance);
   $("#size-options").on('change', 'select#sizes', filterCompanies);
+  $('#filter-by-zip').on('click', filterCompanies);
 
   $.when()
   .then(initMap)
@@ -211,18 +212,29 @@ function filterCompanies() {
 function getFilters() {
   var filters = {
     company_size: [],
-    industry_ids: []
+    industry_ids: [],
+    zip: []
   }
   var convertedSizes = convertCompanySize($('#sizes').val())
+  var searchZip      = getSearchZip();
+  
+  if (searchZip) { filters['zip'].push(searchZip) }
 
-    for (var i = 0; i < convertedSizes.length; i++) {
-      filters['company_size'].push(convertedSizes[i]);
-    }
+  for (var i = 0; i < convertedSizes.length; i++) {
+    filters['company_size'].push(convertedSizes[i]);
+  }
+
   $('#industry-options :checked').each(function(index, checkbox) {
     filters['industry_ids'].push($(checkbox).val());
   });
 
   return filters;
+}
+
+function getSearchZip() {
+  var zip = $('#zip_input').val();
+  $('#zip_input').val('');
+  return zip
 }
 
 function convertCompanySize(dropdownValue) {
