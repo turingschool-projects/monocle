@@ -297,13 +297,12 @@ function prepareNoteCreate(){
     // var companyId = $('#create-note-button').data('companyId');
     // var author = $('#create-note-button').data('username');
     var note = { title: newNoteTitle.val(),
-                  body: newNoteBody.val(),
-                  company_name: companyName
+                  body: newNoteBody.val(), 
                 }
     return $.ajax({
       url: "/api/v1/notes",
       method: "POST",
-      data: {note: note}
+      data: {note: note, company_name: companyName}
     })
     .done(renderNote)
     .done(clearFields)
