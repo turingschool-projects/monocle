@@ -19,10 +19,9 @@ RSpec.describe 'As a logged in user' do
         fill_in 'zip', with: '80203'
         click_button 'Go'
 
-        expect(page).to have_content(denver_co.street_address)
-        expect(page).to_not have_content(boulder_co.street_address)
+        expect(page).to have_content(denver_co.locations.first.street_address)
+        expect(page).to_not have_content(boulder_co.locations.first.street_address)
       end
     end
   end
-
 end
