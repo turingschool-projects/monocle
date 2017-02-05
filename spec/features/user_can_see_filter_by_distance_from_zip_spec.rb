@@ -20,7 +20,7 @@ RSpec.describe 'As a logged in user' do
         check('companies_within')
 
         within("#within-distance li:nth-of-type(3)") do
-          expect(page).to have_css("input[name=zip]")
+          expect(page).to have_css("input[name=zip_input]")
         end
       end
     end
