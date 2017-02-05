@@ -25,8 +25,9 @@
         <%= check_box_tag :companies_within %>
         <%= h "Companies Within 10 miles" %>
       </li>
-      <li>
-        <%= text_field_tag :zip, nil, placeholder: 'zip', size: '6', style: "display:none" %>
+      <li id='zip' style='display:none'>
+        <%= text_field_tag :zip_input, nil, placeholder: 'zip', size: '6' %>
+        <button id='filter-by-zip'>Go</button>
       </li>
     </div>
 
