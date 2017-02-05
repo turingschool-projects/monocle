@@ -163,3 +163,43 @@ def create_company_with_industry(industry, name = 'TestCo')
   })
   Company.last
 end
+
+def create_boulder_company(name = 'boulder co')
+  company = Company.create({
+      name: name,
+      website: "www.monocle.com",
+      headquarters: "Boulder, CO",
+      products_services: "keyboards",
+      status: 1
+    })
+  company.locations << Location.create({
+    street_address: '1215 13th St',
+    phone: "123-456-789",
+    primary_contact: "Dan Broadbent",
+    city: "Boulder",
+    state: "Colorado",
+    zip_code: "80302",
+    status: 1
+  })
+  Company.last
+end
+
+def create_denver_company(name = 'denver co')
+  company = Company.create({
+      name: name,
+      website: "www.denver.com",
+      headquarters: "Denver, CO",
+      products_services: "turtles",
+      status: 1
+    })
+  company.locations << Location.create({
+    street_address: '891 14th St, Denver',
+    phone: "123-456-789",
+    primary_contact: "Alisher",
+    city: "Denver",
+    state: "Colorado",
+    zip_code: "80202",
+    status: 1
+  })
+  Company.last
+end
