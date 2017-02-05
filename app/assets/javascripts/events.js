@@ -1,5 +1,5 @@
 $(document).ready( function(){
-  displayNotes();
+  // displayNotes();
   $("#create-note-button").on('click', prepareNoteCreate);
   $(".star").on("click", prepareStar);
   $(".unstar").on("click", prepareUnstar);
@@ -213,12 +213,12 @@ function getFilters() {
   var filters = {
     company_size: [],
     industry_ids: [],
-    zip: []
+    with_locations_near: []
   }
   var convertedSizes = convertCompanySize($('#sizes').val())
   var searchZip      = getSearchZip();
-  
-  if (searchZip) { filters['zip'].push(searchZip) }
+
+  if (searchZip) { filters['with_locations_near'].push(searchZip) }
 
   for (var i = 0; i < convertedSizes.length; i++) {
     filters['company_size'].push(convertedSizes[i]);
@@ -233,7 +233,6 @@ function getFilters() {
 
 function getSearchZip() {
   var zip = $('#zip_input').val();
-  $('#zip_input').val('');
   return zip
 }
 
