@@ -1,4 +1,4 @@
-$(document).ready( function(){
+$(document).ready(function(){
   displayNotes();
   $("#create-note-button").on('click', prepareNoteCreate);
   // $("#create-private-note-button").on('click', preparePrivateNoteCreate);
@@ -139,6 +139,7 @@ function renderJobUnstar() {
   $('.star-toggle').html('<span class="glyphicon glyphicon-star"></span> Unstar');
   $('.star-toggle').removeClass('star-job').addClass('unstar-job');
 }
+
 function removeCompany() {
   var company = this.closest('.card-holder')
   var id = $(company).data('id')
@@ -201,6 +202,7 @@ function filterCompanies() {
     .then(addCards)
     .then(centerMap)
   );
+}
 
 function getFilters() {
   var filters = {
@@ -300,7 +302,6 @@ function prepareNoteCreate(){
       url: "/api/v1/notes",
       method: "POST",
       data: {note: note, company_name: companyName}
-      debugger; 
     })
     .done(renderNote)
     .done(clearFields)
@@ -319,10 +320,10 @@ function displayNotes(){
   //   rawNotes.forEach(renderNote);
   // })
 }
+
 function createNotes(raw) {
   for (var i = 0; i < raw.length; i++) {
     var note = new Note(raw[i].author,raw[i].title,raw[i].body);
-    debugger;
   }
 
 }
