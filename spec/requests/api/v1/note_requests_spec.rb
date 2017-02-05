@@ -6,7 +6,7 @@ RSpec.describe ("notes endpoints") do
       user_logs_in
       user = User.first
       company = Company.create(name: "Test", status: "approved")
-      
+
       note_1 = Note.create(title: "Good company",
                            body: "Maybe apply here",
                            author: user.username,
@@ -24,6 +24,7 @@ RSpec.describe ("notes endpoints") do
       notes = JSON.parse(response.body, symbolize_names: true)
 
       expect(response).to be_success
+      expect(response).to have_http_status(200)
       expect(notes).to be_an(Array)
       expect(notes.count).to eq(2)
 
@@ -44,7 +45,6 @@ RSpec.describe ("notes endpoints") do
       user = User.first
       company = Company.create(name: "Test", status: "approved")
 
-
       headers = { "CONTENT-TYPE" => "application/json" }
       params = { note: { title: "test title", body: "test body" }, company_name: company.name }
 
@@ -53,10 +53,28 @@ RSpec.describe ("notes endpoints") do
       note = JSON.parse(response.body, symbolize_names: true)
 
       expect(response).to be_success
+      expect(response).to have_http_status(200)
+
       expect(note[:title]).to eq("test title")
       expect(note[:body]).to eq("test body")
       expect(note[:company_id]).to eq(company.id)
       expect(note[:status]).to eq("for_user")
+    end
+
+    it "does not create a note if the company is missing" do
+      user_logs_in
+      user = User.first
+
+      headers = { "CONTENT-TYPE" => "application/json" }
+      params = { note: { title: "test title", body: "test body" } }
+
+      post "/api/v1/notes", params
+
+      error = JSON.parse(response.body, symbolize_names: true)
+
+      expect(response).not_to be_success
+      expect(response).to have_http_status(400)
+      expect(error[:message]).to eq("Failed to create a note")
     end
   end
 end
