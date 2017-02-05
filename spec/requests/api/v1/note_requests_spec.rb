@@ -17,15 +17,21 @@ RSpec.describe ("notes endpoints") do
                              user: user,
                              company_id: company.id)
 
-          binding.pry
-        # create a couple of notes
-
         get "/api/v1/notes"
 
-        notes = JSON.parse(response.body)
+        notes = JSON.parse(response.body, symbolize_names: true)
 
         expect(response).to be_success
         expect(notes.count).to eq(2)
+
+        expect(notes.first[:title]).to eq(note_1.title)
+        expect(notes.first[:body]).to eq(note_1.body)
+        expect(notes.first[:user_id]).to eq(note_1.user_id)
+        expect(notes.first[:company_id]).to eq(note_1.company_id)
+        
+        expect(notes.last[:title]).to eq(note_2.title)
+        expect(notes.last[:title]).to eq(note_2.title)
+        expect(notes.last[:company_id]).to eq(note_2.company_id)
       end
     end
   end
