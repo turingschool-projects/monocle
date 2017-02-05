@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+//= require formatted_date
 //= require note
 //= require events
 //= require company_show
