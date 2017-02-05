@@ -202,8 +202,6 @@ function filterCompanies() {
     .then(centerMap)
   );
 
-}
-
 function getFilters() {
   var filters = {
     company_size: [],
@@ -302,6 +300,7 @@ function prepareNoteCreate(){
       url: "/api/v1/notes",
       method: "POST",
       data: {note: note, company_name: companyName}
+      debugger; 
     })
     .done(renderNote)
     .done(clearFields)

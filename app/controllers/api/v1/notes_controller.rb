@@ -1,10 +1,10 @@
 class Api::V1::NotesController < ApplicationController
-
   def index
     render json: current_user.notes
   end
 
   def create
+    binding.pry
     company = Company.find_by(name: params["company_name"])
     note = Note.new(note_params)
     note.author = current_user.username
