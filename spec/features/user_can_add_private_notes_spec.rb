@@ -6,19 +6,18 @@ RSpec.describe 'As an authenticated user' do
       user_logs_in
       user = User.first
 
-      paragraph = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Nam purus libero, ornare ac tempus ut, blandit vitae nulla.
-                  Aliquam ultrices sit amet elit consequat cursus.
-                  In quis lectus ipsum. Donec egestas erat a mi aliquet ultrices."
+      paragraph = "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
 
       visit notes_path
 
       click_on "New Note"
-      fill_in :company, with: "Granicus"
-      fill_in :body, with: paragraph
+      fill_in "note[company]", with: "Granicus"
+      fill_in "note[body]", with: paragraph
       click_on "Create Note"
 
-      expect(current_path).to eq(user_notes_path)
+      save_and_open_page
+
+      expect(current_path).to eq(notes_path)
       expect(page).to have_content(paragraph)
     end
   end

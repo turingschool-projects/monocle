@@ -1,8 +1,7 @@
 class Api::V1::NotesController < ApplicationController
 
   def index
-    @notes = Company.find(params[:id]).notes
-    render json: @notes
+    render json: current_user.notes
   end
 
   def create
@@ -16,7 +15,6 @@ class Api::V1::NotesController < ApplicationController
     else
       render json: {message: "Failed to create a note"}
     end
-    binding.pry
   end
 
   private

@@ -297,7 +297,7 @@ function prepareNoteCreate(){
     // var companyId = $('#create-note-button').data('companyId');
     // var author = $('#create-note-button').data('username');
     var note = { title: newNoteTitle.val(),
-                  body: newNoteBody.val(), 
+                  body: newNoteBody.val(),
                 }
     return $.ajax({
       url: "/api/v1/notes",
@@ -306,6 +306,7 @@ function prepareNoteCreate(){
     })
     .done(renderNote)
     .done(clearFields)
+    .done(window.location.replace("/notes"))
 }
 
 function displayNotes(){
@@ -313,7 +314,6 @@ function displayNotes(){
   $.ajax({
     url: "/api/v1/notes",
     method: "GET",
-    data: {id: company_id},
     type: "json"
   })
   .then(function(rawNotes){
@@ -323,9 +323,9 @@ function displayNotes(){
 
 function renderNote(note){
   var author = note.author
-  var userId = $('#create-note-button').data('userId')
-  var company_id = $('#create-note-button').data('companyId')
-  if (userId == note.user_id) {
+  // var userId = $('#create-note-button').data('userId')
+  // var company_id = $('#create-note-button').data('companyId')
+  // if (userId == note.user_id) {
   $('#notes').append(
       `<div class='note-block panel panel-default' id="note-${note.id}">
       <div class='panel-body small'>
@@ -341,18 +341,18 @@ function renderNote(note){
       </div>
     </div> `);
     bindNoteEvents(note)
-  } else {
-      $('#notes').append(
-        `<div class='note-block panel panel-default'>
-          <div class='panel-body small'>
-            <div class='pull-left'>
-              <h6>Author:  ${author}</h6>
-              <h6>Title:  ${note.title}</h6>
-              <h6>Note:  ${note.body}</h6>
-            </div>
-          </div>
-        </div> `
-    )}
+  // } else {
+  //     $('#notes').append(
+  //       `<div class='note-block panel panel-default'>
+  //         <div class='panel-body small'>
+  //           <div class='pull-left'>
+  //             <h6>Author:  ${author}</h6>
+  //             <h6>Title:  ${note.title}</h6>
+  //             <h6>Note:  ${note.body}</h6>
+  //           </div>
+  //         </div>
+  //       </div> `
+  //   )}
 }
 
 function editEvent(note){
