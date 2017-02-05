@@ -5,7 +5,6 @@ Rails.application.routes.draw do
   get  '/sign_in_with_slack',     to: 'sessions#new'
   get  '/sign_in_with_census',    to: 'sessions#new'
   get  'companies/notes/delete',  to: 'notes#destroy'
-  get  '/api/v1/notes',           to: 'api/v1/notes#index'
 
   resources :companies,         only: [:index, :show, :new, :create] do
     resources :notes,           only: [:create, :edit, :update, :destroy]
@@ -32,6 +31,9 @@ Rails.application.routes.draw do
   end
 
   resources :my_notes, only: [:index, :new, :create]
+
+  get  '/api/v1/notes',           to: 'api/v1/notes#index'
+  get  '/api/v1/my_notes',        to: 'api/v1/my_notes#index'
 
   namespace :api do
     namespace :v1 do

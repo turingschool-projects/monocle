@@ -1,6 +1,7 @@
 $(document).ready( function(){
   displayNotes();
   $("#create-note-button").on('click', prepareNoteCreate);
+  $("#create-private-note-button").on('click', preparePrivateNoteCreate);
   $(".star").on("click", prepareStar);
   $(".unstar").on("click", prepareUnstar);
   $(".star-job").on("click", prepareJobStar);
@@ -301,6 +302,26 @@ function prepareNoteCreate(){
                          company_id: company_id}
     return $.ajax({
       url: "/companies/" + company_id + "/notes",
+      method: "POST",
+      data: {note: note}
+    })
+    .done(renderNote)
+    .done(clearFields)
+}
+
+function preparePrivateNoteCreate(){
+    var newNoteTitle = $("#create-private-note-title");
+    var newNoteBody = $("#create-private-note-body");
+    var user_id = $('#create-private-note-button').data('userId')
+    var company_name = $('#create-note-button').data('companyName')
+    var author = $('#create-note-button').data('username')
+    var note = { title: newNoteTitle.val(),
+                         body: newNoteBody.val(),
+                         user_id: user_id,
+                         author: author,
+                         company_id: company_id}
+    return $.ajax({
+      url: "/my_notes/",
       method: "POST",
       data: {note: note}
     })
