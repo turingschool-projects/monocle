@@ -26,7 +26,6 @@ class Note {
   }
 
   addNoteButtons(htmlElement) {
-    debugger;
     htmlElement.html(this.noteButtons());
   }
 

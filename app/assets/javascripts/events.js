@@ -309,7 +309,7 @@ function prepareNoteCreate(){
 }
 
 function displayNotes(){
-  var company_id = $('#create-note-button').data('companyId')
+  // var company_id = $('#create-note-button').data('companyId')
   $.ajax({
     url: "/api/v1/notes",
     method: "GET",
@@ -321,6 +321,7 @@ function displayNotes(){
   // })
 }
 function createNotes(raw) {
+  debugger;
   for (var i = 0; i < raw.length; i++) {
     var note = new Note(
       raw[i].id,
