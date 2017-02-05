@@ -4,4 +4,8 @@ class Api::V1::NotesController < ApplicationController
     @notes = Company.find(params[:id]).notes
     render json: @notes
   end
+
+  def create
+    binding.pry
+  end
 end

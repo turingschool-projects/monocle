@@ -292,36 +292,16 @@ function clearFields() {
 function prepareNoteCreate(){
     var newNoteTitle = $("#create-note-title");
     var newNoteBody = $("#create-note-body");
-    var user_id = $('#create-note-button').data('userId')
-    var company_id = $('#create-note-button').data('companyId')
-    var author = $('#create-note-button').data('username')
+    var companyName = $("#create-note-company").val();
+    // var userId = $('#create-note-button').data('userId');
+    // var companyId = $('#create-note-button').data('companyId');
+    // var author = $('#create-note-button').data('username');
     var note = { title: newNoteTitle.val(),
-                         body: newNoteBody.val(),
-                         user_id: user_id,
-                         author: author,
-                         company_id: company_id}
+                  body: newNoteBody.val(),
+                  company_name: companyName
+                }
     return $.ajax({
-      url: "/companies/" + company_id + "/notes",
-      method: "POST",
-      data: {note: note}
-    })
-    .done(renderNote)
-    .done(clearFields)
-}
-
-function preparePrivateNoteCreate(){
-    var newNoteTitle = $("#create-private-note-title");
-    var newNoteBody = $("#create-private-note-body");
-    var user_id = $('#create-private-note-button').data('userId')
-    var company_name = $('#create-note-button').data('companyName')
-    var author = $('#create-note-button').data('username')
-    var note = { title: newNoteTitle.val(),
-                         body: newNoteBody.val(),
-                         user_id: user_id,
-                         author: author,
-                         company_id: company_id}
-    return $.ajax({
-      url: "/my_notes/",
+      url: "/api/v1/notes",
       method: "POST",
       data: {note: note}
     })

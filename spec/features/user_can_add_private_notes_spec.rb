@@ -11,7 +11,7 @@ RSpec.describe 'As an authenticated user' do
                   Aliquam ultrices sit amet elit consequat cursus.
                   In quis lectus ipsum. Donec egestas erat a mi aliquet ultrices."
 
-      visit my_notes_path
+      visit notes_path
 
       click_on "New Note"
       fill_in :company, with: "Granicus"

@@ -1,9 +1,19 @@
 class NotesController < ApplicationController
+  def index
+    @notes = Note.all
+  end
+
   def create
-    company = Company.find(params[:company_id])
+    if params["company_id"] == "undefined" && params["company"] != ""
+      company = Company.where(name: params["company"])
+    else
+      company = Company.find(params[:company_id])
+    end 
     note = company.notes.create(note_params)
     note.author = current_user.username
     note.user_id = current_user.id
+
+
     render json: note
   end
 
