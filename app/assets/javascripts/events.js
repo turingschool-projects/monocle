@@ -322,10 +322,18 @@ function displayNotes(){
 }
 function createNotes(raw) {
   for (var i = 0; i < raw.length; i++) {
-    var note = new Note(raw[i].author,raw[i].title,raw[i].body);
-    debugger;
+    var note = new Note(
+      raw[i].id,
+      raw[i].author,
+      raw[i].title,
+      raw[i].body,
+      raw[i].company_id,
+      raw[i].isPrivate,
+      raw[i].created_at
+    );
+    note.showNote($('#notes'));
+    note.addNoteButtons($('.buttons'));
   }
-
 }
 
 function renderNote(note){
