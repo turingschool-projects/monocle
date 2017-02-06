@@ -1,5 +1,5 @@
 $(document).ready( function(){
-  // displayNotes();
+  displayNotes();
   $("#create-note-button").on('click', prepareNoteCreate);
   $(".star").on("click", prepareStar);
   $(".unstar").on("click", prepareUnstar);
