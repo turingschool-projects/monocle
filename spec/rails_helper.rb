@@ -203,3 +203,23 @@ def create_denver_company(name = 'denver co')
   })
   Company.last
 end
+
+def create_colorado_springs_company(name = 'co-springs co')
+  company = Company.create({
+      name: name,
+      website: "www.co-springs.com",
+      headquarters: "Colorado Springs, CO",
+      products_services: "lamas",
+      status: 1
+    })
+  company.locations << Location.create({
+    street_address: '2801 Palmer Park Blvd',
+    phone: "123-456-789",
+    primary_contact: "Alisher",
+    city: "Colorado Springs",
+    state: "Colorado",
+    zip_code: "80909",
+    status: 1
+  })
+  Company.last
+end
