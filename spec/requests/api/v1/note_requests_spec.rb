@@ -52,7 +52,7 @@ RSpec.describe ("notes endpoints") do
       note = JSON.parse(response.body, symbolize_names: true)
 
       expect(response).to be_success
-      expect(response).to have_http_status(200)
+      expect(response).to have_http_status(201)
 
       expect(note[:title]).to eq("test title")
       expect(note[:body]).to eq("test body")
@@ -96,6 +96,23 @@ RSpec.describe ("notes endpoints") do
       expect(note[:title]).to eq("test title 2")
       expect(note[:body]).to eq("test body 2")
       expect(note[:company_id]).to eq(company.id)
+    end
+  end
+
+  context "DELETE /notes" do
+    it "creates a note for the current user" do
+      user_logs_in
+      user = User.first
+      company = Company.create(name: "Test", status: "approved")
+      note = Note.create(title: "test title", body: "test body", user: user, company: company)
+
+      params = {company_name: company.name}
+
+      delete "/api/v1/notes/#{note.id}", params
+
+      expect(response).to be_success
+      expect(response).to have_http_status(200)
+      expect(company.notes).to eq([])
     end
   end
 end
