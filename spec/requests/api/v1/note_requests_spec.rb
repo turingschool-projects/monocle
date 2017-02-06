@@ -77,25 +77,25 @@ RSpec.describe ("notes endpoints") do
     end
   end
 
-  context "POST /notes" do
+  context "PUT /notes" do
     it "creates a note for the current user" do
       user_logs_in
       user = User.first
       company = Company.create(name: "Test", status: "approved")
+      note = Note.create(title: "test title", body: "test body", user: user, company: company)
 
-      params = { note: { title: "test title", body: "test body" }, company_name: company.name }
+      params = { note: { title: "test title 2", body: "test body 2" }, company_name: company.name }
 
-      post "/api/v1/notes", params
+      put "/api/v1/notes/#{note.id}", params
 
       note = JSON.parse(response.body, symbolize_names: true)
 
       expect(response).to be_success
       expect(response).to have_http_status(200)
 
-      expect(note[:title]).to eq("test title")
-      expect(note[:body]).to eq("test body")
+      expect(note[:title]).to eq("test title 2")
+      expect(note[:body]).to eq("test body 2")
       expect(note[:company_id]).to eq(company.id)
-      expect(note[:status]).to eq("for_user")
     end
   end
 end

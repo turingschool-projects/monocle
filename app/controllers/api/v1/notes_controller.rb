@@ -8,6 +8,16 @@ class Api::V1::NotesController < ApplicationController
     return_response(note)
   end
 
+  def update
+    company = Company.find_by(name: params[:company_name])
+    note = company.notes.find(params[:id])
+    if note.update(note_params)
+      render json: note, status: 200
+    else
+      render json: {message: "Failed to update a note"}, status: 400
+    end
+  end
+
   private
     def note_params
       params.require(:note).permit(:title, :body)
