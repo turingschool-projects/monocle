@@ -14,6 +14,8 @@ class Company < ApplicationRecord
 
   enum status: [:pending, :approved, :rejected]
 
+  validates_presence_of :name, :website, :headquarters, :products_services, :size
+
   def approved
     self.status = 1
     self.save
