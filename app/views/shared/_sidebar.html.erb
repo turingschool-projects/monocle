@@ -21,11 +21,14 @@
       <li>
         <%= label_tag :within_distance, "Distance by Zip" %>
       </li>
+
       <li>
         <%= check_box_tag :companies_within %>
-        <%= h "Companies Within 10 miles" %>
+        <%= h "Companies Within X miles" %>
       </li>
+
       <li id='zip' style='display:none'>
+        <%= select_tag :distance_select, options_for_select(['10', '20', '30', '50', '100']), class: 'dropdown' %>
         <%= text_field_tag :zip_input, nil, placeholder: 'zip', size: '6' %>
         <button id='filter-by-zip'>Go</button>
       </li>
