@@ -1,5 +1,6 @@
 $(document).ready( function(){
   displayNotes();
+  // bindNoteEvents();
   $("#create-note-button").on('click', prepareNoteCreate);
   // $("#create-private-note-button").on('click', preparePrivateNoteCreate);
   $(".star").on("click", prepareStar);
@@ -321,7 +322,6 @@ function displayNotes(){
   // })
 }
 function createNotes(raw) {
-  debugger;
   for (var i = 0; i < raw.length; i++) {
     var note = new Note(
       raw[i].id,
@@ -334,8 +334,25 @@ function createNotes(raw) {
     );
     note.showNote($('#notes'));
     note.addNoteButtons($('.buttons'));
+    note.bindNoteEvents();
   }
 }
+
+// function bindNoteEvents(){
+//     $('#notes').on('click', '#note-1 .delete-button', function() {
+//       deleteNote();
+//     });
+//     // $(`#note-${note.id} .edit-button`).on('click', note.editEvent())
+//   }
+
+// function deleteNote() {
+//     debugger;
+//     // var company_id = $('#create-note-button').data('companyId')
+//     //   $.ajax ({
+//     //     url: `/companies/${company_id}/notes/${this.id}`,
+//     //     type: "DELETE"
+//     //   }).then(removeNoteHTML(note))
+//   }
 
 function renderNote(note){
   var author = note.author
@@ -371,21 +388,21 @@ function renderNote(note){
     )}
 }
 
-function editEvent(note){
-  $(`#note-${note.id} .edit-button`).on('click', function(){
-
-    $(`#note-${note.id}`).addClass('edit-box')
-    $(`#note-${note.id}`).find('.note-title').attr('contenteditable', true)
-    $(`#note-${note.id}`).find('.note-body').attr('contenteditable', true)
-    $.when(
-      $(`#note-${note.id} .edit-button`).text('Submit changes')
-    ).then(
-      $(`#note-${note.id} .edit-button`).off()
-    ).then(
-      $(`#note-${note.id} .edit-button`).on('click', function () {submitChanges(note)})
-    )
-  })
-};
+// function editEvent(note){
+//   $(`#note-${note.id} .edit-button`).on('click', function(){
+//
+//     $(`#note-${note.id}`).addClass('edit-box')
+//     $(`#note-${note.id}`).find('.note-title').attr('contenteditable', true)
+//     $(`#note-${note.id}`).find('.note-body').attr('contenteditable', true)
+//     $.when(
+//       $(`#note-${note.id} .edit-button`).text('Submit changes')
+//     ).then(
+//       $(`#note-${note.id} .edit-button`).off()
+//     ).then(
+//       $(`#note-${note.id} .edit-button`).on('click', function () {submitChanges(note)})
+//     )
+//   })
+// };
 
 function submitChanges(note){
   var id = note.id
@@ -412,20 +429,20 @@ function submitChanges(note){
   )
 }
 
-function bindNoteEvents(note){
-  $(`#note-${note.id} .delete-button`).on('click', function(){deleteNote(note)})
-  $(`#note-${note.id} .edit-button`).on('click', editEvent(note))
-}
+// function bindNoteEvents(note){
+//   $(`#note-${note.id} .delete-button`).on('click', function(){deleteNote(note)})
+//   $(`#note-${note.id} .edit-button`).on('click', editEvent(note))
+// }
 
-function deleteNote(note) {
-  var company_id = $('#create-note-button').data('companyId')
-  var id = note.id
-    $.ajax ({
-      url: `/companies/${company_id}/notes/${id}`,
-      type: "DELETE"
-    }).then(removeNoteHTML(note))
-}
+// function deleteNote(note) {
+//   var company_id = $('#create-note-button').data('companyId')
+//   var id = note.id
+//     $.ajax ({
+//       url: `/companies/${company_id}/notes/${id}`,
+//       type: "DELETE"
+//     }).then(removeNoteHTML(note))
+// }
 
-function removeNoteHTML(note) {
-  $(`#note-${note.id}`).remove()
-}
+// function removeNoteHTML(note) {
+//   $(`#note-${note.id}`).remove()
+// }
