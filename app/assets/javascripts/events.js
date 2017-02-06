@@ -14,7 +14,7 @@ $(document).ready( function(){
   $("div#size-options :checkbox").change(toggleSizeSelect);
   $('div#within-distance :checkbox').change(toggleCompaniesWithinDistance);
   $("#size-options").on('change', 'select#sizes', filterCompanies);
-  $('#filter-by-zip').on('click', filterCompanies);
+  $('#filter-by-zip').on('click', validateZipThenFilter);
 
   $.when()
   .then(initMap)
@@ -197,6 +197,17 @@ function toggleCompaniesWithinDistance() {
   if(!$(this).is(':checked')) {
     $('#zip_input').val('')
     filterCompanies();
+  }
+}
+
+function validateZipThenFilter() {
+  $('#zip-error').remove();
+  var zip = getSearchZip();
+
+  if (/^\d{5}(-\d{4})?$/.test(zip)) {
+    filterCompanies();
+  } else {
+    $('#zip').append('<p id="zip-error" class="bg-danger">Please enter a valid zipcode</p>');
   }
 }
 
