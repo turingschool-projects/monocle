@@ -10,18 +10,20 @@ class Company < ApplicationRecord
 
   scope :company_size, -> (size) { where('companies.size IN (?)', size) }
   scope :industry_ids, -> (industries) { joins(:industries).where('industries.name IN (?)', industries) }
-  
+
   before_validation :set_status
 
   enum status: [:pending, :approved, :rejected]
 
-  def self.with_locations_near(zip)
-    zip = zip[0]
-    near = Location.near(zip, 10)
-    near_ids = near.map do |location|
+  def self.with_locations_near(location_inputs)
+    zip      = location_inputs[0]
+    distance = location_inputs[1]
+
+    nearby_locations = Location.near(zip, distance)
+    nearby_locations_ids = nearby_locations.map do |location|
       location.id
     end
-    joins(:locations).where('locations.id IN (?)', near_ids)
+    joins(:locations).where('locations.id IN (?)', nearby_locations_ids)
   end
 
   def approved
