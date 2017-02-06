@@ -86,7 +86,7 @@ body {
 }
 
 #company-map {
-  display: inline-block; 
+  display: inline-block;
   border: 1.5px solid;
   top: 20px;
   height: 330px;
@@ -105,4 +105,8 @@ table #locations {
 
 .edit-box {
   background-color: #d2d2d2 !important;
+}
+
+#zip_input, #distance_select {
+  margin-right: 10px;
 }
