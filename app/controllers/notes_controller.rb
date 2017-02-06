@@ -13,7 +13,6 @@ class NotesController < ApplicationController
     note.author = current_user.username
     note.user_id = current_user.id
 
-
     render json: note
   end
 

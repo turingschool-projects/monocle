@@ -281,8 +281,6 @@ function centerMap() {
   map.fitBounds(bounds);
 }
 
-
-
 function clearFields() {
   $("#create-note-title").val("")
   $("#create-note-body").val("")

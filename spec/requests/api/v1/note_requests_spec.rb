@@ -45,7 +45,6 @@ RSpec.describe ("notes endpoints") do
       user = User.first
       company = Company.create(name: "Test", status: "approved")
 
-      headers = { "CONTENT-TYPE" => "application/json" }
       params = { note: { title: "test title", body: "test body" }, company_name: company.name }
 
       post "/api/v1/notes", params
@@ -75,6 +74,28 @@ RSpec.describe ("notes endpoints") do
       expect(response).not_to be_success
       expect(response).to have_http_status(400)
       expect(error[:message]).to eq("Failed to create a note")
+    end
+  end
+
+  context "POST /notes" do
+    it "creates a note for the current user" do
+      user_logs_in
+      user = User.first
+      company = Company.create(name: "Test", status: "approved")
+
+      params = { note: { title: "test title", body: "test body" }, company_name: company.name }
+
+      post "/api/v1/notes", params
+
+      note = JSON.parse(response.body, symbolize_names: true)
+
+      expect(response).to be_success
+      expect(response).to have_http_status(200)
+
+      expect(note[:title]).to eq("test title")
+      expect(note[:body]).to eq("test body")
+      expect(note[:company_id]).to eq(company.id)
+      expect(note[:status]).to eq("for_user")
     end
   end
 end
