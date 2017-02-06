@@ -232,8 +232,12 @@ function getFilters() {
   }
   var convertedSizes = convertCompanySize($('#sizes').val())
   var searchZip      = getSearchZip();
+  var searchDistance = getSearchDistance();
 
-  if (searchZip) { filters['with_locations_near'].push(searchZip) }
+  if (searchZip) {
+    filters['with_locations_near'].push(searchZip);
+    filters['with_locations_near'].push(searchDistance);
+  }
 
   for (var i = 0; i < convertedSizes.length; i++) {
     filters['company_size'].push(convertedSizes[i]);
@@ -248,7 +252,12 @@ function getFilters() {
 
 function getSearchZip() {
   var zip = $('#zip_input').val();
-  return zip
+  return zip;
+}
+
+function getSearchDistance() {
+  var distance = $('#distance_select').val();
+  return distance;
 }
 
 function convertCompanySize(dropdownValue) {
