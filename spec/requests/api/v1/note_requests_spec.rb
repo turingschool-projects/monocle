@@ -57,7 +57,6 @@ RSpec.describe ("notes endpoints") do
       expect(note[:title]).to eq("test title")
       expect(note[:body]).to eq("test body")
       expect(note[:company_id]).to eq(company.id)
-      expect(note[:status]).to eq("for_user")
     end
 
     it "does not create a note if the company is missing" do
