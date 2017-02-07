@@ -71,6 +71,7 @@ def create_unapproved_company(name = 'TestCo')
       website: "www.monocle.com",
       headquarters: "Denver, CO",
       products_services: "Jobs",
+      size: 50,
       status: 0
     })
   company.industries << industry

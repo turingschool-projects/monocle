@@ -9,6 +9,5 @@ RSpec.describe Company, type: :model do
   it { should validate_presence_of(:name)}
   it { should validate_presence_of(:website)}
   it { should validate_presence_of(:headquarters)}
-  it { should validate_presence_of(:size)}
   it { should validate_presence_of(:products_services)}
 end
