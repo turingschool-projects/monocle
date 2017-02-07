@@ -421,6 +421,14 @@ function adminApproveLocation() {
     url: "/api/v1/locations/" + locationId,
     method: "PUT",
     data: {id: locationId},
-    type: "json"
+    type: "json",
+    success: function (location) {
+           appendLocation(location);
+       }
   })
+}
+
+function appendLocation(location) {
+  debugger;
+  $("locations #locations tr").val()
 }

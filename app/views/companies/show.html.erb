@@ -38,7 +38,6 @@
               <% end %>
             </td>
           </tr>
-
         </table>
       </div>
     </div>
@@ -52,19 +51,19 @@
             <td>Address:</td>
             <td><%= location.street_address %> <br />
               <%= location.street_address_2 %></td>
-            </tr>
-            <tr>
-              <td>City, State Zip:</td>
-              <td><%= location.city_state_zip %></td>
-            </tr>
-            <tr>
-              <td>Phone:</td>
-              <td><%= location.phone %></td>
-            </tr>
-            <tr>
-              <td>Primary Contact:</td>
-              <td><%= location.primary_contact %></td>
-            </tr>
+          </tr>
+          <tr>
+            <td>City, State Zip:</td>
+            <td><%= location.city_state_zip %></td>
+          </tr>
+          <tr>
+            <td>Phone:</td>
+            <td><%= location.phone %></td>
+          </tr>
+          <tr>
+            <td>Primary Contact:</td>
+            <td><%= location.primary_contact %></td>
+          </tr>
             <tr>
               <td><% if current_user.admin? %>
                 <%= link_to 'Edit Location', edit_admin_location_path(company_id: @company.id, id: location.id), class:"btn btn-default" %>
@@ -98,9 +97,8 @@
           </td>
         </tr>
     <% end %>
-
-    <br />
-    <br />
+    <br/>
+    <br/>
 
     <% if current_user.companies.exists?(@company.id) %>
       <div class='starred-message'>
