@@ -6,8 +6,7 @@ class ApplicationController < ActionController::Base
   before_action :authorize!
 
   def current_user
-    # @current_user ||= User.find(session[:user_id]) if session[:user_id]
-    @current_user = User.find(1)
+    @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
 
   def verify_moderator_or_admin
