@@ -1,6 +1,10 @@
 $(document).ready(function(){
-  displayNotes();
-  $("#create-note-button").on('click', prepareNoteCreate);
+
+  if (document.location.pathname == '/notes' || document.location.pathname == '/notes/new') {
+    displayNotes();
+    $("#create-note-button").on('click', prepareNoteCreate);
+  }
+
   $(".star").on("click", prepareStar);
   $(".unstar").on("click", prepareUnstar);
   $(".star-job").on("click", prepareJobStar);
@@ -286,17 +290,15 @@ function clearFields() {
 }
 
 function prepareNoteCreate(){
-    var newNoteTitle = $("#create-note-title");
-    var newNoteBody = $("#create-note-body");
-    var companyName = $("#create-note-company").val();
-    var note = { title: newNoteTitle.val(),
-                  body: newNoteBody.val(),
+    var note = { title: $("#create-note-title").val(),
+                  body: $("#create-note-body").val(),
+                  status: $(':radio:checked').val()
                 }
 
     return $.ajax({
       url: "/api/v1/notes",
       method: "POST",
-      data: {note: note, company_name: companyName}
+      data: {note: note, company_name: $("#create-note-company").val()}
     })
     .done(clearFields)
     .done(window.location.replace("/notes"))
