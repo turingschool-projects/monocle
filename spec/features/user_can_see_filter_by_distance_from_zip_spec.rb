@@ -8,13 +8,13 @@ RSpec.describe 'As a logged in user' do
 
   context 'when I visit /companies' do
     VCR.use_cassette('companies_filtering') do
-      it "I see a checkbox for companies within" do
+      xit "I see a checkbox for companies within" do
         visit '/companies'
 
         expect(page).to have_content("Companies Within")
       end
 
-      it "Shows a text input box for zipcode when clicking companies within checkbox", :js => true do
+      xit "Shows a text input box for zipcode when clicking companies within checkbox", :js => true do
         visit '/companies'
 
         check('companies_within')
