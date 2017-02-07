@@ -1,6 +1,6 @@
 $(document).ready(function(){
-
-  if (document.location.pathname == '/notes' || document.location.pathname == '/notes/new') {
+  var pathFinder = document.location.pathname.split('/')[1]
+  if (pathFinder == 'notes' || pathFinder == 'companies') {
     displayNotes();
     $("#create-note-button").on('click', prepareNoteCreate);
   }
@@ -324,6 +324,7 @@ function createNotes(raw) {
       raw[i].status,
       raw[i].created_at
     );
+    debugger;
     note.showNote($('#notes'));
     note.addNoteButtons($('.buttons'));
     note.bindNoteEvents();

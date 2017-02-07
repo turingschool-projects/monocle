@@ -101,18 +101,19 @@
       <%= content_tag("span", "", class: ["glyphicon", "glyphicon-star"], aria_hidden: true) %> Star
       <% end %>
     <% end %>
-
-    <h3>Public Notes</h3>
-    <div id='notes' class='panel-group'>
-    </div>
-
-    <div class='panel panel-default'>
-      <div class='panel-body'>
-        <input type="text" name="note[title]" id="create-note-title" placeholder="Title"></br></br>
-        <textarea name="note[body]" id="create-note-body" placeholder="Body ..."></textarea></br>
-        <button type="button" name="create-note" id="create-note-button" data-username='<%= current_user.username %>' data-user-id='<%= current_user.id %>' data-company-id='<%= @company.id %>'>Create</button>
+    <div class="panel-group">
+      <h3>Public Notes</h3>
+      <div id='notes' class='panel-group'>
+      </div>
+      <div class='panel panel-default'>
+        <div class='panel-body'>
+          <input type="text" name="note[title]" id="create-note-title" placeholder="Title"></br></br>
+          <textarea name="note[body]" id="create-note-body" placeholder="Body ..."></textarea></br>
+          <button type="button" name="create-note" id="create-note-button" data-username='<%= current_user.username %>' data-user-id='<%= current_user.id %>' data-company-id='<%= @company.id %>'>Create</button>
+        </div>
       </div>
     </div>
+
   </div>
   </div>
   <div id="lat-lng" data-coordinates="<%= @company.coordinates %>"></div>
