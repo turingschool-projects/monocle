@@ -208,7 +208,7 @@ function getFilters() {
     company_size: [],
     industry_ids: []
   }
-  debugger;
+
   var convertedSizes = convertCompanySize($('#sizes').val())
 
     for (var i = 0; i < convertedSizes.length; i++) {
