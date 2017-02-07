@@ -13,6 +13,7 @@ $(document).ready( function(){
   $("div#industry-options :checkbox").change(filterCompanies);
   $("div#size-options :checkbox").change(toggleSizeSelect);
   $("#size-options").on('change', 'select#sizes', filterCompanies);
+  $("#admin-approves-location").on('click', adminApproveLocation);
 
   $.when()
   .then(initMap)
@@ -412,4 +413,14 @@ function deleteNote(note) {
 
 function removeNoteHTML(note) {
   $(`#note-${note.id}`).remove()
+}
+
+function adminApproveLocation() {
+  var locationId = $('#admin-approves-location').data('location');
+  $.ajax({
+    url: "/api/v1/locations/" + locationId,
+    method: "PUT",
+    data: {id: locationId},
+    type: "json"
+  })
 }

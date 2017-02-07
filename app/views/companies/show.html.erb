@@ -94,16 +94,13 @@
             <% end %>
           </td>
           <td>
-            <%= button_to "Approve", {controller: "admin/locations", action: "update", location: {status: "approved"}, id: location.id}, method: :put %>
+            <button type="button" id="admin-approves-location" data-location='<%= location.id %>'>Approve</button>
           </td>
         </tr>
     <% end %>
 
     <br />
     <br />
-
-
-
 
     <% if current_user.companies.exists?(@company.id) %>
       <div class='starred-message'>
