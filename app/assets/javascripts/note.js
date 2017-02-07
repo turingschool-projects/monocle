@@ -49,27 +49,41 @@ class Note {
       $.ajax ({
         url: `/notes/${this.id}`,
         type: "DELETE"
-      }).then(this.removeNoteHTML)
+      }).then(removeNoteHTML)
   }
 
   editEvent(){
-    debugger;
-    $(`#note-${this.id}`).children().get(1).attr('contenteditable', true)
+    var self = this;
+    var $title = $(`#note-${this.id} td:nth-child(3) p`);
+    var $body = $(`#note-${this.id} td:nth-child(4) p`);
+    var $editButton = $(`#note-${this.id} .buttons .edit-button`);
 
+    $editButton.html("Save");
+    $(`#note-${this.id}`).addClass('edit-box');
+    $title.attr('contenteditable', true).addClass('element-being-edited');
+    $body.attr('contenteditable', true).addClass('element-being-edited');
 
-    $(`#note-${this.id} .edit-button`).on('click', function(){
-
-      $(`#note-${this.id}`).addClass('edit-box')
-      $(`#note-${this.id}`).find('.note-title').attr('contenteditable', true)
-      $(`#note-${this.id}`).find('.note-body').attr('contenteditable', true)
-      $.when(
-        $(`#note-${this.id} .edit-button`).text('Submit changes')
-      ).then(
-        $(`#note-${this.id} .edit-button`).off()
-      ).then(
-        $(`#note-${this.id} .edit-button`).on('click', function () {submitChanges(note)})
-      )
+    $('#notes').on('click', $editButton, function() {
+      self.updateNote($title, $body);
     });
+  }
+
+  updateNote($title, $body) {
+    $.ajax ({
+      url: `/notes/${this.id}`,
+      type: "PUT",
+      data: {title: $title.html(), body: $body.html()}
+    }).then(changeOnEdit)
+  }
+
+  changeOnEdit() {
+    var $title = $(`#note-${this.id} td:nth-child(3) p`);
+    var $body = $(`#note-${this.id} td:nth-child(4) p`);
+    var $editButton = $(`#note-${this.id} .buttons .edit-button`);
+
+    $editButton.html("Edit");
+    $title.attr('contenteditable', false).removeClass('element-being-edited');
+    $body.attr('contenteditable', false).removeClass('element-being-edited');
   }
 
   removeNoteHTML() {
