@@ -2,6 +2,7 @@ class Api::V1::NotesController < ApplicationController
   before_action :set_company, only: [:create, :update, :destroy]
 
   def index
+    require "pry"; binding.pry
     render json: current_user.notes, status: 200
   end
 

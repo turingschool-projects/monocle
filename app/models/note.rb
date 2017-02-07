@@ -5,4 +5,8 @@ class Note < ApplicationRecord
   def company_name
     company.name
   end
+
+  def get_notes(company_id)
+    
+  end
 end

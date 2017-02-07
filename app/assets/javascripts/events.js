@@ -1,6 +1,5 @@
 $(document).ready(function(){
-  var pathFinder = document.location.pathname.split('/')[1]
-  if (pathFinder == 'notes' || pathFinder == 'companies') {
+  if (pathFinder()[1] == 'notes' || pathFinder()[1] == 'companies') {
     displayNotes();
     $("#create-note-button").on('click', prepareNoteCreate);
   }
@@ -26,6 +25,10 @@ $(document).ready(function(){
     .then(centerMap)
   )
 });
+
+function pathFinder() {
+  return document.location.pathname.split('/');
+}
 
 function renderStar() {
   $('.starred-message').html('');
@@ -305,10 +308,12 @@ function prepareNoteCreate(){
 }
 
 function displayNotes(){
+  var params = { company_id: pathFinder()[2] || "" }
   $.ajax({
     url: "/api/v1/notes",
     method: "GET",
-    type: "json"
+    type: "json",
+    data: params
   })
   .then(createNotes)
 }
@@ -324,7 +329,6 @@ function createNotes(raw) {
       raw[i].status,
       raw[i].created_at
     );
-    debugger;
     note.showNote($('#notes'));
     note.addNoteButtons($('.buttons'));
     note.bindNoteEvents();
