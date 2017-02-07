@@ -29,7 +29,6 @@
     </tr>
     <tr>
       <td><%= f.label :industries %></td>
-
       <td><% @industries.each do |industry| %>
         <%= check_box_tag 'industry_ids[]', industry.id -%>
         <%= h industry.name -%><br />
