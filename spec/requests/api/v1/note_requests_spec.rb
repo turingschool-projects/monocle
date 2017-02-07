@@ -32,10 +32,12 @@ RSpec.describe ("notes endpoints") do
       expect(notes.first[:body]).to eq(note_1.body)
       expect(notes.first[:user_id]).to eq(note_1.user_id)
       expect(notes.first[:company_id]).to eq(note_1.company_id)
+      expect(notes.first[:company_name]).to eq(note_1.company_name)
 
       expect(notes.last[:title]).to eq(note_2.title)
       expect(notes.last[:title]).to eq(note_2.title)
       expect(notes.last[:company_id]).to eq(note_2.company_id)
+      expect(notes.last[:company_name]).to eq(note_2.company_name)
     end
   end
 
@@ -57,6 +59,7 @@ RSpec.describe ("notes endpoints") do
       expect(note[:title]).to eq("test title")
       expect(note[:body]).to eq("test body")
       expect(note[:company_id]).to eq(company.id)
+      expect(note[:company_name]).to eq(company.name)
     end
 
     it "does not create a note if the company is missing" do
@@ -95,6 +98,7 @@ RSpec.describe ("notes endpoints") do
       expect(note[:title]).to eq("test title 2")
       expect(note[:body]).to eq("test body 2")
       expect(note[:company_id]).to eq(company.id)
+      expect(note[:company_name]).to eq(company.name)
     end
   end
 
