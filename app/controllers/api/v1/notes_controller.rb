@@ -3,7 +3,7 @@ class Api::V1::NotesController < ApplicationController
 
   def index
     require "pry"; binding.pry
-    render json: current_user.notes, status: 200
+    render json: get_notes(current_user), status: 200
   end
 
   def create

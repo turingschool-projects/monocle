@@ -6,7 +6,11 @@ class Note < ApplicationRecord
     company.name
   end
 
-  def get_notes(company_id)
-    
+  def self.get_notes(company_id=nil, user=nil)
+    if company_id
+      Company.find(company_id).notes
+    else
+      user.notes
+    end
   end
 end

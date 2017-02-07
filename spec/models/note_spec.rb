@@ -13,11 +13,20 @@ RSpec.describe Note, type: :model do
       expect(note).to respond_to(:company)
     end
   end
-  it "can get notes for a company" do
-    company = create(:company)
-    user = create(:user)
-    note = Note.create(body: 'test', title:'test', author:'test', user_id: user, company: company)
+  context '#get_notes' do
+    it "can get notes for a company" do
+      company = create(:company)
+      user = create(:user)
+      note = Note.create!(body: 'test', title:'test', author:'test', user: user, company: company)
 
-    expect(note.get_notes(company.id)).to eq(note)
+      expect(Note.get_notes(company.id)).to eq([note])
+    end
+    it "gets notes without a company_id" do
+      company = create(:company)
+      user = create(:user)
+      note = Note.create!(body: 'test', title:'test', author:'test', user: user, company: company)
+
+      expect(Note.get_notes(user)).to eq([note])
+    end
   end
 end
