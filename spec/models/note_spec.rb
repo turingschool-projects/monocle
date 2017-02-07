@@ -15,8 +15,8 @@ RSpec.describe Note, type: :model do
   end
   it "can get notes for a company" do
     company = create(:company)
-    note = create(:note)
-    company.notes << note
+    user = create(:user)
+    note = Note.create(body: 'test', title:'test', author:'test', user_id: user, company: company)
 
     expect(note.get_notes(company.id)).to eq(note)
   end
