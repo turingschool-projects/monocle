@@ -45,13 +45,6 @@ class Note {
     });
   }
 
-  deleteNote() {
-      $.ajax ({
-        url: `/notes/${this.id}`,
-        type: "DELETE"
-      }).then(removeNoteHTML)
-  }
-
   editEvent(){
     var self = this;
     var $title = $(`#note-${this.id} td:nth-child(3) p`);
@@ -63,17 +56,17 @@ class Note {
     $title.attr('contenteditable', true).addClass('element-being-edited');
     $body.attr('contenteditable', true).addClass('element-being-edited');
 
-    $('#notes').on('click', $editButton, function() {
+    $('#notes').on('click', `#note-${this.id} .buttons .edit-button`, function() {
       self.updateNote($title, $body);
     });
   }
 
   updateNote($title, $body) {
     $.ajax ({
-      url: `/notes/${this.id}`,
+      url: `/api/v1/notes/${this.id}`,
       type: "PUT",
-      data: {title: $title.html(), body: $body.html()}
-    }).then(changeOnEdit)
+      data: { note: { title: $title.html(), body: $body.html() } }
+    }).then(this.changeOnEdit())
   }
 
   changeOnEdit() {
@@ -84,6 +77,13 @@ class Note {
     $editButton.html("Edit");
     $title.attr('contenteditable', false).removeClass('element-being-edited');
     $body.attr('contenteditable', false).removeClass('element-being-edited');
+  }
+
+  deleteNote() {
+      $.ajax ({
+        url: `api/v1/notes/${this.id}`,
+        type: "DELETE"
+      }).then(this.removeNoteHTML())
   }
 
   removeNoteHTML() {

@@ -1,4 +1,4 @@
-$(document).ready( function(){
+$(document).ready(function(){
   displayNotes();
   // bindNoteEvents();
   $("#create-note-button").on('click', prepareNoteCreate);
@@ -140,6 +140,7 @@ function renderJobUnstar() {
   $('.star-toggle').html('<span class="glyphicon glyphicon-star"></span> Unstar');
   $('.star-toggle').removeClass('star-job').addClass('unstar-job');
 }
+
 function removeCompany() {
   var company = this.closest('.card-holder')
   var id = $(company).data('id')
@@ -202,7 +203,6 @@ function filterCompanies() {
     .then(addCards)
     .then(centerMap)
   );
-
 }
 
 function getFilters() {
@@ -282,8 +282,6 @@ function centerMap() {
   map.fitBounds(bounds);
 }
 
-
-
 function clearFields() {
   $("#create-note-title").val("")
   $("#create-note-body").val("")
@@ -321,6 +319,7 @@ function displayNotes(){
   //   rawNotes.forEach(renderNote);
   // })
 }
+
 function createNotes(raw) {
   for (var i = 0; i < raw.length; i++) {
     var note = new Note(
@@ -404,30 +403,30 @@ function renderNote(note){
 //   })
 // };
 
-function submitChanges(note){
-  var id = note.id
-  var user_id = $('#create-note-button').data('userId')
-  var title = $(`#note-${note.id}`).find('.note-title').text();
-  var body = $(`#note-${note.id}`).find('.note-body').text();
-  var company_id = $('#create-note-button').data('companyId')
-  var noteUpdate = { title: title,
-                       body: body,
-                       user_id: user_id,
-                       company_id: company_id}
-  $.ajax({
-    url: `/companies/${company_id}/notes/${id}`,
-    type: "PUT",
-    data: {note: noteUpdate}
-  }).then(
-    $(`#note-${id}`).removeClass('edit-box')
-  ).then(
-    $(`#note-${id} .edit-button`).off()
-  ).then(
-    $(`#note-${id} .edit-button`).text('Edit')
-  ).then(
-    $(`#note-${id} .edit-button`).on('click', editEvent(note))
-  )
-}
+// function submitChanges(note){
+//   var id = note.id
+//   var user_id = $('#create-note-button').data('userId')
+//   var title = $(`#note-${note.id}`).find('.note-title').text();
+//   var body = $(`#note-${note.id}`).find('.note-body').text();
+//   var company_id = $('#create-note-button').data('companyId')
+//   var noteUpdate = { title: title,
+//                        body: body,
+//                        user_id: user_id,
+//                        company_id: company_id}
+//   $.ajax({
+//     url: `/companies/${company_id}/notes/${id}`,
+//     type: "PUT",
+//     data: {note: noteUpdate}
+//   }).then(
+//     $(`#note-${id}`).removeClass('edit-box')
+//   ).then(
+//     $(`#note-${id} .edit-button`).off()
+//   ).then(
+//     $(`#note-${id} .edit-button`).text('Edit')
+//   ).then(
+//     $(`#note-${id} .edit-button`).on('click', editEvent(note))
+//   )
+// }
 
 // function bindNoteEvents(note){
 //   $(`#note-${note.id} .delete-button`).on('click', function(){deleteNote(note)})
