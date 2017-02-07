@@ -13,4 +13,5 @@ class Note < ApplicationRecord
       user.notes
     end
   end
+
 end

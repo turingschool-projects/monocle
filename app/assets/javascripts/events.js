@@ -308,7 +308,7 @@ function prepareNoteCreate(){
 }
 
 function displayNotes(){
-  var params = { company_id: pathFinder()[2] || "" }
+  var params = { company_id: pathFinder()[2] }
   $.ajax({
     url: "/api/v1/notes",
     method: "GET",
