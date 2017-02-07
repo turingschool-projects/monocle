@@ -15,5 +15,6 @@
 //= require_tree .
 //= require formatted_date
 //= require note
-//= require events
 //= require company_show
+//= require validations
+//= require events

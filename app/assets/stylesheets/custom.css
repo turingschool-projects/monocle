@@ -86,21 +86,35 @@ body {
 }
 
 #company-map {
-  margin-top: 80px;
-  margin-right: 20px;
+  display: inline-block;
   border: 1.5px solid;
+  top: 20px;
   height: 330px;
   width: 730px;
   float: right;
+}
+
+.locations {
+  width: 300px;
+  display: inline-block;
+}
+
+table #locations {
+  width: 300px;
 }
 
 .edit-box {
   background-color: #d2d2d2 !important;
 }
 
+
 .element-being-edited {
   font-style: italic;
   border-bottom-style: solid;
   border-bottom-color: light-blue;
   border-bottom-width: thin;
+}
+
+#zip_input, #distance_select {
+  margin-right: 10px;
 }

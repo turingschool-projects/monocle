@@ -1,9 +1,12 @@
 class Api::V1::NotesController < ApplicationController
+
   before_action :set_company, only: [:create, :update, :destroy]
+
 
   def index
     render json: Note.get_notes(params[:company_id], current_user), status: 200
   end
+
 
   def create
     note = Note.new(note_params)
@@ -40,4 +43,6 @@ class Api::V1::NotesController < ApplicationController
     def set_company
      @company = Company.find_by(name: params[:company_name])
     end
+=======
+>>>>>>> development
 end

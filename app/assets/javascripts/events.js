@@ -156,6 +156,7 @@ function removeCompany() {
     success: function(){ company.remove() }
   })
 }
+<<<<<<< HEAD
 
 function addCards(companies) {
   companies.forEach(function (company, index){
@@ -198,6 +199,73 @@ function toggleSizeSelect() {
   $('#sizes').toggle()
 }
 
+function clearFields() {
+  $("#create-note-title").val("")
+  $("#create-note-body").val("")
+}
+
+function prepareNoteCreate(){
+    var note = { title: $("#create-note-title").val(),
+                  body: $("#create-note-body").val(),
+                  status: $(':radio:checked').val()
+                }
+
+    return $.ajax({
+      url: "/api/v1/notes",
+      method: "POST",
+      data: {note: note, company_name: $("#create-note-company").val()}
+    })
+    .done(clearFields)
+    .done(window.location.replace("/notes"))
+}
+
+function displayNotes(){
+  var params = { company_id: pathFinder()[2] }
+  $.ajax({
+    url: "/api/v1/notes",
+    method: "GET",
+    type: "json",
+    data: params
+  })
+  .then(createNotes)
+}
+
+function createNotes(raw) {
+  for (var i = 0; i < raw.length; i++) {
+    var note = new Note(
+      raw[i].id,
+      raw[i].author,
+      raw[i].title,
+      raw[i].body,
+      raw[i].company_name,
+      raw[i].status,
+      raw[i].created_at
+    );
+    note.showNote($('#notes'));
+    note.addNoteButtons($('.buttons'));
+    note.bindNoteEvents();
+  }
+}
+
+function toggleCompaniesWithinDistance() {
+  $('#zip').toggle()
+  if(!$(this).is(':checked')) {
+    $('#zip_input').val('')
+    filterCompanies();
+  }
+}
+
+function validateZipThenFilter() {
+  $('#zip-error').remove();
+  var zip = getSearchZip();
+
+  if (/^\d{5}(-\d{4})?$/.test(zip)) {
+    filterCompanies();
+  } else {
+    $('#zip').append('<p id="zip-error" class="bg-danger">Please enter a valid zipcode</p>');
+  }
+}
+
 function filterCompanies() {
   var filters = getFilters();
   $.when()
@@ -208,23 +276,43 @@ function filterCompanies() {
     .then(addCards)
     .then(centerMap)
   );
+
 }
 
 function getFilters() {
   var filters = {
     company_size: [],
-    industry_ids: []
+    industry_ids: [],
+    with_locations_near: []
   }
   var convertedSizes = convertCompanySize($('#sizes').val())
+  var searchZip      = getSearchZip();
+  var searchDistance = getSearchDistance();
 
-    for (var i = 0; i < convertedSizes.length; i++) {
-      filters['company_size'].push(convertedSizes[i]);
-    }
+  if (searchZip) {
+    filters['with_locations_near'].push(searchZip);
+    filters['with_locations_near'].push(searchDistance);
+  }
+
+  for (var i = 0; i < convertedSizes.length; i++) {
+    filters['company_size'].push(convertedSizes[i]);
+  }
+
   $('#industry-options :checked').each(function(index, checkbox) {
     filters['industry_ids'].push($(checkbox).val());
   });
 
   return filters;
+}
+
+function getSearchZip() {
+  var zip = $('#zip_input').val();
+  return zip;
+}
+
+function getSearchDistance() {
+  var distance = $('#distance_select').val();
+  return distance;
 }
 
 function convertCompanySize(dropdownValue) {
@@ -285,52 +373,4 @@ function removeMapMarkers() {
 function centerMap() {
   map.setCenter(bounds.getCenter());
   map.fitBounds(bounds);
-}
-
-function clearFields() {
-  $("#create-note-title").val("")
-  $("#create-note-body").val("")
-}
-
-function prepareNoteCreate(){
-    var note = { title: $("#create-note-title").val(),
-                  body: $("#create-note-body").val(),
-                  status: $(':radio:checked').val()
-                }
-
-    return $.ajax({
-      url: "/api/v1/notes",
-      method: "POST",
-      data: {note: note, company_name: $("#create-note-company").val()}
-    })
-    .done(clearFields)
-    .done(window.location.replace("/notes"))
-}
-
-function displayNotes(){
-  var params = { company_id: pathFinder()[2] }
-  $.ajax({
-    url: "/api/v1/notes",
-    method: "GET",
-    type: "json",
-    data: params
-  })
-  .then(createNotes)
-}
-
-function createNotes(raw) {
-  for (var i = 0; i < raw.length; i++) {
-    var note = new Note(
-      raw[i].id,
-      raw[i].author,
-      raw[i].title,
-      raw[i].body,
-      raw[i].company_name,
-      raw[i].status,
-      raw[i].created_at
-    );
-    note.showNote($('#notes'));
-    note.addNoteButtons($('.buttons'));
-    note.bindNoteEvents();
-  }
 }
