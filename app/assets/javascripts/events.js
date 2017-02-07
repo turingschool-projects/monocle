@@ -12,7 +12,9 @@ $(document).ready( function(){
   $(".btn-remove-job").on("click", removeJob);
   $("div#industry-options :checkbox").change(filterCompanies);
   $("div#size-options :checkbox").change(toggleSizeSelect);
+  $('div#within-distance :checkbox').change(toggleCompaniesWithinDistance);
   $("#size-options").on('change', 'select#sizes', filterCompanies);
+  $('#filter-by-zip').on('click', validateZipThenFilter);
 
   $.when()
   .then(initMap)
@@ -190,6 +192,25 @@ function toggleSizeSelect() {
   $('#sizes').toggle()
 }
 
+function toggleCompaniesWithinDistance() {
+  $('#zip').toggle()
+  if(!$(this).is(':checked')) {
+    $('#zip_input').val('')
+    filterCompanies();
+  }
+}
+
+function validateZipThenFilter() {
+  $('#zip-error').remove();
+  var zip = getSearchZip();
+
+  if (/^\d{5}(-\d{4})?$/.test(zip)) {
+    filterCompanies();
+  } else {
+    $('#zip').append('<p id="zip-error" class="bg-danger">Please enter a valid zipcode</p>');
+  }
+}
+
 function filterCompanies() {
   var filters = getFilters();
   $.when()
@@ -206,19 +227,37 @@ function filterCompanies() {
 function getFilters() {
   var filters = {
     company_size: [],
-    industry_ids: []
+    industry_ids: [],
+    with_locations_near: []
   }
-  debugger;
   var convertedSizes = convertCompanySize($('#sizes').val())
+  var searchZip      = getSearchZip();
+  var searchDistance = getSearchDistance();
 
-    for (var i = 0; i < convertedSizes.length; i++) {
-      filters['company_size'].push(convertedSizes[i]);
-    }
+  if (searchZip) {
+    filters['with_locations_near'].push(searchZip);
+    filters['with_locations_near'].push(searchDistance);
+  }
+
+  for (var i = 0; i < convertedSizes.length; i++) {
+    filters['company_size'].push(convertedSizes[i]);
+  }
+
   $('#industry-options :checked').each(function(index, checkbox) {
     filters['industry_ids'].push($(checkbox).val());
   });
 
   return filters;
+}
+
+function getSearchZip() {
+  var zip = $('#zip_input').val();
+  return zip;
+}
+
+function getSearchDistance() {
+  var distance = $('#distance_select').val();
+  return distance;
 }
 
 function convertCompanySize(dropdownValue) {
