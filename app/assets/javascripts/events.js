@@ -298,7 +298,6 @@ function prepareNoteCreate(){
       method: "POST",
       data: {note: note, company_name: companyName}
     })
-    .done(renderNote)
     .done(clearFields)
     .done(window.location.replace("/notes"))
 }
