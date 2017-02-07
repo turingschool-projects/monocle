@@ -83,6 +83,22 @@
     <% end %>
     <%= link_to 'Add Location', new_company_location_path(@company), class: "btn btn-default" %>
 
+    <% if !@pending_locations.empty? %>
+      <h4>Pending Locations</h4>
+    <% end %>
+    <% @pending_locations.each do |location| %>
+        <tr>
+          <td>
+            <% location.full_location.each do |line| %>
+              <%= line %><br>
+            <% end %>
+          </td>
+          <td>
+            <%= button_to "Approve", {controller: "admin/locations", action: "update", location: {status: "approved"}, id: location.id}, method: :put %>
+          </td>
+        </tr>
+    <% end %>
+
     <br />
     <br />
 
