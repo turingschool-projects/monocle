@@ -1,5 +1,4 @@
 $(document).ready( function(){
-  // $("#create-company").on('click', checkCompanyFields;
 
 });
 
@@ -7,7 +6,6 @@ function checkCompanyFields() {
 
     var x, y, z, a, b, c, d, e, f, text;
 
-    // Get the value of the input field with id="numb"
     x = document.getElementById("location_street_address").value;
     y = document.getElementById("location_phone").value;
     z = document.getElementById("location_primary_contact").value;
