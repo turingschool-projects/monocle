@@ -319,7 +319,7 @@ function createNotes(raw) {
       raw[i].author,
       raw[i].title,
       raw[i].body,
-      raw[i].company_id,
+      raw[i].company_name,
       raw[i].status,
       raw[i].created_at
     );
