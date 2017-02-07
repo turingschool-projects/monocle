@@ -320,7 +320,7 @@ function createNotes(raw) {
       raw[i].title,
       raw[i].body,
       raw[i].company_id,
-      raw[i].isPrivate,
+      raw[i].status,
       raw[i].created_at
     );
     note.showNote($('#notes'));

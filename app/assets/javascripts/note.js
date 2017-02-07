@@ -1,11 +1,11 @@
 class Note {
-  constructor(id, author, title, body, company, isPrivate, createdDate) {
+  constructor(id, author, title, body, company, status, createdDate) {
     this.id = id;
     this.author = author;
     this.title = title;
     this.body = body;
     this.company = company;
-    this.isPrivate = isPrivate;
+    this.status = status;
     this.createdDate = new FormattedDate(createdDate).date;
   }
 
@@ -19,7 +19,7 @@ class Note {
                   <td><p>${this.createdDate}</p></td> \
                   <td><p>${this.title}</p></td> \
                   <td><p>${this.body}</p></td> \
-                  <td><p>${this.isPrivate}</p></td> \
+                  <td><p>${this.status}</p></td> \
                   <td class='buttons'></td>
                 </tr>`;
     return html;
@@ -75,6 +75,7 @@ class Note {
     var $editButton = $(`#note-${this.id} .buttons .edit-button`);
 
     $editButton.html("Edit");
+    $(`#note-${this.id}`).removeClass('edit-box');
     $title.attr('contenteditable', false).removeClass('element-being-edited');
     $body.attr('contenteditable', false).removeClass('element-being-edited');
   }
