@@ -25,8 +25,8 @@ class CompaniesController < ApplicationController
       redirect_to company_path(@company)
     else
       # flash.now[:danger] = @company.errors.full_messages
-      flash.now[:danger] = "Missing required fields"
-      render :new
+      flash[:danger] = "Missing required fields"
+      redirect_to new_company_path
     end
   end
 
