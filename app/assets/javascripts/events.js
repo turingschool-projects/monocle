@@ -257,6 +257,9 @@ function placeMapMarker(company, index) {
   });
 
   markers.push(this['marker' + index]);
+  if (markers.length === 0) {
+    alert("no companies!")
+  }
   bounds.extend(this['marker' + index].getPosition());
 }
 
