@@ -7,6 +7,7 @@ class Company < ApplicationRecord
   has_many :notes
   has_many :locations
   mount_uploader :logo, LogoUploader
+
   scope :company_size, -> (size) { where('companies.size IN (?)', size) }
   scope :industry_ids, -> (industries) { joins(:industries).where('industries.name IN (?)', industries) }
 
@@ -15,6 +16,16 @@ class Company < ApplicationRecord
   enum status: [:pending, :approved, :rejected]
 
   validates :name, :website, :headquarters, :products_services, :presence => true
+  def self.with_locations_near(location_inputs)
+    zip      = location_inputs[0]
+    distance = location_inputs[1]
+
+    nearby_locations = Location.near(zip, distance)
+    nearby_locations_ids = nearby_locations.map do |location|
+      location.id
+    end
+    joins(:locations).where('locations.id IN (?)', nearby_locations_ids)
+  end
 
   def approved
     self.status = 1
@@ -27,7 +38,7 @@ class Company < ApplicationRecord
   end
 
   def self.approved_companies
-    Company.where('status = ?', '1')
+    Company.where('companies.status = ?', '1')
   end
 
   def self.pending_companies
