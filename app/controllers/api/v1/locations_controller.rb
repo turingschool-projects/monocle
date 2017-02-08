@@ -1,7 +1,7 @@
-class Api::V1::Companies::LocationsController < ApplicationController
+class Api::V1::LocationsController < ApplicationController
 
   def index
-    # company = Company.find(params[:id])
+    company = Company.find(params[:company_id])
     render json: company.locations
   end
 
