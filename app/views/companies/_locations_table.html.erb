@@ -46,7 +46,7 @@
   function getCompanyLocations() {
     var companyId = $('#company-id').data('companyId')
     $.ajax({
-      url: "/api/v1/locations/",
+      url: "/api/v1/companies/2/locations/",
       method: "GET",
       data: {company_id: companyId},
       type: "json",
@@ -60,7 +60,7 @@
   function adminApproveLocation() {
     var locationId = $('#admin-approves-location').data('location');
     $.ajax({
-      url: "/api/v1/locations/" + locationId,
+      url: "/api/v1/companies/2/locations/" + locationId,
       method: "PUT",
       data: {id: locationId},
       type: "json",
