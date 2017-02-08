@@ -6,6 +6,7 @@ require 'spec_helper'
 require 'rspec/rails'
 require 'capybara/rails'
 require 'capybara/rspec'
+require 'capybara/poltergeist'
 
 Shoulda::Matchers.configure do |config|
   config.integrate do |with|
@@ -14,7 +15,13 @@ Shoulda::Matchers.configure do |config|
   end
 end
 
-Capybara.raise_server_errors = false
+
+Capybara.register_driver :poltergeist_debug do |app|
+  Capybara::Poltergeist::Driver.new(app, :inspector => true, :phantomjs_logger => true)
+end
+
+# Capybara.javascript_driver = :poltergeist
+Capybara.javascript_driver = :poltergeist_debug
 
 # require 'vcr'
 #
@@ -29,7 +36,6 @@ ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
-  config.use_transactional_fixtures = false
   config.infer_spec_type_from_file_location!
   config.filter_rails_from_backtrace!
 end
