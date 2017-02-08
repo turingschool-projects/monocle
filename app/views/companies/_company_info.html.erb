@@ -32,5 +32,8 @@
         </td>
       </tr>
     </table>
+    <% if current_user.admin? %>
+    <%= link_to 'Edit Company Information', edit_admin_company_path(@company), class: "btn btn-default" %>
+    <% end %>
   </div>
 </div>
