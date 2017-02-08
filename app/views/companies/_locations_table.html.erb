@@ -31,16 +31,20 @@
 </div>
 
 <script type="text/javascript">
-    getCompanyLocations();
-    $("#pending-location-table-body").on('click', '#admin-approves-location', function(event) {
-
-      var blah = this.data("id");
-
-      debugger;
-
+    displayCompanyLocations();
+    $("#pending-location-table-body").on('click', '#admin-approves-location', function() {
+      var locationId = this.getAttribute('data-id');
+      adminApproveLocation(locationId);
     });
 
-  function getCompanyLocations() {
+    $("#approved-location-table-body").on('click', '#admin-edit-location', function() {
+      var locationId = this.getAttribute('data-id');
+      var companyId = $('#company-id').data('companyId');
+      window.location.pathname = (`/companies/${companyId}/locations/${locationId}/edit`);
+      $.get
+    });
+
+  function displayCompanyLocations() {
     var companyId = $('#company-id').data('companyId');
     $.ajax({
       url: "/api/v1/companies/" + companyId + "/locations",
@@ -48,25 +52,27 @@
       data: {'company_id': companyId},
       type: "json",
       success: function (locations) {
-             appendLocations(locations);
-     }
+        appendLocations(locations);
+      }
     })
   }
 
-  function adminApproveLocation() {
-    var locationId = $('#admin-approves-location').data('location');
+  function adminApproveLocation(locationId) {
     var companyId = $('#company-id').data('companyId');
     $.ajax({
       url: `/api/v1/companies/${companyId}/locations/${locationId}`,
       method: "PUT",
       data: {'location_id': locationId, 'company_id': companyId},
       type: "json",
-      success: function (locations) {
+      success: function () {
+        displayCompanyLocations();
       }
     })
   }
 
   function appendLocations(locations) {
+    $('#pending-location-table-body').slice(0).empty()
+    $('#approved-location-table-body').slice(0).empty()
     locations.forEach(function(location){
       if (location.status === "pending") {
         appendPendingLocation(location);
@@ -94,7 +100,7 @@
                   <td>${location.city_state_zip}</td>
                   <td>${location.phone}</td>
                   <td>${location.primary_contact}</td>
-                  <td><button id='admin-edit-location'>Edit</button></td>
+                  <td><button id='admin-edit-location' data-id=${location.id}>Edit</button></td>
                </tr>`
 
     $('#approved-location-table-body').append(row)

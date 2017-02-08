@@ -6,7 +6,8 @@ class Api::V1::LocationsController < ApplicationController
   end
 
   def update
-    location = Location.find(params[:id])
+    company = Company.find(params[:company_id])
+    location = company.locations.find(params[:location_id])
     location.approved!
     render json: location.to_json
   end
