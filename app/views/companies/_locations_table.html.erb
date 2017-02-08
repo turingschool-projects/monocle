@@ -31,47 +31,72 @@
 </div>
 
 <script type="text/javascript">
-  $(document).ready( function(){
     getCompanyLocations();
-    $("#admin-approves-location").on('click', adminApproveLocation);
-  });
+    $("#pending-location-table-body").on('click', '#admin-approves-location', function(event) {
 
-  function buildTable() {
-    var row = "<tr><td>" + food.name + "</td><td contenteditable='true' class='enclosed-cells calorie-cell'>" + food.calories + "</td><td><button class='delete-button'><span class=' glyphicon glyphicon-remove'></span></button></td></tr>"
+      var blah = this.data("id");
 
-    $("approved-location-table-body").append(row)
+      debugger;
 
-  }
+    });
 
   function getCompanyLocations() {
-    var companyId = $('#company-id').data('companyId')
+    var companyId = $('#company-id').data('companyId');
     $.ajax({
-      url: "/api/v1/companies/2/locations/",
+      url: "/api/v1/companies/" + companyId + "/locations",
       method: "GET",
-      data: {company_id: companyId},
+      data: {'company_id': companyId},
       type: "json",
-      success: function (location) {
-        debugger;
-             appendLocation(location);
+      success: function (locations) {
+             appendLocations(locations);
      }
     })
   }
 
   function adminApproveLocation() {
     var locationId = $('#admin-approves-location').data('location');
+    var companyId = $('#company-id').data('companyId');
     $.ajax({
-      url: "/api/v1/companies/2/locations/" + locationId,
+      url: `/api/v1/companies/${companyId}/locations/${locationId}`,
       method: "PUT",
-      data: {id: locationId},
+      data: {'location_id': locationId, 'company_id': companyId},
       type: "json",
-      success: function (location) {
-             appendLocation(location);
-         }
+      success: function (locations) {
+      }
     })
   }
 
-  function appendLocation(location) {
-    debugger;
-    $("locations #locations tr").val()
+  function appendLocations(locations) {
+    locations.forEach(function(location){
+      if (location.status === "pending") {
+        appendPendingLocation(location);
+      } else if (location.status === "approved") {
+        appendApprovedLocation(location);
+      }
+    })
+  }
+
+  function appendPendingLocation(location) {
+    var row = `<tr>
+                  <td>${location.street_address}</td>
+                  <td>${location.city_state_zip}</td>
+                  <td>${location.phone}</td>
+                  <td>${location.primary_contact}</td>
+                  <td><button id='admin-approves-location' data-id=${location.id}>Approve</button></td>
+               </tr>`
+
+    $('#pending-location-table-body').append(row)
+  }
+
+  function appendApprovedLocation(location) {
+    var row = `<tr>
+                  <td>${location.street_address}</td>
+                  <td>${location.city_state_zip}</td>
+                  <td>${location.phone}</td>
+                  <td>${location.primary_contact}</td>
+                  <td><button id='admin-edit-location'>Edit</button></td>
+               </tr>`
+
+    $('#approved-location-table-body').append(row)
   }
 </script>
