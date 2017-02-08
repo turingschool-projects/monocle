@@ -1,0 +1,77 @@
+
+<div class="locations-container">
+  <h4>Approved Location(s):</h4>
+  <table id="approved-location-table" class="table">
+    <tr>
+      <th>Address</th>
+      <th>City,&nbspState,&nbspZip</th>
+      <th>Phone</th>
+      <th>Primary&nbspContact</th>
+      <th>Edit</th>
+    </tr>
+    <tbody id="approved-location-table-body">
+    </tbody>
+  </table>
+
+  <h4>Pending Location(s):</h4>
+
+  <table id="pending-location-table" class="table">
+    <tr>
+      <th>Address</th>
+      <th>City,&nbspState,&nbspZip</th>
+      <th>Phone</th>
+      <th>Primary&nbspContact</th>
+      <th>Approve</th>
+    </tr>
+    <tbody id="pending-location-table-body">
+    </tbody>
+  </table>
+  <!-- <button type="button" id="admin-approves-location" data-location='<%#= location.id %>'>Approve</button> -->
+
+</div>
+
+<script type="text/javascript">
+  $(document).ready( function(){
+    getCompanyLocations();
+    $("#admin-approves-location").on('click', adminApproveLocation);
+  });
+
+  function buildTable() {
+    var row = "<tr><td>" + food.name + "</td><td contenteditable='true' class='enclosed-cells calorie-cell'>" + food.calories + "</td><td><button class='delete-button'><span class=' glyphicon glyphicon-remove'></span></button></td></tr>"
+
+    $("approved-location-table-body").append(row)
+
+  }
+
+  function getCompanyLocations() {
+    var companyId = $('#company-id').data('companyId')
+    $.ajax({
+      url: "/api/v1/locations/",
+      method: "GET",
+      data: {company_id: companyId},
+      type: "json",
+      success: function (location) {
+        debugger;
+             appendLocation(location);
+     }
+    })
+  }
+
+  function adminApproveLocation() {
+    var locationId = $('#admin-approves-location').data('location');
+    $.ajax({
+      url: "/api/v1/locations/" + locationId,
+      method: "PUT",
+      data: {id: locationId},
+      type: "json",
+      success: function (location) {
+             appendLocation(location);
+         }
+    })
+  }
+
+  function appendLocation(location) {
+    debugger;
+    $("locations #locations tr").val()
+  }
+</script>

@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="col-md-3">
+    <br>
+    <div class='big-logo'>
+      <%= image_tag @company.logo.url %>
+    </div>
+  </div>
+  <div class="col-md-9">
+    <h3>Company Information</h3>
+    <table class="table-condensed table-hover">
+      <tr>
+        <th>Products/Services:</th>
+        <td><%= @company.products_services %></td>
+      </tr>
+      <tr>
+        <th>Website:</th>
+        <td><%= link_to @company.website, "http://#{@company.website}", :target => "_blank" %></td>
+      </tr>
+      <tr>
+        <th>Headquarters:</th>
+        <td><%= @company.headquarters %></td>
+      </tr>
+      <tr>
+        <th># of Employees:</th>
+        <td><%= @company.size %></td>
+      </tr>
+      <tr>
+        <th>Industries:</th>
+          <td><% @company.industries.map do |industry| %>
+            <i><%= industry.name %></i>
+          <% end %>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

@@ -1,104 +1,14 @@
 <div class="container">
   <div class="well">
     <h1 class="company-name"><%= @company.name %></h1>
-    <div class="container">
-      <div class="col-md-3">
-        <br>
-        <div class='big-logo'>
-          <%= image_tag @company.logo.url %>
-        </div>
-      </div>
-      <div class="col-md-9">
-        <h3>Company Information</h3>
-        <table class="table-condensed table-hover">
-          <tr>
-            <th>Products/Services:</th>
-            <td><%= @company.products_services %></td>
-          </tr>
-          <tr>
-            <th>Website:</th>
-            <td><%= link_to @company.website, "http://#{@company.website}", :target => "_blank" %></td>
-          </tr>
-          <tr>
-            <th>Headquarters:</th>
-            <td><%= @company.headquarters %></td>
-          </tr>
-          <tr>
-            <th>Number of Employees:</th>
-            <td><%= @company.size %></td>
-          </tr>
-          <tr>
-            <th>Industries:</th>
-            <td><% @company.industries.map do |industry| %>
-              <ul>
-                <li>
-                  <%= industry.name %>
-                </li>
-              </ul>
-              <% end %>
-            </td>
-          </tr>
-        </table>
-      </div>
-    </div>
+    <%= render partial: 'company_info' %>
+    <section id="company-map"></section>
+    <%= render partial: 'locations_table' %>
+  </div>
 
-    <div class="locations-map">
-      <section class="locations">
-        <h3><%= pluralize(@company.approved_locations.count, 'Location') %></h3>
-        <% @company.approved_locations.each do |location | %>
-        <table class="table-condensed table-hover" id='locations'>
-          <tr>
-            <td>Address:</td>
-            <td><%= location.street_address %> <br />
-              <%= location.street_address_2 %></td>
-          </tr>
-          <tr>
-            <td>City, State Zip:</td>
-            <td><%= location.city_state_zip %></td>
-          </tr>
-          <tr>
-            <td>Phone:</td>
-            <td><%= location.phone %></td>
-          </tr>
-          <tr>
-            <td>Primary Contact:</td>
-            <td><%= location.primary_contact %></td>
-          </tr>
-            <tr>
-              <td><% if current_user.admin? %>
-                <%= link_to 'Edit Location', edit_admin_location_path(company_id: @company.id, id: location.id), class:"btn btn-default" %>
-                <%= link_to 'Delete Location', admin_location_path(company_id: @company.id, id: location.id), method: :delete, data: {confirm: "Are you sure you want to delete this location?"}, class:"btn btn-danger"  %>
-                <% end %>
-              </td>
-            </tr>
-          </table>
-        <% end %>
-      </section>
-        <section id="company-map"></section>
-    </div>
+  <div id="company-id" data-company-id='<%= @company.id %> '>
 
-    <% if current_user.admin? %>
-    <%= link_to 'Edit Company Information', edit_admin_company_path(@company), class: "btn btn-default" %>
-    <% end %>
-    <%= link_to 'Add Location', new_company_location_path(@company), class: "btn btn-default" %>
-
-    <% if !@pending_locations.empty? %>
-      <h4>Pending Locations</h4>
-    <% end %>
-    <% @pending_locations.each do |location| %>
-        <tr>
-          <td>
-            <% location.full_location.each do |line| %>
-              <%= line %><br>
-            <% end %>
-          </td>
-          <td>
-            <button type="button" id="admin-approves-location" data-location='<%= location.id %>'>Approve</button>
-          </td>
-        </tr>
-    <% end %>
-    <br/>
-    <br/>
+  </div>
 
     <% if current_user.companies.exists?(@company.id) %>
       <div class='starred-message'>

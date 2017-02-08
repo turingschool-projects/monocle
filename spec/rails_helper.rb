@@ -5,6 +5,7 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 require 'spec_helper'
 require 'rspec/rails'
 require 'capybara/rails'
+require 'capybara/rspec'
 
 Shoulda::Matchers.configure do |config|
   config.integrate do |with|
@@ -13,12 +14,14 @@ Shoulda::Matchers.configure do |config|
   end
 end
 
-require 'vcr'
+Capybara.raise_server_errors = false
 
-VCR.configure do |config|
-  config.cassette_library_dir = "spec/fixtures/vcr_cassettes"
-  config.hook_into :webmock
-end
+# require 'vcr'
+#
+# VCR.configure do |config|
+#   config.cassette_library_dir = "spec/fixtures/vcr_cassettes"
+#   config.hook_into :webmock
+# end
 
 Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 
@@ -26,7 +29,7 @@ ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
-  config.use_transactional_fixtures = true
+  config.use_transactional_fixtures = false
   config.infer_spec_type_from_file_location!
   config.filter_rails_from_backtrace!
 end
@@ -71,6 +74,7 @@ def create_unapproved_company(name = 'TestCo')
       website: "www.monocle.com",
       headquarters: "Denver, CO",
       products_services: "Jobs",
+      size: 50,
       status: 0
     })
   company.industries << industry
@@ -156,6 +160,66 @@ def create_company_with_industry(industry, name = 'TestCo')
     city: "Denver",
     state: "Colorado",
     zip_code: "80202",
+    status: 1
+  })
+  Company.last
+end
+
+def create_boulder_company(name = 'boulder co')
+  company = Company.create({
+      name: name,
+      website: "www.boulder.com",
+      headquarters: "Boulder, CO",
+      products_services: "keyboards",
+      status: 1
+    })
+  company.locations << Location.create({
+    street_address: '1215 13th St',
+    phone: "123-456-789",
+    primary_contact: "Dan Broadbent",
+    city: "Boulder",
+    state: "Colorado",
+    zip_code: "80302",
+    status: 1
+  })
+  Company.last
+end
+
+def create_denver_company(name = 'denver co')
+  company = Company.create({
+      name: name,
+      website: "www.denver.com",
+      headquarters: "Denver, CO",
+      products_services: "turtles",
+      status: 1
+    })
+  company.locations << Location.create({
+    street_address: '891 14th St, Denver',
+    phone: "123-456-789",
+    primary_contact: "Alisher",
+    city: "Denver",
+    state: "Colorado",
+    zip_code: "80202",
+    status: 1
+  })
+  Company.last
+end
+
+def create_colorado_springs_company(name = 'co-springs co')
+  company = Company.create({
+      name: name,
+      website: "www.co-springs.com",
+      headquarters: "Colorado Springs, CO",
+      products_services: "lamas",
+      status: 1
+    })
+  company.locations << Location.create({
+    street_address: '2801 Palmer Park Blvd',
+    phone: "123-456-789",
+    primary_contact: "Alisher",
+    city: "Colorado Springs",
+    state: "Colorado",
+    zip_code: "80909",
     status: 1
   })
   Company.last
