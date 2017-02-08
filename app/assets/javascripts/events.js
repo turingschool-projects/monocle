@@ -452,3 +452,21 @@ function deleteNote(note) {
 function removeNoteHTML(note) {
   $(`#note-${note.id}`).remove()
 }
+
+// $('#companies-body').bind("DOMSubtreeModified",function(){
+//   console.log('hey Im changed');
+// });
+$(document).ready( function () {
+  var target = document.getElementById('companies-body');
+
+  var observer = new MutationObserver(function(mutations) {
+    debugger;
+    mutations.forEach(function(mutation){
+      console.log(mutation.type);
+    })
+  })
+
+  var config = { childList: true, subtree: true }
+
+  observer.observe(target, config);
+})
