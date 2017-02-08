@@ -26,7 +26,7 @@ RSpec.describe Note, type: :model do
       user = create(:user)
       note = Note.create!(body: 'test', title:'test', author:'test', user: user, company: company)
 
-      expect(Note.get_notes(user)).to eq([note])
+      expect(Note.get_notes(nil,user)).to eq([note])
     end
   end
 end

@@ -5,15 +5,15 @@ RSpec.describe ("notes endpoints") do
     it "returns all notes for the current user" do
       user_logs_in
       user = User.first
-      company = Company.create(name: "Test", status: "approved")
+      company = create(:company)
 
-      note_1 = Note.create(title: "Good company",
+      note_1 = Note.create!(title: "Good company",
                            body: "Maybe apply here",
                            author: user.username,
                            user: user,
                            company_id: company.id)
 
-      note_2 = Note.create(title: "Great company",
+      note_2 = Note.create!(title: "Great company",
                            body: "Apply here",
                            author: user.username,
                            user: user,
@@ -45,7 +45,7 @@ RSpec.describe ("notes endpoints") do
     it "creates a note for the current user" do
       user_logs_in
       user = User.first
-      company = Company.create(name: "Test", status: "approved")
+      company = create(:company)
 
       params = { note: { title: "test title", body: "test body" }, company_name: company.name }
 
@@ -83,7 +83,7 @@ RSpec.describe ("notes endpoints") do
     it "creates a note for the current user" do
       user_logs_in
       user = User.first
-      company = Company.create(name: "Test", status: "approved")
+      company = create(:company)
       note = Note.create(title: "test title", body: "test body", user: user, company: company)
 
       params = { note: { title: "test title 2", body: "test body 2" }, company_name: company.name }
@@ -106,7 +106,7 @@ RSpec.describe ("notes endpoints") do
     it "creates a note for the current user" do
       user_logs_in
       user = User.first
-      company = Company.create(name: "Test", status: "approved")
+      company = create(:company)
       note = Note.create(title: "test title", body: "test body", user: user, company: company)
 
       params = {company_name: company.name}

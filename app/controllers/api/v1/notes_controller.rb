@@ -43,6 +43,5 @@ class Api::V1::NotesController < ApplicationController
     def set_company
      @company = Company.find_by(name: params[:company_name])
     end
-=======
->>>>>>> development
+
 end
