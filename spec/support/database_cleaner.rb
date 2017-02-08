@@ -1,4 +1,8 @@
+require 'capybara/rspec'
+
 RSpec.configure do |config|
+
+  config.use_transactional_fixtures = false
 
   config.before(:suite) do
     if config.use_transactional_fixtures?
@@ -32,15 +36,12 @@ RSpec.configure do |config|
       DatabaseCleaner.strategy = :truncation
     end
   end
-  # config.before(:each, :js => true) do
-  #   DatabaseCleaner.strategy = :truncation
-  # end
 
   config.before(:each) do
     DatabaseCleaner.start
   end
 
-  config.after(:each) do
+  config.append_after(:each) do
     DatabaseCleaner.clean
   end
 
