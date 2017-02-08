@@ -17,11 +17,16 @@ end
 
 
 Capybara.register_driver :poltergeist_debug do |app|
-  Capybara::Poltergeist::Driver.new(app, :inspector => true, :phantomjs_logger => true)
+  Capybara::Poltergeist::Driver.new(app, :inspector => true, :phantomjs_logger => true, :js_errors => false)
+end
+
+Capybara.register_driver :poltergeist_no_errors do |app|
+  Capybara::Poltergeist::Driver.new(app, :js_errors => false)
 end
 
 # Capybara.javascript_driver = :poltergeist
-Capybara.javascript_driver = :poltergeist_debug
+# Capybara.javascript_driver = :poltergeist_debug
+Capybara.javascript_driver = :poltergeist_no_errors
 
 # require 'vcr'
 #
