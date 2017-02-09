@@ -4,7 +4,7 @@ class Company < ApplicationRecord
   has_many :industries, through: :company_industries
   has_many :starred_companies
   has_many :users, through: :starred_companies
-  has_many :company_notes
+  has_many :company_notes, dependent: :destroy
   has_many :notes, through: :company_notes
   has_many :locations
   mount_uploader :logo, LogoUploader
