@@ -156,7 +156,6 @@ function removeCompany() {
     success: function(){ company.remove() }
   })
 }
-<<<<<<< HEAD
 
 function addCards(companies) {
   companies.forEach(function (company, index){
@@ -213,7 +212,7 @@ function prepareNoteCreate(){
     return $.ajax({
       url: "/api/v1/notes",
       method: "POST",
-      data: {note: note, company_name: $("#create-note-company").val()}
+      data: {note: note, company_ids: $("#create-note-company").val()}
     })
     .done(clearFields)
     .done(window.location.replace("/notes"))

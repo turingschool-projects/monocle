@@ -7,7 +7,7 @@
       <input type="radio" name="note-status" id="public-note" value="public"> Public Note</br></br>
       <input type="text" name="note[title]" id="create-note-title" placeholder="Title"></br></br>
       <textarea name="note[body]" id="create-note-body" placeholder="Body ..."></textarea></br>
-      <textarea name="note[company]" id="create-note-company" placeholder="Company ..."></textarea></br>
+      <%= select_tag "create-note-company", options_from_collection_for_select(@companies, "id", "name"), {multiple: true} %></br>
       <button type="button" name="create-note" id="create-note-button">Create Note</button>
     </form>
   </div>

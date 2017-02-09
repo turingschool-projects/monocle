@@ -1,6 +1,7 @@
 class Note < ApplicationRecord
   belongs_to :user
-  belongs_to :company
+  has_many :company_notes
+  has_many :companies, through: :company_notes
 
   def company_name
     company.name
