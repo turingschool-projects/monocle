@@ -32,17 +32,19 @@
 </div>
 
 <script type="text/javascript">
+    var coordinates = $('#lat-lng').data('coordinates');
+
     displayCompanyLocations();
     $("#pending-location-table-body").on('click', '#admin-approves-location', function() {
       var locationId = this.getAttribute('data-id');
       adminApproveLocation(locationId);
+      initCompanyMap(); 
     });
 
     $("#approved-location-table-body").on('click', '#admin-edit-location', function() {
       var locationId = this.getAttribute('data-id');
       var companyId = $('#company-id').data('companyId');
       window.location.pathname = (`/companies/${companyId}/locations/${locationId}/edit`);
-      $.get
     });
 
   function displayCompanyLocations() {

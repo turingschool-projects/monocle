@@ -35,13 +35,13 @@ function pathFinder() {
 
 function renderStar() {
   $('.starred-message').html('');
-  $('.star-toggle').html('<span class="glyphicon glyphicon-star"></span> Star');
+  $('.star-toggle').html('<span class="glyphicon glyphicon-star"></span> Favorite');
   $('.star-toggle').removeClass('unstar').addClass('star');
 }
 
 function renderUnstar() {
-  $('.starred-message').html('<h4><i class="text-info"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> This company has been saved in your starred list.</i></h4>')
-  $('.star-toggle').html('<span class="glyphicon glyphicon-star"></span> Unstar');
+  $('.starred-message').html('<h4><i class="text-info"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> This company has been saved in your favorites list.</i></h4>')
+  $('.star-toggle').html('<span class="glyphicon glyphicon-star"></span> Unfavorite');
   $('.star-toggle').removeClass('star').addClass('unstar');
 }
 
@@ -139,13 +139,13 @@ function prepareJobUnstar() {
 
 function renderJobStar() {
   $('.starred-message').html('');
-  $('.star-toggle').html('<span class="glyphicon glyphicon-star"></span> Star');
+  $('.star-toggle').html('<span class="glyphicon glyphicon-star"></span> Favorite');
   $('.star-toggle').removeClass('unstar-job').addClass('star-job');
 }
 
 function renderJobUnstar() {
-  $('.starred-message').html('<h4><i class="text-info"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> This job has been saved in your starred list.</i></h4>')
-  $('.star-toggle').html('<span class="glyphicon glyphicon-star"></span> Unstar');
+  $('.starred-message').html('<h4><i class="text-info"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> This job has been saved in your favorites list.</i></h4>')
+  $('.star-toggle').html('<span class="glyphicon glyphicon-star"></span> Unfavorite');
   $('.star-toggle').removeClass('star-job').addClass('unstar-job');
 }
 
