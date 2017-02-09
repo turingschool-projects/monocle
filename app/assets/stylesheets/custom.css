@@ -86,27 +86,24 @@ body {
 }
 
 #company-map {
-  display: inline-block;
   border: 1.5px solid;
   top: 20px;
-  height: 330px;
-  width: 730px;
-  float: right;
+  height: 400px;
+  width: 100%;
 }
 
-.locations {
-  width: 300px;
-  display: inline-block;
+.locations-container {
+  margin-top: 50px
 }
 
-table #locations {
-  width: 300px;
-}
 
 .edit-box {
   background-color: #d2d2d2 !important;
 }
 
+.locations-container {
+  width: 100%;
+}
 
 .element-being-edited {
   font-style: italic;

@@ -1,0 +1,109 @@
+<div class="locations-container">
+
+  <h4>Approved Location(s):</h4>
+
+  <table id="approved-location-table" class="table">
+    <tr>
+      <th>Address</th>
+      <th>City,&nbspState,&nbspZip</th>
+      <th>Phone</th>
+      <th>Primary&nbspContact</th>
+      <th></th>
+    </tr>
+    <tbody id="approved-location-table-body">
+    </tbody>
+  </table>
+
+  <h4>Pending Location(s):</h4>
+
+  <table id="pending-location-table" class="table">
+    <tr>
+      <th>Address</th>
+      <th>City,&nbspState,&nbspZip</th>
+      <th>Phone</th>
+      <th>Primary&nbspContact</th>
+      <th>Approve</th>
+    </tr>
+    <tbody id="pending-location-table-body">
+    </tbody>
+  </table>
+
+  <%= link_to 'Add Location', new_company_location_path(@company), class: "btn btn-default" %>
+</div>
+
+<script type="text/javascript">
+    displayCompanyLocations();
+    $("#pending-location-table-body").on('click', '#admin-approves-location', function() {
+      var locationId = this.getAttribute('data-id');
+      adminApproveLocation(locationId);
+    });
+
+    $("#approved-location-table-body").on('click', '#admin-edit-location', function() {
+      var locationId = this.getAttribute('data-id');
+      var companyId = $('#company-id').data('companyId');
+      window.location.pathname = (`/companies/${companyId}/locations/${locationId}/edit`);
+      $.get
+    });
+
+  function displayCompanyLocations() {
+    var companyId = $('#company-id').data('companyId');
+    $.ajax({
+      url: "/api/v1/companies/" + companyId + "/locations",
+      method: "GET",
+      data: {'company_id': companyId},
+      type: "json",
+      success: function (locations) {
+        appendLocations(locations);
+      }
+    })
+  }
+
+  function adminApproveLocation(locationId) {
+    var companyId = $('#company-id').data('companyId');
+    $.ajax({
+      url: `/api/v1/companies/${companyId}/locations/${locationId}`,
+      method: "PUT",
+      data: {'location_id': locationId, 'company_id': companyId},
+      type: "json",
+      success: function () {
+        displayCompanyLocations();
+      }
+    })
+  }
+
+  function appendLocations(locations) {
+    $('#pending-location-table-body').slice(0).empty()
+    $('#approved-location-table-body').slice(0).empty()
+    locations.forEach(function(location){
+      if (location.status === "pending") {
+        appendPendingLocation(location);
+      } else if (location.status === "approved") {
+        appendApprovedLocation(location);
+      }
+    })
+  }
+
+  function appendPendingLocation(location) {
+    var row = `<tr>
+                  <td>${location.street_address}</td>
+                  <td>${location.city_state_zip}</td>
+                  <td>${location.phone}</td>
+                  <td>${location.primary_contact}</td>
+                  <td><button id='admin-approves-location' data-id=${location.id}>Approve</button></td>
+               </tr>`
+
+    $('#pending-location-table-body').append(row)
+  }
+
+  function appendApprovedLocation(location) {
+    var row = `<tr>
+                  <td>${location.street_address}</td>
+                  <td>${location.city_state_zip}</td>
+                  <td>${location.phone}</td>
+                  <td>${location.primary_contact}</td>
+                  <td><button id='admin-edit-location' data-id=${location.id}>Edit</button></td>
+               </tr>`
+
+    $('#approved-location-table-body').append(row)
+  }
+</script>
