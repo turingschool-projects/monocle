@@ -201,6 +201,10 @@ function appendNoCompaniesNotice() {
 
 function toggleSizeSelect() {
   $('#sizes').toggle()
+  if(!$(this).is(':checked')) {
+    $('#sizes').val('All');
+    filterCompanies();
+  }
 }
 
 function removeCards() {
