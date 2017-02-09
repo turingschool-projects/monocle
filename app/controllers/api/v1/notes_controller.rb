@@ -1,6 +1,6 @@
 class Api::V1::NotesController < ApplicationController
 
-  before_action :set_company, only: [:create, :update, :destroy]
+  before_action :set_company, only: [:update, :destroy]
 
 
   def index
@@ -12,8 +12,11 @@ class Api::V1::NotesController < ApplicationController
     note = Note.new(note_params)
     note.author = current_user.username
     note.user = current_user
-    note.company = @company
     if note.save
+      get_company_ids.each do |company_id|
+        company = Company.find(company_id.to_i)
+        company.notes << note
+      end
       render json: note, status: 201
     else
       render json: {message: "Failed to create a note"}, status: 400
@@ -42,6 +45,10 @@ class Api::V1::NotesController < ApplicationController
 
     def set_company
      @company = Company.find_by(name: params[:company_name])
+    end
+
+    def get_company_ids
+      params.require(:company_ids)
     end
 
 end

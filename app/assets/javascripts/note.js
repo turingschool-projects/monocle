@@ -1,10 +1,10 @@
 class Note {
-  constructor(id, author, title, body, company_name, status, createdDate) {
+  constructor(id, author, title, body, company_names, status, createdDate) {
     this.id = id;
     this.author = author;
     this.title = title;
     this.body = body;
-    this.company_name = company_name;
+    this.company_names = company_names;
     this.status = status;
     this.createdDate = new FormattedDate(createdDate).date;
   }
@@ -15,7 +15,7 @@ class Note {
 
   noteHTML() {
     var html = `<tr id='note-${this.id}'> \'
-                  <td><p>${this.company_name}</p></td> \
+                  <td><p>${this.company_names}</p></td> \
                   <td><p>${this.createdDate}</p></td> \
                   <td><p>${this.title}</p></td> \
                   <td><p>${this.body}</p></td> \

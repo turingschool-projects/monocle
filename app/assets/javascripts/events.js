@@ -221,7 +221,7 @@ function prepareNoteCreate(){
     return $.ajax({
       url: "/api/v1/notes",
       method: "POST",
-      data: {note: note, company_name: $("#create-note-company").val()}
+      data: {note: note, company_ids: $("#create-note-company").val()}
     })
     .done(clearFields)
     .done(window.location.replace("/notes"))
@@ -240,12 +240,13 @@ function displayNotes(){
 
 function createNotes(raw) {
   for (var i = 0; i < raw.length; i++) {
+    debugger;
     var note = new Note(
       raw[i].id,
       raw[i].author,
       raw[i].title,
       raw[i].body,
-      raw[i].company_name,
+      raw[i].company_names,
       raw[i].status,
       raw[i].created_at
     );

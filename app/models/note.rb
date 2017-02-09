@@ -1,12 +1,9 @@
 class Note < ApplicationRecord
   belongs_to :user
-  belongs_to :company
+  has_many :company_notes, dependent: :destroy
+  has_many :companies, through: :company_notes
 
-  def company_name
-    company.name
-  end
-
-  def self.get_notes(company_id=nil, user=nil)
+  def self.get_notes(company_id, user)
     if company_id
       Company.find(company_id).notes
     else
