@@ -5,19 +5,19 @@
     <%= form_for(@company) do |f| %>
     <tr>
       <td><%= f.label :name   %><span class='required'>*</span></td>
-      <td><%= f.text_field :name, class: 'required-field' %> ***Required Field***</td>
+      <td><%= f.text_field :name, class: 'required-field' %></td>
     </tr>
     <tr>
       <td><%= f.label :website %><span class='required'>*</span></td>
-      <td><%= f.text_field :website, class: 'required-field' %> *** Required Field *** <p id="website_req"></p></td>
+      <td><%= f.text_field :website, class: 'required-field' %><p id="website_req"></p></td>
     </tr>
     <tr>
       <td><%= f.label :headquarters %><span class='required'>*</span></td>
-      <td><%= f.text_field :headquarters, class: 'required-field' %> *** Required Field *** <p id="headquarters_req"></p></td>
+      <td><%= f.text_field :headquarters, class: 'required-field' %><p id="headquarters_req"></p></td>
     </tr>
     <tr>
       <td><%= f.label :products_services %><span class='required'>*</span></td>
-      <td><%= f.text_field :products_services, class: 'required-field' %> *** Required Field *** <p id="services_req"></p></td>
+      <td><%= f.text_field :products_services, class: 'required-field' %><p id="services_req"></p></td>
     </tr>
     <tr>
       <td><%= f.label :size, "Number of Employees:" %></td>
@@ -29,7 +29,7 @@
     </tr>
     <tr>
       <td><%= f.label :industries %><span class='required'>*</span></td>
-      <td> *** Required Field ***
+      <td id='industry-checkboxes'>
         <br>
         <br>
         <% @industries.each do |industry| %>
@@ -48,7 +48,7 @@
       <%= fields_for(@location) do |u| %>
       <tr>
         <td><%= u.label :street_address %><span class='required'>*</span></td>
-        <td><%= u.text_field :street_address, class: 'required-field' %> *** Required Field *** <p id="street_address_req"></p></td>
+        <td><%= u.text_field :street_address, class: 'required-field' %><p id="street_address_req"></p></td>
       </tr>
       <tr>
         <td><%= u.label :street_address_2 %></td>
