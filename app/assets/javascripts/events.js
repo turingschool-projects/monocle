@@ -18,6 +18,7 @@ $(document).ready(function(){
   $("#size-options").on('change', 'select#sizes', filterCompanies);
   $('div#within-distance :checkbox').change(toggleCompaniesWithinDistance);
   $('#filter-by-zip').on('click', validateZipThenFilter);
+  $('#create-company').on('click', checkCompanyFields)
 
   $.when()
   .then(initMap)
