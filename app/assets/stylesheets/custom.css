@@ -115,3 +115,7 @@ body {
 #zip_input, #distance_select {
   margin-right: 10px;
 }
+
+.required {
+  color: red;
+}
