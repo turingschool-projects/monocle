@@ -21,7 +21,6 @@
 
 
   <% if current_user.starred_jobs.exists?(uid: @job.uid) %>
-  <% byebug %>
     <div class='starred-message'>
       <h4><i class="text-info">
       <span class="glyphicon glyphicon-star" aria-hidden="true"></span> This job has been saved in your starred list.
