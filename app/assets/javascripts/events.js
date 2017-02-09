@@ -231,12 +231,13 @@ function displayNotes(){
 
 function createNotes(raw) {
   for (var i = 0; i < raw.length; i++) {
+    debugger;
     var note = new Note(
       raw[i].id,
       raw[i].author,
       raw[i].title,
       raw[i].body,
-      raw[i].company_name,
+      raw[i].company_names,
       raw[i].status,
       raw[i].created_at
     );
