@@ -14,12 +14,12 @@
         </i></h4>
       </div>
       <%= button_tag class: "btn btn-default btn-lg unstar star-toggle", data: {no_turbolink: true, id: @company.id} do %>
-      <%= content_tag("span", "", class: ["glyphicon", "glyphicon-star"], aria_hidden: true) %> Unstar
+      <%= content_tag("span", "", class: ["glyphicon", "glyphicon-star"], aria_hidden: true) %> Unfavorite
       <% end %>
     <% else %>
       <div class='starred-message'></div>
       <%= button_tag class: "btn btn-default btn-lg star star-toggle", data: {no_turbolink: true, id: @company.id} do %>
-      <%= content_tag("span", "", class: ["glyphicon", "glyphicon-star"], aria_hidden: true) %> Star
+      <%= content_tag("span", "", class: ["glyphicon", "glyphicon-star"], aria_hidden: true) %> Favorite
       <% end %>
     <% end %>
     <div class="panel-group">
