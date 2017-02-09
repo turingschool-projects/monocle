@@ -5,7 +5,7 @@
     <%= form_for(@company) do |f| %>
     <tr>
       <td><%= f.label :name   %></td>
-      <td><%= f.text_field :name %> *** Required Field *** <p id="name_req"></p></td>
+      <td><%= f.text_field :name %> ***Required Field***</td>
     </tr>
     <tr>
       <td><%= f.label :website %></td>
@@ -29,6 +29,9 @@
     </tr>
     <tr>
       <td><%= f.label :industries %></td>
+      <% @industries.each do |industry| %>
+        <%= check_box_tag 'industry_ids[]', industry.id -%>
+        <%= h industry.name -%><br />
       <td> *** Required Field ***
         <br>
         <br>

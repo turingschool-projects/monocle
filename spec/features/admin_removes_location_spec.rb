@@ -6,12 +6,9 @@ RSpec.feature 'admin deletes company location' do
       company = create_approved_company
 
       admin_logs_in
-      visit company_path(company)
-      expect(page).to have_content("1331 17th St")
 
-      within "#locations" do
-        click_on "Delete Location"
-      end
+      visit edit_company_location_path(company, company.locations.first)
+      click_on "Delete Location"
 
       expect(page).to_not have_content("1331 17th St")
     end

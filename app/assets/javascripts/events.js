@@ -156,7 +156,6 @@ function removeCompany() {
     success: function(){ company.remove() }
   })
 }
-<<<<<<< HEAD
 
 function addCards(companies) {
   companies.forEach(function (company, index){
