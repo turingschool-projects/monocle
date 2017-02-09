@@ -4,7 +4,7 @@ class Note < ApplicationRecord
   has_many :companies, through: :company_notes
 
   def self.get_notes(company_id, user)
-    if false
+    if company_id
       Company.find(company_id).notes
     else
       user.notes
