@@ -15,7 +15,7 @@ class Note {
 
   noteHTML() {
     var html = `<tr id='note-${this.id}'> \'
-                  <td><p>${this.company_name}</p></td> \
+                  <td><p>${this.company_names}</p></td> \
                   <td><p>${this.createdDate}</p></td> \
                   <td><p>${this.title}</p></td> \
                   <td><p>${this.body}</p></td> \
