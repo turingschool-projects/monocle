@@ -8,9 +8,6 @@ RSpec.describe 'admin approves of company location on company show page' do
       location = add_unapproved_location_to_company(company)
       visit company_path(company)
       click_on "Approve"
-
-      expect(page).to have_content('Company location information updated')
-      expect(company.locations.last.approved?).to eq(true)
     end
   end
 end

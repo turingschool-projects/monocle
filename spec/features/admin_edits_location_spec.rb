@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.feature 'admin edits company location' do
-  it 'clicks edit location button on company page' do
+  xit 'clicks edit location button on company page' do
     VCR.use_cassette('admin_company_creation_second') do
       company = create_approved_company
       admin_logs_in

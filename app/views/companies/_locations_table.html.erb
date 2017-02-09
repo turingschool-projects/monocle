@@ -1,13 +1,14 @@
-
 <div class="locations-container">
+
   <h4>Approved Location(s):</h4>
+
   <table id="approved-location-table" class="table">
     <tr>
       <th>Address</th>
       <th>City,&nbspState,&nbspZip</th>
       <th>Phone</th>
       <th>Primary&nbspContact</th>
-      <th>Edit</th>
+      <th></th>
     </tr>
     <tbody id="approved-location-table-body">
     </tbody>
@@ -26,7 +27,7 @@
     <tbody id="pending-location-table-body">
     </tbody>
   </table>
-  <!-- <button type="button" id="admin-approves-location" data-location='<%#= location.id %>'>Approve</button> -->
+
   <%= link_to 'Add Location', new_company_location_path(@company), class: "btn btn-default" %>
 </div>
 
