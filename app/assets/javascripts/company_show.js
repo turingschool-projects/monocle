@@ -3,7 +3,6 @@ function initCompanyMap() {
   var companyId = $('#company-id').data('companyId');
 
   var coordinates = getCoordinates();
-  debugger;
 
   var map = new google.maps.Map(document.getElementById('company-map'), {
       center: new google.maps.LatLng(coordinates[0][0], coordinates[0][1]),
