@@ -8,6 +8,7 @@ class Location < ApplicationRecord
 
   enum status: [:pending, :approved, :rejected]
 
+  validates :street_address, :phone, :primary_contact, :city, :state, :zip_code, :presence => true 
 
   def geocode_with_backup
     if geocode.nil?
