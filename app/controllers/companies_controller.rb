@@ -1,10 +1,10 @@
 class CompaniesController < ApplicationController
-  helper_method :company_size
+  helper_method :company_size, :company_size_filter
   include CompanySize
 
   def index
     @industries = Industry.all
-    @company_sizes = company_size_options
+    @company_sizes = company_size
   end
 
   def show
@@ -43,6 +43,10 @@ class CompaniesController < ApplicationController
 
   def company_size
     company_size_options
+  end
+
+  def company_size_filter
+    company_size_filter_options
   end
 
   def location_params
