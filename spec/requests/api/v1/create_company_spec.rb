@@ -16,7 +16,7 @@ RSpec.describe 'CompanyController' do
   context 'GET api/v1/company/find' do
     it "can find a company" do
       company = Company.create(name: "Granicus")
-      data = { name: "Granicus", token: "TurMonLook4" }
+      data = { name: "Granicus" }
 
       get '/api/v1/companies/find', params: data
 
@@ -26,13 +26,24 @@ RSpec.describe 'CompanyController' do
       expect(parsed['company_id']).to eq(company.id)
     end
     it "can't find a non existent company" do
-      data = { name: "Granicus", token: "TurMonLook4" }
+      data = { name: "Granicus" }
 
       get '/api/v1/companies/find', params: data
       parsed = JSON.parse(response.body)
 
       expect(response.status).to eq(404)
       expect(parsed).to eq("")
+    end
+    it "can't create company without key" do
+      data = { company: {name: "Granicus"} }
+
+      expect(Company.count).to eq(0)
+      post '/api/v1/companies', params: data
+      parsed = JSON.parse(response.body)
+
+
+      expect(response.status).to eq(401)
+      expect(parsed['error']).to eq('unauthorized')
     end
   end
 end
