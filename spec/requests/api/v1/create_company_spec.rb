@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe 'CompanyController' do
   context 'POST /api/v1/companies' do
     it "can create a company with a name" do
-      data = { company: {name: "Granicus"}}
+      data = { company: {name: "Granicus"}, token: "TurMonLook4"}
 
       expect(Company.count).to eq(0)
       post '/api/v1/companies', params: data
@@ -16,7 +16,7 @@ RSpec.describe 'CompanyController' do
   context 'GET api/v1/company/find' do
     it "can find a company" do
       company = Company.create(name: "Granicus")
-      data = { name: "Granicus" }
+      data = { name: "Granicus", token: "TurMonLook4" }
 
       get '/api/v1/companies/find', params: data
 
@@ -26,7 +26,7 @@ RSpec.describe 'CompanyController' do
       expect(parsed['company_id']).to eq(company.id)
     end
     it "can't find a non existent company" do
-      data = { name: "Granicus" }
+      data = { name: "Granicus", token: "TurMonLook4" }
 
       get '/api/v1/companies/find', params: data
       parsed = JSON.parse(response.body)

@@ -1,5 +1,7 @@
 class Api::V1::CompaniesController < ApplicationController
 
+  before_action :secure_creation, only: [:create]
+
   skip_before_action :authorize!, only: [:create]
 
   def index
@@ -19,6 +21,11 @@ class Api::V1::CompaniesController < ApplicationController
 
   def company_params
     params.require(:company).permit(:name)
+  end
+
+  def secure_creation
+    render json: {error: 'unauthorized'}, status: 401 unless 
+      params[:token] == "TurMonLook4"
   end
 
 end
