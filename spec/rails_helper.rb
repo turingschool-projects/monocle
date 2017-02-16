@@ -72,7 +72,6 @@ def create_unapproved_company(name = 'TestCo')
   company = Company.create({
       name: name,
       website: "www.monocle.com",
-      headquarters: "Denver, CO",
       products_services: "Jobs",
       size: 50,
       status: 0
@@ -126,7 +125,6 @@ def create_note_with_company_and_user
   company = Company.create({
       name: "Monocle",
       website: "www.monocle.com",
-      headquarters: "Denver, CO",
       products_services: "Jobs"
     })
   note = Note.create({
@@ -148,7 +146,6 @@ def create_company_with_industry(industry, name = 'TestCo')
   company = Company.create({
       name: name,
       website: "www.monocle.com",
-      headquarters: "Denver, CO",
       products_services: "Jobs",
       status: 1
     })
@@ -169,7 +166,6 @@ def create_boulder_company(name = 'boulder co')
   company = Company.create({
       name: name,
       website: "www.boulder.com",
-      headquarters: "Boulder, CO",
       products_services: "keyboards",
       status: 1
     })
@@ -189,7 +185,6 @@ def create_denver_company(name = 'denver co')
   company = Company.create({
       name: name,
       website: "www.denver.com",
-      headquarters: "Denver, CO",
       products_services: "turtles",
       status: 1
     })
@@ -209,7 +204,6 @@ def create_colorado_springs_company(name = 'co-springs co')
   company = Company.create({
       name: name,
       website: "www.co-springs.com",
-      headquarters: "Colorado Springs, CO",
       products_services: "lamas",
       status: 1
     })
