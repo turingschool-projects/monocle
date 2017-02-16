@@ -36,7 +36,6 @@ class CompaniesController < ApplicationController
   def company_params
     params.require(:company).permit(:name,
                                     :website,
-                                    :headquarters,
                                     :products_services,
                                     :logo).merge(size: params[:size])
   end
