@@ -23,7 +23,16 @@ RSpec.describe 'CompanyController' do
       parsed = JSON.parse(response.body)
 
       expect(response).to be_success
-      expect(parsed).to eq(company.id)
+      expect(parsed['company_id']).to eq(company.id)
+    end
+    it "can't find a non existent company" do
+      data = { name: "Granicus" }
+
+      get '/api/v1/companies/find', params: data
+      parsed = JSON.parse(response.body)
+
+      expect(response.status).to eq(404)
+      expect(parsed).to eq("")
     end
   end
 end
