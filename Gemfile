@@ -34,8 +34,7 @@ gem 'faraday'
 gem 'carrierwave', '>= 1.0.0.rc', '< 2.0'
 gem 'fog-aws'
 gem 'omniauth'
-gem 'omniauth-slack', github: 'kmrshntr/omniauth-slack'
-gem 'omniauth-census', git: "https://github.com/NZenitram/census_staging_oauth"
+gem 'omniauth-census', git: "https://github.com/turingschool-projects/omniauth-census"
 gem 'geocoder'
 gem 'travis'
 gem 'active_model_serializers', '~> 0.10.0'
