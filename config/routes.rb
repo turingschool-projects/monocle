@@ -34,7 +34,8 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :companies,       only: [:index] do
+      get '/companies/find', to: 'company_search#show', as: 'find_company'
+      resources :companies,       only: [:index, :create] do
         resources :locations,     only: [:index, :update]
       end
       resources :notes, only: [:index, :create, :update, :destroy]
