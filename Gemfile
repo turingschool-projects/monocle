@@ -39,6 +39,8 @@ gem 'geocoder'
 gem 'travis'
 gem 'active_model_serializers', '~> 0.10.0'
 gem 'babel-transpiler'
+gem 'thin'
+gem 'redcarpet'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

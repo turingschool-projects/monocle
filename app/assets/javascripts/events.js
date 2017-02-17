@@ -213,23 +213,26 @@ function removeCards() {
 }
 
 function clearFields() {
-  $("#create-note-title").val("")
-  $("#create-note-body").val("")
+  $("#notetitle").val("")
+  $("#notebody").val("")
 }
 
 function prepareNoteCreate(){
-    var note = { title: $("#create-note-title").val(),
-                  body: $("#create-note-body").val(),
+    var note = { title: $("#notetitle").val(),
+                  body: CKEDITOR.instances.notebody.getData(),
                   status: $(':radio:checked').val()
                 }
-
     return $.ajax({
       url: "/api/v1/notes",
       method: "POST",
-      data: {note: note, company_ids: $("#create-note-company").val()}
+      data: { note: note, company_ids: getCompanyId() }
     })
     .done(clearFields)
     .done(window.location.replace("/notes"))
+}
+
+function getCompanyId() {
+  return $("#create-note-company").val() ||  [$('.star-toggle').data('id')]
 }
 
 function displayNotes(){
