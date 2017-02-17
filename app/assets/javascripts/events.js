@@ -222,14 +222,18 @@ function prepareNoteCreate(){
                   body: $("#create-note-body").val(),
                   status: $(':radio:checked').val()
                 }
-
+debugger;
     return $.ajax({
       url: "/api/v1/notes",
       method: "POST",
-      data: {note: note, company_ids: $("#create-note-company").val()}
+      data: { note: note, company_ids: getCompanyId() }
     })
     .done(clearFields)
     .done(window.location.replace("/notes"))
+}
+
+function getCompanyId() {
+  return $("#create-note-company").val() ||  [$('.star-toggle').data('id')]
 }
 
 function displayNotes(){
