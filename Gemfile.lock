@@ -363,7 +363,7 @@ DEPENDENCIES
   rake
   rspec-rails
   sass-rails (~> 5.0)
-  selenium-webdriver (~> 2.53.4)
+  selenium-webdriver
   shoulda-matchers
   simplecov
   skylight
@@ -375,4 +375,4 @@ DEPENDENCIES
   webmock
 
 BUNDLED WITH
-   1.13.1
+   1.14.3
