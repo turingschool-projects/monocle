@@ -249,6 +249,7 @@ GEM
     rb-fsevent (0.9.8)
     rb-inotify (0.9.8)
       ffi (>= 0.5.0)
+    redcarpet (3.4.0)
     rspec-core (3.5.4)
       rspec-support (~> 3.5.0)
     rspec-expectations (3.5.0)
@@ -367,6 +368,7 @@ DEPENDENCIES
   rails (~> 5.0.0, >= 5.0.0.1)
   rails_12factor
   rake
+  redcarpet
   rspec-rails
   sass-rails (~> 5.0)
   selenium-webdriver (~> 2.53.4)

@@ -5,8 +5,15 @@
     <form>
       <input type="radio" name="note-status" id="private-note" value="private"> Private Note
       <input type="radio" name="note-status" id="public-note" value="public"> Public Note</br></br>
-      <input type="text" name="note[title]" id="create-note-title" placeholder="Title"></br></br>
-      <textarea name="note[body]" id="create-note-body" placeholder="Body ..."></textarea></br>
+      <input type="text" name="note[title]" id="notetitle" placeholder="Title"></br></br>
+      <textarea name="note[body]" id="notebody" placeholder="Body ..."></textarea></br>
+
+      <script>
+        // Replace the <textarea id="editor1"> with a CKEditor
+        // instance, using default configuration.
+        CKEDITOR.replace( 'note[body]' );
+        </script>
+
       <%= select_tag "create-note-company", options_from_collection_for_select(@companies, "id", "name"), {multiple: true} %></br>
       <button type="button" name="create-note" id="create-note-button">Create Note</button>
     </form>
