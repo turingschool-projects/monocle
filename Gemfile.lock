@@ -1,11 +1,4 @@
 GIT
-  remote: git://github.com/kmrshntr/omniauth-slack.git
-  revision: db4de8eb1a21e971128eceb1fd9b1f2f406c9a1d
-  specs:
-    omniauth-slack (2.3.0)
-      omniauth-oauth2 (~> 1.3.1)
-
-GIT
   remote: https://github.com/turingschool-projects/omniauth-census
   revision: 3d28a5040e79eae620c3550b90e94aeed8234571
   specs:
@@ -354,7 +347,6 @@ DEPENDENCIES
   listen (~> 3.0.5)
   omniauth
   omniauth-census!
-  omniauth-slack!
   pg (~> 0.18)
   pry-rails
   puma (~> 3.0)
