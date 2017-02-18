@@ -10,17 +10,6 @@ RSpec.describe 'As an authenticated user' do
 
       expect(page).to have_content("I work here")
     end
-    it "I can work at the company" do
-      user_logs_in
-      user = User.first
-      company = create(:company)
-
-      visit company_path(company)
-      click_on "I work here"
-
-      expect(user.employer).to eq(company)
-      expect(company.employees.first).to eq(user)
-    end
     it "disables the 'I work here button' when I'm an employee" do
       user_logs_in
       user = User.first
