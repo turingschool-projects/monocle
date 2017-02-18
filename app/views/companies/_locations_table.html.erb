@@ -1,6 +1,6 @@
 <div class="locations-container">
 
-  <h4>Approved Location(s):</h4>
+  <h4><%= "Approved Location".pluralize(@company.approved_locations.count) %></h4>
 
   <table id="approved-location-table" class="table">
     <tr>
@@ -13,8 +13,8 @@
     <tbody id="approved-location-table-body">
     </tbody>
   </table>
-
-  <h4>Pending Location(s):</h4>
+<% byebug %>
+  <h4><%= "Pending Location".pluralize(@company.pending_locations.count) %></h4>
 
   <table id="pending-location-table" class="table">
     <tr>

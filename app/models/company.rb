@@ -55,6 +55,10 @@ class Company < ApplicationRecord
     self.locations.where('status = ?', '1')
   end
 
+  def approved_locations
+    self.locations.where('status = ?', '0')
+  end
+
   def get_coordinates
     if locations.first
       locations.first.coordinates
