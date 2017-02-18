@@ -22,7 +22,7 @@
       <th>City,&nbspState,&nbspZip</th>
       <th>Phone</th>
       <th>Primary&nbspContact</th>
-      <th>Approve</th>
+      <th></th>
     </tr>
     <tbody id="pending-location-table-body">
     </tbody>
@@ -126,11 +126,15 @@
   }
 
   function appendPendingLocation(location) {
-    var row;
+    var row, address = location.street_address;
+
+    if (location.street_address_2 !== ""){
+      address += `, ${location.street_address_2}`
+    }
 
     if (userRole === "admin") {
       row = `<tr>
-               <td>${location.street_address}</td>
+               <td>${address}</td>
                <td>${location.city_state_zip}</td>
                <td>${location.phone}</td>
                <td>${location.primary_contact}</td>
@@ -138,7 +142,7 @@
            </tr>`
     } else {
       row = `<tr>
-               <td>${location.street_address}</td>
+               <td>${address}</td>
                <td>${location.city_state_zip}</td>
                <td>${location.phone}</td>
                <td>${location.primary_contact}</td>
@@ -149,8 +153,14 @@
   }
 
   function appendApprovedLocation(location) {
+    var address = location.street_address;
+
+    if (location.street_address_2 !== ""){
+      address += `, ${location.street_address_2}`
+    }
+
     var row = `<tr>
-                <td>${location.street_address}</td>
+                <td>${address}</td>
                 <td>${location.city_state_zip}</td>
                 <td>${location.phone}</td>
                 <td>${location.primary_contact}</td>
@@ -159,5 +169,4 @@
 
     $('#approved-location-table-body').append(row)
   }
-
 </script>
