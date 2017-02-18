@@ -33,12 +33,13 @@ gem 'faraday'
 gem 'carrierwave', '>= 1.0.0.rc', '< 2.0'
 gem 'fog-aws'
 gem 'omniauth'
-gem 'omniauth-slack', github: 'kmrshntr/omniauth-slack'
-gem 'omniauth-census', git: "https://github.com/NZenitram/census_staging_oauth"
+gem 'omniauth-census', git: "https://github.com/turingschool-projects/omniauth-census"
 gem 'geocoder'
 gem 'travis'
 gem 'active_model_serializers', '~> 0.10.0'
 gem 'babel-transpiler'
+gem 'thin'
+gem 'redcarpet'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -48,7 +49,7 @@ group :development, :test do
   gem 'faker'
   gem 'launchy'
   gem 'capybara'
-  gem 'selenium-webdriver', '~> 2.53.4'
+  gem 'selenium-webdriver'
   # gem 'poltergeist'
 end
 
