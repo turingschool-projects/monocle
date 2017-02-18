@@ -30,6 +30,8 @@ class LocationsController < ApplicationController
     @location.assign_attributes(location_params)
 
     if @location.save
+      @location.pending!
+      flash[:notice] = 'Update pending approval'
       redirect_to company_path(@company)
     else
       flash.now[:error] = @location.errors.full_messages.join(', ')
