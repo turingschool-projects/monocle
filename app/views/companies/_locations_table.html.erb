@@ -29,10 +29,14 @@
   </table>
 
   <%= link_to 'Add Location', new_company_location_path(@company), class: "btn btn-default" %>
+  <div id="lat-lng" data-coordinates="<%= @company.coordinates %>"></div>
+  <div id="current-user-role" data-role="<%= current_user.role %>"></div>
+
 </div>
 
 <script type="text/javascript">
     var coordinates = $('#lat-lng').data('coordinates');
+    var userRole = $('#current-user-role').data('role');
 
     displayCompanyLocations();
 
@@ -59,7 +63,6 @@
         appendLocations(locations);
       }
     })
-
   }
 
   function adminApproveLocation(locationId) {
@@ -135,14 +138,26 @@
   }
 
   function appendApprovedLocation(location) {
-    var row = `<tr>
-                  <td>${location.street_address}</td>
-                  <td>${location.city_state_zip}</td>
-                  <td>${location.phone}</td>
-                  <td>${location.primary_contact}</td>
-                  <td><button id='admin-edit-location' data-id=${location.id}>Edit</button></td>
-               </tr>`
+    var row;
+
+    if (userRole === "admin") {
+      row = `<tr>
+                <td>${location.street_address}</td>
+                <td>${location.city_state_zip}</td>
+                <td>${location.phone}</td>
+                <td>${location.primary_contact}</td>
+                <td><button id='admin-edit-location' data-id=${location.id}>Edit</button></td>
+            </tr>`
+    } else {
+      row = `<tr>
+                <td>${location.street_address}</td>
+                <td>${location.city_state_zip}</td>
+                <td>${location.phone}</td>
+                <td>${location.primary_contact}</td>
+            </tr>`
+    }
 
     $('#approved-location-table-body').append(row)
   }
+
 </script>
