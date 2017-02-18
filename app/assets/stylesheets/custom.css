@@ -123,3 +123,8 @@ body {
 .required-error {
   width: 150px;
 }
+
+/*ccs-toggle-switch*/
+div.switch-toggle.well {
+  width: 25%;
+}
