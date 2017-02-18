@@ -30,6 +30,7 @@ Rails.application.routes.draw do
   end
 
   resources :notes, only: [:index, :new, :create]
+  resources :employed_alumni, only: [:index]
 
   namespace :api do
     namespace :v1 do

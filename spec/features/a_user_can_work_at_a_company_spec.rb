@@ -21,4 +21,17 @@ RSpec.describe 'As an authenticated user' do
       expect(page).to have_button('I work here', disabled: true)
     end
   end
+  context "when I navigate to the Employed Alumni page" do
+    it "shows me a list of employed alumni" do
+      user_logs_in
+      user = create(:user)
+      company = create(:company)
+
+      visit root_path
+      click_on "Employed Alumni"
+
+      expect(page).to have_content(user.username)
+      expect(page).to have_content(company.name)
+    end
+  end
 end
