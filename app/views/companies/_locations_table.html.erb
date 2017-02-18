@@ -126,36 +126,36 @@
   }
 
   function appendPendingLocation(location) {
-    var row = `<tr>
-                  <td>${location.street_address}</td>
-                  <td>${location.city_state_zip}</td>
-                  <td>${location.phone}</td>
-                  <td>${location.primary_contact}</td>
-                  <td><button id='admin-approves-location' data-id=${location.id}>Approve</button></td>
-               </tr>`
+    var row;
+
+    if (userRole === "admin") {
+      row = `<tr>
+               <td>${location.street_address}</td>
+               <td>${location.city_state_zip}</td>
+               <td>${location.phone}</td>
+               <td>${location.primary_contact}</td>
+               <td><button id='admin-approves-location' data-id=${location.id}>Approve</button></td>
+           </tr>`
+    } else {
+      row = `<tr>
+               <td>${location.street_address}</td>
+               <td>${location.city_state_zip}</td>
+               <td>${location.phone}</td>
+               <td>${location.primary_contact}</td>
+           </tr>`
+    }
 
     $('#pending-location-table-body').append(row)
   }
 
   function appendApprovedLocation(location) {
-    var row;
-
-    if (userRole === "admin") {
-      row = `<tr>
+    var row = `<tr>
                 <td>${location.street_address}</td>
                 <td>${location.city_state_zip}</td>
                 <td>${location.phone}</td>
                 <td>${location.primary_contact}</td>
                 <td><button id='admin-edit-location' data-id=${location.id}>Edit</button></td>
-            </tr>`
-    } else {
-      row = `<tr>
-                <td>${location.street_address}</td>
-                <td>${location.city_state_zip}</td>
-                <td>${location.phone}</td>
-                <td>${location.primary_contact}</td>
-            </tr>`
-    }
+              </tr>`
 
     $('#approved-location-table-body').append(row)
   }
