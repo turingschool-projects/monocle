@@ -84,8 +84,8 @@ class Company < ApplicationRecord
   end
 
   def attach_industries_and_location(industries, state, location_params)
-    assign_industries(industries)
-    attach_location(location_params, state)
+    assign_industries(industries) if industries
+    attach_location(location_params, state) if location_params && state
   end
 
   def assign_industries(industry_ids)

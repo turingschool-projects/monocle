@@ -25,8 +25,7 @@ class CompaniesController < ApplicationController
       flash[:notice] = "Company is pending approval."
       redirect_to company_path(@company)
     else
-      # flash.now[:danger] = @company.errors.full_messages
-      flash[:danger] = "Missing required fields"
+      flash[:danger] = "Missing required name field"
       redirect_to new_company_path
     end
   end
@@ -36,7 +35,6 @@ class CompaniesController < ApplicationController
   def company_params
     params.require(:company).permit(:name,
                                     :website,
-                                    :headquarters,
                                     :products_services,
                                     :logo).merge(size: params[:size])
   end
