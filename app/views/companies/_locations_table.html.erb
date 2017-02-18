@@ -79,13 +79,33 @@
   function appendLocations(locations) {
     $('#pending-location-table-body').slice(0).empty()
     $('#approved-location-table-body').slice(0).empty()
+
+    var pendingLocations = [];
+    var approvedLocations = [];
+
     locations.forEach(function(location){
       if (location.status === "pending") {
-        appendPendingLocation(location);
+        pendingLocations.push(location);
       } else if (location.status === "approved") {
-        appendApprovedLocation(location);
+        approvedLocations.push(location);
       }
     })
+
+    pendingLocations.forEach(function(location){
+      appendPendingLocation(location);
+    })
+
+    approvedLocations.forEach(function(location){
+      appendApprovedLocation(location);
+    })
+
+    if (pendingLocations.length === 0) {
+      $('#pending-location-table').css('display', 'none')
+    }
+
+    if (approvedLocations.length === 0) {
+      $('#approved-location-table').css('display', 'none')
+    }
   }
 
   function appendPendingLocation(location) {
