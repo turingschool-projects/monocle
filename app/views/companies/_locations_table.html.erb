@@ -1,6 +1,6 @@
 <div class="locations-container">
 
-  <h4><%= "Approved Location".pluralize(@company.approved_locations.count) %></h4>
+  <span id="title-approved-locations"></span>
 
   <table id="approved-location-table" class="table">
     <tr>
@@ -13,8 +13,8 @@
     <tbody id="approved-location-table-body">
     </tbody>
   </table>
-<% byebug %>
-  <h4><%= "Pending Location".pluralize(@company.pending_locations.count) %></h4>
+
+  <span id="title-pending-locations"></span>
 
   <table id="pending-location-table" class="table">
     <tr>
@@ -101,10 +101,24 @@
 
     if (pendingLocations.length === 0) {
       $('#pending-location-table').css('display', 'none')
+      $('#title-pending-locations').css('display', 'none')
+    } else if (pendingLocations.length === 1) {
+      $('#title-pending-locations').slice(0).empty()
+      $('#title-pending-locations').append('<h4>Pending Location</h4>')
+    } else {
+      $('#title-pending-locations').slice(0).empty()
+      $('#title-pending-locations').append('<h4>Pending Locations</h4>')
     }
 
     if (approvedLocations.length === 0) {
       $('#approved-location-table').css('display', 'none')
+      $('#title-approved-locations').css('display', 'none')
+    } else if (approvedLocations.length === 1) {
+      $('#title-approved-locations').slice(0).empty()
+      $('#title-approved-locations').append('<h4>Approved Location</h4>')
+    } else {
+      $('#title-approved-locations').slice(0).empty()
+      $('#title-approved-locations').append('<h4>Approved Locations</h4>')
     }
   }
 

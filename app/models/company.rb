@@ -55,7 +55,7 @@ class Company < ApplicationRecord
     self.locations.where('status = ?', '1')
   end
 
-  def approved_locations
+  def pending_locations
     self.locations.where('status = ?', '0')
   end
 
