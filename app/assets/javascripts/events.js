@@ -228,18 +228,22 @@ function prepareNoteCreate(){
     return $.ajax({
       url: "/api/v1/notes",
       method: "POST",
-      data: { note: note, company_names: getCompanyId() }
+      data: { note: note, company_names: getCompanyName() }
     })
     .done(clearFields)
     .done(window.location.replace("/notes"))
 }
 
-function getCompanyId() {
+function getCompanyName() {
   var companyNames = []
   $(".token-input-list li p").each(function() {
     companyNames.push($(this).text())
   })
-  return companyNames || [$('.star-toggle').data('id')]
+  if(companyNames.length > 0) {
+    return companyNames;
+  }else {
+      return [$('.star-toggle').data('name')];
+  }
 }
 
 function displayNotes(){
