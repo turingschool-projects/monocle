@@ -340,6 +340,7 @@ function convertCompanySize(dropdownValue) {
 }
 
 function placeMapMarker(company, index) {
+  if (!company.coordinates) { return }
   this['infowindow' + index] = new google.maps.InfoWindow({
     content: company['name']
   });
