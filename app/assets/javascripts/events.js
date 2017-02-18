@@ -18,6 +18,10 @@ $(document).ready(function(){
   $("#size-options").on('change', 'select#sizes', filterCompanies);
   $('div#within-distance :checkbox').change(toggleCompaniesWithinDistance);
   $('#filter-by-zip').on('click', validateZipThenFilter);
+  $("#note-company-tokens").tokenInput("/companies.json", {
+    crossDomain: false
+  });
+
 
   $.when()
   .then(initMap)
@@ -224,14 +228,18 @@ function prepareNoteCreate(){
     return $.ajax({
       url: "/api/v1/notes",
       method: "POST",
-      data: { note: note, company_ids: getCompanyId() }
+      data: { note: note, company_names: getCompanyId() }
     })
     .done(clearFields)
     .done(window.location.replace("/notes"))
 }
 
 function getCompanyId() {
-  return $("#create-note-company").val() ||  [$('.star-toggle').data('id')]
+  var companyNames = []
+  $(".token-input-list li p").each(function() {
+    companyNames.push($(this).text())
+  })
+  return companyNames || [$('.star-toggle').data('id')]
 }
 
 function displayNotes(){

@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20170217224648) do
   create_table "companies", force: :cascade do |t|
     t.citext   "name"
     t.citext   "website"
+    t.citext   "headquarters"
     t.citext   "products_services"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
