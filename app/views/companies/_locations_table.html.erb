@@ -35,10 +35,10 @@
     var coordinates = $('#lat-lng').data('coordinates');
 
     displayCompanyLocations();
+
     $("#pending-location-table-body").on('click', '#admin-approves-location', function() {
       var locationId = this.getAttribute('data-id');
       adminApproveLocation(locationId);
-      initCompanyMap(); 
     });
 
     $("#approved-location-table-body").on('click', '#admin-edit-location', function() {
@@ -49,6 +49,7 @@
 
   function displayCompanyLocations() {
     var companyId = $('#company-id').data('companyId');
+
     $.ajax({
       url: "/api/v1/companies/" + companyId + "/locations",
       method: "GET",
@@ -58,6 +59,7 @@
         appendLocations(locations);
       }
     })
+
   }
 
   function adminApproveLocation(locationId) {
@@ -69,6 +71,7 @@
       type: "json",
       success: function () {
         displayCompanyLocations();
+        initCompanyMap();
       }
     })
   }
