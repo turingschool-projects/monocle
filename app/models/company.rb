@@ -108,6 +108,12 @@ class Company < ApplicationRecord
     end
   end
 
+  def employee?(user)
+    self.employees.find do |employee|
+      employee == user
+    end
+  end
+
   private
     def set_status
       self.status ||= 0

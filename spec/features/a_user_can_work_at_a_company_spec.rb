@@ -21,5 +21,15 @@ RSpec.describe 'As an authenticated user' do
       expect(user.employer).to eq(company)
       expect(company.employees.first).to eq(user)
     end
+    it "disables the 'I work here button' when I'm an employee" do
+      user_logs_in
+      user = User.first
+      company = create(:company)
+      company.employees << user
+
+      visit company_path(company)
+
+      expect(page).to have_button('I work here', disabled: true)
+    end
   end
 end
