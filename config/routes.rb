@@ -35,6 +35,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       get '/companies/find', to: 'company_search#show', as: 'find_company'
       resources :companies,       only: [:index, :create] do
+        put '/employees', to: 'employees#update', as: 'add_employees'
         resources :locations,     only: [:index, :update]
       end
       resources :notes, only: [:index, :create, :update, :destroy]

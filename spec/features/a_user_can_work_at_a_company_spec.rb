@@ -18,7 +18,8 @@ RSpec.describe 'As an authenticated user' do
       visit company_path(company)
       click_on "I work here"
 
-      expect(user.company).to eq(company)
+      expect(user.employer).to eq(company)
+      expect(company.employees.first).to eq(user)
     end
   end
 end
