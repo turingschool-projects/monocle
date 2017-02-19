@@ -41,7 +41,7 @@ gem 'active_model_serializers', '~> 0.10.0'
 gem 'babel-transpiler'
 gem 'thin'
 gem 'react-rails'
-gem 'axios_rails'
+gem 'axios_rails', '~> 0.7.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

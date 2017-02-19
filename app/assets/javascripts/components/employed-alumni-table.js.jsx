@@ -4,12 +4,14 @@ class EmployedAlumniTable extends React.Component {
     this.state = props
   }
 
-  deleteEmployee(id) {
-    let employeeList = this.state.employees.filter((employee) => {
-      return employee.id !== id
+  deleteEmployee(deletedEmployee) {
+    axios.delete(`/api/v1/companies/${deletedEmployee.company_id}/employees/${deletedEmployee.id}`)
+    .then(() => {
+      let employeeList = this.state.employees.filter((employee) => {
+        return employee.id !== deletedEmployee.id
+      })
+      this.setState( {employees: employeeList} )
     })
-    this.setState( {employees: employeeList} )
-    axios.delete(`/api/v1/companies/${employee.company_id}`)
   }
 
     render () {
@@ -18,7 +20,7 @@ class EmployedAlumniTable extends React.Component {
         key={employee.id}
         username={employee.username}
         companyName={employee.company_name}
-        removeEmployee={this.deleteRow.bind(this, employee.company_id)} />
+        removeEmployee={this.deleteEmployee.bind(this, employee)} />
       )
     })
 
