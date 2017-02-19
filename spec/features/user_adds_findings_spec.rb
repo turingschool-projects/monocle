@@ -17,8 +17,6 @@ describe 'As a logged in user' do
       select '2', from: 'finding_viability'
       check 'finding_hiring'
       click_on "Submit findings"
-
-
     end
   end
 end
