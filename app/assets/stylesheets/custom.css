@@ -86,10 +86,11 @@ body {
 }
 
 #company-map {
+  float: right;
   border: 1.5px solid;
   top: 20px;
-  height: 400px;
-  width: 100%;
+  height: 450px;
+  width: 60%;
 }
 
 .locations-container {
@@ -124,5 +125,5 @@ body {
 }
 
 #add-location-button {
-  float: right; 
+  float: right;
 }
