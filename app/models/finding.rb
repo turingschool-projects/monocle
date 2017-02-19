@@ -1,0 +1,2 @@
+class Finding < ApplicationRecord
+end
