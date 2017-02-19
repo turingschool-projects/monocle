@@ -15,4 +15,15 @@ namespace :db do
     puts "New categories: #{final_industry_count - prior_industry_count}"
     puts "New companies: #{final_company_count - prior_company_count}"
   end
+
+  task :seed_all_data_files => :environment do
+    Dir.foreach('data') do |file|
+      next if file == '.' || file =='..'
+      puts "Importing from file: #{file}"
+      puts "Before company count: #{Company.count}"
+      SeedFixtureData.run("data/#{file}")
+      puts "Finished with file: #{file}"
+      puts "After #{file} company count: #{Company.count}"
+    end
+  end
 end
