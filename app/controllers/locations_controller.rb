@@ -6,7 +6,6 @@ class LocationsController < ApplicationController
   end
 
   def create
-    # binding.pry
     company = Company.find(params[:company_id])
     location = company.locations.new(location_params)
     if location.save
@@ -15,7 +14,6 @@ class LocationsController < ApplicationController
     else
       flash.now[:error] = location.errors.full_messages.join(', ')
       redirect_to new_company_location_path
-      # render :new
     end
   end
 

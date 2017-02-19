@@ -108,6 +108,11 @@ class Company < ApplicationRecord
     end
   end
 
+  def get_distance(zip)
+    distance = self.locations.first.distance_from(zip)
+    [zip, distance.round(2)]
+  end
+
   def employee?(user)
     self.employees.find do |employee|
       employee == user

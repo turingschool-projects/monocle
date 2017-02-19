@@ -34,7 +34,7 @@ module SeedFixtureData
 
         this_company = Company.where(name: name).first_or_create({
           website:           website,
-          description: description,
+          description:       description,
           status:            "approved"
         })
 
