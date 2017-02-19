@@ -13,14 +13,12 @@ describe 'As a logged in user' do
       visit '/companies/1'
 
       expect(page).to have_content("Add Findings")
-      # check('companies_within')
-      #
-      # fill_in 'zip', with: '023'
-      # click_button 'Go'
-      #
-      # expect(page).to have_content('Please enter a valid zipcode')
-      # expect(page).to have_content(denver_co.locations.first.street_address)
-      # expect(page).to have_content(boulder_co.locations.first.street_address)
+
+      select '2', from: 'finding_viability'
+      check 'finding_hiring'
+      click_on "Submit findings"
+
+
     end
   end
 end
