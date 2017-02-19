@@ -5,7 +5,6 @@ class Finding < ApplicationRecord
   attr_reader :technology_tokens
 
   def technology_tokens=(ids)
-byebug
     self.technology_ids = ids.split(",")
   end
 end
