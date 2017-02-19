@@ -134,5 +134,12 @@ body {
   height: 820px;
   border: 1px solid black;
   background-color: #eaeaea;
-  border-radius: 10px; 
+  border-radius: 10px;
+}
+
+.add-findings {
+  display: inline-block;
+  position: absolute;
+  left: 170px;
+  top: 400px;
 }

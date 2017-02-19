@@ -1,5 +1,8 @@
 <div class="add-findings">
   <h4>Add Findings</h4>
-
-
+  <%= form_for @finding do |f| %>
+    <%= f.label :viability %>
+    <%= f.select(:viability, options_for_select(1..5), include_blank: true) %>
+    <%= f.submit "Submit findings" %>
+  <% end %>
 </div>
