@@ -2,6 +2,7 @@ $(document).ready(function(){
   if (pathFinder()[1] == 'notes' || pathFinder()[1] == 'companies') {
     displayNotes();
     $("#create-note-button").on('click', prepareNoteCreate);
+
   }
 
   $(".star").on("click", prepareStar);
@@ -231,7 +232,15 @@ function prepareNoteCreate(){
       data: { note: note, company_names: getCompanyName() }
     })
     .done(clearFields)
-    .done(window.location.replace("/notes"))
+    .done(moveMe())
+}
+
+function moveMe() {
+  if (pathFinder()[1] == 'notes' ) {
+    window.location.replace("/notes");
+  }else {
+    location.reload(true);
+  }
 }
 
 function getCompanyName() {
