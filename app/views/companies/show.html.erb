@@ -6,22 +6,22 @@
     <section id="company-map"></section>
     <%= render partial: 'locations_table' %>
   </div>
-
-    <% if current_user.companies.exists?(@company.id) %>
-      <div class='starred-message'>
-        <h4><i class="text-info">
-        <span class="glyphicon glyphicon-star" aria-hidden="true"></span> This company has been saved in your starred list.
-        </i></h4>
-      </div>
-      <%= button_tag class: "btn btn-default btn-lg unstar star-toggle", data: {no_turbolink: true, name: @company.name} do %>
-      <%= content_tag("span", "", class: ["glyphicon", "glyphicon-star"], aria_hidden: true) %> Unfavorite
-      <% end %>
-    <% else %>
-      <div class='starred-message'></div>
-      <div class="company-buttons text-center">
-      <%= button_tag class: "btn btn-default btn-lg star star-toggle", data: {no_turbolink: true, name: @company.name} do %>
-      <%= content_tag("span", "", class: ["glyphicon", "glyphicon-star"], aria_hidden: true) %> Favorite
-      <% end %>
+  <div class="company-buttons text-center">
+      <% if current_user.companies.exists?(@company.id) %>
+        <div class='starred-message'>
+          <h4><i class="text-info">
+            <span class="glyphicon glyphicon-star" aria-hidden="true"></span> This company has been saved in your starred list.
+          </i></h4>
+        </div>
+          <%= button_tag class: "btn btn-default btn-lg unstar star-toggle", data: {no_turbolink: true, id: @company.id} do %>
+          <%= content_tag("span", "", class: ["glyphicon", "glyphicon-star"], aria_hidden: true) %> Unfavorite
+          <% end %>
+        <% else %>
+          <div class='starred-message'></div>
+          <%= button_tag class: "btn btn-default btn-lg star star-toggle", data: {no_turbolink: true, id: @company.id} do %>
+          <%= content_tag("span", "", class: ["glyphicon", "glyphicon-star"], aria_hidden: true) %> Favorite
+          <% end %>
+        <% end %>
         <% if @company.employee?(current_user) %>
           <%= button_tag class: "btn btn-default btn-lg work-here work-here-toggle", disabled: true, data: {no_turbolink: true, id: @company.id} do %>
           <%= content_tag("span", "", class: ["glyphicon", "glyphicon-briefcase"], aria_hidden: true) %> I work here
@@ -32,13 +32,13 @@
           <% end %>
         <% end %>
       </div>
-    <% end %>
+    </div>
+
+    <%= react_component 'CompanyAlumni', employees: @company.employees %>
+
     <div class="panel-group">
       <div class='panel panel-default'>
-        <h3 class='text-center'>Create Note</h3>
-
-
-
+        <h3 class='panel-heading text-center'>Create Note</h3>
         <div class='panel-body'>
           <form>
             <div class="switch-toggle well">
