@@ -2,6 +2,7 @@ $(document).ready(function(){
   if (pathFinder()[1] == 'notes' || pathFinder()[1] == 'companies') {
     displayNotes();
     $("#create-note-button").on('click', prepareNoteCreate);
+    $('.work-here').on('click', createEmployee);
   }
 
   $(".star").on("click", prepareStar);
@@ -18,6 +19,12 @@ $(document).ready(function(){
   $("#size-options").on('change', 'select#sizes', filterCompanies);
   $('div#within-distance :checkbox').change(toggleCompaniesWithinDistance);
   $('#filter-by-zip').on('click', validateZipThenFilter);
+  $("#note-company-tokens").tokenInput("/companies.json", {
+    crossDomain: false
+  });
+  $("#finding_technology_tokens").tokenInput("/technologies.json", {
+      crossDomain: false;
+  });
 
   $.when()
   .then(initMap)
@@ -30,6 +37,16 @@ $(document).ready(function(){
 
 function pathFinder() {
   return document.location.pathname.split('/');
+}
+
+function createEmployee() {
+  var company_id = pathFinder()[2]
+  var employee = new Employee
+  $.ajax({
+    url: `/api/v1/companies/${company_id}/employees`,
+    method: "POST"
+  })
+  .then(employee.disableEmployeeButton);
 }
 
 function renderStar() {
@@ -224,14 +241,30 @@ function prepareNoteCreate(){
     return $.ajax({
       url: "/api/v1/notes",
       method: "POST",
-      data: { note: note, company_ids: getCompanyId() }
+      data: { note: note, company_names: getCompanyName() }
     })
     .done(clearFields)
-    .done(window.location.replace("/notes"))
+    .done(moveMe())
 }
 
-function getCompanyId() {
-  return $("#create-note-company").val() ||  [$('.star-toggle').data('id')]
+function moveMe() {
+  if (pathFinder()[1] == 'notes' ) {
+    window.location.replace("/notes");
+  }else {
+    location.reload(true);
+  }
+}
+
+function getCompanyName() {
+  var companyNames = []
+  $(".token-input-list li p").each(function() {
+    companyNames.push($(this).text())
+  })
+  if(companyNames.length > 0) {
+    return companyNames;
+  }else {
+      return [$('.star-toggle').data('name')];
+  }
 }
 
 function displayNotes(){

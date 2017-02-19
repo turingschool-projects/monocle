@@ -8,15 +8,14 @@ RSpec.describe 'As an authenticated user' do
 
       paragraph = "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
 
-      visit notes_path
-
-      click_on "New Note"
+      visit new_note_path
 
       fill_in "note[title]", with: "test title"
-      fill_in "note[body]", with: paragraph
-      fill_in "note[company]", with: "Granicus"
+      select "Granicus", :from => 'create-note-company[]'
+      fill_in "body.cke_editable.cke_editable_themed.cke_contents_ltr", with: paragraph
       click_on "Create Note"
 
+      expect(Note.last.status).to eq("private")
       expect(current_path).to eq(notes_path)
       expect(page).to have_content(paragraph)
     end

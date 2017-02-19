@@ -20,9 +20,9 @@ ActiveRecord::Schema.define(version: 20170219013600) do
     t.citext   "name"
     t.citext   "website"
     t.citext   "headquarters"
-    t.citext   "products_services"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.citext   "description"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
     t.string   "logo"
     t.integer  "status"
     t.citext   "size"
@@ -121,6 +121,8 @@ ActiveRecord::Schema.define(version: 20170219013600) do
     t.integer  "role"
     t.string   "census_uid"
     t.string   "census_access_token"
+    t.integer  "company_id"
+    t.index ["company_id"], name: "index_users_on_company_id", using: :btree
   end
 
   add_foreign_key "company_industries", "companies"
@@ -131,4 +133,5 @@ ActiveRecord::Schema.define(version: 20170219013600) do
   add_foreign_key "notes", "users"
   add_foreign_key "starred_jobs", "users"
   add_foreign_key "technologies", "findings"
+  add_foreign_key "users", "companies"
 end

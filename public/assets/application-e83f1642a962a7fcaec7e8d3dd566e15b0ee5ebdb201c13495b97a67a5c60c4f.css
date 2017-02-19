@@ -1,0 +1,398 @@
+ .logo {
+  display: inline-block;
+  height: 100px;
+  width: 100px;
+  overflow: hidden;
+  border-radius: 2px;
+  border: 1px solid #000000;
+  padding: auto;
+  background: #FFFFFF;
+  position: relative;
+ }
+
+body {
+  padding-top: 70px;
+}
+
+ .logo img {
+   position: absolute;
+   top: 0;
+   bottom: 0;
+   left: 0;
+   right: 0;
+   margin: auto;
+   vertical-align: middle;
+   max-width: 95px;
+   max-height: 95px;
+ }
+
+ .card {
+  border-radius: 2px;
+  border: 1px solid #000000;
+  padding: 5px;
+  height: 270px;
+  background: #ededed;
+}
+
+.card-holder {
+  width: 100%;
+  padding: 15px;
+}
+
+.company-name, h4 a {
+  color: #cc0033;
+}
+
+.company-name {
+  text-align: center;
+}
+
+.big-logo {
+  display: inline-block;
+  height: 200px;
+  width: 200px;
+  overflow: hidden;
+  border-radius: 2px;
+  border: 1px solid #000000;
+  padding: auto;
+  background: #FFFFFF;
+  position: relative;
+}
+
+.big-logo img {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  vertical-align: middle;
+  max-width: 190px;
+  max-height: 190px;
+}
+
+.btn-remove {
+  width: 100%;
+  border-radius: 0 0 2px 2px!important;
+  border-bottom: 1px solid #000000!important;
+  border-right: 1px solid #000000!important;
+  border-left: 1px solid #000000!important;
+}
+
+#map {
+  height: 400px;
+  margin: 10px auto;
+  border-radius: 2px;
+}
+
+#company-map {
+  display: inline-block;
+  border: 1.5px solid;
+  top: 20px;
+  height: 330px;
+  width: 730px;
+  float: right;
+}
+
+.locations {
+  width: 300px;
+  display: inline-block;
+}
+
+table #locations {
+  width: 300px;
+}
+
+.edit-box {
+  background-color: #d2d2d2 !important;
+}
+
+
+.element-being-edited {
+  font-style: italic;
+  border-bottom-style: solid;
+  border-bottom-color: light-blue;
+  border-bottom-width: thin;
+}
+
+#zip_input, #distance_select {
+  margin-right: 10px;
+}
+/*!
+ * Start Bootstrap - Simple Sidebar (http://startbootstrap.com/)
+ * Copyright 2013-2016 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
+ */
+
+
+ body {
+    overflow-x: hidden;
+ }
+
+/* Toggle Styles */
+
+#wrapper {
+    padding-left: 0;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#wrapper.toggled {
+    padding-left: 250px;
+}
+
+#sidebar-wrapper {
+    z-index: 1000;
+    position: fixed;
+    top: 50px;
+    bottom: 0px;
+    left: 250px;
+    width: 0;
+    height: auto;
+    margin-left: -250px;
+    overflow-y: auto;
+    background: #d2d2d2;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+    
+}
+
+#wrapper.toggled #sidebar-wrapper {
+    width: 250px;
+}
+
+#page-content-wrapper {
+    width: 100%;
+    position: absolute;
+    padding: 15px;
+}
+
+#wrapper.toggled #page-content-wrapper {
+    position: absolute;
+    margin-right: -250px;
+}
+
+/* Sidebar Styles */
+
+.sidebar-nav {
+    position: absolute;
+    top: 0;
+    width: 250px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.sidebar-nav li {
+    text-indent: 20px;
+    line-height: 40px;
+}
+
+.sidebar-nav li a {
+    display: block;
+    text-decoration: none;
+    color: #999999;
+}
+
+.sidebar-nav li a:hover {
+    text-decoration: none;
+    color: #fff;
+    background: rgba(255,255,255,0.2);
+}
+
+.sidebar-nav li a:active,
+.sidebar-nav li a:focus {
+    text-decoration: none;
+}
+
+.sidebar-nav > .sidebar-brand {
+    height: 65px;
+    font-size: 18px;
+    line-height: 60px;
+}
+
+.sidebar-nav > .sidebar-brand a {
+    color: #999999;
+}
+
+.sidebar-nav > .sidebar-brand a:hover {
+    color: #fff;
+    background: none;
+}
+
+@media(min-width:768px) {
+    #wrapper {
+        padding-left: 250px;
+    }
+
+    #wrapper.toggled {
+        padding-left: 0;
+    }
+
+    #sidebar-wrapper {
+        width: 250px;
+    }
+
+    #wrapper.toggled #sidebar-wrapper {
+        width: 0;
+    }
+
+    #page-content-wrapper {
+        padding: 20px;
+        position: relative;
+    }
+
+    #wrapper.toggled #page-content-wrapper {
+        position: relative;
+        margin-right: 0;
+    }
+}
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+
+
+
+ */
+
+/* Example tokeninput style #1: Token vertical list*/
+
+ul.token-input-list {
+    overflow: hidden; 
+    height: auto !important; 
+    height: 1%;
+    width: 400px;
+    border: 1px solid #999;
+    cursor: text;
+    font-size: 12px;
+    font-family: Verdana, sans-serif;
+    z-index: 999;
+    margin: 0;
+    padding: 0;
+    background-color: #fff;
+    list-style-type: none;
+    clear: left;
+}
+
+ul.token-input-list li {
+    list-style-type: none;
+}
+
+ul.token-input-list li input {
+    border: 0;
+    width: 350px;
+    padding: 3px 8px;
+    background-color: white;
+    -webkit-appearance: caret;
+}
+
+ul.token-input-disabled,
+ul.token-input-disabled li input {
+  background-color: #E8E8E8;
+}
+
+ul.token-input-disabled li.token-input-token {
+  background-color: #D9E3CA;
+  color: #7D7D7D
+}
+
+ul.token-input-disabled li.token-input-token span {
+  color: #CFCFCF;
+  cursor: default;
+}
+
+li.token-input-token {
+    overflow: hidden; 
+    height: auto !important; 
+    height: 1%;
+    margin: 3px;
+    padding: 3px 5px;
+    background-color: #d0efa0;
+    color: #000;
+    font-weight: bold;
+    cursor: default;
+    display: block;
+}
+
+li.token-input-token p {
+    float: left;
+    padding: 0;
+    margin: 0;
+}
+
+li.token-input-token span {
+    float: right;
+    color: #777;
+    cursor: pointer;
+}
+
+li.token-input-selected-token {
+    background-color: #08844e;
+    color: #fff;
+}
+
+li.token-input-selected-token span {
+    color: #bbb;
+}
+
+div.token-input-dropdown {
+    position: absolute;
+    width: 400px;
+    background-color: #fff;
+    overflow: hidden;
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    cursor: default;
+    font-size: 12px;
+    font-family: Verdana, sans-serif;
+    z-index: 1;
+}
+
+div.token-input-dropdown p {
+    margin: 0;
+    padding: 5px;
+    font-weight: bold;
+    color: #777;
+}
+
+div.token-input-dropdown ul {
+    margin: 0;
+    padding: 0;
+}
+
+div.token-input-dropdown ul li {
+    background-color: #fff;
+    padding: 3px;
+    list-style-type: none;
+}
+
+div.token-input-dropdown ul li.token-input-dropdown-item {
+    background-color: #fafafa;
+}
+
+div.token-input-dropdown ul li.token-input-dropdown-item2 {
+    background-color: #fff;
+}
+
+div.token-input-dropdown ul li em {
+    font-weight: bold;
+    font-style: normal;
+}
+
+div.token-input-dropdown ul li.token-input-selected-dropdown-item {
+    background-color: #d0efa0;
+}

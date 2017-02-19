@@ -5,6 +5,11 @@ class CompaniesController < ApplicationController
   def index
     @industries = Industry.all
     @company_sizes = company_size
+    @companies = Company.where("name like ?", "%#{params[:q]}%")
+    respond_to do |format|
+      format.html
+      format.json {render :json => @companies.map(&:attributes)}
+    end
   end
 
   def show
@@ -36,7 +41,7 @@ class CompaniesController < ApplicationController
   def company_params
     params.require(:company).permit(:name,
                                     :website,
-                                    :products_services,
+                                    :description,
                                     :logo).merge(size: params[:size])
   end
 
