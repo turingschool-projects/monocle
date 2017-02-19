@@ -5,7 +5,7 @@ class Api::V1::CompaniesController < ApplicationController
   skip_before_action :authorize!, only: [:create]
 
   def index
-    @companies = Company.approved_companies.filter(params.slice(:company_size, :industry_ids, :with_locations_near)).includes(:locations)
+    @companies = Company.pending_companies.filter(params.slice(:company_size, :industry_ids, :with_locations_near)).includes(:locations)
   end
 
   def create
@@ -24,7 +24,7 @@ class Api::V1::CompaniesController < ApplicationController
   end
 
   def secure_creation
-    render json: {error: 'unauthorized'}, status: 401 unless 
+    render json: {error: 'unauthorized'}, status: 401 unless
       params[:token] == "TurMonLook4"
   end
 

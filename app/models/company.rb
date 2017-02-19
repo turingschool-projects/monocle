@@ -41,11 +41,15 @@ class Company < ApplicationRecord
   end
 
   def self.approved_companies
-    Company.where('companies.status = ?', '1')
+    Company.where('status = ?', '1')
   end
 
   def self.pending_companies
     Company.where('status = ?', '0')
+  end
+
+  def self.not_rejected_companies
+    Company.where('status != ?', '2')
   end
 
   def approved?
