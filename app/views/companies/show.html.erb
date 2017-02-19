@@ -18,17 +18,38 @@
       <% end %>
     <% else %>
       <div class='starred-message'></div>
+      <div class="company-buttons text-center">
       <%= button_tag class: "btn btn-default btn-lg star star-toggle", data: {no_turbolink: true, name: @company.name} do %>
       <%= content_tag("span", "", class: ["glyphicon", "glyphicon-star"], aria_hidden: true) %> Favorite
       <% end %>
+        <% if @company.employee?(current_user) %>
+          <%= button_tag class: "btn btn-default btn-lg work-here work-here-toggle", disabled: true, data: {no_turbolink: true, id: @company.id} do %>
+          <%= content_tag("span", "", class: ["glyphicon", "glyphicon-briefcase"], aria_hidden: true) %> I work here
+          <% end %>
+        <% else %>
+          <%= button_tag class: "btn btn-default btn-lg work-here work-here-toggle", data: {no_turbolink: true, id: @company.id} do %>
+          <%= content_tag("span", "", class: ["glyphicon", "glyphicon-briefcase"], aria_hidden: true) %> I work here
+          <% end %>
+        <% end %>
+      </div>
     <% end %>
     <div class="panel-group">
       <div class='panel panel-default'>
         <h3 class='text-center'>Create Note</h3>
+
+
+
         <div class='panel-body'>
           <form>
-            <input type="radio" name="note-status" id="private-note" value="private"> Private Note
-            <input type="radio" name="note-status" id="public-note" value="public"> Public Note</br></br>
+            <div class="switch-toggle well">
+              <input id="private-note" name="note-status" type="radio" value="private" checked>
+              <label for="private-note">Private</label>
+
+              <input id="public-note" name="note-status" type="radio" value="public">
+              <label for="public-note" onclick="">Public</label>
+
+              <a class="btn btn-primary"></a>
+            </div>
             <input type="text" name="note[title]" id="notetitle" placeholder="Title"></br></br>
             <textarea name="note[body]" id="notebody" placeholder="Body ..."></textarea></br>
             <script>

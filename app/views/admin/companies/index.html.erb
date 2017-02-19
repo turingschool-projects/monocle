@@ -3,9 +3,7 @@
   <% @pending_companies.each do |company| %>
       <tr>
         <td>
-          <% company.location_info.each do |line| %>
-            <%= line %><br>
-          <% end %>
+          <%= link_to company.name, company_path(company) %>
         </td>
         <td>
           <%= button_to "Approve", {controller: "admin/companies", action: "update", company: {status: "approved"}, id: company.id}, method: :put %>

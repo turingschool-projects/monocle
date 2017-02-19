@@ -123,3 +123,15 @@ body {
 .required-error {
   width: 150px;
 }
+.company-buttons {
+  margin-bottom: 25px;
+}
+.remove-employee:hover{
+  cursor: pointer;
+  text-decoration: none;
+}
+
+/*ccs-toggle-switch*/
+div.switch-toggle.well {
+  width: 25%;
+}
