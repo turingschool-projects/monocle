@@ -13,15 +13,15 @@
         <span class="glyphicon glyphicon-star" aria-hidden="true"></span> This company has been saved in your starred list.
         </i></h4>
       </div>
-      <%= button_tag class: "btn btn-default btn-lg unstar star-toggle", data: {no_turbolink: true, id: @company.id} do %>
+      <%= button_tag class: "btn btn-default btn-lg unstar star-toggle", data: {no_turbolink: true, name: @company.name} do %>
       <%= content_tag("span", "", class: ["glyphicon", "glyphicon-star"], aria_hidden: true) %> Unfavorite
       <% end %>
     <% else %>
       <div class='starred-message'></div>
       <div class="company-buttons text-center">
-        <%= button_tag class: "btn btn-default btn-lg star star-toggle", data: {no_turbolink: true, id: @company.id} do %>
-        <%= content_tag("span", "", class: ["glyphicon", "glyphicon-star"], aria_hidden: true) %> Favorite
-        <% end %>
+      <%= button_tag class: "btn btn-default btn-lg star star-toggle", data: {no_turbolink: true, name: @company.name} do %>
+      <%= content_tag("span", "", class: ["glyphicon", "glyphicon-star"], aria_hidden: true) %> Favorite
+      <% end %>
         <% if @company.employee?(current_user) %>
           <%= button_tag class: "btn btn-default btn-lg work-here work-here-toggle", disabled: true, data: {no_turbolink: true, id: @company.id} do %>
           <%= content_tag("span", "", class: ["glyphicon", "glyphicon-briefcase"], aria_hidden: true) %> I work here
