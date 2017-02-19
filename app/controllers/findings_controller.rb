@@ -4,6 +4,7 @@ class FindingsController < ApplicationController
     params[:finding][:technology_tokens].split(",").each do |id|
       finding.technologies << Technology.find(id)
     end
+    binding.pry
     redirect_to company_path()
   end
 

@@ -9,10 +9,11 @@
       <%= f.label :hiring %>
       <%= f.check_box(:hiring) %>
     </div>
-    <div>
+    <div id="technology-tokens">
       <%= f.label :technology_tokens, "Technologies" %>
       <%= f.text_field :technology_tokens %>
     </div>
+      <% f.hidden_field :company_id %>
     <div>
       <%= f.submit "Submit findings", class:"btn btn-default"%>
     </div>
