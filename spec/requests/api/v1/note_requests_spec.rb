@@ -37,7 +37,7 @@ RSpec.describe ("notes endpoints") do
       user = User.first
       company = create(:company)
 
-      params = { note: { title: "test title", body: "test body" }, company_ids: [company.id] }
+      params = { note: { title: "test title", body: "test body" }, company_names: [company.name] }
 
       post "/api/v1/notes", params
 
