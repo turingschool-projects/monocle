@@ -22,7 +22,7 @@ RSpec.describe 'As an authenticated user' do
     end
   end
   context "when I navigate to the Employed Alumni page" do
-    it "shows me a list of employed alumni" do
+    xit "shows me a list of employed alumni" do
       user_logs_in
       user = create(:user)
       company = create(:company)
