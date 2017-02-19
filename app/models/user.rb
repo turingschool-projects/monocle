@@ -4,7 +4,6 @@ class User < ApplicationRecord
   has_many :starred_jobs
   has_many :companies, through: :starred_companies
   has_many :notes
-  belongs_to :employer, class_name: 'Company', foreign_key: 'company_id', optional: true
 
   before_validation :set_role
 
