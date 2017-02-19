@@ -214,7 +214,7 @@ function addCards(companies) {
 
 function determineDistance(company) {
   if (company.distance) {
-    return `<p class='distance'>Distance from ${company.distance[0]}: ${company.distance[1]} miles</p>`
+    return `<p class='distance text-center'> ${company.distance[1]} miles from ${company.distance[0]} </p>`
   } else {
     return ''
   }
