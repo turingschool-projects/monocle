@@ -1,3 +1,4 @@
 class Technology < ApplicationRecord
-  belongs_to :finding
+  has_many :finding_technologies
+  has_many :findings, through: :finding_technologies
 end

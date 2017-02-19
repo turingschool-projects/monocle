@@ -1,6 +1,9 @@
 class TechnologiesController < ApplicationController
   def index
     @technologies = Technology.where("name like ?", "%#{params[:q]}%")
-    render json: @technologies.map(&:attributes)
+    respond_to do |format|
+      format.html
+      format.json {render json: @technologies.map(&:attributes)}
+    end
   end
 end

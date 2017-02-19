@@ -23,7 +23,7 @@ $(document).ready(function(){
     crossDomain: false
   });
   $("#finding_technology_tokens").tokenInput("/technologies.json", {
-      crossDomain: false;
+      crossDomain: false
   });
 
   $.when()
