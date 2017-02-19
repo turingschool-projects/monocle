@@ -18,8 +18,11 @@ class EmployedAlumniTable extends React.Component {
     let employees = this.state.employees.map((employee) => {
       return (<EmployeeRow
         key={employee.id}
-        username={employee.username}
-        companyName={employee.company_name}
+        companyName={employee.company_id}
+        firstName={employee.first_name}
+        lastName={employee.last_name}
+        slack={employee.slack}
+        email={employee.email}
         removeEmployee={this.deleteEmployee.bind(this, employee)} />
       )
     })
@@ -29,7 +32,10 @@ class EmployedAlumniTable extends React.Component {
         <thead>
           <tr>
             <th>Company</th>
-            <th>Employee</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Slack Handle</th>
+            <th>Email</th>
             <th></th>
           </tr>
         </thead>

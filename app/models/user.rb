@@ -4,6 +4,7 @@ class User < ApplicationRecord
   has_many :starred_jobs
   has_many :companies, through: :starred_companies
   has_many :notes
+  has_one  :employee
 
   before_validation :set_role
 

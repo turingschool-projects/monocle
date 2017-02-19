@@ -7,6 +7,7 @@ class Company < ApplicationRecord
   has_many :company_notes, dependent: :destroy
   has_many :notes, through: :company_notes
   has_many :locations
+  has_many :employees
   mount_uploader :logo, LogoUploader
 
   scope :company_size, -> (size) { where('companies.size IN (?)', size) }

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170219010815) do
+ActiveRecord::Schema.define(version: 20170219230158) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,9 +19,10 @@ ActiveRecord::Schema.define(version: 20170219010815) do
   create_table "companies", force: :cascade do |t|
     t.citext   "name"
     t.citext   "website"
+    t.citext   "headquarters"
     t.citext   "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
     t.string   "logo"
     t.integer  "status"
     t.citext   "size"
@@ -41,6 +42,20 @@ ActiveRecord::Schema.define(version: 20170219010815) do
     t.datetime "updated_at", null: false
     t.index ["company_id"], name: "index_company_notes_on_company_id", using: :btree
     t.index ["note_id"], name: "index_company_notes_on_note_id", using: :btree
+  end
+
+  create_table "employees", force: :cascade do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "email"
+    t.string   "slack"
+    t.integer  "company_id"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "census_id"
+    t.index ["company_id"], name: "index_employees_on_company_id", using: :btree
+    t.index ["user_id"], name: "index_employees_on_user_id", using: :btree
   end
 
   create_table "industries", force: :cascade do |t|
@@ -105,16 +120,15 @@ ActiveRecord::Schema.define(version: 20170219010815) do
     t.integer  "role"
     t.string   "census_uid"
     t.string   "census_access_token"
-    t.integer  "company_id"
-    t.index ["company_id"], name: "index_users_on_company_id", using: :btree
   end
 
   add_foreign_key "company_industries", "companies"
   add_foreign_key "company_industries", "industries"
   add_foreign_key "company_notes", "companies"
   add_foreign_key "company_notes", "notes"
+  add_foreign_key "employees", "companies"
+  add_foreign_key "employees", "users"
   add_foreign_key "locations", "companies"
   add_foreign_key "notes", "users"
   add_foreign_key "starred_jobs", "users"
-  add_foreign_key "users", "companies"
 end

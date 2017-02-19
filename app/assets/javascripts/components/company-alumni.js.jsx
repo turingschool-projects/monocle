@@ -13,7 +13,7 @@ class CompanyAlumni extends React.Component {
           </div>
         </div>
         <div className="panel-body">
-          <EmployedAlumniTable employees={this.state.employees}/>
+          <EmployedAlumniTable employees={this.state.employees} />
         </div>
       </div>
     )
