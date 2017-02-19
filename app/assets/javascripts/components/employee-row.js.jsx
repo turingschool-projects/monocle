@@ -4,7 +4,7 @@ class EmployeeRow extends React.Component {
       <tr>
         <td>{this.props.companyName}</td>
         <td>{this.props.username}</td>
-        <td><button onClick={this.props.removeEmployee}>❌</button></td>
+        <td><a className='remove-employee' onClick={this.props.removeEmployee}>❌</a></td>
       </tr>
     )
   }

@@ -126,3 +126,7 @@ body {
 .company-buttons {
   margin-bottom: 25px;
 }
+.remove-employee:hover{
+  cursor: pointer;
+  text-decoration: none;
+}
