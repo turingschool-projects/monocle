@@ -3,7 +3,7 @@ FactoryGirl.define do
     industries        {[FactoryGirl.create(:industry)]}
     name              { Faker::Company.name }
     website           { Faker::Internet.url }
-    products_services { Faker::Hipster.paragraph }
+    description       { Faker::Hipster.paragraph }
     size              { Faker::Number.number(2)}
   end
 

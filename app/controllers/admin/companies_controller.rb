@@ -27,7 +27,7 @@ class Admin::CompaniesController < ApplicationController
     def company_params
       params.require(:company).permit(:name,
                                       :website,
-                                      :products_services,
+                                      :description,
                                       :status,
                                       :logo,
                                       :size)
