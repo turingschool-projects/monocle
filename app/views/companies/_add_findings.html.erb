@@ -3,6 +3,8 @@
   <%= form_for @finding do |f| %>
     <%= f.label :viability %>
     <%= f.select(:viability, options_for_select(1..5), include_blank: true) %>
+    <%= f.label :hiring %>
+    <%= f.check_box(:hiring) %>
     <%= f.submit "Submit findings" %>
   <% end %>
 </div>
