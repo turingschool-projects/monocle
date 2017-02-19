@@ -1,5 +1,4 @@
-<div class="locations-container">
-
+<div class="col-md-3 locations-table">
   <span id="title-approved-locations"></span>
 
   <table id="approved-location-table" class="table">
@@ -28,11 +27,13 @@
     </tbody>
   </table>
 
-  <%= link_to 'Add Location', new_company_location_path(@company), class: "btn btn-default" %>
+  <%= link_to 'Add Location', new_company_location_path(@company), class: "btn btn-default", id: "add-location-button" %>
+
+  <div id="company-id" data-company-id='<%= @company.id %>'></div>
   <div id="lat-lng" data-coordinates="<%= @company.coordinates %>"></div>
   <div id="current-user-role" data-role="<%= current_user.role %>"></div>
-
 </div>
+
 
 <script type="text/javascript">
     var coordinates = $('#lat-lng').data('coordinates');

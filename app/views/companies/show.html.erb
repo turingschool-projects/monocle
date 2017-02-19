@@ -1,11 +1,11 @@
-<div id="company-id" data-company-id='<%= @company.id %>'></div>
 <div class="container">
-  <div class="well">
     <h1 class="company-name"><%= @company.name %></h1>
-    <%= render partial: 'company_info' %>
-    <section id="company-map"></section>
-    <%= render partial: 'locations_table' %>
-  </div>
+    <div class="container">
+      <%= render partial: 'company_info' %>
+      <%= render partial: 'locations_table' %>
+    </div>
+
+  <section id="company-map"></section>
 
     <% if current_user.companies.exists?(@company.id) %>
       <div class='starred-message'>

@@ -93,7 +93,6 @@ body {
 }
 
 .locations-container {
-  margin-top: 50px
 }
 
 
@@ -122,4 +121,8 @@ body {
 
 .required-error {
   width: 150px;
+}
+
+#add-location-button {
+  float: right; 
 }
