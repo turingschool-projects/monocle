@@ -12,7 +12,7 @@ describe 'As a logged in user' do
       company = create_approved_company("Test Company")
       visit '/companies/1'
 
-      save_and_open_page
+      expect(page).to have_content("Add Findings")
       # check('companies_within')
       #
       # fill_in 'zip', with: '023'
