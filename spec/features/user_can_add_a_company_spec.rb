@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe "user can add a company" do
-  xit "and then see pending approval" do
+  it "and then see pending approval" do
     VCR.use_cassette('second_denver_location') do
       industry = Industry.create(name: "Applesauce")
 
@@ -14,7 +14,7 @@ describe "user can add a company" do
       fill_in "company_website", with: "www.monocle.com"
       check "industry_ids_"
       fill_in "company_products_services", with: "Jobs"
-      select "50", from: "size"
+      select "11-50", from: "size"
       fill_in "location_phone", with: "123-456-7890"
       fill_in "location_primary_contact", with: "Will Smith"
       fill_in "location_street_address", with: "123 Another Test St"
@@ -32,7 +32,7 @@ describe "user can add a company" do
 end
 
 describe "user leaves required fields (name) blank" do
-  xit "and then see error message" do
+  it "and then see error message" do
     VCR.use_cassette('second_denver_location') do
       industry = Industry.create(name: "Applesauce")
 
@@ -44,7 +44,7 @@ describe "user leaves required fields (name) blank" do
       fill_in "company_website", with: "www.monocle.com"
       check "industry_ids_"
       fill_in "company_products_services", with: "Jobs"
-      select "50", from: "size"
+      select "11-50", from: "size"
       fill_in "location_phone", with: "123-456-7890"
       fill_in "location_primary_contact", with: "Will Smith"
       fill_in "location_street_address", with: "123 Another Test St"
@@ -55,7 +55,7 @@ describe "user leaves required fields (name) blank" do
       click_button "Create Company"
 
       expect(current_path).to eq(new_company_path)
-      expect(page).to have_content("Missing required fields")
+      expect(page).to have_content("Missing required name field")
     end
   end
 end
