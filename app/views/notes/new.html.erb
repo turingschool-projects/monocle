@@ -3,8 +3,15 @@
 <div class='panel panel-default'>
   <div class='panel-body'>
     <form>
-      <input type="radio" name="note-status" id="private-note" value="private"> Private Note
-      <input type="radio" name="note-status" id="public-note" value="public"> Public Note</br></br>
+      <div class="switch-toggle well">
+        <input id="private-note" name="note-status" type="radio" value="private" checked>
+        <label for="private-note">Private</label>
+
+        <input id="public-note" name="note-status" type="radio" value="public">
+        <label for="public-note" onclick="">Public</label>
+
+        <a class="btn btn-primary"></a>
+      </div>
       <input type="text" name="note[title]" id="notetitle" placeholder="Title"></br></br>
       <%= select_tag "create-note-company", options_from_collection_for_select(@companies, "id", "name"), {multiple: true} %></br>
       <textarea name="note[body]" id="notebody" placeholder="Body ..."></textarea></br>

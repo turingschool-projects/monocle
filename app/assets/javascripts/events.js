@@ -19,8 +19,6 @@ $(document).ready(function(){
   $("#size-options").on('change', 'select#sizes', filterCompanies);
   $('div#within-distance :checkbox').change(toggleCompaniesWithinDistance);
   $('#filter-by-zip').on('click', validateZipThenFilter);
-  $('#create-company').on('click', checkCompanyFields);
-
 
   $.when()
   .then(initMap)
@@ -209,7 +207,7 @@ function addCards(companies) {
 }
 
 function appendNoCompaniesNotice() {
-  $('#companies-body').prepend(`<h1 class='bg-danger text-center'>Looks like you've filtered yourself out of companies!</h1>`)
+  $('#companies-body').prepend(`<h1 class='bg-danger text-center'>No companies match your criteria.</h1>`)
 }
 
 function toggleSizeSelect() {
@@ -356,6 +354,7 @@ function convertCompanySize(dropdownValue) {
 }
 
 function placeMapMarker(company, index) {
+  if (!company.coordinates) { return }
   this['infowindow' + index] = new google.maps.InfoWindow({
     content: company['name']
   });
@@ -402,6 +401,13 @@ function centerMap() {
   if (markers.length === 0) {
     map.setCenter({lat: 39.8282, lng: -98.5795})
     map.setZoom(4)
+  } else if (markers.length === 1) {
+    var extendPoint1 = new google.maps.LatLng(bounds.getNorthEast().lat() + 0.01, bounds.getNorthEast().lng() + 0.01);
+    var extendPoint2 = new google.maps.LatLng(bounds.getNorthEast().lat() - 0.01, bounds.getNorthEast().lng() - 0.01);
+    bounds.extend(extendPoint1);
+    bounds.extend(extendPoint2);
+
+    map.fitBounds(bounds);
   } else {
     map.setCenter(bounds.getCenter());
     map.fitBounds(bounds);

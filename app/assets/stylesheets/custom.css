@@ -129,4 +129,8 @@ body {
 .remove-employee:hover{
   cursor: pointer;
   text-decoration: none;
+
+/*ccs-toggle-switch*/
+div.switch-toggle.well {
+  width: 25%;
 }
