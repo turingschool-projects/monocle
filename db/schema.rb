@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170217224648) do
+ActiveRecord::Schema.define(version: 20170218001859) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -105,6 +105,8 @@ ActiveRecord::Schema.define(version: 20170217224648) do
     t.integer  "role"
     t.string   "census_uid"
     t.string   "census_access_token"
+    t.integer  "company_id"
+    t.index ["company_id"], name: "index_users_on_company_id", using: :btree
   end
 
   add_foreign_key "company_industries", "companies"
@@ -114,4 +116,5 @@ ActiveRecord::Schema.define(version: 20170217224648) do
   add_foreign_key "locations", "companies"
   add_foreign_key "notes", "users"
   add_foreign_key "starred_jobs", "users"
+  add_foreign_key "users", "companies"
 end

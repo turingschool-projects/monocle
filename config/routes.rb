@@ -30,11 +30,13 @@ Rails.application.routes.draw do
   end
 
   resources :notes, only: [:index, :new, :create]
+  resources :employed_alumni, only: [:index]
 
   namespace :api do
     namespace :v1 do
       get '/companies/find', to: 'company_search#show', as: 'find_company'
       resources :companies,       only: [:index, :create] do
+        resources :employees,     only: [:create, :destroy]
         resources :locations,     only: [:index, :update]
       end
       resources :notes, only: [:index, :create, :update, :destroy]

@@ -2,6 +2,7 @@ $(document).ready(function(){
   if (pathFinder()[1] == 'notes' || pathFinder()[1] == 'companies') {
     displayNotes();
     $("#create-note-button").on('click', prepareNoteCreate);
+    $('.work-here').on('click', createEmployee);
   }
 
   $(".star").on("click", prepareStar);
@@ -30,6 +31,16 @@ $(document).ready(function(){
 
 function pathFinder() {
   return document.location.pathname.split('/');
+}
+
+function createEmployee() {
+  var company_id = pathFinder()[2]
+  var employee = new Employee
+  $.ajax({
+    url: `/api/v1/companies/${company_id}/employees`,
+    method: "POST"
+  })
+  .then(employee.disableEmployeeButton);
 }
 
 function renderStar() {
