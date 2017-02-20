@@ -14,7 +14,7 @@ class Api::V1::EmployeesController < ApplicationController
     )
 
     if employee.save
-      render json: {message: 'success'}, status: 201
+      render json: employee, status: 201
     else
       render json: {message: 'failed'}, status: 500
     end

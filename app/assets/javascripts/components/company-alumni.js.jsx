@@ -9,7 +9,7 @@ class CompanyAlumni extends React.Component {
   }
 
   addPlusSign() {
-    if (this.state.role == 'admin') {
+    if (this.state.current_user.role == 'admin') {
       document.getElementById('add-plus').style.display = "inline"
     }
     else {
@@ -31,6 +31,17 @@ class CompanyAlumni extends React.Component {
     )
   }
 
+  createEmployee() {
+    let company_id = window.location.pathname[window.location.pathname.length - 1]
+    let employeesState = this.state.employees
+    axios.post(`/api/v1/companies/${company_id}/employees`)
+    .then((returned) => {
+      this.setState({ employees: employeesState.push(returned.data) })
+    })
+  }
+
+
+
   render() {
     return (
       <div className="panel-group">
@@ -39,6 +50,10 @@ class CompanyAlumni extends React.Component {
             <h3 className="text-center">Employed Alumni
               <span id="add-plus">
                 <a id="plus-sign" onClick={this.employeeForm.bind(this)}>[+]</a>
+              </span>
+              <span>
+                <WorkHereButton buttonDisabled={this.state.workHereDisabled}
+                  createEmployee={this.createEmployee.bind(this)}/>
               </span>
             </h3>
             <EmployeeForm showComponent={this.state.showAdminForm}

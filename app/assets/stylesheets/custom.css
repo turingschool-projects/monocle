@@ -144,3 +144,6 @@ div.switch-toggle.well {
   cursor: pointer;
   text-decoration: none;
 }
+#work-here-button{
+  float: right;
+}

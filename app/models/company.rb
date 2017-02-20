@@ -109,7 +109,7 @@ class Company < ApplicationRecord
   end
 
   def employee?(user)
-    self.employees.find do |employee|
+    return true if self.employees.find do |employee|
       employee.user_id == user.id
     end
   end
