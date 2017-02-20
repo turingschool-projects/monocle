@@ -4,7 +4,9 @@ RSpec.describe "Census service" do
   context 'GET /api/v1/users' do
     it "can get users from census" do
       VCR.use_cassette('.census-app') do
-        url = "/api/v1/users"
+        params = {q: 'scherer'}
+
+        url = "/api/v1/users/by_name", params: params
         access_token = "#{ENV['census_access_token']}"
 
         census_results = CensusService.new.get_users(url, access_token)
