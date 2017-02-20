@@ -24,6 +24,10 @@ class User < ApplicationRecord
     companies << company unless companies.exists?(id: company.id)
   end
 
+  def split_username
+    username.split(' ')
+  end
+
   private
     def set_role
       self.role ||= 0

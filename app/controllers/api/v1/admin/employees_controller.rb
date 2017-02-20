@@ -4,6 +4,7 @@ class Api::V1::Admin::EmployeesController < ApplicationController
 
   def create
     company = Company.find(params[:company_id])
+    user = User.find_by(username: "#{params[:first_name].capitalize} #{params[:last_name].capitalize}")
 
     census_users = CensusUser.create_census_users(
       '/api/v1/users/by_name',
@@ -23,7 +24,8 @@ class Api::V1::Admin::EmployeesController < ApplicationController
       last_name: found_user.last_name.capitalize,
       email: found_user.email,
       slack: found_user.slack,
-      company: company
+      company: company,
+      user: user
     )
     if employee.save
       render json: {message: "Successfully created employee_id with census_id #{employee.census_id}"}, status: 201

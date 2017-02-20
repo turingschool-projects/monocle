@@ -14,7 +14,7 @@ RSpec.describe 'As an authenticated user' do
       user_logs_in
       user = User.first
       company = create(:company)
-      company.employees << user
+      employee = create(:employee, company: company, user: user)
 
       visit company_path(company)
 
