@@ -42,7 +42,7 @@ class Company < ApplicationRecord
   end
 
   def self.approved_companies
-    Company.where('status = ?', '1')
+    Company.where('companies.status = ?', '1')
   end
 
   def self.pending_companies
@@ -50,7 +50,7 @@ class Company < ApplicationRecord
   end
 
   def self.pending_and_approved_companies
-    Company.where('status != ?', '2')
+    Company.where('companies.status != ?', '2')
   end
 
   def approved?
@@ -118,6 +118,7 @@ class Company < ApplicationRecord
   end
 
   def get_distance(zip)
+    binding.pry
     distance = self.locations.first.distance_from(zip)
     [zip, distance.round(2)]
   end
