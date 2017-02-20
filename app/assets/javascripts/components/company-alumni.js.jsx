@@ -4,12 +4,34 @@ class CompanyAlumni extends React.Component {
     this.state = props
   }
 
+  componentDidMount() {
+    this.addPlusSign()
+  }
+
+  addPlusSign() {
+    if (this.state.role == 'admin') {
+      document.getElementById('add-plus').style.display = "inline"
+    }
+    else {
+      document.getElementById('add-plus').style.display = "none"
+    }
+  }
+
+  employeeForm() {
+    this.setState( {showAdminForm: true} )
+  }
+
   render() {
     return (
       <div className="panel-group">
         <div className="panel panel-default">
           <div className="panel-heading">
-            <h3 className="text-center">Employed Alumni</h3>
+            <h3 className="text-center">Employed Alumni
+              <span id="add-plus">
+                <a id="plus-sign" onClick={this.employeeForm.bind(this)}>[+]</a>
+              </span>
+            </h3>
+            <EmployeeForm showComponent={this.state.showAdminForm}/>
           </div>
         </div>
         <div className="panel-body">

@@ -135,3 +135,12 @@ body {
 div.switch-toggle.well {
   width: 25%;
 }
+
+#plus-sign{
+  float: left;
+}
+
+#plus-sign:hover{
+  cursor: pointer;
+  text-decoration: none;
+}
