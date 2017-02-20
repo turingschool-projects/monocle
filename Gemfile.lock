@@ -91,6 +91,8 @@ GEM
     coffee-script-source (1.12.2)
     concurrent-ruby (1.0.4)
     connection_pool (2.2.1)
+    coolline (0.5.0)
+      unicode_utils (~> 1.4)
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
     daemons (1.2.4)
@@ -203,6 +205,8 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
+    pry-coolline (0.2.5)
+      coolline (~> 0.5)
     pry-rails (0.3.5)
       pry (>= 0.9.10)
     puma (3.7.0)
@@ -244,6 +248,7 @@ GEM
     rb-fsevent (0.9.8)
     rb-inotify (0.9.8)
       ffi (>= 0.5.0)
+    rb-readline (0.5.3)
     react-rails (1.10.0)
       babel-transpiler (>= 0.7.0)
       coffee-script-source (~> 1.8)
@@ -320,6 +325,7 @@ GEM
       thread_safe (~> 0.1)
     uglifier (3.0.4)
       execjs (>= 0.3.0, < 3)
+    unicode_utils (1.4.0)
     vcr (3.0.3)
     web-console (3.4.0)
       actionview (>= 5.0)
@@ -364,11 +370,13 @@ DEPENDENCIES
   omniauth
   omniauth-census!
   pg (~> 0.18)
+  pry-coolline
   pry-rails
   puma (~> 3.0)
   rails (~> 5.0.0, >= 5.0.0.1)
   rails_12factor
   rake
+  rb-readline
   react-rails
   rspec-rails
   sass-rails (~> 5.0)

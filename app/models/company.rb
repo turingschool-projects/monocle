@@ -8,6 +8,7 @@ class Company < ApplicationRecord
   has_many :notes, through: :company_notes
   has_many :locations
   has_many :employees, class_name: 'User', foreign_key: 'company_id'
+  has_many :findings
   mount_uploader :logo, LogoUploader
 
   scope :company_size, -> (size) { where('companies.size IN (?)', size) }
@@ -60,6 +61,10 @@ class Company < ApplicationRecord
     self.locations.where('status = ?', '1')
   end
 
+  def pending_locations
+    self.locations.where('status = ?', '0')
+  end
+
   def get_coordinates
     if locations.first
       locations.first.coordinates
@@ -110,6 +115,11 @@ class Company < ApplicationRecord
     approved_locations.map do |location|
       [location.latitude, location.longitude]
     end
+  end
+
+  def get_distance(zip)
+    distance = self.locations.first.distance_from(zip)
+    [zip, distance.round(2)]
   end
 
   def employee?(user)

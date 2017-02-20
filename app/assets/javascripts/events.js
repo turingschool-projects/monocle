@@ -22,6 +22,9 @@ $(document).ready(function(){
   $("#note-company-tokens").tokenInput("/companies.json", {
     crossDomain: false
   });
+  $("#finding_technology_tokens").tokenInput("/technologies.json", {
+      crossDomain: false
+  });
 
   $.when()
   .then(initMap)
@@ -183,6 +186,7 @@ function addCards(companies) {
     company['location'].forEach(function(line) {
       location = location + line + '<br>'
     });
+    var distance = determineDistance(company)
 
     if(company.status == 'approved') {
       $('#companies-body').append(
@@ -205,6 +209,7 @@ function addCards(companies) {
                 </p>
               </div>
             </div>
+            ${distance}
           </div>`)
       }else {
         $('#pending-companies-body').append(
@@ -227,9 +232,18 @@ function addCards(companies) {
                   </p>
                 </div>
               </div>
+              ${distance}
             </div>`)
       }
   });
+}
+
+function determineDistance(company) {
+  if (company.distance) {
+    return `<p class='distance text-center'> ${company.distance[1]} miles from ${company.distance[0]} </p>`
+  } else {
+    return ''
+  }
 }
 
 function appendNoCompaniesNotice() {

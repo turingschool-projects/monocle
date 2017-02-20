@@ -16,6 +16,8 @@ Rails.application.routes.draw do
   resources :starred_jobs, only: [:create, :destroy]
 
   resources :jobs, only: [:index, :show]
+  resources :findings, only: [:new, :create]
+  resources :technologies, only: [:index]
 
   namespace :moderator do
     resources :companies,       only: [:edit, :update]
