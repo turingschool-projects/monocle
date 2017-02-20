@@ -9,9 +9,12 @@ class Api::V1::Admin::EmployeesController < ApplicationController
       current_user.census_access_token,
       params[:last_name]
     )
-    found_user = census_users.find do |user|
-      user.first_name.downcase == params[:first_name].downcase && user.last_name.downcase == params[:last_name].downcase
-    end
+    found_user = CensusUser.find_user(
+      census_users,
+      params[:first_name],
+      params[:last_name]
+    )
+
     employee = Employee.new(
       census_id: found_user.census_id,
       first_name: found_user.first_name,

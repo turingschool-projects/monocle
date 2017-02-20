@@ -22,4 +22,11 @@ class CensusUser
     end
   end
 
+  def self.find_user(census_users, first_name, last_name)
+    census_users.find do |user|
+      user.first_name.downcase == first_name.downcase &&
+      user.last_name.downcase == last_name.downcase
+    end
+  end
+
 end

@@ -22,4 +22,27 @@ RSpec.describe CensusUser do
       end
     end
   end
+  context '#find_user' do
+    it "can find a user" do
+      first = CensusUser.new(
+        1,
+        "test1_first",
+        "test1_last",
+        '@test1',
+        'test1@test.com'
+      )
+      second = CensusUser.new(
+        2,
+        "test2_first",
+        "test2_last",
+        '@test2',
+        'test2@test.com'
+      )
+      census_users = [first, second]
+
+      result = CensusUser.find_user(census_users, first.first_name, first.last_name)
+
+      expect(result).to eq(first)
+    end
+  end
 end
