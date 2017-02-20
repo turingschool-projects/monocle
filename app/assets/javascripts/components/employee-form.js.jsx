@@ -5,7 +5,6 @@ class EmployeeForm extends React.Component {
 
     this.handleFirstNameChange = this.handleFirstNameChange.bind(this)
     this.handleLastNameChange = this.handleLastNameChange.bind(this)
-    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   handleFirstNameChange(event) {
@@ -16,18 +15,10 @@ class EmployeeForm extends React.Component {
     this.setState( { lastName: event.target.value })
   }
 
-
-  handleSubmit(event) {
-    let company_id = window.location.pathname[window.location.pathname.length - 1]
-debugger;
-    axios.post(`/api/v1/companies/${company_id}/admin/employees`)
-    event.preventDefault()
-  }
-
   render () {
     if (this.props.showComponent) {
       return (
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.props.createEmployee.bind(this, event)}>
           <label>First Name:
             <input type='text' name='first-name' id='first-name' onChange={this.handleFirstNameChange} />
           </label>

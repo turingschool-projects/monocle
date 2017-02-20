@@ -21,6 +21,18 @@ class CompanyAlumni extends React.Component {
     this.setState( {showAdminForm: true} )
   }
 
+  handleSubmit(event) {
+    debugger;
+    let company_id = window.location.pathname[window.location.pathname.length - 1]
+    axios.post( `/api/v1/companies/${company_id}/admin/employees`, {
+        first_name: this.state.firstName,
+        last_name: this.state.lastName
+      }
+    ).then(() => {
+      event.preventDefault()
+    })
+  }
+
   render() {
     return (
       <div className="panel-group">
@@ -31,7 +43,8 @@ class CompanyAlumni extends React.Component {
                 <a id="plus-sign" onClick={this.employeeForm.bind(this)}>[+]</a>
               </span>
             </h3>
-            <EmployeeForm showComponent={this.state.showAdminForm}/>
+            <EmployeeForm showComponent={this.state.showAdminForm}
+              createEmployee={this.handleSubmit} />
           </div>
         </div>
         <div className="panel-body">
