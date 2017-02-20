@@ -7,18 +7,20 @@ describe 'As a logged in user' do
   end
 
   context 'when I visit a company show page' do
-    scenario 'I enter an invalid zipcode and get an error' do
+    let(:company) { company = create_approved_company("Test Company") }
 
-      company = create_approved_company("Test Company")
-      visit '/companies/1'
+    scenario 'I see add findings box' do
+      visit company_path(company)
 
       expect(page).to have_content("Add Findings")
+    end
+
+    scenario "I enter my findings" do
+      visit company_path(company)
 
       select '2', from: 'finding_viability'
       check 'finding_hiring'
       click_on "Submit findings"
-
-      save_and_open_page
 
       expect(current_path).to eq(company_path(company))
       expect(page).to have_content("Findings")
