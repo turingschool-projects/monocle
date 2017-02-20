@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170219235359) do
+ActiveRecord::Schema.define(version: 20170220172422) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,10 +19,9 @@ ActiveRecord::Schema.define(version: 20170219235359) do
   create_table "companies", force: :cascade do |t|
     t.citext   "name"
     t.citext   "website"
-    t.citext   "headquarters"
     t.citext   "description"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
     t.string   "logo"
     t.integer  "status"
     t.citext   "size"
@@ -45,10 +44,8 @@ ActiveRecord::Schema.define(version: 20170219235359) do
   end
 
   create_table "finding_technologies", force: :cascade do |t|
-    t.integer  "finding_id"
-    t.integer  "technology_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.integer "finding_id"
+    t.integer "technology_id"
     t.index ["finding_id"], name: "index_finding_technologies_on_finding_id", using: :btree
     t.index ["technology_id"], name: "index_finding_technologies_on_technology_id", using: :btree
   end
@@ -119,8 +116,10 @@ ActiveRecord::Schema.define(version: 20170219235359) do
 
   create_table "technologies", force: :cascade do |t|
     t.string   "name"
+    t.integer  "finding_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["finding_id"], name: "index_technologies_on_finding_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -144,5 +143,6 @@ ActiveRecord::Schema.define(version: 20170219235359) do
   add_foreign_key "locations", "companies"
   add_foreign_key "notes", "users"
   add_foreign_key "starred_jobs", "users"
+  add_foreign_key "technologies", "findings"
   add_foreign_key "users", "companies"
 end
