@@ -2,7 +2,7 @@ class CensusUser
   attr_reader :census_id, :first_name, :last_name, :slack, :email
 
   def initialize(census_id, first_name, last_name, slack, email)
-    @census_id = id
+    @census_id = census_id
     @first_name = first_name
     @last_name = last_name
     @slack = slack
