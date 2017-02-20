@@ -9,6 +9,7 @@ class Api::V1::Admin::EmployeesController < ApplicationController
       first_name: params[:first_name],
       last_name: params[:last_name]
     )
+    census_users = CensusUser.create_census_users()
     require "pry"; binding.pry
   end
 

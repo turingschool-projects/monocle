@@ -1,20 +1,25 @@
 class CensusUser
+  attr_reader :census_id, :first_name, :last_name, :slack, :email
 
-  def self.create_census_users(url, access_token)
-    census_results = CensusService.new.get_users(url, access_token)
-    census_results.find do |census_user|
-      require "pry"; binding.pry
-      census_user
+  def initialize(census_id, first_name, last_name, slack, email)
+    @census_id = id
+    @first_name = first_name
+    @last_name = last_name
+    @slack = slack
+    @email = email
+  end
+
+  def self.create_census_users(url, access_token, name)
+    census_results = CensusService.new.get_users_by_name(url, access_token, name)
+    census_results.map do |census_user|
+      CensusUser.new(
+        census_user[:id],
+        census_user[:first_name],
+        census_user[:last_name],
+        census_user[:slack],
+        census_user[:email]
+      )
     end
-    # census_results.each do |census_user|
-    #   CensusUser.new(
-    #     census_user[:id]
-    #     census_user[:first_name],
-    #     census_user[:last_name],
-    #     census_user[:slack],
-    #     census_user[:email]
-    #   )
-    # end
   end
 
 end

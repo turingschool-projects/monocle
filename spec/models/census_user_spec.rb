@@ -14,6 +14,7 @@ RSpec.describe CensusUser do
 
         expect(census).to be_instance_of(Array)
         expect(census.first).to be_instance_of(CensusUser)
+        expect(census.first).to respond_to(:census_id)
         expect(census.first).to respond_to(:first_name)
         expect(census.first).to respond_to(:last_name)
         expect(census.first).to respond_to(:slack)
