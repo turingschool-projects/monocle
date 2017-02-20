@@ -4,11 +4,13 @@ class Api::V1::Admin::EmployeesController < ApplicationController
 
   def create
     company = Company.find(params[:company_id])
+
     census_users = CensusUser.create_census_users(
       '/api/v1/users/by_name',
       current_user.census_access_token,
       params[:last_name]
     )
+
     found_user = CensusUser.find_user(
       census_users,
       params[:first_name],
@@ -17,8 +19,8 @@ class Api::V1::Admin::EmployeesController < ApplicationController
 
     employee = Employee.new(
       census_id: found_user.census_id,
-      first_name: found_user.first_name,
-      last_name: found_user.last_name,
+      first_name: found_user.first_name.capitalize,
+      last_name: found_user.last_name.capitalize,
       email: found_user.email,
       slack: found_user.slack,
       company: company
