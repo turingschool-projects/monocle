@@ -119,7 +119,6 @@ body {
 .required-error {
   width: 150px;
 }
-<<<<<<< HEAD
 
 #add-location-button {
   float: right;
@@ -143,10 +142,12 @@ body {
   position: absolute;
   left: 170px;
   top: 400px;
-=======
+}
+
 .company-buttons {
   margin-bottom: 25px;
 }
+
 .remove-employee:hover{
   cursor: pointer;
   text-decoration: none;
@@ -155,5 +156,8 @@ body {
 /*ccs-toggle-switch*/
 div.switch-toggle.well {
   width: 25%;
->>>>>>> cf2b9cc14578bef6256c80a5cb3c43d863127ee3
+}
+
+ #token-input-finding_technology_tokens {
+  width: 30px;
 }

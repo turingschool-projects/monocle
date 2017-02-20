@@ -4,13 +4,12 @@ class FindingsController < ApplicationController
     params[:finding][:technology_tokens].split(",").each do |id|
       finding.technologies << Technology.find(id)
     end
-    binding.pry
-    redirect_to company_path()
+    redirect_to company_path(finding.company)
   end
 
   private
 
     def finding_params
-      params.require(:finding).permit(:viability, :hiring)
+      params.require(:finding).permit(:viability, :hiring, :company_id)
     end
 end
