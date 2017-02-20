@@ -44,5 +44,26 @@ RSpec.describe CensusUser do
 
       expect(result).to eq(first)
     end
+    it "finds the first user if two users have the same name" do
+      first = CensusUser.new(
+        1,
+        "test1_first",
+        "test1_last",
+        '@test1',
+        'test1@test.com'
+      )
+      second = CensusUser.new(
+        2,
+        "test1_first",
+        "test1_last",
+        '@test2',
+        'test2@test.com'
+      )
+      census_users = [first, second]
+
+      result = CensusUser.find_user(census_users, first.first_name, first.last_name)
+
+      expect(result).to eq(first)
+    end
   end
 end
