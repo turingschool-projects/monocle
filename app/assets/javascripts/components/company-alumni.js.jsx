@@ -37,7 +37,18 @@ class CompanyAlumni extends React.Component {
     axios.post(`/api/v1/companies/${company_id}/employees`)
     .then((returned) => {
       this.setState({ employees: employeesState.push(returned.data) })
-    })
+    }).then(this.determineDisable.bind(this, this.state.employees, this.state.current_user))
+  }
+
+  determineDisable(employees, current_user) {
+    for (var i = 0; i < employees.length; i++) {
+      if (employees[i].user_id == current_user.id) {
+        return this.setState({ workHereDisabled: true })
+      }
+      else {
+        this.setState({ workHereDisabled: false })
+      }
+    }
   }
 
 
