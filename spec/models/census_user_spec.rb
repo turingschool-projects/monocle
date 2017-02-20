@@ -4,10 +4,13 @@ RSpec.describe CensusUser do
   context '#create_census_users' do
     it "can create users from census" do
       VCR.use_cassette('.create_census_users') do
-        url = "/api/v1/users"
+        name = 'scherer'
+
+        url = "/api/v1/users/by_name"
+
         access_token = "#{ENV['census_access_token']}"
 
-        census = CensusUser.create_census_users(url, access_token)
+        census = CensusUser.create_census_users(url, access_token, name)
 
         expect(census).to be_instance_of(Array)
         expect(census.first).to be_instance_of(CensusUser)

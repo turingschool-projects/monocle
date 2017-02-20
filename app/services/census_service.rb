@@ -1,7 +1,7 @@
 class CensusService
 
-  def get_users(url, access_token)
-    response = conn.get url, { access_token: access_token }
+  def get_users_by_name(url, access_token, name)
+    response = conn.get url, { access_token: access_token, q: name }
     JSON.parse(response.body, symbolize_names: true)
   end
 
