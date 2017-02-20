@@ -15,7 +15,6 @@
 //= require react
 //= require react_ujs
 //= require components
-//= require axios
 //= require_tree .
 //= require formatted_date
 //= require note
