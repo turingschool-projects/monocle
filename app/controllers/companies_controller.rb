@@ -13,6 +13,7 @@ class CompaniesController < ApplicationController
   end
 
   def show
+    @finding = Finding.new
     @company = Company.find(params[:id])
     @pending_locations = Location.pending_locations
   end

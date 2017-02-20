@@ -22,6 +22,9 @@ $(document).ready(function(){
   $("#note-company-tokens").tokenInput("/companies.json", {
     crossDomain: false
   });
+  $("#finding_technology_tokens").tokenInput("/technologies.json", {
+      crossDomain: false
+  });
 
   $.when()
   .then(initMap)

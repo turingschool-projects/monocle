@@ -8,6 +8,7 @@ class Company < ApplicationRecord
   has_many :notes, through: :company_notes
   has_many :locations
   has_many :employees, class_name: 'User', foreign_key: 'company_id'
+  has_many :findings
   mount_uploader :logo, LogoUploader
 
   scope :company_size, -> (size) { where('companies.size IN (?)', size) }
@@ -54,6 +55,10 @@ class Company < ApplicationRecord
 
   def approved_locations
     self.locations.where('status = ?', '1')
+  end
+
+  def pending_locations
+    self.locations.where('status = ?', '0')
   end
 
   def get_coordinates
