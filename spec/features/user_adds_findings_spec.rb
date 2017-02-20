@@ -17,6 +17,15 @@ describe 'As a logged in user' do
       select '2', from: 'finding_viability'
       check 'finding_hiring'
       click_on "Submit findings"
+
+      save_and_open_page
+
+      expect(current_path).to eq(company_path(company))
+      expect(page).to have_content("Findings")
+      expect(page).to have_content("Viability")
+      expect(page).to have_content("2")
+      expect(page).to have_content("Hiring?")
+      expect(page).to have_content("true")
     end
   end
 end
