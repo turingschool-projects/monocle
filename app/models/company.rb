@@ -48,7 +48,7 @@ class Company < ApplicationRecord
     Company.where('status = ?', '0')
   end
 
-  def self.not_rejected_companies
+  def self.pending_and_approved_companies
     Company.where('status != ?', '2')
   end
 
