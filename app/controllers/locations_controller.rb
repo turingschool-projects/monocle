@@ -6,7 +6,6 @@ class LocationsController < ApplicationController
   end
 
   def create
-    # binding.pry
     company = Company.find(params[:company_id])
     location = company.locations.new(location_params)
     if location.save
