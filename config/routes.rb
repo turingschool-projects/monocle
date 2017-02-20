@@ -38,6 +38,9 @@ Rails.application.routes.draw do
       resources :companies,       only: [:index, :create] do
         resources :employees,     only: [:create, :destroy]
         resources :locations,     only: [:index, :update]
+        namespace :admin do
+          resources :employees,   only: [:create]
+        end
       end
       resources :notes, only: [:index, :create, :update, :destroy]
     end

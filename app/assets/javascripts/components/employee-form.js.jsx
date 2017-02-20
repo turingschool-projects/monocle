@@ -20,7 +20,7 @@ class EmployeeForm extends React.Component {
   handleSubmit(event) {
     let company_id = window.location.pathname[window.location.pathname.length - 1]
 
-    axios.post(`/api/v1/companies/${company_id}/employees`)
+    axios.post(`/api/v1/companies/${company_id}/admin/employees`)
     event.preventDefault()
   }
 
