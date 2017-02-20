@@ -14,7 +14,6 @@ class LocationsController < ApplicationController
     else
       flash.now[:error] = location.errors.full_messages.join(', ')
       redirect_to new_company_location_path
-      # render :new
     end
   end
 

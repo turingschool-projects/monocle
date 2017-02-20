@@ -158,6 +158,7 @@ div.switch-toggle.well {
   width: 25%;
 }
 
- #token-input-finding_technology_tokens {
-  width: 30px;
+.distance {
+  background-color: #A9FFDC;
+  border: 1px solid black;
 }
