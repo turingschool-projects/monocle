@@ -182,7 +182,7 @@ div.switch-toggle.well {
 
 .locations-table {
   position: relative;
-  width: 50%;
+  width: 45%;
   margin-top: 15px;
   display: inline-block;
   float: right;
@@ -191,7 +191,6 @@ div.switch-toggle.well {
 .company-info {
   display: inline-block;
   position: relative;
-  top: 0px;
   margin-left: 70px;
 }
 
