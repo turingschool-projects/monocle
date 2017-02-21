@@ -10,7 +10,8 @@ RSpec.describe 'api/v1/EmployeesController' do
       post "/api/v1/companies/#{company.id}/employees"
 
       expect(response).to be_success
-      expect(company.employees.first).to eq(user)
+      expect(company.employees.first.first_name).to eq(user.username.split(' ')[0])
+      expect(company.employees.first.last_name).to eq(user.username.split(' ')[1])
     end
   end
 end

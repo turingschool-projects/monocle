@@ -2,12 +2,12 @@ require 'rails_helper'
 
 RSpec.describe "As an admin" do
   context 'When I visit /company/1' do
-    it "I can add an employed alumnus" do
+    xit "I can add an employed alumnus" do
       admin_logs_in
       company = create(:company)
 
       visit company_path(company)
-      click_on "Add Employee"
+      click_on "[+]"
       fill_in :first_name, with: "Michael"
       fill_in :last_name, with: "Scherer"
 
