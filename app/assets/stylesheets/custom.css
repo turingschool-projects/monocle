@@ -191,6 +191,7 @@ div.switch-toggle.well {
 .company-info {
   display: inline-block;
   position: relative;
+  top: 0px;
   margin-left: 70px;
 }
 
