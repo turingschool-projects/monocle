@@ -19,10 +19,9 @@ ActiveRecord::Schema.define(version: 20170220172422) do
   create_table "companies", force: :cascade do |t|
     t.citext   "name"
     t.citext   "website"
-    t.citext   "headquarters"
     t.citext   "description"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
     t.string   "logo"
     t.integer  "status"
     t.citext   "size"
