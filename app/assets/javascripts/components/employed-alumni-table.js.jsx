@@ -10,8 +10,12 @@ class EmployedAlumniTable extends React.Component {
       let employeeList = this.state.employees.filter((employee) => {
         return employee.id !== deletedEmployee.id
       })
-      this.setState( {employees: employeeList} )
+      this.setState( {employees: employeeList}, this.handleOnClickRemove.bind(this, employeeList) )
     })
+  }
+
+  handleOnClickRemove(employees) {
+    this.props.determineDisable(employees, this.state.currentUser)
   }
 
     render () {
@@ -23,12 +27,13 @@ class EmployedAlumniTable extends React.Component {
         lastName={employee.last_name}
         slack={employee.slack}
         email={employee.email}
-        removeEmployee={this.deleteEmployee.bind(this, employee)} />
+        removeEmployee={this.deleteEmployee.bind(this, employee)}
+        determineDisable={this.props.determineDisable} />
       )
     })
 
     return (
-      <table className="table">
+      <table className="table" >
         <thead>
           <tr>
             <th>Company</th>

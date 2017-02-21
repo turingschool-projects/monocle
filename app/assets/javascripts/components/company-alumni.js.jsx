@@ -9,7 +9,7 @@ class CompanyAlumni extends React.Component {
   }
 
   addPlusSign() {
-    if (this.state.current_user.role == 'admin') {
+    if (this.state.currentUser.role == 'admin') {
       document.getElementById('add-plus').style.display = "inline"
     }
     else {
@@ -36,13 +36,17 @@ class CompanyAlumni extends React.Component {
     let employeesState = this.state.employees
     axios.post(`/api/v1/companies/${company_id}/employees`)
     .then((returned) => {
-      this.setState({ employees: employeesState.push(returned.data) })
-    }).then(this.determineDisable.bind(this, this.state.employees, this.state.current_user))
+      employeesState.push(returned.data)
+      this.setState({ employees: employeesState }, this.determineDisable.bind(this, employeesState, this.state.currentUser))
+    })
   }
 
-  determineDisable(employees, current_user) {
+  determineDisable(employees, currentUser) {
+    if (employees.length == 0) {
+      return this.setState({ workHereDisabled: false })
+    }
     for (var i = 0; i < employees.length; i++) {
-      if (employees[i].user_id == current_user.id) {
+      if (employees[i].user_id == currentUser.id) {
         return this.setState({ workHereDisabled: true })
       }
       else {
@@ -50,8 +54,6 @@ class CompanyAlumni extends React.Component {
       }
     }
   }
-
-
 
   render() {
     return (
@@ -72,7 +74,9 @@ class CompanyAlumni extends React.Component {
           </div>
         </div>
         <div className="panel-body">
-          <EmployedAlumniTable employees={this.state.employees} />
+          <EmployedAlumniTable employees={this.state.employees}
+            currentUser={this.state.current_user}
+            determineDisable={this.determineDisable.bind(this)} />
         </div>
       </div>
     )
