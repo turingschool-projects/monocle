@@ -5,12 +5,24 @@ class Api::V1::EmployeesController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def create
-    Company.find(get_company_id).employees << current_user
-    render json: {status: 'success'}, status: 201
+    company = Company.find(get_company_id)
+    employee = Employee.new(
+      first_name: current_user.split_username[0],
+      last_name: current_user.split_username[1],
+      user: current_user,
+      company: company
+    )
+
+    if employee.save
+      render json: employee, status: 201
+    else
+      render json: {message: 'failed'}, status: 500
+    end
   end
 
   def destroy
-    User.find(params[:id]).update(company_id: nil)
+    Employee.find(params[:id]).destroy
+    render json: {message: 'Successfully deleted'}, status: 204
   end
 
   private

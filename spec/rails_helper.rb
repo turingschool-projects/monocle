@@ -52,28 +52,28 @@ RSpec.configure do |config|
 end
 
 def admin_logs_in
-  admin = User.create({username: 'tester', census_uid: 'tester', census_access_token: 1, role: 2})
+  admin = User.create({username: 'tester', census_uid: 'tester', census_access_token: ENV['census_access_token'], role: 2})
   allow_any_instance_of(ApplicationController)
           .to receive(:current_user)
           .and_return(admin)
 end
 
 def moderator_logs_in
-  moderator = User.create({username: 'tester', census_uid: 'tester', census_access_token: 1, role: 1})
+  moderator = User.create({username: 'tester', census_uid: 'tester', census_access_token: ENV['census_access_token'], role: 1})
   allow_any_instance_of(ApplicationController)
           .to receive(:current_user)
           .and_return(moderator)
 end
 
 def user_logs_in
-  user = User.create({username: 'tester', census_uid: 'tester', census_access_token: 1})
+  user = User.create({username: 'tester', census_uid: 'tester', census_access_token: ENV['census_access_token']})
   allow_any_instance_of(ApplicationController)
           .to receive(:current_user)
           .and_return(user)
 end
 
 def user_logs_in_with_starred_company
-  user = User.create({username: 'tester', census_uid: 'tester', census_access_token: 1})
+  user = User.create({username: 'tester', census_uid: 'tester', census_access_token: ENV['census_access_token']})
   allow_any_instance_of(ApplicationController)
           .to receive(:current_user)
           .and_return(user)

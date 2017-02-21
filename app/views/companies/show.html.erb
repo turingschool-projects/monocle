@@ -26,23 +26,22 @@
       <%= button_tag class: "btn btn-default btn-lg star star-toggle", data: {no_turbolink: true, name: @company.name} do %>
       <%= content_tag("span", "", class: ["glyphicon", "glyphicon-star"], aria_hidden: true) %> Favorite
       <% end %>
-        <% if @company.employee?(current_user) %>
-          <%= button_tag class: "btn btn-default btn-lg work-here work-here-toggle", disabled: true, data: {no_turbolink: true, id: @company.id} do %>
-          <%= content_tag("span", "", class: ["glyphicon", "glyphicon-briefcase"], aria_hidden: true) %> I work here
-          <% end %>
-        <% else %>
-          <%= button_tag class: "btn btn-default btn-lg work-here work-here-toggle", data: {no_turbolink: true, id: @company.id} do %>
-          <%= content_tag("span", "", class: ["glyphicon", "glyphicon-briefcase"], aria_hidden: true) %> I work here
-          <% end %>
-        <% end %>
       </div>
     <% end %>
   </div>
 </div>
+<%= react_component 'CompanyAlumni', {
+    employees: @company.employees , currentUser: current_user,
+    showAdminForm: false,
+    workHereDisabled: @company.employee?(current_user)
+  }
+%>
 <div class="notes-container">
   <div class="panel-group">
     <div class='panel panel-default'>
-      <h3 class='text-center'>Create Note</h3>
+      <div class="panel-heading">
+        <h3 class='text-center'>Create Note</h3>
+      </div>
       <div class='panel-body'>
         <form>
           <div class="switch-toggle well">

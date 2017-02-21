@@ -140,7 +140,7 @@ body {
 .add-findings {
   display: inline-block;
   position: absolute;
-  left: 170px;
+  left: 100px;
   top: 400px;
 }
 
@@ -156,6 +156,18 @@ body {
 /*ccs-toggle-switch*/
 div.switch-toggle.well {
   width: 25%;
+}
+
+#plus-sign{
+  float: left;
+}
+
+#plus-sign:hover{
+  cursor: pointer;
+  text-decoration: none;
+}
+#work-here-button{
+  float: right;
 }
 
 .distance {

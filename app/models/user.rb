@@ -4,7 +4,7 @@ class User < ApplicationRecord
   has_many :starred_jobs
   has_many :companies, through: :starred_companies
   has_many :notes
-  belongs_to :employer, class_name: 'Company', foreign_key: 'company_id', optional: true
+  has_one  :employee
 
   before_validation :set_role
 
@@ -22,6 +22,10 @@ class User < ApplicationRecord
 
   def star(company)
     companies << company unless companies.exists?(id: company.id)
+  end
+
+  def split_username
+    username.split(' ')
   end
 
   private
