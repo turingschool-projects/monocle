@@ -45,7 +45,6 @@ gem 'axios_rails', '~> 0.7.0'
 group :development, :test do
   gem 'rb-readline'
   gem 'pry-coolline'
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
   gem 'pry-rails'
   gem "factory_girl_rails", "~> 4.0"
