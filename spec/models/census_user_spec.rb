@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe CensusUser do
   context '#create_census_users' do
-    it "can create users from census" do
+    xit "can create users from census" do
       VCR.use_cassette('.create_census_users') do
         name = 'scherer'
 

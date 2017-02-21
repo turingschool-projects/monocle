@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "Census service" do
   context 'GET /api/v1/users' do
-    it "can get users from census" do
+    xit "can get users from census" do
       VCR.use_cassette('.census-app') do
         name = 'scherer'
 
