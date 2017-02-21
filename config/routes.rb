@@ -12,7 +12,6 @@ Rails.application.routes.draw do
 
   resources :starred_companies, only: [:create, :destroy]
   resources :favorites, only: [:index]
-
   resources :starred_jobs, only: [:create, :destroy]
 
   resources :jobs, only: [:index, :show]
