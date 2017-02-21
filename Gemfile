@@ -33,7 +33,7 @@ gem 'faraday'
 gem 'carrierwave', '>= 1.0.0.rc', '< 2.0'
 gem 'fog-aws'
 gem 'omniauth'
-gem 'omniauth-census', git: "https://github.com/turingschool-projects/omniauth-census"
+gem 'omniauth-census', git: "https://github.com/NZenitram/census_staging_oauth"
 gem 'geocoder'
 gem 'travis'
 gem 'active_model_serializers', '~> 0.10.0'
@@ -43,6 +43,8 @@ gem 'react-rails'
 gem 'axios_rails', '~> 0.7.0'
 
 group :development, :test do
+  gem 'rb-readline'
+  gem 'pry-coolline'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
   gem 'pry-rails'

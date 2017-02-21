@@ -1,0 +1,39 @@
+<div class="add-findings">
+  <% if !@company.findings.empty? %>
+    <h4>Findings</h4>
+    <% @company.findings.each do |finding| %>
+      <table id="findings-table" class="table">
+        <tr>
+          <th>Viability</th>
+          <th>Hiring?</th>
+          <th>Technologies</th>
+        </tr>
+        <tbody>
+          <td><%= finding.viability %></td>
+          <td><%= finding.hiring %></td>
+          <td><%= finding.tech_list %></td>
+        </tbody>
+      </table>
+    <% end %>
+  <% end %>
+
+  <h4>Add Findings</h4>
+  <%= form_for @finding do |f| %>
+    <p id="viability">
+      <%= f.label :viability %>
+      <%= f.select(:viability, options_for_select(1..5), include_blank: true) %>
+    </p>
+    <p id="hiring">
+      <%= f.label :hiring, "Hiring?" %>
+      <%= f.check_box(:hiring) %>
+    </p>
+    <p id="technology-tokens">
+      <%= f.label :technology_tokens, "Technologies" %>
+      <%= f.text_field :technology_tokens %>
+    </p>
+      <%= f.hidden_field :company_id, value: @company.id %>
+    <div>
+      <%= f.submit "Submit findings", class:"btn btn-default"%>
+    </div>
+  <% end %>
+</div>

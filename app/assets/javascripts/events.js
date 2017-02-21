@@ -21,6 +21,9 @@ $(document).ready(function(){
   $("#note-company-tokens").tokenInput("/companies.json", {
     crossDomain: false
   });
+  $("#finding_technology_tokens").tokenInput("/technologies.json", {
+      crossDomain: false
+  });
 
   $.when()
   .then(initMap)
@@ -175,6 +178,8 @@ function addCards(companies) {
       location = location + line + '<br>'
     });
 
+    var distance = determineDistance(company)
+
     $('#companies-body').append(
       `<div class='card-holder col-xs-12 col-sm-6 col-md-4 col-lg-3 col-xl-2'>
           <div class='card'>
@@ -195,9 +200,18 @@ function addCards(companies) {
               </p>
             </div>
           </div>
+          ${distance}
         </div>`
     )
   });
+}
+
+function determineDistance(company) {
+  if (company.distance) {
+    return `<p class='distance text-center'> ${company.distance[1]} miles from ${company.distance[0]} </p>`
+  } else {
+    return ''
+  }
 }
 
 function appendNoCompaniesNotice() {

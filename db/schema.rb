@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170219230158) do
+ActiveRecord::Schema.define(version: 20170220172422) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,6 +56,22 @@ ActiveRecord::Schema.define(version: 20170219230158) do
     t.integer  "census_id"
     t.index ["company_id"], name: "index_employees_on_company_id", using: :btree
     t.index ["user_id"], name: "index_employees_on_user_id", using: :btree
+  end
+
+  create_table "finding_technologies", force: :cascade do |t|
+    t.integer "finding_id"
+    t.integer "technology_id"
+    t.index ["finding_id"], name: "index_finding_technologies_on_finding_id", using: :btree
+    t.index ["technology_id"], name: "index_finding_technologies_on_technology_id", using: :btree
+  end
+
+  create_table "findings", force: :cascade do |t|
+    t.integer  "viability"
+    t.boolean  "hiring"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "company_id"
+    t.index ["company_id"], name: "index_findings_on_company_id", using: :btree
   end
 
   create_table "industries", force: :cascade do |t|
@@ -113,6 +129,14 @@ ActiveRecord::Schema.define(version: 20170219230158) do
     t.index ["user_id"], name: "index_starred_jobs_on_user_id", using: :btree
   end
 
+  create_table "technologies", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "finding_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["finding_id"], name: "index_technologies_on_finding_id", using: :btree
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "username"
     t.datetime "created_at",          null: false
@@ -128,7 +152,11 @@ ActiveRecord::Schema.define(version: 20170219230158) do
   add_foreign_key "company_notes", "notes"
   add_foreign_key "employees", "companies"
   add_foreign_key "employees", "users"
+  add_foreign_key "finding_technologies", "findings"
+  add_foreign_key "finding_technologies", "technologies"
+  add_foreign_key "findings", "companies"
   add_foreign_key "locations", "companies"
   add_foreign_key "notes", "users"
   add_foreign_key "starred_jobs", "users"
+  add_foreign_key "technologies", "findings"
 end

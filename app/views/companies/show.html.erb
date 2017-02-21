@@ -1,62 +1,67 @@
-<div id="company-id" data-company-id='<%= @company.id %>'></div>
 <div class="container">
-  <div class="well">
     <h1 class="company-name"><%= @company.name %></h1>
-    <%= render partial: 'company_info' %>
-    <section id="company-map"></section>
-    <%= render partial: 'locations_table' %>
+      <div class="company-info-and-locations-table">
+        <%= render partial: 'company_info' %>
+        <%= render partial: 'locations_table' %>
+      </div>
+
+      <div class="add-findings-and-map">
+        <%= render partial: 'add_findings' %>
+        <div id="company-map"></div>
+      </div>
+
+  <div class="favorites-button">
+    <% if current_user.companies.exists?(@company.id) %>
+    <div class='starred-message'>
+      <h4><i class="text-info">
+        <span class="glyphicon glyphicon-star" aria-hidden="true"></span> This company has been saved in your starred list.
+        </i></h4>
+      </div>
+      <%= button_tag class: "btn btn-default btn-lg unstar star-toggle", data: {no_turbolink: true, name: @company.name} do %>
+      <%= content_tag("span", "", class: ["glyphicon", "glyphicon-star"], aria_hidden: true) %> Unfavorite
+      <% end %>
+    <% else %>
+      <div class='starred-message'></div>
+      <div class="company-buttons text-center">
+      <%= button_tag class: "btn btn-default btn-lg star star-toggle", data: {no_turbolink: true, name: @company.name} do %>
+      <%= content_tag("span", "", class: ["glyphicon", "glyphicon-star"], aria_hidden: true) %> Favorite
+      <% end %>
+      </div>
+    <% end %>
   </div>
-  <div class="company-buttons text-center">
-      <% if current_user.companies.exists?(@company.id) %>
-        <div class='starred-message'>
-          <h4><i class="text-info">
-            <span class="glyphicon glyphicon-star" aria-hidden="true"></span> This company has been saved in your starred list.
-          </i></h4>
-        </div>
-          <%= button_tag class: "btn btn-default btn-lg unstar star-toggle", data: {no_turbolink: true, id: @company.id} do %>
-          <%= content_tag("span", "", class: ["glyphicon", "glyphicon-star"], aria_hidden: true) %> Unfavorite
-          <% end %>
-        <% else %>
-          <div class='starred-message'></div>
-          <%= button_tag class: "btn btn-default btn-lg star star-toggle", data: {no_turbolink: true, id: @company.id} do %>
-          <%= content_tag("span", "", class: ["glyphicon", "glyphicon-star"], aria_hidden: true) %> Favorite
-          <% end %>
-        <% end %>
+</div>
+<%= react_component 'CompanyAlumni', {
+    employees: @company.employees , currentUser: current_user,
+    showAdminForm: false,
+    workHereDisabled: @company.employee?(current_user)
+  }
+%>
+<div class="notes-container">
+  <div class="panel-group">
+    <div class='panel panel-default'>
+      <div class="panel-heading">
+        <h3 class='text-center'>Create Note</h3>
+      </div>
+      <div class='panel-body'>
+        <form>
+          <div class="switch-toggle well">
+            <input id="private-note" name="note-status" type="radio" value="private" checked>
+            <label for="private-note">Private</label>
+
+            <input id="public-note" name="note-status" type="radio" value="public">
+            <label for="public-note" onclick="">Public</label>
+
+            <a class="btn btn-primary"></a>
+          </div>
+          <input type="text" name="note[title]" id="notetitle" placeholder="Title"></br></br>
+          <textarea name="note[body]" id="notebody" placeholder="Body ..."></textarea></br>
+          <script>
+            CKEDITOR.replace( 'note[body]' );
+          </script>
+          <button type="button" name="create-note" id="create-note-button">Create Note</button>
+        </form>
       </div>
     </div>
-
-    <%= react_component 'CompanyAlumni', {
-        employees: @company.employees , currentUser: current_user,
-        showAdminForm: false,
-        workHereDisabled: @company.employee?(current_user)
-      }
-    %>
-
-    <div class="panel-group">
-      <div class='panel panel-default'>
-        <div class="panel-heading">
-          <h3 class='text-center'>Create Note</h3>
-        </div>
-        <div class='panel-body'>
-          <form>
-            <div class="switch-toggle well">
-              <input id="private-note" name="note-status" type="radio" value="private" checked>
-              <label for="private-note">Private</label>
-
-              <input id="public-note" name="note-status" type="radio" value="public">
-              <label for="public-note" onclick="">Public</label>
-
-              <a class="btn btn-primary"></a>
-            </div>
-            <input type="text" name="note[title]" id="notetitle" placeholder="Title"></br></br>
-            <textarea name="note[body]" id="notebody" placeholder="Body ..."></textarea></br>
-            <script>
-              CKEDITOR.replace( 'note[body]' );
-            </script>
-            <button type="button" name="create-note" id="create-note-button">Create Note</button>
-          </form>
-        </div>
-      </div>
       <div id="notes-table">
         <h3 class="text-center">Notes List</h3>
         <table class="table table-striped">
@@ -74,8 +79,6 @@
         </table>
       </div>
     </div>
+  </div>
 
-  </div>
-  </div>
-  <div id="lat-lng" data-coordinates="<%= @company.coordinates %>"></div>
 <script src="https://maps.googleapis.com/maps/api/js?key=<%=ENV['google_maps_key']%>&callback=initCompanyMap"></script>
