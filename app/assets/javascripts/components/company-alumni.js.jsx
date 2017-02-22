@@ -6,6 +6,7 @@ class CompanyAlumni extends React.Component {
 
   componentDidMount() {
     this.addPlusSign()
+    this.getAllCensusUsers()
   }
 
   addPlusSign() {
@@ -55,6 +56,13 @@ class CompanyAlumni extends React.Component {
     }
   }
 
+  getAllCensusUsers() {
+    axios.get('/api/v1/admin/census_users')
+    .then((returned) => {
+      this.setState({ census: returned.data })
+    })
+  }
+
   render() {
     return (
       <div className="panel-group">
@@ -70,7 +78,8 @@ class CompanyAlumni extends React.Component {
               </span>y
             </h3>
             <EmployeeForm showComponent={this.state.showAdminForm}
-              createEmployee={this.handleSubmit} />
+              createEmployee={this.handleSubmit}
+              censusUsers={this.state.census} />
           </div>
         </div>
         <div className="panel-body">

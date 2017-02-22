@@ -15,21 +15,27 @@ class EmployeeForm extends React.Component {
     this.setState( { lastName: event.target.value })
   }
 
-  // getAllCensusUsers() {
-  //   axios.get(https://census-app-staging.herokuapp.com/api/v1/users/?access_token=5869cf7b8061a1f462a43c87851645c21b13a839931828766a2d4cfd28687596)
-  // }
+  userMatches(userInput) {
+    let matchedUsers = this.props.censusUsers.filter((user) => {
+      lowerName = user.name.toLowerCase()
+      return lowerName.includes(userInput.toLowerCase())
+    })
+    this.setState({ matches: matchedUsers })
+  }
 
   render () {
     if (this.props.showComponent) {
       return (
         <form onSubmit={this.props.createEmployee.bind(this, event)}>
           <label>First Name:
-            <input type='text' name='first-name' id='first-name' onChange={this.handleFirstNameChange} />
+            <input type='text' name='first-name' id='first-name' onChange={this.handleFirstNameChange}
+              onKeyUp={this.userMatches.bind(this, event.target.value)} />
           </label>
           <label>Last Name:
             <input type='text' name='last-name' id='last-name' onChange={this.handleLastNameChange} />
           </label>
           <input type='submit' value='Create Employee' />
+          <a value='test butt' onClick={this.getAllCensusUsers}>Testy</a>
         </form>
       )
     } else {
