@@ -63,6 +63,15 @@ class CompanyAlumni extends React.Component {
     })
   }
 
+  createDataList() {
+    let dataList = document.getElementById('matches-datalist')
+    this.state.censusUsers.forEach((match) => {
+      let option = document.createElement('option')
+      option.value = match.name
+      dataList.appendChild(option)
+    })
+  }
+
   render() {
     return (
       <div className="panel-group">
@@ -79,7 +88,8 @@ class CompanyAlumni extends React.Component {
             </h3>
             <EmployeeForm showComponent={this.state.showAdminForm}
               createEmployee={this.handleSubmit}
-              censusUsers={this.state.census} />
+              censusUsers={this.state.census}
+              createDataList={this.createDataList.bind(this)} />
           </div>
         </div>
         <div className="panel-body">
