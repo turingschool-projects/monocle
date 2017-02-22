@@ -7,7 +7,7 @@ class Api::V1::CompaniesController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def index
-    @companies = Company.approved_companies.filter(params.slice(:company_size, :industry_ids, :with_locations_near)).includes(:locations)
+    @companies = Company.pending_and_approved_companies.filter(params.slice(:company_size, :industry_ids, :with_locations_near)).includes(:locations)
   end
 
   def create

@@ -177,32 +177,55 @@ function addCards(companies) {
     company['location'].forEach(function(line) {
       location = location + line + '<br>'
     });
-
     var distance = determineDistance(company)
 
-    $('#companies-body').append(
-      `<div class='card-holder col-xs-12 col-sm-6 col-md-4 col-lg-3 col-xl-2'>
-          <div class='card'>
-            <div class='logo'>
-              <a href='/companies/${company["id"]}'>
-                <img src=${company['logo']}>
-              </a>
-            </div>
-            <div>
-              <h4 class='company_name'>
-                <a href='/companies/${company["id"]}'>${company.name}</a><br />
-              </h4>
-              <p>
-                ${location}
-                <a href='http://${company["website"]}' target='_blank'>
-                  ${company['website']}
+    if(company.status == 'approved') {
+      $('#companies-body').append(
+        `<div class='card-holder col-xs-12 col-sm-6 col-md-4 col-lg-3 col-xl-2'>
+            <div class='card'>
+              <div class='logo'>
+                <a href='/companies/${company["id"]}'>
+                  <img src=${company['logo']}>
                 </a>
-              </p>
+              </div>
+              <div>
+                <h4 class='company_name'>
+                  <a href='/companies/${company["id"]}'>${company.name}</a><br />
+                </h4>
+                <p>
+                  ${location}
+                  <a href='http://${company["website"]}' target='_blank'>
+                    ${company['website']}
+                  </a>
+                </p>
+              </div>
             </div>
-          </div>
-          ${distance}
-        </div>`
-    )
+            ${distance}
+          </div>`)
+      }else {
+        $('#pending-companies-body').append(
+          `<div class='card-holder col-xs-12 col-sm-6 col-md-4 col-lg-3 col-xl-2'>
+              <div class='card'>
+                <div class='logo'>
+                  <a href='/companies/${company["id"]}'>
+                    <img src=${company['logo']}>
+                  </a>
+                </div>
+                <div>
+                  <h4 class='company_name'>
+                    <a href='/companies/${company["id"]}'>${company.name}</a><br />
+                  </h4>
+                  <p>
+                    ${location}
+                    <a href='http://${company["website"]}' target='_blank'>
+                      ${company['website']}
+                    </a>
+                  </p>
+                </div>
+              </div>
+              ${distance}
+            </div>`)
+      }
   });
 }
 
@@ -228,6 +251,7 @@ function toggleSizeSelect() {
 
 function removeCards() {
   $('#companies-body').empty();
+  $('#pending-companies-body').empty();
 }
 
 function clearFields() {

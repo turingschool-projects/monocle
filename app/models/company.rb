@@ -50,6 +50,10 @@ class Company < ApplicationRecord
     Company.where('status = ?', '0')
   end
 
+  def self.pending_and_approved_companies
+    Company.where('companies.status != ?', '2')
+  end
+
   def approved?
     self.status == "approved"
   end
