@@ -43,6 +43,20 @@ ActiveRecord::Schema.define(version: 20170220172422) do
     t.index ["note_id"], name: "index_company_notes_on_note_id", using: :btree
   end
 
+  create_table "employees", force: :cascade do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "email"
+    t.string   "slack"
+    t.integer  "company_id"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "census_id"
+    t.index ["company_id"], name: "index_employees_on_company_id", using: :btree
+    t.index ["user_id"], name: "index_employees_on_user_id", using: :btree
+  end
+
   create_table "finding_technologies", force: :cascade do |t|
     t.integer "finding_id"
     t.integer "technology_id"
@@ -129,14 +143,14 @@ ActiveRecord::Schema.define(version: 20170220172422) do
     t.integer  "role"
     t.string   "census_uid"
     t.string   "census_access_token"
-    t.integer  "company_id"
-    t.index ["company_id"], name: "index_users_on_company_id", using: :btree
   end
 
   add_foreign_key "company_industries", "companies"
   add_foreign_key "company_industries", "industries"
   add_foreign_key "company_notes", "companies"
   add_foreign_key "company_notes", "notes"
+  add_foreign_key "employees", "companies"
+  add_foreign_key "employees", "users"
   add_foreign_key "finding_technologies", "findings"
   add_foreign_key "finding_technologies", "technologies"
   add_foreign_key "findings", "companies"
@@ -144,5 +158,4 @@ ActiveRecord::Schema.define(version: 20170220172422) do
   add_foreign_key "notes", "users"
   add_foreign_key "starred_jobs", "users"
   add_foreign_key "technologies", "findings"
-  add_foreign_key "users", "companies"
 end

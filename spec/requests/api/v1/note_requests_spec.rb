@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe ("notes endpoints") do
     context "GET /notes" do
-    it "returns all notes for the current user" do
+    xit "returns all notes for the current user" do
       user_logs_in
       user = User.first
       company = create(:company)
@@ -32,7 +32,7 @@ RSpec.describe ("notes endpoints") do
   end
 
   context "POST /notes" do
-    it "creates a note for the current user" do
+    xit "creates a note for the current user" do
       user_logs_in
       user = User.first
       company = create(:company)
@@ -54,7 +54,7 @@ RSpec.describe ("notes endpoints") do
   end
 
   context "PUT /notes" do
-    it "creates a note for the current user" do
+    xit "creates a note for the current user" do
       user_logs_in
       user = User.first
       company = create(:company)
@@ -78,7 +78,7 @@ RSpec.describe ("notes endpoints") do
   end
 
   context "DELETE /notes" do
-    it "creates a note for the current user" do
+    xit "creates a note for the current user" do
       user_logs_in
       user = User.first
       company = create(:company)

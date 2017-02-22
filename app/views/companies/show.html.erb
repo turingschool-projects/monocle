@@ -6,43 +6,25 @@
       </div>
 
       <div class="add-findings-and-map">
+        <section id="company-map"></section>
         <%= render partial: 'add_findings' %>
-        <div id="company-map"></div>
+        <%= render partial: 'favorites_button' %>
       </div>
 
-  <div class="favorites-button">
-    <% if current_user.companies.exists?(@company.id) %>
-    <div class='starred-message'>
-      <h4><i class="text-info">
-        <span class="glyphicon glyphicon-star" aria-hidden="true"></span> This company has been saved in your starred list.
-        </i></h4>
-      </div>
-      <%= button_tag class: "btn btn-default btn-lg unstar star-toggle", data: {no_turbolink: true, name: @company.name} do %>
-      <%= content_tag("span", "", class: ["glyphicon", "glyphicon-star"], aria_hidden: true) %> Unfavorite
-      <% end %>
-    <% else %>
-      <div class='starred-message'></div>
-      <div class="company-buttons text-center">
-      <%= button_tag class: "btn btn-default btn-lg star star-toggle", data: {no_turbolink: true, name: @company.name} do %>
-      <%= content_tag("span", "", class: ["glyphicon", "glyphicon-star"], aria_hidden: true) %> Favorite
-      <% end %>
-        <% if @company.employee?(current_user) %>
-          <%= button_tag class: "btn btn-default btn-lg work-here work-here-toggle", disabled: true, data: {no_turbolink: true, id: @company.id} do %>
-          <%= content_tag("span", "", class: ["glyphicon", "glyphicon-briefcase"], aria_hidden: true) %> I work here
-          <% end %>
-        <% else %>
-          <%= button_tag class: "btn btn-default btn-lg work-here work-here-toggle", data: {no_turbolink: true, id: @company.id} do %>
-          <%= content_tag("span", "", class: ["glyphicon", "glyphicon-briefcase"], aria_hidden: true) %> I work here
-          <% end %>
-        <% end %>
-      </div>
-    <% end %>
-  </div>
+
 </div>
+<%= react_component 'CompanyAlumni', {
+    employees: @company.employees , currentUser: current_user,
+    showAdminForm: false,
+    workHereDisabled: @company.employee?(current_user)
+  }
+%>
 <div class="notes-container">
   <div class="panel-group">
     <div class='panel panel-default'>
-      <h3 class='text-center'>Create Note</h3>
+      <div class="panel-heading">
+        <h3 class='text-center'>Create Note</h3>
+      </div>
       <div class='panel-body'>
         <form>
           <div class="switch-toggle well">
