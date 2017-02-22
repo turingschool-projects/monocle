@@ -118,7 +118,6 @@ class Company < ApplicationRecord
   end
 
   def get_distance(zip)
-    binding.pry
     distance = self.locations.first.distance_from(zip)
     [zip, distance.round(2)]
   end

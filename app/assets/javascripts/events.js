@@ -260,6 +260,7 @@ function toggleSizeSelect() {
 
 function removeCards() {
   $('#companies-body').empty();
+  $('#pending-companies-body').empty();
 }
 
 function clearFields() {

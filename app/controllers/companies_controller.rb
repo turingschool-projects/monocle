@@ -61,5 +61,4 @@ class CompaniesController < ApplicationController
                                       :city,
                                       :zip_code).merge(state: params[:state])
   end
-
 end
