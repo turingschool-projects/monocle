@@ -15,6 +15,10 @@ class EmployeeForm extends React.Component {
     this.setState( { lastName: event.target.value })
   }
 
+  // getAllCensusUsers() {
+  //   axios.get(https://census-app-staging.herokuapp.com/api/v1/users/?access_token=5869cf7b8061a1f462a43c87851645c21b13a839931828766a2d4cfd28687596)
+  // }
+
   render () {
     if (this.props.showComponent) {
       return (

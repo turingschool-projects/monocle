@@ -67,7 +67,7 @@ class CompanyAlumni extends React.Component {
               <span>
                 <WorkHereButton buttonDisabled={this.state.workHereDisabled}
                   createEmployee={this.createEmployee.bind(this)}/>
-              </span>
+              </span>y
             </h3>
             <EmployeeForm showComponent={this.state.showAdminForm}
               createEmployee={this.handleSubmit} />

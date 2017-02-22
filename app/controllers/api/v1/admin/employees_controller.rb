@@ -1,6 +1,7 @@
 class Api::V1::Admin::EmployeesController < ApplicationController
 
   skip_before_action :verify_authenticity_token
+  before_action :verify_admin
 
   def create
     company = Company.find(params[:company_id])

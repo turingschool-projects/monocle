@@ -35,6 +35,9 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
+      namespace :admin do
+        resources :census_users, only: [:index]
+      end
       get '/companies/find', to: 'company_search#show', as: 'find_company'
       resources :companies,       only: [:index, :create] do
         resources :employees,     only: [:create, :destroy]
