@@ -24,16 +24,4 @@ RSpec.feature "User navigates to company directory", type: :feature do
       expect(page).to have_content(companies.last.website)
     end
   end
-
-#   it "they see pending companies below approved companies" do
-#     user = create(:user)
-#     stub_login(user)
-#     3.times { |n| create_approved_company("TestCo#{n}") }
-#     2.times { |n| create_unapproved_company("TestComp#{n}") }
-#     companies = Company.all
-#
-#     visit '/'
-#
-#     expect(page).to have_css(".card", count: Company.count)
-#   end
-# end
+end
