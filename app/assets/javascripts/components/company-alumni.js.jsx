@@ -25,11 +25,8 @@ class CompanyAlumni extends React.Component {
   handleSubmit(event) {
     event.preventDefault()
     let company_id = window.location.pathname[window.location.pathname.length - 1]
-    axios.post( `/api/v1/companies/${company_id}/admin/employees`, {
-        first_name: this.state.firstName,
-        last_name: this.state.lastName
-      }
-    )
+    axios.post( `/api/v1/companies/${company_id}/admin/employees`, { name: this.state.name } )
+    debugger;
   }
 
   createEmployee() {
