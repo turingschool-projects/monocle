@@ -1,18 +1,13 @@
 class EmployeeForm extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { firstName: '', lastName: '' }
+    this.state = { name: '' }
 
-    this.handleFirstNameChange = this.handleFirstNameChange.bind(this)
-    this.handleLastNameChange = this.handleLastNameChange.bind(this)
+    this.handleNameChange = this.handleNameChange.bind(this)
   }
 
-  handleFirstNameChange(event) {
-    this.setState( { firstName: event.target.value })
-  }
-
-  handleLastNameChange(event) {
-    this.setState( { lastName: event.target.value })
+  handleNameChange(event) {
+    this.setState( { name: event.target.value })
   }
 
   userMatches(userInput) {
@@ -47,25 +42,18 @@ class EmployeeForm extends React.Component {
     }
   }
 
-  clearSelector() {
-    document.getElementById('first-name').reset()
-  }
-
   render () {
     if (this.props.showComponent) {
       return (
         <form onSubmit={this.props.createEmployee.bind(this, event)} >
           <label>Name:
-            <input type='text' name='first-name' id='first-name' list="matches-datalist"
-              onChange={this.handleFirstNameChange}
+            <input type='text' name='name' id='name' list="matches-datalist"
+              onChange={this.handleNameChange}
               onKeyUp={this.userMatches.bind(this, event.target.value)}
               onFocus={this.createDataList.bind(this)}
               onBlur={this.clearDataList.bind(this)} />
           </label>
           <datalist id='matches-datalist'></datalist>
-          <label>Last Name:
-            <input type='text' name='last-name' id='last-name' onChange={this.handleLastNameChange} />
-          </label>
           <input type='submit' value='Create Employee' />
         </form>
       )
