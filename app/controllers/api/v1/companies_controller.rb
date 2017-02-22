@@ -1,9 +1,7 @@
 class Api::V1::CompaniesController < ApplicationController
 
   before_action :secure_creation, only: [:create]
-
   skip_before_action :authorize!, only: [:create]
-
   skip_before_action :verify_authenticity_token
 
   def index
@@ -15,7 +13,7 @@ class Api::V1::CompaniesController < ApplicationController
     if company.save
       render json: company, status: 201
     else
-      render json: "Company could not be created", status: 500
+      render json: { failure: "Company could not be created" }, status: 500
     end
   end
 
