@@ -129,6 +129,10 @@ class Company < ApplicationRecord
     end
   end
 
+  def formatted_website
+    website ?  "http://#{website}" : ""
+  end
+
   private
     def set_status
       self.status ||= 0
