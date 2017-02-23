@@ -12,10 +12,11 @@ Rails.application.routes.draw do
 
   resources :starred_companies, only: [:create, :destroy]
   resources :favorites, only: [:index]
-
   resources :starred_jobs, only: [:create, :destroy]
 
   resources :jobs, only: [:index, :show]
+  resources :findings, only: [:new, :create]
+  resources :technologies, only: [:index]
 
   namespace :moderator do
     resources :companies,       only: [:edit, :update]
@@ -34,10 +35,16 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
+      namespace :admin do
+        resources :census_users, only: [:index]
+      end
       get '/companies/find', to: 'company_search#show', as: 'find_company'
       resources :companies,       only: [:index, :create] do
         resources :employees,     only: [:create, :destroy]
         resources :locations,     only: [:index, :update]
+        namespace :admin do
+          resources :employees,   only: [:create]
+        end
       end
       resources :notes, only: [:index, :create, :update, :destroy]
     end

@@ -30,11 +30,11 @@ module SeedFixtureData
       companies.each do |company|
         name              = company[0]
         website           = company[5]
-        products_services = company[7].sub("Products/Services: ", "")
+        description       = company[7].sub("Products/Services: ", "")
 
         this_company = Company.where(name: name).first_or_create({
           website:           website,
-          products_services: products_services,
+          description:       description,
           status:            "approved"
         })
 

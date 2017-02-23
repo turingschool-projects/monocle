@@ -10,26 +10,37 @@ class EmployedAlumniTable extends React.Component {
       let employeeList = this.state.employees.filter((employee) => {
         return employee.id !== deletedEmployee.id
       })
-      this.setState( {employees: employeeList} )
+      this.setState( {employees: employeeList}, this.handleOnClickRemove.bind(this, employeeList) )
     })
+  }
+
+  handleOnClickRemove(employees) {
+    this.props.determineDisable(employees, this.state.currentUser)
   }
 
     render () {
     let employees = this.state.employees.map((employee) => {
       return (<EmployeeRow
         key={employee.id}
-        username={employee.username}
         companyName={employee.company_name}
-        removeEmployee={this.deleteEmployee.bind(this, employee)} />
+        firstName={employee.first_name}
+        lastName={employee.last_name}
+        slack={employee.slack}
+        email={employee.email}
+        removeEmployee={this.deleteEmployee.bind(this, employee)}
+        determineDisable={this.props.determineDisable} />
       )
     })
 
     return (
-      <table className="table">
+      <table className="table" >
         <thead>
           <tr>
             <th>Company</th>
-            <th>Employee</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Slack Handle</th>
+            <th>Email</th>
             <th></th>
           </tr>
         </thead>

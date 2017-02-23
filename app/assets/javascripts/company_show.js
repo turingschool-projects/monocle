@@ -53,3 +53,32 @@ function extractCoordinates(locations) {
   })
   return coordinates;
 }
+
+$(document).ready(function() {
+  fetchJobs();
+})
+
+function fetchJobs() {
+  var companyId = location.pathname.split('/')[2]
+
+  $.ajax({
+    url: "https://localhost:2999/api/v1/company_jobs/",
+    method: "GET",
+    data: {'monocle_id': companyId},
+    type: "json",
+    success: function (response) {
+      displayJobs(response);
+    }
+  })
+
+  function displayJobs(response) {
+    jobs = response.company_jobs
+    if (jobs.length > 0) {
+      $('#no-jobs').remove();
+      jobs.forEach((job) => {
+        var row = `<tr><td><a href='${job.url}'>${job.title}</a></td></tr>`
+        $('#jobs-tbody').append(row);
+      })
+    }
+  }
+}

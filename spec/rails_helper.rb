@@ -52,28 +52,28 @@ RSpec.configure do |config|
 end
 
 def admin_logs_in
-  admin = User.create({username: 'tester', census_uid: 'tester', census_access_token: 1, role: 2})
+  admin = User.create({username: 'tester', census_uid: 'tester', census_access_token: ENV['census_access_token'], role: 2})
   allow_any_instance_of(ApplicationController)
           .to receive(:current_user)
           .and_return(admin)
 end
 
 def moderator_logs_in
-  moderator = User.create({username: 'tester', census_uid: 'tester', census_access_token: 1, role: 1})
+  moderator = User.create({username: 'tester', census_uid: 'tester', census_access_token: ENV['census_access_token'], role: 1})
   allow_any_instance_of(ApplicationController)
           .to receive(:current_user)
           .and_return(moderator)
 end
 
 def user_logs_in
-  user = User.create({username: 'tester', census_uid: 'tester', census_access_token: 1})
+  user = User.create({username: 'tester', census_uid: 'tester', census_access_token: ENV['census_access_token']})
   allow_any_instance_of(ApplicationController)
           .to receive(:current_user)
           .and_return(user)
 end
 
 def user_logs_in_with_starred_company
-  user = User.create({username: 'tester', census_uid: 'tester', census_access_token: 1})
+  user = User.create({username: 'tester', census_uid: 'tester', census_access_token: ENV['census_access_token']})
   allow_any_instance_of(ApplicationController)
           .to receive(:current_user)
           .and_return(user)
@@ -89,7 +89,7 @@ def create_unapproved_company(name = 'TestCo')
   company = Company.create({
       name: name,
       website: "www.monocle.com",
-      products_services: "Jobs",
+      description: "Jobs",
       size: 50,
       status: 0
     })
@@ -142,7 +142,7 @@ def create_note_with_company_and_user
   company = Company.create({
       name: "Monocle",
       website: "www.monocle.com",
-      products_services: "Jobs"
+      description: "Jobs"
     })
   note = Note.create({
       title: "Solid Company",
@@ -163,7 +163,7 @@ def create_company_with_industry(industry, name = 'TestCo')
   company = Company.create({
       name: name,
       website: "www.monocle.com",
-      products_services: "Jobs",
+      description: "Jobs",
       status: 1
     })
   company.industries << industry
@@ -183,7 +183,7 @@ def create_boulder_company(name = 'boulder co')
   company = Company.create({
       name: name,
       website: "www.boulder.com",
-      products_services: "keyboards",
+      description: "keyboards",
       status: 1
     })
   company.locations << Location.create({
@@ -202,7 +202,7 @@ def create_denver_company(name = 'denver co')
   company = Company.create({
       name: name,
       website: "www.denver.com",
-      products_services: "turtles",
+      description: "turtles",
       status: 1
     })
   company.locations << Location.create({
@@ -221,7 +221,7 @@ def create_colorado_springs_company(name = 'co-springs co')
   company = Company.create({
       name: name,
       website: "www.co-springs.com",
-      products_services: "lamas",
+      description: "lamas",
       status: 1
     })
   company.locations << Location.create({

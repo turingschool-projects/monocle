@@ -2,7 +2,6 @@ $(document).ready(function(){
   if (pathFinder()[1] == 'notes' || pathFinder()[1] == 'companies') {
     displayNotes();
     $("#create-note-button").on('click', prepareNoteCreate);
-    $('.work-here').on('click', createEmployee);
   }
 
   $(".star").on("click", prepareStar);
@@ -19,6 +18,12 @@ $(document).ready(function(){
   $("#size-options").on('change', 'select#sizes', filterCompanies);
   $('div#within-distance :checkbox').change(toggleCompaniesWithinDistance);
   $('#filter-by-zip').on('click', validateZipThenFilter);
+  $("#note-company-tokens").tokenInput("/companies.json", {
+    crossDomain: false
+  });
+  $("#finding_technology_tokens").tokenInput("/technologies.json", {
+      crossDomain: false
+  });
 
   $.when()
   .then(initMap)
@@ -33,15 +38,7 @@ function pathFinder() {
   return document.location.pathname.split('/');
 }
 
-function createEmployee() {
-  var company_id = pathFinder()[2]
-  var employee = new Employee
-  $.ajax({
-    url: `/api/v1/companies/${company_id}/employees`,
-    method: "POST"
-  })
-  .then(employee.disableEmployeeButton);
-}
+
 
 function renderStar() {
   $('.starred-message').html('');
@@ -174,36 +171,83 @@ function addCards(companies) {
   if (companies.length === 0) {
     appendNoCompaniesNotice();
   }
+
+  var pending_companies = false;
+
   companies.forEach(function (company, index){
     placeMapMarker(company, index);
     var location = ''
     company['location'].forEach(function(line) {
       location = location + line + '<br>'
     });
+    var distance = determineDistance(company)
 
-    $('#companies-body').append(
-      `<div class='card-holder col-xs-12 col-sm-6 col-md-4 col-lg-3 col-xl-2'>
-          <div class='card'>
-            <div class='logo'>
-              <a href='/companies/${company["id"]}'>
-                <img src=${company['logo']}>
-              </a>
-            </div>
-            <div>
-              <h4 class='company_name'>
-                <a href='/companies/${company["id"]}'>${company.name}</a><br />
-              </h4>
-              <p>
-                ${location}
-                <a href='http://${company["website"]}' target='_blank'>
-                  ${company['website']}
+    if(company.status == 'approved') {
+      $('#companies-body').append(
+        `<div class='card-holder col-xs-12 col-sm-6 col-md-4 col-lg-3 col-xl-2'>
+            <div class='card'>
+              <div class='logo'>
+                <a href='/companies/${company["id"]}'>
+                  <img src=${company['logo']}>
                 </a>
-              </p>
+              </div>
+              <div>
+                <h4 class='company_name'>
+                  <a href='/companies/${company["id"]}'>${company.name}</a><br />
+                </h4>
+                <p>
+                  ${location}
+                  <a href='http://${company["website"]}' target='_blank'>
+                    ${company['website']}
+                  </a>
+                </p>
+              </div>
             </div>
-          </div>
-        </div>`
-    )
+            ${distance}
+          </div>`)
+      }else {
+        pendingCompanies(pending_companies);
+        pending_companies = true;
+        $('#pending-companies-body').append(
+          `<div class='card-holder col-xs-12 col-sm-6 col-md-4 col-lg-3 col-xl-2'>
+              <div class='card'>
+                <div class='logo'>
+                  <a href='/companies/${company["id"]}'>
+                    <img src=${company['logo']}>
+                  </a>
+                </div>
+                <div>
+                  <h4 class='company_name'>
+                    <a href='/companies/${company["id"]}'>${company.name}</a><br />
+                  </h4>
+                  <p>
+                    ${location}
+                    <a href='http://${company["website"]}' target='_blank'>
+                      ${company['website']}
+                    </a>
+                  </p>
+                </div>
+              </div>
+              ${distance}
+            </div>`)
+      }
   });
+}
+
+function pendingCompanies(pending_companies){
+  if (pending_companies == false) {
+    $('#pending-announcement').append(
+      '<h1> Pending Companies Below </h1>'
+    )
+  }
+}
+
+function determineDistance(company) {
+  if (company.distance) {
+    return `<p class='distance text-center'> ${company.distance[1]} miles from ${company.distance[0]} </p>`
+  } else {
+    return ''
+  }
 }
 
 function appendNoCompaniesNotice() {
@@ -220,6 +264,8 @@ function toggleSizeSelect() {
 
 function removeCards() {
   $('#companies-body').empty();
+  $('#pending-companies-body').empty();
+  $('#pending-announcement').empty();
 }
 
 function clearFields() {
@@ -235,14 +281,30 @@ function prepareNoteCreate(){
     return $.ajax({
       url: "/api/v1/notes",
       method: "POST",
-      data: { note: note, company_ids: getCompanyId() }
+      data: { note: note, company_names: getCompanyName() }
     })
     .done(clearFields)
-    .done(window.location.replace("/notes"))
+    .done(moveMe())
 }
 
-function getCompanyId() {
-  return $("#create-note-company").val() ||  [$('.star-toggle').data('id')]
+function moveMe() {
+  if (pathFinder()[1] == 'notes' ) {
+    window.location.replace("/notes");
+  }else {
+    location.reload(true);
+  }
+}
+
+function getCompanyName() {
+  var companyNames = []
+  $(".token-input-list li p").each(function() {
+    companyNames.push($(this).text())
+  })
+  if(companyNames.length > 0) {
+    return companyNames;
+  }else {
+      return [$('.star-toggle').data('name')];
+  }
 }
 
 function displayNotes(){

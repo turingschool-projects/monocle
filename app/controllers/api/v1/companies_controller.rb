@@ -1,11 +1,11 @@
 class Api::V1::CompaniesController < ApplicationController
 
   before_action :secure_creation, only: [:create]
-
   skip_before_action :authorize!, only: [:create]
+  skip_before_action :verify_authenticity_token
 
   def index
-    @companies = Company.approved_companies.filter(params.slice(:company_size, :industry_ids, :with_locations_near)).includes(:locations)
+    @companies = Company.pending_and_approved_companies.filter(params.slice(:company_size, :industry_ids, :with_locations_near)).includes(:locations)
   end
 
   def create
@@ -13,7 +13,7 @@ class Api::V1::CompaniesController < ApplicationController
     if company.save
       render json: company, status: 201
     else
-      render json: "Company could not be created", status: 500
+      render json: { failure: "Company could not be created" }, status: 500
     end
   end
 
@@ -24,7 +24,7 @@ class Api::V1::CompaniesController < ApplicationController
   end
 
   def secure_creation
-    render json: {error: 'unauthorized'}, status: 401 unless 
+    render json: {error: 'unauthorized'}, status: 401 unless
       params[:token] == "TurMonLook4"
   end
 

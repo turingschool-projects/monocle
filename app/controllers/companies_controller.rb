@@ -5,11 +5,18 @@ class CompaniesController < ApplicationController
   def index
     @industries = Industry.all
     @company_sizes = company_size
+    @companies = Company.where("name like ?", "%#{params[:q]}%")
+    respond_to do |format|
+      format.html
+      format.json {render :json => @companies.map(&:attributes)}
+    end
   end
 
   def show
+    @finding = Finding.new
     @company = Company.find(params[:id])
     @pending_locations = Location.pending_locations
+    @employees = Company.joins(:employees).select('employees.*, companies.name as company_name').where(id: @company.id)
   end
 
   def new
@@ -35,7 +42,7 @@ class CompaniesController < ApplicationController
   def company_params
     params.require(:company).permit(:name,
                                     :website,
-                                    :products_services,
+                                    :description,
                                     :logo).merge(size: params[:size])
   end
 
@@ -55,5 +62,4 @@ class CompaniesController < ApplicationController
                                       :city,
                                       :zip_code).merge(state: params[:state])
   end
-
 end
