@@ -9,9 +9,12 @@
 
 <div class="container-fluid">
   <div class="col-md-6">
+      <%= render partial: 'add_findings' %>
+  </div>
+  <div class="col-md-6">
     <div class="panel-heading jobs">
       <h3 class='text-center'>Jobs</h3>
-      <table class=table>
+      <table class='table'>
         <thead>
           <th>Title</th>
         </thead>
@@ -22,9 +25,6 @@
         </tbody>
       </table>
     </div>
-  </div>
-  <div class="col-md-6">
-      <%= render partial: 'add_findings' %>
   </div>
 </div>
 

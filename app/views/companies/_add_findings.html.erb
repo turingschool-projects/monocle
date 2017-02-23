@@ -1,13 +1,13 @@
 <div class="add-findings">
+  <h3 class='text-center'>Findings</h3>
   <% if !@company.findings.empty? %>
-    <h4>Findings</h4>
     <% @company.findings.each do |finding| %>
       <table id="findings-table" class="table">
-        <tr>
+        <thead>
           <th>Viability</th>
           <th>Hiring?</th>
           <th>Technologies</th>
-        </tr>
+        </thead>
         <tbody>
           <td><%= finding.viability %></td>
           <td><%= finding.hiring %></td>
