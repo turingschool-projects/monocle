@@ -4,7 +4,7 @@
   </div>
   <div class="panel-body">
     <% if !@company.findings.empty? %>
-      <% @company.findings.each do |finding| %>
+
       <table id="findings-table" class="table">
         <thead>
           <th>Viability</th>
@@ -12,12 +12,15 @@
           <th>Technologies</th>
         </thead>
         <tbody>
-          <td><%= finding.viability %></td>
-          <td><%= finding.hiring %></td>
-          <td><%= finding.tech_list %></td>
+        <% @company.findings.each do |finding| %>
+          <tr>
+            <td><%= finding.viability %></td>
+            <td><%= finding.hiring %></td>
+            <td><%= finding.tech_list %></td>
+          </tr>
+        <% end %>
         </tbody>
       </table>
-      <% end %>
     <% end %>
   </div>
   <div class="panel-footer">
