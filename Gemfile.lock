@@ -1,6 +1,6 @@
 GIT
-  remote: https://github.com/turingschool-projects/omniauth-census
-  revision: 3d28a5040e79eae620c3550b90e94aeed8234571
+  remote: https://github.com/NZenitram/census_staging_oauth
+  revision: 082f9c376dd85e6d65415f8d1dac0e054971433c
   specs:
     omniauth-census (0.1.1)
       omniauth-oauth2
@@ -396,4 +396,4 @@ RUBY VERSION
    ruby 2.3.0p0
 
 BUNDLED WITH
-   1.13.6
+   1.14.3
