@@ -17,7 +17,7 @@ RSpec.describe "Census service" do
         expect(census_results.first).to have_key(:last_name)
       end
     end
-    it "can get all users from census" do
+    xit "can get all users from census" do
       VCR.use_cassette('.census-app-all-users') do
         url = "/api/v1/users/"
         access_token = "#{ENV['census_access_token']}"
