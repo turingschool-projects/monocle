@@ -17,11 +17,11 @@ namespace :db do
   end
 
   task :seed_all_data_files => :environment do
-    Dir.foreach('data') do |file|
+    Dir.foreach('data/formatted_for_rake') do |file|
       next if file == '.' || file =='..'
       puts "Importing from file: #{file}"
       puts "Before company count: #{Company.count}"
-      SeedFixtureData.run("data/#{file}")
+      SeedFixtureData.run("data/formatted_for_rake/#{file}")
       puts "Finished with file: #{file}"
       puts "After #{file} company count: #{Company.count}"
     end
