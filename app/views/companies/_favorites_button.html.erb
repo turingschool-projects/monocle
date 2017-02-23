@@ -10,10 +10,8 @@
     <% end %>
   <% else %>
     <div class='starred-message'></div>
-    <div class="company-buttons text-center">
     <%= button_tag class: "btn btn-default btn-lg star star-toggle", data: {no_turbolink: true, name: @company.name} do %>
     <%= content_tag("span", "", class: ["glyphicon", "glyphicon-star"], aria_hidden: true) %> Favorite
     <% end %>
-    </div>
   <% end %>
 </div>
