@@ -45,7 +45,7 @@ class EmployeeForm extends React.Component {
   render () {
     if (this.props.showComponent) {
       return (
-        <form onSubmit={this.props.createEmployee.bind(this, event)} >
+        <form onSubmit={this.props.createEmployee.bind(this)} >
           <label>Name:
             <input type='text' name='name' id='name' list="matches-datalist"
               onChange={this.handleNameChange}

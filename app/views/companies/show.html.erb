@@ -14,7 +14,7 @@
 
 </div>
 <%= react_component 'CompanyAlumni', {
-    employees: @company.employees , currentUser: current_user,
+    employees: @employees , currentUser: current_user,
     showAdminForm: false,
     workHereDisabled: @company.employee?(current_user)
   }

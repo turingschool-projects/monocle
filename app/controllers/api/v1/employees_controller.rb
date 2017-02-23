@@ -14,7 +14,7 @@ class Api::V1::EmployeesController < ApplicationController
     )
 
     if employee.save
-      render json: employee, status: 201
+      render json: Employee.joins(:company).select('employees.*, companies.name as company_name').where(id: employee.id).first, status: 201
     else
       render json: {message: 'failed'}, status: 500
     end

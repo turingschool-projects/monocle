@@ -22,8 +22,7 @@ class CompanyAlumni extends React.Component {
     this.setState( {showAdminForm: true} )
   }
 
-  handleSubmit(event) {
-    event.preventDefault()
+  handleSubmit() {
     let company_id = window.location.pathname[window.location.pathname.length - 1]
     axios.post( `/api/v1/companies/${company_id}/admin/employees`, { name: this.state.name } )
   }

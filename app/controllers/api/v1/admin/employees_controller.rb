@@ -27,7 +27,7 @@ class Api::V1::Admin::EmployeesController < ApplicationController
       user: user
     )
     if employee.save
-      render json: {message: "Successfully created employee_id with census_id #{employee.census_id}"}, status: 201
+      render json: Employee.joins(:company).select('employees.*, companies.name as company_name').where(id: employee.id), status: 201
     else
       render json: {message:"Employee could not be created", status: 500}
     end
