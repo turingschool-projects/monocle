@@ -52,6 +52,7 @@ class CompanyAlumni extends React.Component {
   }
 
   getAllCensusUsers() {
+    debugger; 
     axios.get('/api/v1/admin/census_users')
     .then((returned) => {
       this.setState({ census: returned.data })

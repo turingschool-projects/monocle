@@ -11,11 +11,10 @@ class CensusService
   end
 
   def conn
-    Faraday.new(url: 'https://census-app-staging.herokuapp.com') do |faraday|
+    Faraday.new(url: 'https://turing-census.herokuapp.com') do |faraday|
       faraday.request  :url_encoded
       faraday.response :logger
       faraday.adapter  Faraday.default_adapter
     end
   end
-
 end
