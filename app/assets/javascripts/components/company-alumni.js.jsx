@@ -26,7 +26,6 @@ class CompanyAlumni extends React.Component {
     event.preventDefault()
     let company_id = window.location.pathname[window.location.pathname.length - 1]
     axios.post( `/api/v1/companies/${company_id}/admin/employees`, { name: this.state.name } )
-    debugger;
   }
 
   createEmployee() {
@@ -81,7 +80,7 @@ class CompanyAlumni extends React.Component {
               <span>
                 <WorkHereButton buttonDisabled={this.state.workHereDisabled}
                   createEmployee={this.createEmployee.bind(this)}/>
-              </span>y
+              </span>
             </h3>
             <EmployeeForm showComponent={this.state.showAdminForm}
               createEmployee={this.handleSubmit}
