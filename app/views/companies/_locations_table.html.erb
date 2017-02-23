@@ -28,7 +28,6 @@
   </table>
 
   <%= link_to 'Add Location', new_company_location_path(@company), class: "btn btn-default", id: "add-location-button" %>
-
   <div id="company-id" data-company-id='<%= @company.id %>'></div>
   <div id="lat-lng" data-coordinates="<%= @company.coordinates %>"></div>
   <div id="current-user-role" data-role="<%= current_user.role %>"></div>
@@ -118,7 +117,10 @@
       $('#approved-location-table').css('display', 'none')
       $('#title-approved-locations').css('display', 'none')
     } else if (approvedLocations.length === 1) {
+      // debugger;
       $('#title-approved-locations').slice(0).empty()
+      $('#approved-location-table').css('display', '')
+      $('#title-approved-locations').css('display', '')
       $('#title-approved-locations').append('<h4>Approved Location</h4>')
     } else {
       $('#title-approved-locations').slice(0).empty()
