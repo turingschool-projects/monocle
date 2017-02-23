@@ -22,7 +22,7 @@ class EmployedAlumniTable extends React.Component {
     let employees = this.state.employees.map((employee) => {
       return (<EmployeeRow
         key={employee.id}
-        companyName={employee.company_id}
+        companyName={employee.company_name}
         firstName={employee.first_name}
         lastName={employee.last_name}
         slack={employee.slack}

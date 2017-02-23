@@ -24,7 +24,26 @@
       </tbody>
     </table>
 
+</div>
+<%= react_component 'CompanyAlumni', {
+    employees: @employees , currentUser: current_user,
+    showAdminForm: false,
+    workHereDisabled: @company.employee?(current_user)
+  }
+%>
+<div class="notes-container">
+  <div class="panel-group">
+    <div class='panel panel-default'>
+      <div class="panel-heading">
+        <h3 class='text-center'>Create Note</h3>
+      </div>
+      <div class='panel-body'>
+        <form>
+          <div class="switch-toggle well">
+            <input id="private-note" name="note-status" type="radio" value="private" checked>
+            <label for="private-note">Private</label>
   </div>
+
 
   <div class="alumni-notes">
     <%= react_component 'CompanyAlumni', {

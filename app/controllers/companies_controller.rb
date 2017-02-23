@@ -16,6 +16,7 @@ class CompaniesController < ApplicationController
     @finding = Finding.new
     @company = Company.find(params[:id])
     @pending_locations = Location.pending_locations
+    @employees = Company.joins(:employees).select('employees.*, companies.name as company_name').where(id: @company.id)
   end
 
   def new
