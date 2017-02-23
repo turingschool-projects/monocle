@@ -69,7 +69,6 @@ class CompanyAlumni extends React.Component {
 
   render() {
     return (
-      <div className="panel-group">
         <div className="panel panel-default">
           <div className="panel-heading">
             <h3 className="text-center">Employed Alumni
@@ -86,7 +85,6 @@ class CompanyAlumni extends React.Component {
               censusUsers={this.state.census}
               createDataList={this.createDataList.bind(this)} />
           </div>
-        </div>
         <div className="panel-body">
           <EmployedAlumniTable employees={this.state.employees}
             currentUser={this.state.current_user}

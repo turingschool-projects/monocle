@@ -1,13 +1,13 @@
   <span id="title-approved-locations"></span>
 
   <table id="approved-location-table" class="table">
-    <tr>
+    <thead>
       <th>Address</th>
       <th>City,&nbspState,&nbspZip</th>
       <th>Phone</th>
       <th>Primary&nbspContact</th>
       <th></th>
-    </tr>
+    </thead>
     <tbody id="approved-location-table-body">
     </tbody>
   </table>
@@ -119,7 +119,7 @@
       $('#title-approved-locations').slice(0).empty()
       $('#approved-location-table').css('display', '')
       $('#title-approved-locations').css('display', '')
-      $('#title-approved-locations').append('<h4>Approved Location</h4>')
+      $('#title-approved-locations').append('<h4 class="text-center">Approved Locations</h4>')
     } else {
       $('#title-approved-locations').slice(0).empty()
       $('#title-approved-locations').append('<h4>Approved Locations</h4>')
