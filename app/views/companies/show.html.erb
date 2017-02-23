@@ -1,49 +1,39 @@
-<div class="container">
-  <h1 class="company-name"><%= @company.name %></h1>
-  <div class="company-info-and-locations-table">
-    <%= render partial: 'company_info' %>
-    <%= render partial: 'locations_table' %>
+<div class="container-fluid">
+  <div class="col-md-12">
+    <h1 class="company-name"><%= @company.name %></h1>
   </div>
+</div>
+<div class="container-fluid">
+  <%= render partial: 'company_info' %>
+</div>
+
+<div class="container-fluid">
+  <div class="col-md-6">
+    <div class="panel-heading jobs">
+      <h3 class='text-center'>Jobs</h3>
+      <table class=table>
+        <thead>
+          <th>Title</th>
+        </thead>
+        <tbody id="jobs-tbody">
+          <tr id="no-jobs">
+            <td>No jobs found</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="col-md-6">
+      <%= render partial: 'add_findings' %>
+  </div>
+</div>
+
+  <%= render partial: 'locations_table' %>
 
   <div class="add-findings-and-map">
     <section id="company-map"></section>
-    <%= render partial: 'add_findings' %>
     <%= render partial: 'favorites_button' %>
   </div>
-
-  <div class="panel-heading jobs">
-    <h3 class='text-center'>Jobs</h3>
-    <table class=table>
-      <thead>
-        <th>Title</th>
-      </thead>
-      <tbody id="jobs-tbody">
-        <tr id="no-jobs">
-          <td>No jobs found</td>
-        </tr>
-      </tbody>
-    </table>
-
-</div>
-<%= react_component 'CompanyAlumni', {
-    employees: @employees , currentUser: current_user,
-    showAdminForm: false,
-    workHereDisabled: @company.employee?(current_user)
-  }
-%>
-<div class="notes-container">
-  <div class="panel-group">
-    <div class='panel panel-default'>
-      <div class="panel-heading">
-        <h3 class='text-center'>Create Note</h3>
-      </div>
-      <div class='panel-body'>
-        <form>
-          <div class="switch-toggle well">
-            <input id="private-note" name="note-status" type="radio" value="private" checked>
-            <label for="private-note">Private</label>
-  </div>
-
 
   <div class="alumni-notes">
     <%= react_component 'CompanyAlumni', {
