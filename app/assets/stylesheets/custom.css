@@ -135,10 +135,10 @@ body {
 }
 
 .container {
-  /*border: 1px solid black;
-  background-color: #eaeaea;
-  border-radius: 10px;
-  width: 100%; */
+  /*border: 1px solid black;*/
+  /*background-color: #eaeaea;*/
+  /*border-radius: 10px;*/
+  width: 100%;
 }
 
 .add-findings {
@@ -196,4 +196,15 @@ div.switch-toggle.well {
 
 .logo-container {
   display: inline-block;
+}
+
+.alumni-notes {
+  position: relative;
+  margin-top: 150px;
+}
+
+.jobs {
+  position: relative;
+  margin-top: 100px;
+  width: 400px;
 }
