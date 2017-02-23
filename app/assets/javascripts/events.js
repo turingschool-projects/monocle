@@ -171,6 +171,9 @@ function addCards(companies) {
   if (companies.length === 0) {
     appendNoCompaniesNotice();
   }
+
+  var pending_companies = false;
+
   companies.forEach(function (company, index){
     placeMapMarker(company, index);
     var location = ''
@@ -203,6 +206,8 @@ function addCards(companies) {
             ${distance}
           </div>`)
       }else {
+        pendingCompanies(pending_companies);
+        pending_companies = true;
         $('#pending-companies-body').append(
           `<div class='card-holder col-xs-12 col-sm-6 col-md-4 col-lg-3 col-xl-2'>
               <div class='card'>
@@ -229,6 +234,14 @@ function addCards(companies) {
   });
 }
 
+function pendingCompanies(pending_companies){
+  if (pending_companies == false) {
+    $('#pending-announcement').append(
+      '<h1> Pending Companies Below </h1>'
+    )
+  }
+}
+
 function determineDistance(company) {
   if (company.distance) {
     return `<p class='distance text-center'> ${company.distance[1]} miles from ${company.distance[0]} </p>`
@@ -252,6 +265,7 @@ function toggleSizeSelect() {
 function removeCards() {
   $('#companies-body').empty();
   $('#pending-companies-body').empty();
+  $('#pending-announcement').empty();
 }
 
 function clearFields() {
