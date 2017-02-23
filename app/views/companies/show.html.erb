@@ -71,27 +71,26 @@
         </form>
       </div>
     </div>
-
-        <div id="notes-table">
-          <h3 class="text-center">Notes List</h3>
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <th>Company</th>
-                <th>Written On</th>
-                <th>Title</th>
-                <th>Body</th>
-                <th>Privacy Status</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody id="notes"></tbody>
-          </table>
-        </div>
-
+    <div id="notes-table" class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="text-center">Notes List</h3>
+      </div>
+      <div class="panel-body">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Company</th>
+              <th>Written On</th>
+              <th>Title</th>
+              <th>Body</th>
+              <th>Privacy Status</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="notes"></tbody>
+        </table>
       </div>
     </div>
-  </div>
 </div>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=<%=ENV['google_maps_key']%>&callback=initCompanyMap"></script>
