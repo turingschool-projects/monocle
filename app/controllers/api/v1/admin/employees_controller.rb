@@ -1,27 +1,26 @@
 class Api::V1::Admin::EmployeesController < ApplicationController
 
   skip_before_action :verify_authenticity_token
+  before_action :verify_admin
 
   def create
     company = Company.find(params[:company_id])
-    user = User.find_by(username: "#{params[:first_name].capitalize} #{params[:last_name].capitalize}")
+    user = User.find_by(username: params[:name].capitalize)
+    first_name = params[:name].capitalize.split(' ')[0]
+    last_name = params[:name].capitalize.split(' ')[1]
 
     census_users = CensusUser.create_census_users(
       '/api/v1/users/by_name',
       current_user.census_access_token,
-      params[:last_name]
+      last_name
     )
 
-    found_user = CensusUser.find_user(
-      census_users,
-      params[:first_name],
-      params[:last_name]
-    )
+    found_user = CensusUser.find_user( census_users, first_name, last_name )
 
     employee = Employee.new(
       census_id: found_user.census_id,
-      first_name: found_user.first_name.capitalize,
-      last_name: found_user.last_name.capitalize,
+      first_name: found_user.first_name,
+      last_name: found_user.last_name,
       email: found_user.email,
       slack: found_user.slack,
       company: company,

@@ -6,6 +6,7 @@ class CompanyAlumni extends React.Component {
 
   componentDidMount() {
     this.addPlusSign()
+    this.getAllCensusUsers()
   }
 
   addPlusSign() {
@@ -24,11 +25,7 @@ class CompanyAlumni extends React.Component {
   handleSubmit(event) {
     event.preventDefault()
     let company_id = window.location.pathname[window.location.pathname.length - 1]
-    axios.post( `/api/v1/companies/${company_id}/admin/employees`, {
-        first_name: this.state.firstName,
-        last_name: this.state.lastName
-      }
-    )
+    axios.post( `/api/v1/companies/${company_id}/admin/employees`, { name: this.state.name } )
   }
 
   createEmployee() {
@@ -55,6 +52,22 @@ class CompanyAlumni extends React.Component {
     }
   }
 
+  getAllCensusUsers() {
+    axios.get('/api/v1/admin/census_users')
+    .then((returned) => {
+      this.setState({ census: returned.data })
+    })
+  }
+
+  createDataList() {
+    let dataList = document.getElementById('matches-datalist')
+    this.state.censusUsers.forEach((match) => {
+      let option = document.createElement('option')
+      option.value = match.name
+      dataList.appendChild(option)
+    })
+  }
+
   render() {
     return (
       <div className="panel-group">
@@ -70,7 +83,9 @@ class CompanyAlumni extends React.Component {
               </span>
             </h3>
             <EmployeeForm showComponent={this.state.showAdminForm}
-              createEmployee={this.handleSubmit} />
+              createEmployee={this.handleSubmit}
+              censusUsers={this.state.census}
+              createDataList={this.createDataList.bind(this)} />
           </div>
         </div>
         <div className="panel-body">
