@@ -33,7 +33,8 @@ gem 'faraday'
 gem 'carrierwave', '>= 1.0.0.rc', '< 2.0'
 gem 'fog-aws'
 gem 'omniauth'
-gem 'omniauth-census', git: "https://github.com/turingschool-projects/omniauth-census", group: :production
+gem 'omniauth-census', git: "https://github.com/NZenitram/census_staging_oauth"
+# gem 'omniauth-census', git: "https://github.com/turingschool-projects/omniauth-census", group: :production
 gem 'geocoder'
 gem 'travis'
 gem 'active_model_serializers', '~> 0.10.0'
@@ -78,9 +79,8 @@ group :production, :staging do
   gem 'rails_12factor'
 end
 
-# group :development, :staging do
-#   gem 'omniauth-census', git: "https://github.com/NZenitram/census_staging_oauth"
-# end
+group :development, :staging do
+end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
