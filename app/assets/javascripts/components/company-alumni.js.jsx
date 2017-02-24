@@ -33,7 +33,6 @@ class CompanyAlumni extends React.Component {
     axios.post(`/api/v1/companies/${company_id}/employees`)
     .then((returned) => {
       employeesState.push(returned.data)
-      debugger;
       this.setState({ employees: employeesState }, this.determineDisable.bind(this, employeesState, this.state.currentUser))
     })
   }
@@ -53,7 +52,6 @@ class CompanyAlumni extends React.Component {
   }
 
   getAllCensusUsers() {
-    debugger; 
     axios.get('/api/v1/admin/census_users')
     .then((returned) => {
       this.setState({ census: returned.data })
