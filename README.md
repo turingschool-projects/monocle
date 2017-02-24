@@ -64,5 +64,6 @@ In Rails console, run the following command to load individual files from data:
 `SeedFixtureData.run("data/formatted_for_rake/<filename>")`
 
 From the command line, load all the available data files using: 
+
 `rake db:seed_all_data_files`
 
