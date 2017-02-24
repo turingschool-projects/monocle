@@ -99,7 +99,7 @@ class Note {
 
   deleteNote() {
       $.ajax ({
-        url: `api/v1/notes/${this.id}`,
+        url: `/api/v1/notes/${this.id}`,
         type: "DELETE"
       }).then(this.removeNoteHTML())
   }

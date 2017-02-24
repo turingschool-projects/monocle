@@ -1,107 +1,100 @@
-<div class="container">
-  <h1 class="company-name"><%= @company.name %></h1>
-  <div class="company-info-and-locations-table">
-    <%= render partial: 'company_info' %>
-    <%= render partial: 'locations_table' %>
+<div class="container-fluid">
+  <div class="col-md-12">
+    <h1 class="company-name text-center"><%= @company.name %></h1>
   </div>
-
-  <div class="add-findings-and-map">
-    <section id="company-map"></section>
-    <%= render partial: 'add_findings' %>
-    <%= render partial: 'favorites_button' %>
-  </div>
-
-  <div class="panel-heading jobs">
-    <h3 class='text-center'>Jobs</h3>
-    <table class=table>
-      <thead>
-        <th>Title</th>
-      </thead>
-      <tbody id="jobs-tbody">
-        <tr id="no-jobs">
-          <td>No jobs found</td>
-        </tr>
-      </tbody>
-    </table>
-
+    <div class="center-block " style="width:120px">
+      <%= render partial: 'favorites_button' %>
+    </div>
 </div>
-<%= react_component 'CompanyAlumni', {
-    employees: @employees , currentUser: current_user,
-    showAdminForm: false,
-    workHereDisabled: @company.employee?(current_user)
-  }
-%>
-<div class="notes-container">
-  <div class="panel-group">
-    <div class='panel panel-default'>
-      <div class="panel-heading">
-        <h3 class='text-center'>Create Note</h3>
+<div class="container-fluid">
+  <%= render partial: 'company_info' %>
+</div>
+<div class="container-fluid" id="locations-panel">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h2 class="text-center">Locations</h2>
+    </div>
+    <div class="panel-body">
+      <div class="col-md-7">
+        <section id="company-map"></section>
       </div>
-      <div class='panel-body'>
-        <form>
-          <div class="switch-toggle well">
-            <input id="private-note" name="note-status" type="radio" value="private" checked>
-            <label for="private-note">Private</label>
+      <div class="col-md-5 add-findings-and-map">
+        <%= render partial: 'locations_table' %>
+      </div>
+    </div>
   </div>
-
-
-  <div class="alumni-notes">
-    <%= react_component 'CompanyAlumni', {
-      employees: @company.employees , currentUser: current_user,
+</div>
+<div class="container-fluid" style="margin-top:25px;">
+  <div class="col-md-6">
+      <%= render partial: 'add_findings' %>
+  </div>
+  <div class="col-md-6">
+    <div class="panel panel-default">
+      <div class="panel-heading jobs">
+        <h3 class='text-center'>Jobs</h3>
+      </div>
+      <table class='table'>
+        <thead>
+          <th>Title</th>
+        </thead>
+        <tbody id="jobs-tbody">
+          <tr id="no-jobs">
+            <td>No jobs found</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<div class="alumni">
+  <%= react_component 'CompanyAlumni', {
+      employees: @employees , currentUser: current_user,
       showAdminForm: false,
       workHereDisabled: @company.employee?(current_user)
     }
-    %>
-    <div class="notes-container">
-      <div class="panel-group">
-        <div class='panel panel-default'>
-
-          <div class="panel-heading">
-            <h3 class='text-center'>Create Note</h3>
-          </div>
-
-          <div class='panel-body'>
-            <form>
-
-              <div class="switch-toggle well">
-                <input id="private-note" name="note-status" type="radio" value="private" checked>
-                <label for="private-note">Private</label>
-
-                <input id="public-note" name="note-status" type="radio" value="public">
-                <label for="public-note" onclick="">Public</label>
-
-                <a class="btn btn-primary"></a>
-              </div>
-
-              <input type="text" name="note[title]" id="notetitle" placeholder="Title"></br></br>
-              <textarea name="note[body]" id="notebody" placeholder="Body ..."></textarea></br>
-              <script>
-              CKEDITOR.replace( 'note[body]' );
-              </script>
-              <button type="button" name="create-note" id="create-note-button">Create Note</button>
-            </form>
-
-          </div>
+  %>
+</div>
+<div class="notes-container">
+  <div id="notes-table" class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="text-center">Notes List</h3>
+    </div>
+    <div class="panel-body">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Company</th>
+            <th>Written On</th>
+            <th>Title</th>
+            <th>Body</th>
+            <th>Privacy Status</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="notes"></tbody>
+      </table>
+    </div>
+  </div>
+  <div class='panel panel-default'>
+    <div class="panel-heading">
+      <h3 class='text-center'>Create Note</h3>
+    </div>
+    <div class='panel-body'>
+      <form>
+        <div class="switch-toggle well">
+          <input id="private-note" name="note-status" type="radio" value="private" checked>
+          <label for="private-note">Private</label>
+          <input id="public-note" name="note-status" type="radio" value="public">
+          <label for="public-note" onclick="">Public</label>
+          <a class="btn btn-primary"></a>
         </div>
-
-        <div id="notes-table">
-          <h3 class="text-center">Notes List</h3>
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <th>Company</th>
-                <th>Written On</th>
-                <th>Title</th>
-                <th>Body</th>
-                <th>Privacy Status</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody id="notes"></tbody>
-          </table>
-        </div>
-
-      </div>
+        <input type="text" name="note[title]" id="notetitle" placeholder="Title"></br></br>
+        <textarea name="note[body]" id="notebody" placeholder="Body ..."></textarea></br>
+        <script>
+          CKEDITOR.replace( 'note[body]' );
+        </script>
+        <button type="button" name="create-note" id="create-note-button">Create Note</button>
+      </form>
     </div>
   </div>
 </div>

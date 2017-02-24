@@ -33,6 +33,7 @@ class CompanyAlumni extends React.Component {
     axios.post(`/api/v1/companies/${company_id}/employees`)
     .then((returned) => {
       employeesState.push(returned.data)
+      debugger;
       this.setState({ employees: employeesState }, this.determineDisable.bind(this, employeesState, this.state.currentUser))
     })
   }
@@ -70,7 +71,6 @@ class CompanyAlumni extends React.Component {
 
   render() {
     return (
-      <div className="panel-group">
         <div className="panel panel-default">
           <div className="panel-heading">
             <h3 className="text-center">Employed Alumni
@@ -87,7 +87,6 @@ class CompanyAlumni extends React.Component {
               censusUsers={this.state.census}
               createDataList={this.createDataList.bind(this)} />
           </div>
-        </div>
         <div className="panel-body">
           <EmployedAlumniTable employees={this.state.employees}
             currentUser={this.state.current_user}
