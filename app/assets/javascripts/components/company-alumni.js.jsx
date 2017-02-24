@@ -30,7 +30,7 @@ class CompanyAlumni extends React.Component {
   createEmployee() {
     let company_id = window.location.pathname.split('/')[window.location.pathname.split('/').length - 1]
     let employeesState = this.state.employees
-    axios.post(`/api/v1/companies/${company_id}/employees`)
+    axios.post(`/api/v1/companies/${company_id}/admin/employees`)
     .then((returned) => {
       employeesState.push(returned.data)
       this.setState({ employees: employeesState }, this.determineDisable.bind(this, employeesState, this.state.currentUser))
