@@ -12,8 +12,10 @@
 
         <a class="btn btn-primary"></a>
       </div>
-      <input type="text" name="note[title]" id="notetitle" placeholder="Title"></br></br>
-      <input type="text" name="note[company]" id="note-company-tokens"  placeholder="Company">
+      <label for="notetitle">Title</label><br>
+      <input type="text" name="note[title]" id="notetitle"></br></br>
+      <label for="note-company-tokens">Company/Companies</label>
+      <input type="text" name="note[company]" id="note-company-tokens" placeholder="Company" />
       <textarea name="note[body]" id="notebody" placeholder="Body ..."></textarea></br>
       <script>
         CKEDITOR.replace( 'note[body]' );
