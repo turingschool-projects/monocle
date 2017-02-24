@@ -11,8 +11,7 @@ contact = Industry.create(name: 'Contact Management')
 granicus = Company.create(
                 name: "Granicus",
                 website: "www.granicus.com",
-                headquarters: "Denver, CO",
-                products_services: "Computer Software",
+                description: "Computer Software",
                 status: "approved",
                 size: "51-200",
                 logo: File.new('db/seed_logos/granicus_logo.png'))
@@ -29,8 +28,7 @@ granicus.industries << cs
 spotx = Company.create(
                 name: "SpotX",
                 website: "www.spotxchange.com",
-                headquarters: "Denver, CO",
-                products_services: "Software",
+                description: "Software",
                 status: "approved",
                 size: "201-500",
                 logo: File.new('db/seed_logos/SpotX_Logo.png'))
@@ -47,8 +45,7 @@ spotx.industries << internet
 mondorobot = Company.create(
                 name: "MondoRobot",
                 website: "www.mondorobot.com",
-                headquarters: "Boulder, CO",
-                products_services: "Digital Strategies, UI & UX Design, Video & Animation, Mobile & Tablet, Applications, Websites, Virtual Reality, Digital Installations, Augmented Reality, Social Experiences, Branding & Identities, Interactive Games",
+                description: "Digital Strategies, UI & UX Design, Video & Animation, Mobile & Tablet, Applications, Websites, Virtual Reality, Digital Installations, Augmented Reality, Social Experiences, Branding & Identities, Interactive Games",
                 status: "approved",
                 size: "11-50",
                 logo: File.new('db/seed_logos/MondoRobot_logo.png'))
@@ -65,8 +62,7 @@ mondorobot.industries << marketing
 captainu = Company.create(
                 name: "Captain U",
                 website: "www.captainu.com",
-                headquarters: "San Francisco, CA",
-                products_services: "Computer Software",
+                description: "Computer Software",
                 status: "approved",
                 size: "11-50",
                 logo: File.new('db/seed_logos/CaptainU.jpg'))
@@ -83,8 +79,7 @@ captainu.industries << sports
 wazee = Company.create(
                 name: "Wazee Digital",
                 website: "www.wazeedigital.com/",
-                headquarters: "Denver, CO",
-                products_services: "cloud-based storage, access, and licensing for enterprise-scale video libraries",
+                description: "cloud-based storage, access, and licensing for enterprise-scale video libraries",
                 status: "approved",
                 size: "51-200",
                 logo: File.new('db/seed_logos/Wazee_Digital.png'))
@@ -101,8 +96,7 @@ wazee.industries << media
 parkifi = Company.create(
                 name: "ParkiFi",
                 website: "denver.parkifi.com/",
-                headquarters: "Denver, CO",
-                products_services: "Real time parking assistance",
+                description: "Real time parking assistance",
                 status: "approved",
                 size: "11-50",
                 logo: File.new('db/seed_logos/ParkiFi.png'))
@@ -119,8 +113,7 @@ parkifi.industries << transportation
 tokken = Company.create(
                 name: "Tokken",
                 website: "tokken.com",
-                headquarters: "Denver, CO",
-                products_services: "Financial Products for the cannabis industry",
+                description: "Financial Products for the cannabis industry",
                 status: "approved",
                 size: "2-10",
                 logo: File.new('db/seed_logos/Tokken_Logo.png'))
@@ -138,8 +131,7 @@ tokken.industries << financial
 gospotcheck = Company.create(
                 name: "GoSpotCheck",
                 website: "gospotcheck.com",
-                headquarters: "Denver, CO",
-                products_services: "Web apps for field operations",
+                description: "Web apps for field operations",
                 status: "approved",
                 size: "51-200",
                 logo: File.new('db/seed_logos/GoSpotCheck_logo.png'))
@@ -157,8 +149,7 @@ gospotcheck.industries << cs
 rachio = Company.create(
                 name: "Rachio",
                 website: "rachio.com",
-                headquarters: "Denver, CO",
-                products_services: "Smart sprinklers",
+                description: "Smart sprinklers",
                 status: "approved",
                 size: "11-50",
                 logo: File.new('db/seed_logos/rachio_logo.png'))
@@ -175,8 +166,7 @@ rachio.industries << iot
 fullcontact = Company.create(
               name: 'FullContact',
                website: 'fullcontact.com',
-               headquarters: 'Denver, CO',
-               products_services: 'FullContact is the most powerful fully-connected contact management platform for professionals and enterprises who need to master their contacts and be awesome with people.',
+               description: 'FullContact is the most powerful fully-connected contact management platform for professionals and enterprises who need to master their contacts and be awesome with people.',
                status: 'approved',
                size: '51-200',
                logo: File.new('db/seed_logos/full_contact_logo.png'))
@@ -193,8 +183,7 @@ fullcontact.industries << contact
 sendgrid = Company.create(
                name: 'SendGrid',
                website: 'sendgrid.com',
-               headquarters: 'Denver, CO',
-               products_services: 'Delivers transactional and marketing emails through one reliable platform.',
+               description: 'Delivers transactional and marketing emails through one reliable platform.',
                status: 'approved',
                size: '201-500',
               #  industry_id: 10,
@@ -212,8 +201,7 @@ sendgrid.industries << contact
 cachematrix = Company.create(
                name: 'CacheMatrix',
                website: 'cachematrix.com',
-               headquarters: 'Denver, CO',
-               products_services: 'Cachematrix simplifies cash management for leading banks and their corporate clients.',
+               description: 'Cachematrix simplifies cash management for leading banks and their corporate clients.',
                status: 'approved',
                size: '51-200',
             #  industry_id: 7,

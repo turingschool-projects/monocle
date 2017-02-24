@@ -9,7 +9,6 @@ RSpec.feature "User navigates to company directory", type: :feature do
       companies = Company.all
 
       visit '/'''
-
       expect(page).to have_css(".card", count: Company.count)
 
       expect(page).to have_content(companies.first.name)

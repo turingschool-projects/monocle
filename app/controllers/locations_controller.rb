@@ -6,16 +6,14 @@ class LocationsController < ApplicationController
   end
 
   def create
-    # binding.pry
     company = Company.find(params[:company_id])
     location = company.locations.new(location_params)
     if location.save
-      flash[:notice] = 'Location pending approval by moderator'
+      flash[:notice] = 'Location pending approval'
       redirect_to company_path(company)
     else
       flash.now[:error] = location.errors.full_messages.join(', ')
       redirect_to new_company_location_path
-      # render :new
     end
   end
 
@@ -30,6 +28,8 @@ class LocationsController < ApplicationController
     @location.assign_attributes(location_params)
 
     if @location.save
+      @location.pending!
+      flash[:notice] = 'Update pending approval'
       redirect_to company_path(@company)
     else
       flash.now[:error] = @location.errors.full_messages.join(', ')

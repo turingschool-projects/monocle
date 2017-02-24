@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-
+ruby '2.3.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
@@ -15,7 +15,6 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
-
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
@@ -34,22 +33,26 @@ gem 'faraday'
 gem 'carrierwave', '>= 1.0.0.rc', '< 2.0'
 gem 'fog-aws'
 gem 'omniauth'
-gem 'omniauth-slack', github: 'kmrshntr/omniauth-slack'
-gem 'omniauth-census', git: "https://github.com/turingschool-projects/omniauth-census"
+gem 'omniauth-census', git: "https://github.com/NZenitram/census_staging_oauth"
+#gem 'omniauth-census', git: "https://github.com/turingschool-projects/omniauth-census", group: :production
 gem 'geocoder'
 gem 'travis'
 gem 'active_model_serializers', '~> 0.10.0'
 gem 'babel-transpiler'
+gem 'thin'
+gem 'react-rails'
+gem 'axios_rails', '~> 0.7.0'
 
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'rb-readline'
+  gem 'pry-coolline'
   gem 'byebug', platform: :mri
   gem 'pry-rails'
   gem "factory_girl_rails", "~> 4.0"
   gem 'faker'
   gem 'launchy'
   gem 'capybara'
-  gem 'selenium-webdriver', '~> 2.53.4'
+  gem 'selenium-webdriver'
   # gem 'poltergeist'
 end
 
@@ -74,6 +77,9 @@ end
 
 group :production, :staging do
   gem 'rails_12factor'
+end
+
+group :development, :staging do
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

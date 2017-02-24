@@ -4,18 +4,11 @@ class User < ApplicationRecord
   has_many :starred_jobs
   has_many :companies, through: :starred_companies
   has_many :notes
+  has_one  :employee
 
   before_validation :set_role
 
   enum role: [:standard, :moderator, :admin]
-
-  def self.create_from_slack(user_info)
-    user = find_or_initialize_by(slack_uid: user_info["uid"]) do |u|
-      u.username = user_info.info["name"]
-    end
-    user.slack_access_token = user_info.credentials["token"]
-    user.save ? user : false
-  end
 
   def self.create_from_census(user_info)
     user = find_or_initialize_by(census_uid: user_info["uid"]) do |u|
@@ -31,13 +24,17 @@ class User < ApplicationRecord
     companies << company unless companies.exists?(id: company.id)
   end
 
+  def split_username
+    username.split(' ')
+  end
+
   private
     def set_role
       self.role ||= 0
     end
 
     def user_must_have_fields_for_provider
-      unless (username && (slack_uid || census_uid) && (slack_access_token || census_access_token))
+      unless username && census_uid && census_access_token
         errors.add(:username, "is missing data")
       end
     end

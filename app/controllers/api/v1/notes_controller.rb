@@ -13,8 +13,8 @@ class Api::V1::NotesController < ApplicationController
     note.author = current_user.username
     note.user = current_user
     if note.save
-      get_company_ids.each do |company_id|
-        company = Company.find(company_id.to_i)
+      get_company_names.each do |company_name|
+        company = Company.find_by(name: company_name)
         company.notes << note
       end
       render json: note, status: 201
@@ -47,8 +47,8 @@ class Api::V1::NotesController < ApplicationController
      @company = Company.find_by(name: params[:company_name])
     end
 
-    def get_company_ids
-      params.require(:company_ids)
+    def get_company_names
+      params.require(:company_names)
     end
 
 end

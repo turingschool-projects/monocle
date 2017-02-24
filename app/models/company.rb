@@ -7,6 +7,9 @@ class Company < ApplicationRecord
   has_many :company_notes, dependent: :destroy
   has_many :notes, through: :company_notes
   has_many :locations
+  has_many :employees
+  has_many :findings
+
   mount_uploader :logo, LogoUploader
 
   scope :company_size, -> (size) { where('companies.size IN (?)', size) }
@@ -47,12 +50,20 @@ class Company < ApplicationRecord
     Company.where('status = ?', '0')
   end
 
+  def self.pending_and_approved_companies
+    Company.where('companies.status != ?', '2')
+  end
+
   def approved?
     self.status == "approved"
   end
 
   def approved_locations
     self.locations.where('status = ?', '1')
+  end
+
+  def pending_locations
+    self.locations.where('status = ?', '0')
   end
 
   def get_coordinates
@@ -84,8 +95,8 @@ class Company < ApplicationRecord
   end
 
   def attach_industries_and_location(industries, state, location_params)
-    assign_industries(industries)
-    attach_location(location_params, state)
+    assign_industries(industries) if industries
+    attach_location(location_params, state) if location_params && state
   end
 
   def assign_industries(industry_ids)
@@ -105,6 +116,21 @@ class Company < ApplicationRecord
     approved_locations.map do |location|
       [location.latitude, location.longitude]
     end
+  end
+
+  def get_distance(zip)
+    distance = self.locations.first.distance_from(zip)
+    [zip, distance.round(2)]
+  end
+
+  def employee?(user)
+    return true if self.employees.find do |employee|
+      employee.user_id == user.id
+    end
+  end
+
+  def formatted_website
+    website ?  "http://#{website}" : ""
   end
 
   private

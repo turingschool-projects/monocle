@@ -16,12 +16,12 @@ end
 
 Capybara.raise_server_errors = false
 
-require 'vcr'
-
-VCR.configure do |config|
-  config.cassette_library_dir = "spec/fixtures/vcr_cassettes"
-  config.hook_into :webmock
-end
+# require 'vcr'
+#
+# VCR.configure do |config|
+#   config.cassette_library_dir = "spec/fixtures/vcr_cassettes"
+#   config.hook_into :webmock
+# end
 
 Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 
@@ -34,29 +34,46 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
 end
 
+RSpec.configure do |config|
+  config.before(:suite) do
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.clean_with(:truncation)
+  end
+
+  config.before(:each, :js => true) do
+    DatabaseCleaner.strategy = :truncation
+  end
+
+  config.around(:each) do |example|
+    DatabaseCleaner.cleaning do
+      example.run
+    end
+  end
+end
+
 def admin_logs_in
-  admin = User.create({username: 'tester', slack_uid: 'tester', slack_access_token: 1, role: 2})
+  admin = User.create({username: 'tester', census_uid: 'tester', census_access_token: ENV['census_access_token'], role: 2})
   allow_any_instance_of(ApplicationController)
           .to receive(:current_user)
           .and_return(admin)
 end
 
 def moderator_logs_in
-  moderator = User.create({username: 'tester', slack_uid: 'tester', slack_access_token: 1, role: 1})
+  moderator = User.create({username: 'tester', census_uid: 'tester', census_access_token: ENV['census_access_token'], role: 1})
   allow_any_instance_of(ApplicationController)
           .to receive(:current_user)
           .and_return(moderator)
 end
 
 def user_logs_in
-  user = User.create({username: 'tester', slack_uid: 'tester', slack_access_token: 1})
+  user = User.create({username: 'tester', census_uid: 'tester', census_access_token: ENV['census_access_token']})
   allow_any_instance_of(ApplicationController)
           .to receive(:current_user)
           .and_return(user)
 end
 
 def user_logs_in_with_starred_company
-  user = User.create({username: 'tester', slack_uid: 'tester', slack_access_token: 1})
+  user = User.create({username: 'tester', census_uid: 'tester', census_access_token: ENV['census_access_token']})
   allow_any_instance_of(ApplicationController)
           .to receive(:current_user)
           .and_return(user)
@@ -72,8 +89,7 @@ def create_unapproved_company(name = 'TestCo')
   company = Company.create({
       name: name,
       website: "www.monocle.com",
-      headquarters: "Denver, CO",
-      products_services: "Jobs",
+      description: "Jobs",
       size: 50,
       status: 0
     })
@@ -122,12 +138,11 @@ def add_unapproved_location_to_company(company)
 end
 
 def create_note_with_company_and_user
-  user = User.create({username: 'tester', slack_uid: 'tester', slack_access_token: 1})
+  user = User.create({username: 'tester'})
   company = Company.create({
       name: "Monocle",
       website: "www.monocle.com",
-      headquarters: "Denver, CO",
-      products_services: "Jobs"
+      description: "Jobs"
     })
   note = Note.create({
       title: "Solid Company",
@@ -148,8 +163,7 @@ def create_company_with_industry(industry, name = 'TestCo')
   company = Company.create({
       name: name,
       website: "www.monocle.com",
-      headquarters: "Denver, CO",
-      products_services: "Jobs",
+      description: "Jobs",
       status: 1
     })
   company.industries << industry
@@ -169,8 +183,7 @@ def create_boulder_company(name = 'boulder co')
   company = Company.create({
       name: name,
       website: "www.boulder.com",
-      headquarters: "Boulder, CO",
-      products_services: "keyboards",
+      description: "keyboards",
       status: 1
     })
   company.locations << Location.create({
@@ -189,8 +202,7 @@ def create_denver_company(name = 'denver co')
   company = Company.create({
       name: name,
       website: "www.denver.com",
-      headquarters: "Denver, CO",
-      products_services: "turtles",
+      description: "turtles",
       status: 1
     })
   company.locations << Location.create({
@@ -209,8 +221,7 @@ def create_colorado_springs_company(name = 'co-springs co')
   company = Company.create({
       name: name,
       website: "www.co-springs.com",
-      headquarters: "Colorado Springs, CO",
-      products_services: "lamas",
+      description: "lamas",
       status: 1
     })
   company.locations << Location.create({
