@@ -38,18 +38,31 @@ Monocle has 2 Heroku sites for you to use:
 
  The project uses RSPEC for testing; run `rspec` in the terminal to run the test suite.
  
- ## Authentication 
- Monocle is authenticated through [Census](https://github.com/turingschool-projects/omniauth-census). Depending on the environment you are trying use Census in, use the following in your Gemfile: 
- 
- Staging: 
- ```
- gem 'omniauth'
- gem 'omniauth-census', git: "https://github.com/NZenitram/census_staging_oauth"
- ```
- Note: to avoid SSL issues while running the application locally, follow these [steps](https://github.com/NZenitram/census_staging_oauth#important-note)
- 
- Production: 
- ```
- gem 'omniauth'
- gem 'omniauth-census', git: "https://github.com/turingschool-projects/omniauth-census"
- ```
+## Authentication 
+Monocle is authenticated through [Census](https://github.com/turingschool-projects/omniauth-census). Depending on the environment you are trying use Census in, use the following in your Gemfile: 
+
+Staging: 
+```
+gem 'omniauth'
+gem 'omniauth-census', git: "https://github.com/NZenitram/census_staging_oauth"
+```
+Note: to avoid SSL issues while running the application locally, follow these [steps](https://github.com/NZenitram/census_staging_oauth#important-note)
+
+Production: 
+```
+gem 'omniauth'
+gem 'omniauth-census', git: "https://github.com/turingschool-projects/omniauth-census"
+```
+## LookingFor
+Monocle maintains a close relationship with LookingFor. LookingFor is a job aggregator that finds jobs and associates them with companies in Monocle. If the jobs are available for the given company, they will appear on that company's show page. 
+
+## Important Rake tasks
+The job listener task that subsribes to the queue of incoming jobs is started by running the following command:  
+`rake job_fetch:joblistener`
+
+In Rails console, run the following command to load individual files from data: 
+`SeedFixtureData.run("data/formatted_for_rake/<filename>")`
+
+From the command line, load all the available data files using: 
+`rake db:seed_all_data_files`
+
