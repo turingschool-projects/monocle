@@ -24,16 +24,15 @@ class CompanyAlumni extends React.Component {
 
   handleSubmit() {
     let company_id = window.location.pathname[window.location.pathname.length - 1]
-    axios.post( `/api/v1/companies/${company_id}/admin/employees`, { name: this.state.name } )
+    axios.post( `/api/v1/companies/${company_id}/employees`, { name: this.state.name } )
   }
 
   createEmployee() {
-    let company_id = window.location.pathname[window.location.pathname.length - 1]
+    let company_id = window.location.pathname.split('/')[window.location.pathname.split('/').length - 1]
     let employeesState = this.state.employees
     axios.post(`/api/v1/companies/${company_id}/employees`)
     .then((returned) => {
       employeesState.push(returned.data)
-      debugger;
       this.setState({ employees: employeesState }, this.determineDisable.bind(this, employeesState, this.state.currentUser))
     })
   }
@@ -53,7 +52,6 @@ class CompanyAlumni extends React.Component {
   }
 
   getAllCensusUsers() {
-    debugger; 
     axios.get('/api/v1/admin/census_users')
     .then((returned) => {
       this.setState({ census: returned.data })
