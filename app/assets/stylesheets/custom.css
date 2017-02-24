@@ -128,18 +128,8 @@ body {
 }
 
 .container {
-  /*border: 1px solid black;*/
-  /*background-color: #eaeaea;*/
-  /*border-radius: 10px;*/
   width: 100%;
 }
-
-/*.add-findings {
-  position: relative;
-  margin-top: 70px;
-  width: 300px;
-
-}*/
 
 .remove-employee:hover{
   cursor: pointer;
@@ -169,20 +159,6 @@ div.switch-toggle.well {
   border: 1px solid black;
 }
 
-/*.locations-table {
-  position: relative;
-  width: 45%;
-  margin-top: 15px;
-  display: inline-block;
-  float: right;
-}*/
-
-/*.company-info {
-  display: inline-block;
-  position: relative;
-  margin-left: 70px;
-}*/
-
 .logo-container {
   display: inline-block;
 }
@@ -191,8 +167,6 @@ div.switch-toggle.well {
   margin-top: 150px;
 }
 
-/*.jobs {
-  position: relative;
-  margin-top: 100px;
-  width: 400px;
-}*/
+#locations-panel {
+  margin-top: 30px;
+}
