@@ -43,13 +43,13 @@ Monocle has 2 Heroku sites for you to use:
  
  Staging: 
  ```
-gem 'omniauth'
-gem 'omniauth-census', git: "https://github.com/NZenitram/census_staging_oauth"
-```
- Note: to avoid SSL issues while running the application locally, follow these [steps](https://github.com/NZenitram/census_staging_oauth)
+ gem 'omniauth'
+ gem 'omniauth-census', git: "https://github.com/NZenitram/census_staging_oauth"
+ ```
+ Note: to avoid SSL issues while running the application locally, follow these [steps](https://github.com/NZenitram/census_staging_oauth#important-note)
  
  Production: 
-```
-gem 'omniauth'
-gem 'omniauth-census', git: "https://github.com/turingschool-projects/omniauth-census"
-```
+ ```
+ gem 'omniauth'
+ gem 'omniauth-census', git: "https://github.com/turingschool-projects/omniauth-census"
+ ```
