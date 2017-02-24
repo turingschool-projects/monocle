@@ -23,7 +23,6 @@ class CompanyAlumni extends React.Component {
   }
 
   handleSubmit() {
-    debugger;
     let company_id = window.location.pathname.split('/')[window.location.pathname.split('/').length - 1]
     axios.post( `/api/v1/companies/${company_id}/admin/employees`, { name: this.state.name } )
   }
