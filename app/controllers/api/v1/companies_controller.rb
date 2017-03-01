@@ -1,6 +1,6 @@
 class Api::V1::CompaniesController < ApplicationController
 
-  before_action :secure_creation, only: [:create]
+  # before_action :secure_creation, only: [:create]
   skip_before_action :authorize!, only: [:create]
   skip_before_action :verify_authenticity_token
 
@@ -9,6 +9,7 @@ class Api::V1::CompaniesController < ApplicationController
   end
 
   def create
+    secure_creation
     company = Company.new(company_params)
     if company.save
       render json: company, status: 201

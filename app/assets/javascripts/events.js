@@ -38,8 +38,6 @@ function pathFinder() {
   return document.location.pathname.split('/');
 }
 
-
-
 function renderStar() {
   $('.starred-message').html('');
   $('.star-toggle').html('<span class="glyphicon glyphicon-star"></span> Favorite');

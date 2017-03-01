@@ -7,8 +7,7 @@ class Api::V1::CompanySearchController < ApplicationController
     if company
       render json: { company_id: company.id }
     else
-      render json: "".to_json, status: 404
+      render json: { error: "company not found" }.to_json, status: 404
     end
   end
-
 end
