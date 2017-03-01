@@ -20,6 +20,16 @@ RSpec.describe 'CompanyController' do
 
       expect(response).to be_success
       expect(Company.last.status).to eq('pending')
+      expect(Location.last).to eq(nil)
+    end
+
+    it 'does not create a location if the name comes as nil' do
+      data = { company: {name: "Granicus"}, token: "TurMonLook4", location: {name: nil}}
+
+      post '/api/v1/companies', params: data
+
+      expect(response).to be_success
+      expect(Location.last).to eq(nil)
     end
 
     it "creates a company with approved location" do
