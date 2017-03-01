@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe 'CompanyController' do
   context 'POST /api/v1/companies' do
     it "can create a company with a name" do
-      data = { company: {name: "Granicus"}, token: "TurMonLook4"}
+      data = { company: {name: "Granicus"}, token: "TurMonLook4", location: {name: nil}}
 
       expect(Company.count).to eq(0)
       post '/api/v1/companies', params: data
@@ -14,13 +14,31 @@ RSpec.describe 'CompanyController' do
     end
 
     it "creates a company that is pending" do
-      data = { company: {name: "Granicus"}, token: "TurMonLook4"}
+      data = { company: {name: "Granicus"}, token: "TurMonLook4", location: {name: nil}}
 
       post '/api/v1/companies', params: data
 
       expect(response).to be_success
       expect(Company.last.status).to eq('pending')
+    end
 
+    it "creates a company with approved location" do
+      location = {
+        street_address: '1331 17th St',
+        city: 'Denver',
+        state: 'CO',
+        zip_code: '80202'
+      }
+      data = { company: {name: "Granicus"}, token: "TurMonLook4", location: location}
+
+      post '/api/v1/companies', params: data
+
+      location = Location.last
+
+      expect(response).to be_success
+      expect(Company.last.status).to eq('pending')
+      expect(location.status).to eq('approved')
+      expect(location.street_address).to eq('1331 17th St')
     end
 
     it "can't create company without key" do
