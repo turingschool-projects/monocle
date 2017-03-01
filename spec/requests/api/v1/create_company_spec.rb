@@ -51,8 +51,14 @@ RSpec.describe 'CompanyController' do
       expect(location.street_address).to eq('1331 17th St')
     end
 
-    it "can't create company without key" do
-      data = { company: {name: "Granicus"} }
+    xit "can't create company without key" do
+      location = {
+        street_address: '1331 17th St',
+        city: 'Denver',
+        state: 'CO',
+        zip_code: '80202'
+      }
+      data = { company: {name: "Granicus"}, location: location }
 
       expect(Company.count).to eq(0)
       post '/api/v1/companies', params: data
@@ -84,7 +90,7 @@ RSpec.describe 'CompanyController' do
       parsed = JSON.parse(response.body)
 
       expect(response.status).to eq(404)
-      expect(parsed).to eq("")
+      expect(parsed).to eq({'error' => 'company not found'})
     end
   end
 end
