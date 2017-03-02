@@ -180,6 +180,8 @@ function addCards(companies) {
     });
     var distance = determineDistance(company)
 
+    var website = company["website"] || ""
+
     if(company.status == 'approved') {
       $('#companies-body').append(
         `<div class='card-holder col-xs-12 col-sm-6 col-md-4 col-lg-3 col-xl-2'>
@@ -195,8 +197,8 @@ function addCards(companies) {
                 </h4>
                 <p>
                   ${location}
-                  <a href='http://${company["website"]}' target='_blank'>
-                    ${company['website']}
+                  <a href='http://${website}' target='_blank'>
+                    ${website}
                   </a>
                 </p>
               </div>
@@ -220,8 +222,8 @@ function addCards(companies) {
                   </h4>
                   <p>
                     ${location}
-                    <a href='http://${company["website"]}' target='_blank'>
-                      ${company['website']}
+                    <a href='http://${website}' target='_blank'>
+                      ${website}
                     </a>
                   </p>
                 </div>
