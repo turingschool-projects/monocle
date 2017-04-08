@@ -1,92 +1,153 @@
 3XLOGIC INC.
-10225 Westmoor Drive, Suite 300 Westminster, CO 80021 303-430-1969
+10225 Westmoor Drive
+Suite 300
+Westminster, CO 80021
+303-430-1969
 www.3xlogic.com
-Company headquarters: Westminster Products/Services: Provides surveillance solutions that integrate audio, video and disparate data such as access control, license plate recognition, ATM, point-of-sale and more.
+Company headquarters: Westminster
+Products/Services: Provides surveillance solutions that integrate audio, video and disparate data such as access control, license plate recognition, ATM, point-of-sale and more.
 Person in charge: Matt Kushner, C.E.O.
+
 5280 COMPUTERS
-4380 S. Syracuse St., Suite 301
+4380 S. Syracuse St.
+Suite 301
 Denver, CO 80237
 303-596-8567
 www.5280computers.com
-Company headquarters: Denver Products/Services: IT consulting and virtual CIO services, cloud services, hardware and software procurement, network set-up and maintenance, data backup and recovery, website design and maintenance.
+Company headquarters: Denver
+Products/Services: IT consulting and virtual CIO services, cloud services, hardware and software procurement, network set-up and maintenance, data backup and recovery, website design and maintenance.
 Person in charge: Nick Hinton, founder, owner
-
 
 A THROUGH Z COMPUTING
 1008 Pinnacle Place
+
 Fort Collins, CO 80525
-970-204-4778 www.athroughzcomputing.com Company headquarters: Fort Collins Products/Services: Full-service IT department for small and medium businesses. Servers, computers, laptops, smartphones, wireless and wired networking, cloud offerings, software installs and maintenance. Person in charge: Jim Jenson, Owner
+970-204-4778
+www.athroughzcomputing.com
+Company headquarters: Fort Collins
+Products/Services: Full-service IT department for small and medium businesses. Servers, computers, laptops, smartphones, wireless and wired networking, cloud offerings, software installs and maintenance.
+Person in charge: Jim Jenson, Owner
+
 ACCELAWAY INC.
-300 Center Drive, Suite G365
+300 Center Drive
+Suite G365
 Superior, CO 80027
 303-835-7920
 www.accelaway.com
-Company headquarters: Superior Products/Services: Technology strategy, financial systems & process redesign, finance and talent recruiting.
-Person in charge: Joel Munch, president ACCOUNTING SYSTEMS INC.
+Company headquarters: Superior
+Products/Services: Technology strategy, financial systems & process redesign, finance and talent recruiting.
+Person in charge: Joel Munch, president
+
+ACCOUNTING SYSTEMS INC.
 324 Remington St.
+
 Fort Collins, CO 80524
 866-440-5510
 ASIsucceed.com
-Company headquarters: Fort Collins Products/Services: Business software solutions, from accounting software to the CRM or ERP software solutions.
-Person in charge: Bredt Eggleston, chief solutions officer
-Jenny Eggleston, COO
+Company headquarters: Fort Collins
+Products/Services: Business software solutions, from accounting software to the CRM or ERP software solutions.
+Person in charge: Bredt Eggleston, chief solutions officer, Jenny Eggleston, COO
+
 ACTIVE GROUP COMPUTING
 7330 Eagle Rock Drive
+
 Littleton, CO 80125
-720-878-3333 www.activegroupcomputing.com Company headquarters: Littleton Products/Services: Cloud computing and voice and data solutions.
-Person in charge: Michael Crane, president ADURANT TECHNOLOGIES
-757 Maleta Lane, Suite 201
+720-878-3333
+www.activegroupcomputing.com
+Company headquarters: Littleton
+Products/Services: Cloud computing and voice and data solutions.
+Person in charge: Michael Crane, president
+
+ADURANT TECHNOLOGIES
+757 Maleta Lane
+Suite 201
 Castle Rock, CO 80108
 720-545-1972
 www.adurant.com
-Company headquarters: Castle Rock Products/Services: Cloud services solution provider, specializing in data management and infrastructure technologies.
+Company headquarters: Castle Rock
+Products/Services: Cloud services solution provider, specializing in data management and infrastructure technologies.
 Person in charge: Brett Weninger, managing director
-ADVANCED SYSTEMS GROUP (ASG) 12405 Grant St.
+
+ADVANCED SYSTEMS GROUP (ASG)
+12405 Grant St.
+
 Thornton, CO 80241
 303-301-3000
 www.virtual.com
-Company headquarters: Thornton Products/Services: Comprehensive consulting services, data management solutions, assessment and implementation services to help customers meet today�s IT and business challenges.
+Company headquarters: Thornton
+Products/Services: Comprehensive consulting services, data management solutions, assessment and implementation services to help customers meet today�s IT and business challenges.
 Person in charge: David Sosnowski, president, founder
+
 ADVANTAGE INTEGRATED SOLUTIONS
-1550 Larimer St., Suite 638
+1550 Larimer St.
+Suite 638
 Denver, CO 80202
-720-420-7216 www.advantagequickbase.com Company headquarters: Denver Products/Services: Develops Weband cloud-based applications for companies of all sizes.
+720-420-7216
+www.advantagequickbase.com
+Company headquarters: Denver
+Products/Services: Develops Weband cloud-based applications for companies of all sizes.
+
+
 AEGIS IDENTITY SOFTWARE INC.
-750 W. Hampden Ave., Suite 120 Englewood, CO 80110
+750 W. Hampden Ave.
+Suite 120
+Englewood, CO 80110
 303-222-1060
 www.aegisidentity.com
-Company headquarters: Enlglewood Products/Services: Identity and access management software and services solutions for education.
+Company headquarters: Enlglewood
+Products/Services: Identity and access management software and services solutions for education.
 Person in charge: Ralph Armijo, C.E.O. Bob Lamvik
+
 AEROHIVE NETWORKS
 330 Gibraltar Drive
+
 Sunnyvale, CA 94089
 408-510-6100
 www.aerohive.com
-Company headquarters: Sunnyvale, CA Products/Services: Provides cloud-enabled networking solutions, including enterpriseclass WiFi access points, state-of-the-art gigabit switches and easy-to-deploy routers.
+Company headquarters: Sunnyvale, CA
+Products/Services: Provides cloud-enabled networking solutions, including enterpriseclass WiFi access points, state-of-the-art gigabit switches and easy-to-deploy routers.
+
+
 AJUBEO
-1470 Walnut St., Suite 400
+1470 Walnut St.
+Suite 400
 Boulder, CO 80302
 855-425-8236
 www.ajubeo.com
-Company headquarters: Boulder Products/Services: Infrastructure as a Service (IaaS), public, private, hybrid cloud infrastructure, cloud data centers, cloud desktops (Daas/VDI) cloud backup, recovery, storage/servers, monitoring, IT services. Person in charge: Steve Brothers, C.E.O.
+Company headquarters: Boulder
+Products/Services: Infrastructure as a Service (IaaS), public, private, hybrid cloud infrastructure, cloud data centers, cloud desktops (Daas/VDI) cloud backup, recovery, storage/servers, monitoring, IT services.
+Person in charge: Steve Brothers, C.E.O.
+
 ALCHEMYAPI
-2300 15th St., Suite 400
+2300 15th St.
+Suite 400
 Denver, CO 80202
 303-242-5815
 www.alchemyapi.com
-Company headquarters: Denver Products/Services: Deep learning-based text and image analysis APIs for businesses that want to understand their unstructured data.
-Person in charge: Elliot Turner, C.E.O., founder
-Adam Cecil, CFO
+Company headquarters: Denver
+Products/Services: Deep learning-based text and image analysis APIs for businesses that want to understand their unstructured data.
+Person in charge: Elliot Turner, C.E.O., founder, Adam Cecil, CFO
+
 ALL COPY PRODUCTS
 4141 Colorado Blvd.
+
 Denver, CO 80216
 303-295-0741
 www.allcopyproducts.com
-Company headquarters: Denver Products/Services: Specializes in managed print services, document management, production and wide format printing equipment, supplies, managed IT, cloud services and phone solutions.
-Person in charge: Brad Knepper, C.E.O. ALLIED COMMUNICATION INC.
-6080 Greenwood Plaza Blvd. Greenwood Village, CO 80111 303-839-9200 www.alliedcommunication.com Company headquarters: Greenwood Village
+Company headquarters: Denver
+Products/Services: Specializes in managed print services, document management, production and wide format printing equipment, supplies, managed IT, cloud services and phone solutions.
+Person in charge: Brad Knepper, C.E.O.
+
+ALLIED COMMUNICATION INC.
+6080 Greenwood Plaza Blvd.
+
+Greenwood Village, CO 80111
+303-839-9200
+www.alliedcommunication.com
+Company headquarters: Greenwood Village
 Products/Services: Full-service national consulting firm and brokerage providing telecommunications, cloud, and Internet services to our clients.
 Person in charge: Matt Otis, president
+
 ALPINE ACCESS
 1290 Broadway, Suite 1400 Denver, CO 80203 720-559-4732 www.alpineaccess.com
 Company headquarters: Denver
